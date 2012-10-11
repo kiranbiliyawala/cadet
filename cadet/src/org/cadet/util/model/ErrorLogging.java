@@ -1,4 +1,4 @@
-package org.cadet.model;
+package org.cadet.util.model;
 
 import java.io.IOException;
 import java.util.Date;
@@ -33,7 +33,8 @@ public class ErrorLogging {
 	}
 	
 	public void log(Level level,Throwable e){
-	logger.log(level,new Date().toString(),e);	
+	logger.log(level,null,e);
+	e.printStackTrace();
 	}
 	
 }

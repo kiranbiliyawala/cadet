@@ -1,4 +1,4 @@
-package org.cadet.controller;
+package org.cadet.util.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.cadet.model.UserControl;
-import org.cadet.model.DatabaseConnection;
-import org.cadet.model.ErrorLogging;
+import org.cadet.util.model.DatabaseConnection;
+import org.cadet.util.model.ErrorLogging;
+import org.cadet.util.model.UserControl;
 
 /**
  * Servlet implementation class LoginAuthorize

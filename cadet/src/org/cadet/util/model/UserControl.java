@@ -1,4 +1,4 @@
-package org.cadet.model;
+package org.cadet.util.model;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -66,7 +66,7 @@ public class UserControl {
 		}
 	}
 	
-	private static String Hashify(String Plaintext){
+	protected static String Hashify(String Plaintext){
 		MessageDigest md;
 		String Hash=null;
 		try {
