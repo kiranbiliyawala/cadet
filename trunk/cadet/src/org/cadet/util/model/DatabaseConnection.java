@@ -1,19 +1,24 @@
-package org.cadet.model;
+package org.cadet.util.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.logging.Level;
 
-import org.cadet.model.Constants;
+
+import org.cadet.util.model.Constants;
 
 public class DatabaseConnection {
 
-	Connection connection = null;
+	Connection connection;
 	
 	private DatabaseConnection(){
 		try{
-			Class.forName(Constants.DB.driver).newInstance();
-			connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
+			Class.forName("com.mysql.jdbc.Driver");
+			if(Constants.DB.hasPassword){
+				connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
+			}else{
+				connection = DriverManager.getConnection(Constants.DB.dburl);
+			}
 		}catch(Exception e)
 		{
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
