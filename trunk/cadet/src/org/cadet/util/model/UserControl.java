@@ -23,8 +23,8 @@ public class UserControl {
 		}catch(SQLException e){
 			throw e;
 		}finally{
-			if(statement!=null) statement.close();
 			if(rs!=null) rs.close();
+			if(statement!=null) statement.close();
 		}
 		if(VerifyPasswords(password, dbpassword))
 			{
@@ -46,13 +46,33 @@ public class UserControl {
 		}catch(SQLException e){
 			throw e;
 		}finally{
-			if(statement!=null) statement.close();
 			if(rs!=null) rs.close();
+			if(statement!=null) statement.close();
 		}
 		if(VerifyPasswords(password, dbpassword))
 			{
 			ret = true;
 			}
+		return ret;
+	}
+	
+	public static Boolean isClientAvailable(Connection connection,String username) throws SQLException{
+		Boolean ret=false;
+		Statement statement = null;
+		ResultSet rs = null;
+		try{
+			statement = connection.createStatement();
+			rs = statement.executeQuery(Constants.sqlCommands.isClientAvailable+"'"+username+"'");
+			int count = rs.getInt("count");
+			if(count==0){
+				ret=true;
+			}
+		}catch(SQLException e){
+			throw e;
+		}finally{
+			if(rs!=null) rs.close();
+			if(statement!=null) statement.close();
+		}
 		return ret;
 	}
 	
@@ -88,6 +108,7 @@ public class UserControl {
 		statement.setString(4, Contact);
 		statement.setString(5, "N");
 		statement.executeUpdate();
+		statement.close();
 	}
 	
 	public static void AddAdmin(Connection connection,String username,String password,String name,String Contact) throws SQLException{
@@ -100,18 +121,21 @@ public class UserControl {
 		statement.setString(4, Contact);
 		statement.setString(5, "N");
 		statement.executeUpdate();
+		statement.close();
 	}
 	
 	public static void VerifyClient(Connection connection,String username) throws SQLException{
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.VerifyClient);
 		statement.setString(1, username);
 		statement.executeUpdate();
+		statement.close();
 	}
 	
 	public static void VerifyAdmin(Connection connection,String username) throws SQLException{
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.VerifyAdmin);
 		statement.setString(1, username);
 		statement.executeUpdate();
+		statement.close();
 	}
 	
 	public static Boolean CheckClientVerification(Connection connection,String username) throws SQLException{
@@ -121,6 +145,8 @@ public class UserControl {
 		if(rs.getString("Verified").equals("Y")){
 			return true;
 		}
+		rs.close();
+		statement.close();
 		return false;
 	}
 	
@@ -131,6 +157,8 @@ public class UserControl {
 		if(rs.getString("Verified").equals("Y")){
 			return true;
 		}
+		rs.close();
+		statement.close();
 		return false;
 	}
 }

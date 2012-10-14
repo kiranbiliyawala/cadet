@@ -53,7 +53,7 @@ public class ClientAuthFilter implements Filter {
 			throw new NullPointerException();
 		}
 		}catch (NullPointerException e) {
-			response.sendError(403, "Unauthorized acces to client section");
+			response.sendRedirect("Login");
 		}
 		// pass the request along the filter chain
 		chain.doFilter(request, response);

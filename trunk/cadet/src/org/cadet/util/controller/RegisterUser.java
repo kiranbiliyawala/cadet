@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.cadet.util.model.Constants;
 import org.cadet.util.model.DatabaseConnection;
@@ -47,7 +48,9 @@ public class RegisterUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		Connection dbconnection = DatabaseConnection.getInstance().getDbConnection();
+		HttpSession session = request.getSession();
 		String username = request.getParameter("Username");
 		String password = request.getParameter("Password");
 		String password2 = request.getParameter("Password2");
@@ -79,8 +82,23 @@ public class RegisterUser extends HttpServlet {
 			return;
 		}
 		
+		try{
+			if ((boolean) session.getAttribute("Captcha")){
+			}else{
+				response.sendError(403,"Invalid captcha");
+				return;
+			}
+		}catch(Exception e){
+			response.sendError(403,"Invalid captcha");
+			return;
+		}
 		
 		try {
+			
+			if(!UserControl.isClientAvailable(dbconnection, username)){
+				response.sendError(403,"Username Not Available");
+			}
+			
 			UserControl.AddClient(dbconnection, username, password, name, Contact);
 			EmailSend.SendMail(username);
 		} catch (SQLException e) {
@@ -91,7 +109,7 @@ public class RegisterUser extends HttpServlet {
 			response.sendError(500,new Date().toString()+"- Email fail Error");
 		}
 		
-		response.sendRedirect("EmailPending");
+		response.sendRedirect("EmailVerification");
 		
 	}
 

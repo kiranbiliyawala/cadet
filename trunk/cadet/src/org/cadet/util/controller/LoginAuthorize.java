@@ -51,23 +51,30 @@ public class LoginAuthorize extends HttpServlet {
 		if(UserControl.checkAdminTable(dbconnection, username, password)){
 			if(!UserControl.CheckAdminVerification(dbconnection, username)){
 				response.sendRedirect("EmailVerification");
+				return;
 			}
 			session.setAttribute("user", username);
 			session.setAttribute("AdminAuth", true);
 			session.setAttribute("ClientAuth", false);
+			session.setAttribute("homeurl","admin/dashboard");
 			response.sendRedirect("admin/dashboard");
+			return;
 		}else if(UserControl.checkClientTable(dbconnection, username, password)){
 			if(!UserControl.CheckClientVerification(dbconnection, username)){
 				response.sendRedirect("EmailVerification");
+				return;
 			}
 			session.setAttribute("user", username);
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", true);
+			session.setAttribute("homeurl","client/dashboard");
 			response.sendRedirect("client/dashboard");
+			return;
 		}else{
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", false);
 			response.sendRedirect("Login.jsp");
+			return;
 		}
 		}catch(SQLException e){
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
