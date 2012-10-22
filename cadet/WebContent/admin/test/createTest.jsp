@@ -6,21 +6,21 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>CADET | Home</title>
+        <title>Create Test</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../../css/bootstrap.css">
         <style>
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>
-        <link rel="stylesheet" href="../css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="../../css/main.css">
 
-        <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -35,12 +35,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#home">CADET</a>
+                    <a class="brand" href="../index.jsp">CADET</a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li class="active"><a href="#home">Home</a></li>
+                           <li class="active"><a href="../index.jsp">Home</a></li>
                            <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="test/testManagement.html">Test Management</a></li>
+                           <li><a href="testManagement.html">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
                     </div>
@@ -54,7 +54,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="../index.html">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
                         </div>
                     </div>
     
@@ -79,9 +79,10 @@
                         </div>
                         <div id="collapse3" class="accordion-body collapse in">
                             <div class="accordion-inner">
+
                                 <ul class="nav">
-                                    <li><a href="test/testManagement.html">Create/View Test</a></li>
-                                    <li><a href="#">Result</a></li>
+                                    <li><a href="testManagement.jsp">Create/View Test</a></li>
+                                    <li><a href="#result">Result</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -104,12 +105,32 @@
                 </div>	<!--/#accordion -->
 
 				<div class="container span9 offset*">
-					CADET - ADMIN DASH BOARD
-                </div>
+                    <div class="navbar navbar-inverse">
+                        <div class="navbar-inner">
+                            <div class="container pull-left"><a class="brand" href="#">Create Test</a></div>
+                        </div>
+                    </div>
+                    <div class="container span3 offset2">
+						<form method="post">
+                            <label>Test Name : </label>
+                            <input type="text"/>
+                            <label>Type</label>
+                            <select>
+                                <option>Adaptive</option>
+                                <option>Non-Adaptive</option>
+                            </select>
+                            <label>Description</label>
+                            <textarea></textarea>
+                            <hr>
+                            <input class="btn btn-primary pull-left" type="submit" value="Create">
+                            <a href="testManagement.jsp" class="btn btn-danger pull-right">Cancel</a>
+                        </form>
+                    </div>	<!-- /form container -->
+                </div>	<!-- /content container -->
 
             </div>	<!--/.row div -->
 
-        </div>	<!--/.container div -->
+        </div>	<!--/main container -->
 
 		<hr>
         <footer>
@@ -126,32 +147,5 @@
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
-        <script src="../../js/handlebars.js"></script>
-
-		<script id="tmpltTests" type="text/x-handlebars-template">
-
-			{{#if testList.length}}
-				{{#each testList}}
-					<tr>
-						<td>{{testName}}</td>
-						<td>{{tDate}}</td>
-						<td>{{tDuration}}</td>
-						<td><a href="#" class="btn btn-info">Edit</a></td>
-						<td><a href="#" class="btn btn-danger">Delete</a></td>
-					</tr>
-				{{/each}}
-			{{else}}
-				<tr>
-					<td><span class="label label-warning">No Test Available</span></td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-				</tr>
-			{{/if}}
-		</script>
-
-        <script src="../../js/plugins.js"></script>
-        <script src="../../js/main.js"></script>
     </body>
 </html>

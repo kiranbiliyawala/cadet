@@ -13,7 +13,7 @@ public class DatabaseConnection {
 	
 	private DatabaseConnection(){
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(Constants.DB.driver);
 			if(Constants.DB.hasPassword){
 				connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
 			}else{
