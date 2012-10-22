@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Test : </title>
+        <title>CADET | Test Management</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -35,12 +35,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">CADET</a>
+                    <a class="brand" href="../index.jsp">CADET</a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li class="active"><a href="..index.html">Home</a></li>
+                           <li class="active"><a href="../index.jsp">Home</a></li>
                            <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="testManagement.html">Test Management</a></li>
+                           <li><a href="#testManagement">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
                     </div>
@@ -54,7 +54,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="../index.html">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
                         </div>
                     </div>
     
@@ -79,11 +79,9 @@
                         </div>
                         <div id="collapse3" class="accordion-body collapse in">
                             <div class="accordion-inner">
-
-
                                 <ul class="nav">
-                                    <li><a href="testManagement.html">Create/View Test</a></li>
-                                    <li><a href="#">Result</a></li>
+                                    <li><a href="#testManagement">Create/View Test</a></li>
+                                    <li><a href="#result">Result</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -108,18 +106,30 @@
 				<div class="container span9 offset*">
                     <div class="navbar navbar-inverse">
                         <div class="navbar-inner">
-                            <div class="container pull-left"><a class="brand" href="#">Test : </a></div>
+                            <div class="container pull-left"><a class="brand" href="#">Tests</a></div>
+                            <div class="container pull-right"><a href="createTest.jsp" class="btn btn-primary">Create Test</a></div>
                         </div>
                     </div>
-                    <div class="container span3 offset2">
-						TEST PAGE
+                    <div class="spna9">
+                    	<table id="tblTests" class="table table-bordered table-condensed table-hover">
+                        	<thead>
+                            	<tr>
+                                	<th>Test Name</th>
+                                    <th>Date</th>
+                                    <th>Duration</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
             </div>	<!--/.row div -->
 
         </div>	<!--/.container div -->
-
 		<hr>
         <footer>
                 <div class="container row">
@@ -135,8 +145,32 @@
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
+        <script src="../../js/handlebars.js"></script>
+
+		<script id="tmpltTests" type="text/x-handlebars-template">
+
+			{{#if testList.length}}
+				{{#each testList}}
+					<tr>
+						<td>{{testName}}</td>
+						<td>{{tDate}}</td>
+						<td>{{tDuration}} Mins.</td>
+						<td><a href="#" class="btn btn-info">Edit</a></td>
+						<td><a href="#" class="btn btn-danger">Delete</a></td>
+					</tr>
+				{{/each}}
+			{{else}}
+				<tr>
+					<td><span class="label label-warning">No Test Available</span></td>
+					<td>-</td>
+					<td>-</td>
+					<td>-</td>
+					<td>-</td>
+				</tr>
+			{{/if}}
+		</script>
 
         <script src="../../js/plugins.js"></script>
-        <script src="../../js/main.js"></script>
+       <script src="../../js/jsTestManagementHome.js"></script>
     </body>
 </html>
