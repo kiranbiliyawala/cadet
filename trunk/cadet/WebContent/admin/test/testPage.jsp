@@ -54,7 +54,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
                         </div>
                     </div>
     

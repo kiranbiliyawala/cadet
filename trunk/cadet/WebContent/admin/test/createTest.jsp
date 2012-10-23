@@ -40,7 +40,7 @@
                        <ul class="nav">
                            <li class="active"><a href="../index.jsp">Home</a></li>
                            <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="testManagement.html">Test Management</a></li>
+                           <li><a href="testManagement.jsp">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
                     </div>
@@ -54,7 +54,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
                         </div>
                     </div>
     

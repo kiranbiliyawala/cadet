@@ -54,7 +54,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#home">Home</a>
                         </div>
                     </div>
     
@@ -79,6 +79,7 @@
                         </div>
                         <div id="collapse3" class="accordion-body collapse in">
                             <div class="accordion-inner">
+
                                 <ul class="nav">
                                     <li><a href="test/testManagement.jsp">Create/View Test</a></li>
                                     <li><a href="#result">Result</a></li>

@@ -54,10 +54,10 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
                         </div>
                     </div>
-    
+                    
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Question Bank</a>
@@ -153,8 +153,8 @@
 				{{#each testList}}
 					<tr>
 						<td>{{testName}}</td>
-						<td>{{tDate}}</td>
-						<td>{{tDuration}} Mins.</td>
+						<td>{{testDate}}</td>
+						<td>{{testDuration}} Mins.</td>
 						<td><a href="#" class="btn btn-info">Edit</a></td>
 						<td><a href="#" class="btn btn-danger">Delete</a></td>
 					</tr>
@@ -170,7 +170,7 @@
 			{{/if}}
 		</script>
 
-        <script src="../../js/plugins.js"></script>
-       <script src="../../js/jsTestManagementHome.js"></script>
+       	<script src="../../js/plugins.js"></script>
+       	<script src="../../js/jsTestManagementHome.js"></script>
     </body>
 </html>

@@ -18,7 +18,7 @@ public class DatabaseConnection {
 				connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
 			}else{
 				connection = DriverManager.getConnection(Constants.DB.dburl);
-			}\
+			}
 		}catch(Exception e)
 		{
 			ErrorLogging.getInstance().log(Level.SEVERE, e);

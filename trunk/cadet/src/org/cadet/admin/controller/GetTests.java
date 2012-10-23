@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.cadet.admin.model.TestDbTransactions;
 import org.cadet.util.model.DatabaseConnection;
 import org.cadet.util.model.ErrorLogging;
-import org.cadet.util.model.json.JSONObject;
+import org.json.JSONObject;
 
 /**
  * Servlet implementation class GetTests
@@ -38,7 +38,7 @@ public class GetTests extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		response.sendError(404,"No Post Request Allowed for this Page");
+		response.sendError(404,"No Get Request Allowed for this Page");
 	}
 
 	/**
@@ -67,5 +67,4 @@ public class GetTests extends HttpServlet {
 			response.sendError(500,new Date().toString()+" - Database Error Check error log for futher information");
 		}
 	}
-
 }
