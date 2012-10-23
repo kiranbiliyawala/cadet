@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 import org.cadet.admin.bean.BeanTest;
 import org.cadet.util.model.Constants;
-import org.cadet.util.model.json.JSONException;
-import org.cadet.util.model.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Udit Desai
@@ -42,11 +42,9 @@ public class TestDbTransactions {
 			temp.setTestID(rs.getInt("Testid"));
 			temp.setTestName(rs.getString("Testname"));
 			temp.setType(rs.getString("Type"));
-			temp.settDate(rs.getDate("Tdate").toString());
-			temp.settDuration(rs.getInt("Tduration"));
+			temp.setTestDate(rs.getString("Tdate"));
+			temp.setTestDuration(rs.getInt("Tduration"));
 			temp.setInitialDifficulty(rs.getInt("Initialdifficulty"));
-
-			System.out.println(temp);
 
 			result.add(temp);
 		}
