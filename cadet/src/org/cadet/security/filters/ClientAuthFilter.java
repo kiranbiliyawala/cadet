@@ -44,11 +44,9 @@ public class ClientAuthFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-<<<<<<< .mine
 /*		HttpServletRequest request = (HttpServletRequest) req;
 =======
 	/*	HttpServletRequest request = (HttpServletRequest) req;
->>>>>>> .r31
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpSession session = request.getSession();
 		try{
@@ -59,14 +57,12 @@ public class ClientAuthFilter implements Filter {
 		}catch (NullPointerException e) {
 			response.sendRedirect("Login");
 		}
-<<<<<<< .mine
 		// pass the request along the filter chain
-*/		chain.doFilter((HttpServletRequest)req,(HttpServletResponse)res);
-=======
+*/		
+
 		// pass the request along the filter chain*/
 		//chain.doFilter(request, response);
 		chain.doFilter(req, res);
->>>>>>> .r31
 	}
 
 	/**
