@@ -27,7 +27,7 @@
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -43,6 +43,7 @@
                            <li><a href="#testManagement">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
+                       <button class="btn btn-danger pull-right">Logout</button>
                     </div>
                 </div>	<!--/.container -->
             </div>
@@ -104,7 +105,7 @@
                 </div>	<!--/#accordion -->
 
 				<div class="container span9 offset*">
-                    <div class="navbar navbar-inverse">
+                    <div class="navbar">
                         <div class="navbar-inner">
                             <div class="container pull-left"><a class="brand" href="#">Tests</a></div>
                             <div class="container pull-right"><a href="createTest.jsp" class="btn btn-primary">Create Test</a></div>

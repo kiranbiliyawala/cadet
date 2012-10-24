@@ -27,7 +27,7 @@
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -43,6 +43,7 @@
                            <li><a href="testManagement.jsp">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
+                       <button class="btn btn-danger pull-right">Logout</button>
                     </div>
                 </div>	<!--/.container -->
             </div>
@@ -105,25 +106,47 @@
                 </div>	<!--/#accordion -->
 
 				<div class="container span9 offset*">
-                    <div class="navbar navbar-inverse">
+                    <div class="navbar">
                         <div class="navbar-inner">
-                            <div class="container pull-left"><a class="brand" href="#">Create Test</a></div>
+                            <div class="container pull-left"><span class="brand">Create Test</span></div>
                         </div>
                     </div>
-                    <div class="container span3 offset2">
-						<form method="post">
-                            <label>Test Name : </label>
-                            <input type="text"/>
-                            <label>Type</label>
-                            <select>
-                                <option>Adaptive</option>
-                                <option>Non-Adaptive</option>
-                            </select>
-                            <label>Description</label>
-                            <textarea></textarea>
-                            <hr>
-                            <input class="btn btn-primary pull-left" type="submit" value="Create">
-                            <a href="testManagement.jsp" class="btn btn-danger pull-right">Cancel</a>
+                    <div class="container">
+						<form class="form-horizontal" method="post">
+							<div class="control-group">
+	                            <label class="control-label" for="txtEmail">Test Name : </label>
+	                            <div class="controls">
+	                            	<input type="text" id="txtEmail" placeholder="Email">
+	                            </div>
+	                        </div>
+
+							<div class="control-group">
+								<label class="control-label" for="optTestType">Type</label>
+								<div class="controls">
+		                            <select id="optTestType">
+		                                <option>Adaptive</option>
+		                                <option>Non-Adaptive</option>
+		                            </select>
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="control-label" for="taDesc">Description</label>
+								<div class="controls">
+									<textarea class="input-xxlarge" style="resize:none;" rows="5" placeholder="Test Description & Instructions"></textarea>
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<hr class="span8">
+							</div>
+							
+							<div class="control-group">
+								<div class="controls span4">
+									<input class="btn btn-primary pull-left" type="submit" value="Create">
+									<a href="testManagement.jsp" class="btn btn-danger pull-right">Cancel</a>
+								</div>
+							</div>
                         </form>
                     </div>	<!-- /form container -->
                 </div>	<!-- /content container -->
