@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(dispatcherTypes = {
 				DispatcherType.REQUEST, 
 				DispatcherType.FORWARD, 
-				DispatcherType.INCLUDE,
+				DispatcherType.INCLUDE
 		}
 					, description = "Admin Authentication filter", urlPatterns = { "/admin/*" })
 public class AdminAuthFilter implements Filter {
@@ -44,7 +44,7 @@ public class AdminAuthFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-/*		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 		HttpSession session = request.getSession();
 		try{
@@ -56,7 +56,7 @@ public class AdminAuthFilter implements Filter {
 			response.sendRedirect("Login");
 		}
 		// pass the request along the filter chain
-*/		chain.doFilter((HttpServletRequest)req, (HttpServletResponse)res);
+		chain.doFilter(request, response);
 	}
 
 	/**
