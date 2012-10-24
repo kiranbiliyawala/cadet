@@ -97,6 +97,7 @@ public class RegisterUser extends HttpServlet {
 			
 			if(!UserControl.isClientAvailable(dbconnection, username)){
 				response.sendError(403,"Username Not Available");
+				return;
 			}
 			
 			UserControl.AddClient(dbconnection, username, password, name, Contact);
@@ -104,9 +105,11 @@ public class RegisterUser extends HttpServlet {
 		} catch (SQLException e) {
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
 			response.sendError(500,new Date().toString()+"- Database Connection Error");
+			return;
 		} catch (MessagingException e) {
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
 			response.sendError(500,new Date().toString()+"- Email fail Error");
+			return;
 		}
 		
 		response.sendRedirect("EmailVerification");

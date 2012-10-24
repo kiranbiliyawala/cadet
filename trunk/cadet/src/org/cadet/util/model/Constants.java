@@ -33,6 +33,7 @@ public class Constants {
 		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE Username = ?"; 
 		public static final String CheckClientVerification = "SELECT Verified FROM user WHERE Username = ?";
 		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
+		public static final String UpdateClientPassword = "UPDATE user SET Password=? WHERE Username = ?";
 
 	}
 	

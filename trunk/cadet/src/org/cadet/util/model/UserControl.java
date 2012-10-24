@@ -1,5 +1,8 @@
 package org.cadet.util.model;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -19,6 +22,7 @@ public class UserControl {
 		try{
 			statement = connection.createStatement();
 		rs = statement.executeQuery(Constants.sqlCommands.retrivePasswordAdmin+"'"+username+"'");
+		rs.first();
 		dbpassword = rs.getString("Password");
 		}catch(SQLException e){
 			throw e;
@@ -63,6 +67,7 @@ public class UserControl {
 		try{
 			statement = connection.createStatement();
 			rs = statement.executeQuery(Constants.sqlCommands.isClientAvailable+"'"+username+"'");
+			rs.first();
 			int count = rs.getInt("count");
 			if(count==0){
 				ret=true;
@@ -86,14 +91,23 @@ public class UserControl {
 		}
 	}
 	
+	public static String getHashEmail(String text){
+		return Hashify(text).substring(0, 20);
+	}
+	
 	protected static String Hashify(String Plaintext){
 		MessageDigest md;
 		String Hash=null;
 		try {
 			md = MessageDigest.getInstance("SHA-512");
-		Hash = new String(md.digest(Plaintext.getBytes()));
+		Hash = new String(md.digest(Plaintext.getBytes()),Charset.forName("UTF-8"));
+		Hash = URLEncoder.encode(Hash, "UTF-8");
+		Hash = Hash.replace("%", "");
 		}catch(NoSuchAlgorithmException e){
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return Hash;
 	}
@@ -109,6 +123,17 @@ public class UserControl {
 		statement.setString(5, "N");
 		statement.executeUpdate();
 		statement.close();
+	}
+	
+	public static void UpdateClientPassword(Connection connection,String username,String password) throws SQLException{
+		String PasswordHash = Hashify(password);
+		
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.UpdateClientPassword);
+		statement.setString(1, PasswordHash);
+		statement.setString(2,username);
+		statement.executeUpdate();
+		statement.close();
+
 	}
 	
 	public static void AddAdmin(Connection connection,String username,String password,String name,String Contact) throws SQLException{

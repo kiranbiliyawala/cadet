@@ -1,6 +1,9 @@
 package org.cadet.util.model;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.regex.Pattern;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -41,7 +44,8 @@ public class EmailSend {
  
         MimeMessage message = new MimeMessage(mailSession);
  
-        message.setContent(Constants.email.EmailMessage+"user="+username+"key="+UserControl.Hashify(username),"text/html");
+		message.setContent(Constants.email.EmailMessage+"user="+username+"&key="+UserControl.getHashEmail(username),"text/html");
+		
         message.setFrom(new InternetAddress(Constants.email.EmailUsername));
         message.setSubject(Constants.email.EmailSubject);
         message.addRecipient(Message.RecipientType.TO,new InternetAddress(username));

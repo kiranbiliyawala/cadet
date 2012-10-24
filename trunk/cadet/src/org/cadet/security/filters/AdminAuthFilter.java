@@ -56,7 +56,8 @@ public class AdminAuthFilter implements Filter {
 			response.sendRedirect("Login");
 		}
 		// pass the request along the filter chain
-*/		chain.doFilter((HttpServletRequest)req, (HttpServletResponse)res);
+*/		//chain.doFilter(request, response);
+		chain.doFilter(req, res);
 	}
 
 	/**
