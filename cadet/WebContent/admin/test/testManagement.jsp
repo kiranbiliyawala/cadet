@@ -35,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="../index.jsp">CADET</a>
+                    <a class="brand" href="../index.jsp"><img src="../../img/cadet.png" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
                            <li class="active"><a href="../index.jsp">Home</a></li>

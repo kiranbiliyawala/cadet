@@ -20,7 +20,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class GetTests
  */
-@WebServlet("/GetTests")
+@WebServlet("/admin/test/GetTests")
 public class GetTests extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,7 +53,6 @@ public class GetTests extends HttpServlet {
 		try {
 
 			JSONObject data = TestDbTransactions.getTests(dbConnection);
-			System.out.println(data.toString());
 
 			response.setContentType("application/json");
 		    response.setCharacterEncoding("UTF-8");
