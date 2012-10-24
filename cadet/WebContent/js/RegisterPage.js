@@ -1,14 +1,15 @@
 var RecaptchaOptions = {
 		    theme : 'clean'
 		 };
-  
+
+
   function validate() {
 	  
-	  var username = document.getElementsByName("Username").value;
-	  var password = document.getElementsByName("Password");
-	  var password2 = document.getElementsByName("Password2");
-	  var name = document.getElementsByName("Name").value;
-	  var contact = document.getElementsByName("Contact").value;
+	  var username = document.getElementById("Username").value;
+	  var password = document.getElementById("Password");
+	  var password2 = document.getElementById("Password2");
+	  var name = document.getElementById("Name").value;
+	  var contact = document.getElementById("Contact").value;
 	  
 	  var username_error = document.getElementById("username_error");
 	  var password_error = document.getElementById("password_error");
@@ -22,13 +23,18 @@ var RecaptchaOptions = {
 	  
 	  var atpos=username.indexOf("@");
 	  var dotpos=username.lastIndexOf(".");
-	  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+	  if (atpos<1 || dotpos<atpos+2 || dotpos+2>=username.length)
 	    {
 	    username_error.innerHTML="Invalid Email";
 	    return false;
 	    }
 	  
-	  if(Ajax_username("isUserNameAvailable?username="+username, "username_error")==false){
+	  if(Ajax_username("../isUserNameAvailable?username="+username, "username_error")==false){
+		  return false;
+	  }
+	  
+	  if(password.value.length<6){
+		  password_error.innerHTML="Password Should be Minimum Six Charachers";
 		  return false;
 	  }
 	  
@@ -50,18 +56,18 @@ var RecaptchaOptions = {
 	  var challenge=document.getElementById("recaptcha_challenge_field").value;
 	  var response=document.getElementById("recaptcha_response_field").value;
 	  var message = "recaptcha_challenge_field="+challenge+"&recaptcha_response_field="+response;
-	if( Ajax("VerifyCaptcha?"+message,"captchaerror")==false){
+	if( Ajax("../VerifyCaptcha?"+message,"captchaerror")==false){
 		return false;
 	}
 	
 	password.value = hashmap(password.value);
 	password2.value = hashmap(password2.value);
-	
 }
   
   function hashmap(input){
 		var shaobj = new jsSHA(input,"ASCII");
-		return shaobj.get("SHA-512","HEX");
+		var hash = shaobj.getHash("SHA-512", "HEX");
+		return hash;
 	}
   
   function Ajax(url,div)
