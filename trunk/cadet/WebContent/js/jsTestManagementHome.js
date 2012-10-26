@@ -1,11 +1,18 @@
 $(document).ready(function(e) {
-	
-	$.post("GetTests",function(data,textStatus,xhr) {
 
-		var src = $("#tmpltTests").html();
-		var template = Handlebars.compile(src);
-		var output = template(data);
+	$.post("TestManagement",
+		{ requestType : "getAllTests" },
+		function(data,textStatus,xhr) {
+
+			console.log(textStatus);
+			console.log(data);
+			if(textStatus==="success") {
+				var src = $("#tmpltTests").html();
+				var template = Handlebars.compile(src);
+				var output = template(data);
 	
-		$("#tblTests tbody").append(output);
-	});
+				$("#tblTests tbody").append(output);
+			}
+		}
+	);
 });

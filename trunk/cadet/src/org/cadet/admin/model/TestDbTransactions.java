@@ -4,6 +4,7 @@
 package org.cadet.admin.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +29,7 @@ public class TestDbTransactions {
 
 	}
 
-	public static JSONObject getTests(Connection connection) throws SQLException, JSONException {
+	public static JSONObject getAllTests(Connection connection) throws SQLException, JSONException {
 
 		Statement statement = connection.createStatement();
 
@@ -55,5 +56,16 @@ public class TestDbTransactions {
 		data.put("testList",result.toArray(new BeanTest[result.size()]));
 
 		return data;
+	}
+
+	public static void createTest(Connection connection, String testName, String testType, String testDesc) throws SQLException {
+
+		PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddTest);
+		ps.setString(1, testName);
+		ps.setString(2, testType);
+		ps.setString(3, testDesc);
+
+		ps.executeUpdate();
+		ps.close();
 	}
 }
