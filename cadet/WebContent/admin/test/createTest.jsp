@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Test Management</a>
@@ -111,19 +111,19 @@
                             <div class="container pull-left"><span class="brand">Create Test</span></div>
                         </div>
                     </div>
-                    <div class="container">
-						<form class="form-horizontal" method="post">
+                    <div class="container span8">
+						<form id="frmCreateTest" class="form-horizontal" method="post" action="TestManagement">
 							<div class="control-group">
-	                            <label class="control-label" for="txtEmail">Test Name : </label>
+	                            <label class="control-label" for="txtTestName">Test Name : </label>
 	                            <div class="controls">
-	                            	<input type="text" id="txtEmail" placeholder="Email">
+	                            	<input type="text" id="txtTestName" name="txtTestName" placeholder="Test Name" required minlength=2 maxlength=30>
 	                            </div>
 	                        </div>
 
 							<div class="control-group">
-								<label class="control-label" for="optTestType">Type</label>
+								<label class="control-label" for="optTestType">Type : </label>
 								<div class="controls">
-		                            <select id="optTestType">
+		                            <select id="optTestType" name="optTestType">
 		                                <option>Adaptive</option>
 		                                <option>Non-Adaptive</option>
 		                            </select>
@@ -131,22 +131,24 @@
 							</div>
 
 							<div class="control-group">
-								<label class="control-label" for="taDesc">Description</label>
+								<label class="control-label" for="taTestDesc">Description : </label>
 								<div class="controls">
-									<textarea class="input-xxlarge" style="resize:none;" rows="5" placeholder="Test Description & Instructions"></textarea>
+									<textarea id="taTestDesc" name="taTestDesc" class="span5 nic_edit" style="resize:none;" rows="5" placeholder="Test Description & Instructions"></textarea>
 								</div>
 							</div>
 							
 							<div class="control-group">
 								<hr class="span8">
 							</div>
-							
+
 							<div class="control-group">
 								<div class="controls span4">
 									<input class="btn btn-primary pull-left" type="submit" value="Create">
 									<a href="testManagement.jsp" class="btn btn-danger pull-right">Cancel</a>
 								</div>
 							</div>
+
+                            <input id="requestType" type="hidden" name="requestType" value="createTest">
                         </form>
                     </div>	<!-- /form container -->
                 </div>	<!-- /content container -->
@@ -170,5 +172,9 @@
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
+        <script src="../../js/jquery.validate.js"></script>
+        <script src="../../js/additional-methods.js"></script>
+        <script src="../../js/nicEdit.js"></script>
+        <script src="../../js/jsCreateTest.js"></script>
     </body>
 </html>

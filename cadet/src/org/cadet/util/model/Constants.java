@@ -29,12 +29,12 @@ public class Constants {
 		public static final String isClientAvailable = "SELECT COUNT(DISTINCT Username) AS count FROM user WHERE Username = ";
 		public static final String AddClient = "INSERT INTO user (Username, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
 		public static final String AddAdmin = "INSERT INTO admin (Username, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
+		public static final String AddTest = "INSERT INTO test (Testname,Type,TestDescription) VALUES (?,?,?)";
 		public static final String VerifyClient = "UPDATE user SET Verified='Y' WHERE Username = ?";
-		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE Username = ?"; 
+		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE Username = ?";
 		public static final String CheckClientVerification = "SELECT Verified FROM user WHERE Username = ?";
 		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
 		public static final String UpdateClientPassword = "UPDATE user SET Password=? WHERE Username = ?";
-
 	}
 	
 	public static final class email{

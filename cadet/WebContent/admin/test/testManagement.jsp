@@ -27,7 +27,7 @@
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-        <div class="navbar navbar-fixed-top">
+         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -45,13 +45,13 @@
                        </ul>
                        <button class="btn btn-danger pull-right">Logout</button>
                     </div>
-                </div>	<!--/.container -->
+                </div>	<!-- /.container -->
             </div>
-        </div>	<!--/.navbar -->
-        
+        </div>	<!-- /.navbar -->
+
         <div class="container">
         	<div class="row">
-                <div class="accordion span2" id="accordionMenu">
+                 <div class="accordion span2" id="accordionMenu">
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                </div>	<!--/#accordion -->
+                </div>	<!-- /#accordion -->
 
 				<div class="container span9 offset*">
                     <div class="navbar">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="spna9">
-                    	<table id="tblTests" class="table table-bordered table-condensed table-hover">
+                    	<table id="tblTests" class="table table-striped table-condensed table-hover">
                         	<thead>
                             	<tr>
                                 	<th>Test Name</th>
@@ -131,7 +131,7 @@
             </div>	<!--/.row div -->
 
         </div>	<!--/.container div -->
-		<hr>
+ 		<hr>
         <footer>
                 <div class="container row">
                     <a class="span pull-right" href="#">About</a>
@@ -150,7 +150,7 @@
 
 		<script id="tmpltTests" type="text/x-handlebars-template">
 
-			{{#if testList.length}}
+			{{#if testList}}
 				{{#each testList}}
 					<tr>
 						<td>{{testName}}</td>
@@ -162,11 +162,11 @@
 				{{/each}}
 			{{else}}
 				<tr>
-					<td><span class="label label-warning">No Test Available</span></td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td><p class="text-warning">No Test Available</p></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 			{{/if}}
 		</script>
