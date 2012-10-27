@@ -16,20 +16,16 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class AdminAuthFilter
  */
-@WebFilter(dispatcherTypes = {
-				DispatcherType.REQUEST, 
-				DispatcherType.FORWARD, 
-				DispatcherType.INCLUDE,
-		}
-					, description = "Admin Authentication filter", urlPatterns = { "/admin/*" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.FORWARD,
+		DispatcherType.INCLUDE, }, description = "Admin Authentication filter", urlPatterns = { "/admin/*" })
 public class AdminAuthFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public AdminAuthFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AdminAuthFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -41,22 +37,20 @@ public class AdminAuthFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse res,
+			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-/*		HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) res;
-		HttpSession session = request.getSession();
-		try{
-			Boolean AdminAuth = (Boolean) session.getAttribute("AdminAuth");
-		if(AdminAuth==false||AdminAuth==null){
-			throw new NullPointerException();
-		}
-	}catch (NullPointerException e) {
-			response.sendRedirect("Login");
-		}
-		// pass the request along the filter chain
-*/		//chain.doFilter(request, response);
+		/*
+		 * HttpServletRequest request = (HttpServletRequest) req;
+		 * HttpServletResponse response = (HttpServletResponse) res; HttpSession
+		 * session = request.getSession(); try{ Boolean AdminAuth = (Boolean)
+		 * session.getAttribute("AdminAuth");
+		 * if(AdminAuth==false||AdminAuth==null){ throw new
+		 * NullPointerException(); } }catch (NullPointerException e) {
+		 * response.sendRedirect("Login"); } // pass the request along the
+		 * filter chain
+		 */// chain.doFilter(request, response);
 		chain.doFilter(req, res);
 	}
 
