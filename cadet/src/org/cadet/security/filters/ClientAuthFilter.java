@@ -16,20 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class ClientAuthFilter
  */
-@WebFilter(dispatcherTypes = {
-				DispatcherType.REQUEST, 
-				DispatcherType.FORWARD, 
-				DispatcherType.INCLUDE
-		}
-					, description = "Client Authentication Filter", urlPatterns = { "/client/*" })
+@WebFilter(dispatcherTypes = { DispatcherType.REQUEST, DispatcherType.FORWARD,
+		DispatcherType.INCLUDE }, description = "Client Authentication Filter", urlPatterns = { "/client/*" })
 public class ClientAuthFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public ClientAuthFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public ClientAuthFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -41,27 +37,24 @@ public class ClientAuthFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse res,
+			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-/*		HttpServletRequest request = (HttpServletRequest) req;
-=======
-	/*	HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) res;
-		HttpSession session = request.getSession();
-		try{
-			Boolean ClientAuth = (Boolean) session.getAttribute("ClientAuth");
-		if(ClientAuth==false||ClientAuth==null){
-			throw new NullPointerException();
-		}
-		}catch (NullPointerException e) {
-			response.sendRedirect("Login");
-		}
-		// pass the request along the filter chain
-*/		
+		/*
+		 * HttpServletRequest request = (HttpServletRequest) req; ======= /*
+		 * HttpServletRequest request = (HttpServletRequest) req;
+		 * HttpServletResponse response = (HttpServletResponse) res; HttpSession
+		 * session = request.getSession(); try{ Boolean ClientAuth = (Boolean)
+		 * session.getAttribute("ClientAuth");
+		 * if(ClientAuth==false||ClientAuth==null){ throw new
+		 * NullPointerException(); } }catch (NullPointerException e) {
+		 * response.sendRedirect("Login"); } // pass the request along the
+		 * filter chain
+		 */
 
 		// pass the request along the filter chain*/
-		//chain.doFilter(request, response);
+		// chain.doFilter(request, response);
 		chain.doFilter(req, res);
 	}
 
