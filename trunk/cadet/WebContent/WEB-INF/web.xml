@@ -33,4 +33,20 @@
     <servlet-name>register</servlet-name>
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AddCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCategory</servlet-name>
+    <url-pattern>/admin/questionBank/AddCategory</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ViewCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.ViewCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewCategory</servlet-name>
+    <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
+  </servlet-mapping>
 </web-app>
