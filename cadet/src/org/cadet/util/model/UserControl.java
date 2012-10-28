@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 public class UserControl {
@@ -112,7 +113,7 @@ public class UserControl {
 		return Hash;
 	}
 	
-	public static void AddClient(Connection connection,String username,String password,String name,String Contact) throws SQLException{
+	public static void AddClient(Connection connection,String username,String password,String name,String Contact,String Category) throws SQLException{
 		String PasswordHash = Hashify(password);
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.AddClient);
@@ -120,7 +121,8 @@ public class UserControl {
 		statement.setString(2, PasswordHash);
 		statement.setString(3, name);
 		statement.setString(4, Contact);
-		statement.setString(5, "N");
+		statement.setString(5, Category);
+		statement.setString(6, "N");
 		statement.executeUpdate();
 		statement.close();
 	}
@@ -164,26 +166,56 @@ public class UserControl {
 	}
 	
 	public static Boolean CheckClientVerification(Connection connection,String username) throws SQLException{
+		boolean ret = false;
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.CheckClientVerification);
 		statement.setString(1, username);
 		ResultSet rs = statement.executeQuery();
 		if(rs.getString("Verified").equals("Y")){
-			return true;
+			ret = true;
 		}
 		rs.close();
 		statement.close();
-		return false;
+		return ret;
 	}
 	
 	public static Boolean CheckAdminVerification(Connection connection,String username) throws SQLException{
+		boolean ret = false;
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.CheckAdminVerification);
 		statement.setString(1, username);
 		ResultSet rs = statement.executeQuery();
 		if(rs.getString("Verified").equals("Y")){
-			return true;
+			ret = true;
 		}
 		rs.close();
 		statement.close();
-		return false;
+		return ret;
 	}
+
+
+	public static boolean hasCategory(Connection connection, String category) {
+		boolean ret = false;
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.hasCategory);
+		statement.setString(1, category);
+		ResultSet rs = statement.executeQuery();
+		if(rs.getInt("count")>0){
+			ret = true;
+		}
+		rs.close();
+		statement.close();
+		return ret;
+	}
+	
+	public static ArrayList<String> getUserCategories(Connection connection){
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getUserCategories);
+		ResultSet rs = statement.executeQuery();
+		ArrayList<String> Al = new ArrayList<>();
+		while (rs.next()) {
+			String category = rs.getString("Category");
+			Al.add(category);
+		}
+		rs.close();
+		statement.close();
+		return Al;
+	}
+	
 }

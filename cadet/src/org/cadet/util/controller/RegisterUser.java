@@ -56,8 +56,9 @@ public class RegisterUser extends HttpServlet {
 		String password2 = request.getParameter("Password2");
 		String name = request.getParameter("Name");
 		String Contact = request.getParameter("Contact");
+		String Category = request.getParameter("Category");
 		
-		boolean usernameok = false,passwordok= false,nameok = false,contactok = false;
+		boolean usernameok = false,passwordok= false,nameok = false,contactok = false,categoryok = false;
 		
 		Pattern p = Pattern.compile(Constants.email.EmailRegex);
 		
@@ -77,7 +78,11 @@ public class RegisterUser extends HttpServlet {
 			contactok = true;
 		}
 		
-		if(!(usernameok && passwordok && nameok && contactok)){
+		if(UserControl.hasCategory(dbconnection,Category)){
+			categoryok = true;
+		}
+		
+		if(!(usernameok && passwordok && nameok && contactok && categoryok)){
 			response.sendError(403,"Inappropriate enrty");
 			return;
 		}
@@ -100,7 +105,7 @@ public class RegisterUser extends HttpServlet {
 				return;
 			}
 			
-			UserControl.AddClient(dbconnection, username, password, name, Contact);
+			UserControl.AddClient(dbconnection, username, password, name, Contact,Category);
 			EmailSend.SendMail(username);
 		} catch (SQLException e) {
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
