@@ -73,7 +73,7 @@ public class LoginAuthorize extends HttpServlet {
 		}else{
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", false);
-			response.sendRedirect("Login.jsp");
+			//response.sendRedirect("Login.jsp");
 			return;
 		}
 		}catch(SQLException e){
