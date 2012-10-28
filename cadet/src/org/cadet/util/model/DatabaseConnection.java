@@ -10,9 +10,9 @@ import org.cadet.util.model.Constants;
 
 public class DatabaseConnection {
 
-	private Connection connection;
+	Connection connection;
 	
-	public DatabaseConnection(){
+	private DatabaseConnection(){
 		try{
 			Class.forName(Constants.DB.driver);
 			if(Constants.DB.hasPassword){
@@ -26,20 +26,7 @@ public class DatabaseConnection {
 		}
 	};
 	
-	public void connect() throws ClassNotFoundException, SQLException{
-		Class.forName("com.mysql.jdbc.Driver");
-		if(Constants.DB.hasPassword){
-			connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
-		}else{
-			connection = DriverManager.getConnection(Constants.DB.dburl);
-		}
-	}
-	
-	public void disconnect() throws SQLException{
-		connection.close();
-	}
-	
-	private static class SingletonHolder { 
+		private static class SingletonHolder { 
         public static final DatabaseConnection INSTANCE = new DatabaseConnection();
 	}
 	
