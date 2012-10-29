@@ -16,6 +16,8 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+			#accordionMenu { position: fixed; }
+			footer { background: none scroll repeat 0 0 #FFFFFF; }
         </style>
         <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../../css/main.css">
@@ -38,9 +40,9 @@
                     <a class="brand" href="../index.jsp"><img src="../../img/cadet.png" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li class="active"><a href="../index.jsp">Home</a></li>
+                           <li><a href="../index.jsp">Home</a></li>
                            <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="testManagement.jsp">Test Management</a></li>
+                           <li class="active"><a href="testManagementHome.jsp">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
                        <button class="btn btn-danger pull-right">Logout</button>
@@ -80,9 +82,9 @@
                         </div>
                         <div id="collapse3" class="accordion-body collapse in">
                             <div class="accordion-inner">
-
                                 <ul class="nav">
-                                    <li><a href="testManagement.jsp">Create/View Test</a></li>
+                                    <li><a href="testManagementHome.jsp">View Test</a></li>
+                                    <li class="active"><a href="#createTest">Create Test</a></li>
                                     <li><a href="#result">Result</a></li>
                                 </ul>
                             </div>
@@ -105,7 +107,7 @@
 
                 </div>	<!--/#accordion -->
 
-				<div class="container span9 offset*">
+				<div class="container span9 offset2">
                     <div class="navbar">
                         <div class="navbar-inner">
                             <div class="container pull-left"><span class="brand">Create Test</span></div>
@@ -157,15 +159,16 @@
 
         </div>	<!--/main container -->
 
-		<hr>
-        <footer>
-                <div class="container row">
-                    <a class="span pull-right" href="#">About</a>
-                    <a class="span pull-right" href="#">FAQ</a>
-                    <a class="span pull-right" href="#">Contact us</a>
-                    <a class="span pull-right" href="#">Help</a>
-                    <a class="span pull-right" href="#">Privacy &amp; Policy</a>
-                </div>
+
+        <footer class="container navbar navbar-fixed-bottom">
+        	<hr>
+            <div class="row" style="margin-bottom: 10px;">
+                <a class="span pull-right" href="#">About</a>
+                <a class="span pull-right" href="#">FAQ</a>
+                <a class="span pull-right" href="#">Contact us</a>
+                <a class="span pull-right" href="#">Help</a>
+                <a class="span pull-right" href="#">Privacy &amp; Policy</a>
+            </div>
         </footer>
 
         <script src="../../js/jquery-1.8.2.js"></script>
@@ -175,6 +178,7 @@
         <script src="../../js/jquery.validate.js"></script>
         <script src="../../js/additional-methods.js"></script>
         <script src="../../js/nicEdit.js"></script>
+        <script src="../../js/jsGlobal.js"></script>
         <script src="../../js/jsCreateTest.js"></script>
     </body>
 </html>

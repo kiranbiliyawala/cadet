@@ -68,4 +68,24 @@ public class TestDbTransactions {
 		ps.executeUpdate();
 		ps.close();
 	}
+
+	public static int getLastInsertID(Connection connection) throws SQLException {
+
+		Statement statement = connection.createStatement();
+		
+		ResultSet rs = statement.executeQuery(Constants.sqlCommands.retriveLastInsertID);
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return (Integer) null;
+	}
+
+	public static void deleteTest(Connection connection,int testID) throws SQLException {
+
+		PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.deleteTest);
+		ps.setInt(1, testID);
+
+		ps.executeUpdate();
+		ps.close();
+	}
 }

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.logging.Level;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.cadet.admin.model.TestDbTransactions;
 import org.cadet.util.model.DatabaseConnection;
-import org.cadet.util.model.ErrorLogging;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -50,6 +48,7 @@ public class TestManagement extends HttpServlet {
 
 		String requestType = request.getParameter("requestType");
 		PrintWriter out = response.getWriter();
+		JSONObject data = null;
 
 		if(requestType.equals("getAllTests")) {
 
@@ -58,21 +57,46 @@ public class TestManagement extends HttpServlet {
 
 			try {
 
-				JSONObject data = TestDbTransactions.getAllTests(dbConnection);
+				data = TestDbTransactions.getAllTests(dbConnection);
+				data.put("result", true);
 
 				response.setContentType("application/json");
-			    response.setCharacterEncoding("UTF-8");
-
-			    out = response.getWriter();
+				response.setCharacterEncoding("UTF-8");
 			    out.println(data);
 
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-//				ErrorLogging.getInstance().log(Level.SEVERE, e);
-//				response.sendError(500,new Date().toString()+" - Database Error Check error log for futher information");
+				
+				data = new JSONObject();
+				try {
+					data.put("result", "DatabaseError");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+				return;
+			} catch(Exception e) {
+
+				e.printStackTrace();
+
+				data = new JSONObject();
+				try {
+					data.put("result","ServerException");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+				return;
 			}
 		}
+
 		else if(requestType.equals("createTest")) {
 
 			String testName = request.getParameter("txtTestName");
@@ -82,17 +106,104 @@ public class TestManagement extends HttpServlet {
 
 			DatabaseConnection dbConn = DatabaseConnection.getInstance();
 			Connection dbConnection = dbConn.getDbConnection();
+			int testID;
 
 			try {
+
 				TestDbTransactions.createTest(dbConnection,testName,testType,testDesc);
+
+				testID = TestDbTransactions.getLastInsertID(dbConnection);
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				ErrorLogging.getInstance().log(Level.SEVERE, e);
-				response.sendError(500,new Date().toString()+"- Database Connection Error");
+				e.printStackTrace();
+				
+				data = new JSONObject();
+				try {
+					data.put("result", "DatabaseError");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+				return;
+			} catch(Exception e) {
+
+				e.printStackTrace();
+
+				data = new JSONObject();
+				try {
+					data.put("result","ServerException");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
 				return;
 			}
 
+			/* AFTER TEST CREATION */
+
+			System.out.println(testID);
+
+			request.setAttribute("testID",testID);
+			request.setAttribute("testName", testName);
+			request.setAttribute("testType",testType);
 			response.sendRedirect("testPage.jsp");
+		}
+
+		else if(requestType.equals("deleteTest")) {
+
+			int testID = Integer.parseInt(request.getParameter("testID").split("delete")[1]);
+
+			DatabaseConnection dbConn = DatabaseConnection.getInstance();
+			Connection dbConnection = dbConn.getDbConnection();
+
+			try {
+
+				TestDbTransactions.deleteTest(dbConnection, testID);
+
+				data = new JSONObject();
+				data.put("result", true);
+
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+				data = new JSONObject();
+				try {
+					data.put("result", "DatabaseError");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+				return;
+			} catch(Exception e) {
+
+				e.printStackTrace();
+
+				data = new JSONObject();
+				try {
+					data.put("result","ServerException");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+				return;
+			}
 		}
 	}
 }
