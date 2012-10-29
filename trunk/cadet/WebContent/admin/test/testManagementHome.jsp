@@ -16,6 +16,8 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+			#accordionMenu { position: fixed; }
+			footer { background: none scroll repeat 0 0 #FFFFFF; }
         </style>
         <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../../css/main.css">
@@ -38,9 +40,9 @@
                     <a class="brand" href="../index.jsp"><img src="../../img/cadet.png" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li class="active"><a href="../index.jsp">Home</a></li>
+                           <li><a href="../index.jsp">Home</a></li>
                            <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="#testManagement">Test Management</a></li>
+                           <li class="active"><a href="#testManagement">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
                        <button class="btn btn-danger pull-right">Logout</button>
@@ -81,7 +83,8 @@
                         <div id="collapse3" class="accordion-body collapse in">
                             <div class="accordion-inner">
                                 <ul class="nav">
-                                    <li><a href="#testManagement">Create/View Test</a></li>
+                                    <li class="active"><a href="#testManagement">View Test</a></li>
+                                    <li><a href="createTest.jsp">Create Test</a></li>
                                     <li><a href="#result">Result</a></li>
                                 </ul>
                             </div>
@@ -104,7 +107,7 @@
 
                 </div>	<!-- /#accordion -->
 
-				<div class="container span9 offset*">
+				<div class="container span9 offset2">
                     <div class="navbar">
                         <div class="navbar-inner">
                             <div class="container pull-left"><a class="brand" href="#">Tests</a></div>
@@ -131,15 +134,17 @@
             </div>	<!--/.row div -->
 
         </div>	<!--/.container div -->
- 		<hr>
-        <footer>
-                <div class="container row">
-                    <a class="span pull-right" href="#">About</a>
-                    <a class="span pull-right" href="#">FAQ</a>
-                    <a class="span pull-right" href="#">Contact us</a>
-                    <a class="span pull-right" href="#">Help</a>
-                    <a class="span pull-right" href="#">Privacy &amp; Policy</a>
-                </div>
+
+
+        <footer class="container navbar navbar-fixed-bottom">
+	        <hr>
+            <div class="row" style="margin-bottom: 10px;">
+                <a class="span pull-right" href="#">About</a>
+                <a class="span pull-right" href="#">FAQ</a>
+                <a class="span pull-right" href="#">Contact us</a>
+                <a class="span pull-right" href="#">Help</a>
+                <a class="span pull-right" href="#">Privacy &amp; Policy</a>
+            </div>
         </footer>
 
         <script src="../../js/jquery-1.8.2.js"></script>
@@ -156,8 +161,8 @@
 						<td>{{testName}}</td>
 						<td>{{testDate}}</td>
 						<td>{{testDuration}} Mins.</td>
-						<td><a href="#" class="btn btn-info">Edit</a></td>
-						<td><a href="#" class="btn btn-danger">Delete</a></td>
+						<td><a href="#" id={{#editButton}}{{testID}}{{/editButton}} class="btn btn-info btnEdit">Edit</a></td>
+						<td><a href="#" id={{#deleteButton}}{{testID}}{{/deleteButton}} class="btn btn-danger btnDelete">Delete</a></td>
 					</tr>
 				{{/each}}
 			{{else}}
@@ -171,7 +176,7 @@
 			{{/if}}
 		</script>
 
-       	<script src="../../js/plugins.js"></script>
-       	<script src="../../js/jsTestManagementHome.js"></script>
-    </body>
+		<script src="../../js/jsGlobal.js"></script>
+		<script src="../../js/jsTestManagementHome.js"></script>
+	</body>
 </html>

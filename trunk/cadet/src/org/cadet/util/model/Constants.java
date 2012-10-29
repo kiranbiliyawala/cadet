@@ -26,6 +26,7 @@ public class Constants {
 		public static final String retrivePasswordAdmin = "SELECT Password FROM admin WHERE Username = "; 
 		public static final String retrivePasswordClient = "SELECT Password FROM user WHERE Username = ";
 		public static final String retriveTests = "SELECT * FROM test";
+		public static final String retriveLastInsertID = "SELECT last_insert_id()";
 		public static final String isClientAvailable = "SELECT COUNT(DISTINCT Username) AS count FROM user WHERE Username = ";
 		public static final String AddClient = "INSERT INTO user (Username, Password, Name, Contact, Category, Verified) VALUES (?, ?, ?, ?, ?, ?)";
 		public static final String AddAdmin = "INSERT INTO admin (Username, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
@@ -35,6 +36,7 @@ public class Constants {
 		public static final String CheckClientVerification = "SELECT Verified FROM user WHERE Username = ?";
 		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
 		public static final String UpdateClientPassword = "UPDATE user SET Password=? WHERE Username = ?";
+		public static final String deleteTest = "DELETE from test WHERE Testid = ?";
 	}
 	
 	public static final class email{

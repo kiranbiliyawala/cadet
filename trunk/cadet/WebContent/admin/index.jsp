@@ -16,6 +16,8 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+			#accordionMenu { position: fixed; }
+			footer { background: none scroll repeat 0 0 #FFFFFF; }
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../css/main.css">
@@ -40,7 +42,7 @@
                        <ul class="nav">
                            <li class="active"><a href="#home">Home</a></li>
                            <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="test/testManagement.jsp">Test Management</a></li>
+                           <li><a href="test/testManagementHome.jsp">Test Management</a></li>
                            <li><a href="#candidateCategory">Candidate Category</a></li>
                        </ul>
                        <button class="btn btn-danger pull-right">Logout</button>
@@ -78,17 +80,18 @@
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Test Management</a>
                         </div>
-                        <div id="collapse3" class="accordion-body collapse in">
+                        <div id="collapse3" class="accordion-body collapse">
                             <div class="accordion-inner">
 
                                 <ul class="nav">
-                                    <li><a href="test/testManagement.jsp">Create/View Test</a></li>
+                                    <li><a href="test/testManagementHome.jsp">View Test</a></li>
+                                    <li><a href="test/createTest.jsp">Create Test</a></li>
                                     <li><a href="#result">Result</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse4">Candidate Category</a>
@@ -105,7 +108,7 @@
 
                 </div>	<!--/#accordion -->
 
-				<div class="container span9 offset*">
+				<div class="container span9 offset2">
 					CADET - ADMIN DASH BOARD
                 </div>
 
@@ -113,9 +116,9 @@
 
         </div>	<!--/.container div -->
 
-		<hr>
-        <footer>
-                <div class="container row">
+        <footer class="container navbar navbar-fixed-bottom">
+        		<hr>
+                <div class="row" style="margin-bottom: 10px;">
                     <a class="span pull-right" href="#">About</a>
                     <a class="span pull-right" href="#">FAQ</a>
                     <a class="span pull-right" href="#">Contact us</a>
@@ -128,5 +131,6 @@
         <script>window.jQuery || document.write('<script src="../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../js/bootstrap.js"></script>
+        <script src="../js/jsGlobal.js"></script>
     </body>
 </html>
