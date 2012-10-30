@@ -1,0 +1,58 @@
+package org.cadet.client.controller;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.cadet.client.model.NonAdaptiveTest;
+import org.json.JSONException;
+
+/**
+ * Servlet implementation class StartTest
+ */
+@WebServlet("/Test/NonAdaptive/StartTest")
+public class StartTest extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public StartTest() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendError(403);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		NonAdaptiveTest test = (NonAdaptiveTest) session.getAttribute("test");
+		
+		try {
+			request.setAttribute("Catdistribution", test.getQuestionDistribution());
+			request.setAttribute("Attempted",test.GetAttemptedQuestions().toString());
+			
+		} catch (JSONException e) {
+			response.sendError(500);
+		}
+		
+		
+		RequestDispatcher dispacher = request.getRequestDispatcher("non_adaptive_test_que.jsp");
+		dispacher.include(request, response);
+	}
+
+}
