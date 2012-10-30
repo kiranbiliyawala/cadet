@@ -9,9 +9,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.cadet.util.model.Constants;
-import org.eclipse.jdt.internal.compiler.ast.MarkerAnnotation;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,21 +32,49 @@ public class NonAdaptiveTest {
 	private Integer attempted;
 	private Integer Correct;
 	private Double score;
-
-	public NonAdaptiveTest(Connection connection,int testid) throws JSONException {
+	private long Test_Duration;
+	private boolean lock;
+	private String username;
+	private Connection connection;
+	private String[] test_details;
+	
+	public NonAdaptiveTest(Connection connection,int testid,String username) throws JSONException {
 	
 		this.testid = testid;
+		this.connection = connection;
+		this.username = username;
+		
 		score = 0.0;
 		totalquestions = 0;
 		attempted = 0;
 		Correct = 0;
+		lock = false;
 		
-		getQuestions(connection,testid);
-		getDifficulty(connection,testid);
-		getNegativeMarks(connection,testid);
+		fetchTestDetails();
+		fetchQuestions();
+		getDifficulty();
+		getNegativeMarks();
 		randomize();
-		
 	}
+
+	
+
+	private void fetchTestDetails() {
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestDurationNA);
+		statement.setInt(1, testid);
+		ResultSet rs = statement.executeQuery();
+		String name;
+		String date;
+		while(rs.next()){
+			Test_Duration = rs.getInt("duration");
+			name = rs.getString("Name");
+			date = rs.getString("Date");
+		}
+		String details = name+","+date+","+Test_Duration;
+		test_details = details.split(",");
+	}
+
+
 
 	private void randomize() throws JSONException {
 		JSONObject category = Categorized_Questions;
@@ -58,10 +88,10 @@ public class NonAdaptiveTest {
 			JSONArray js = new JSONArray(questions);
 			category.put(keys.getString(i), js);
 		}
-		
+		Categorized_Questions = category;
 	}
 
-	private void getNegativeMarks(Connection connection, int testid) {
+	private void getNegativeMarks() {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestNegativeNA);
 		statement.setInt(1, testid);
 		ResultSet rs = statement.executeQuery();
@@ -73,7 +103,7 @@ public class NonAdaptiveTest {
 		statement.close();
 	}
 
-	private void getDifficulty(Connection connection, int testid) {
+	private void getDifficulty() {
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestDifficultyNA);
 		statement.setInt(1, testid);
@@ -89,7 +119,7 @@ public class NonAdaptiveTest {
 		statement.close();
 	}
 
-	private void getQuestions(Connection connection, int testid) {
+	private void fetchQuestions() {
 		JSONObject category;
 		ArrayList<JSONObject> questions;
 		
@@ -185,16 +215,20 @@ public class NonAdaptiveTest {
 		return AttemptedQuestions;
 	}
 	
-	public boolean process_Answers(Connection connection,String username){
+	public boolean process_Answers(){
 		boolean ret = false;
-		
+		if(lock==true) 
+			{
+			return ret;
+			}
 		calculate_score();
-		submit_result(connection,username);
+		submit_result();
+		lock = true;
 		ret = true;
 		return ret;
 	}
 
-	private void submit_result(Connection connection,String username) {
+	private void submit_result() {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestQuestionsNA);
 		statement.setInt(1, testid);
 		statement.setString(2, username);
@@ -230,5 +264,43 @@ public class NonAdaptiveTest {
 	public String getQuestions(){
 		return Categorized_Questions.toString();
 	}
+	
+	public String getQuestionDistribution() throws JSONException{
+		JSONObject categories = new JSONObject();
+		
+		JSONArray keys = Categorized_Questions.names();
+		Random r = new Random();
+		for(int i=0;i<keys.length();i++){
+		JSONArray questions =  Categorized_Questions.getJSONArray(keys.getString(i));
+			categories.put(keys.getString(i), questions.length());
+		}
+		return categories.toString();
+	}
+	
+	public String getQuestions(String category,Integer qno) throws JSONException{
+		return Categorized_Questions.getJSONArray(category).getJSONObject(qno-1).toString();
+	}
+	
+	public void startTest(){
+		createScheduler(Test_Duration);
+	}
 
+	private void createScheduler(long delay){
+		ScheduledExecutorService scheduler =  Executors.newSingleThreadScheduledExecutor();
+		terminate term = new terminate(this);
+		scheduler.schedule(term, delay, TimeUnit.MINUTES);
+	}
+	
+	public class terminate implements Runnable{
+		NonAdaptiveTest test;
+		public terminate(NonAdaptiveTest test) {
+			this.test = test;
+		}
+		
+		@Override
+		public void run() {
+			test.process_Answers();
+		}
+		
+	}
 }
