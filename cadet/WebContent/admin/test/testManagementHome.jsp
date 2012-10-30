@@ -114,7 +114,7 @@
                             <div class="container pull-right"><a href="createTest.jsp" class="btn btn-primary">Create Test</a></div>
                         </div>
                     </div>
-                    <div class="spna9">
+                    <div class="container span8">
                     	<table id="tblTests" class="table table-striped table-condensed table-hover">
                         	<thead>
                             	<tr>
@@ -151,6 +151,7 @@
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
+		<script src="../../js/bootbox.js"></script>
         <script src="../../js/handlebars.js"></script>
 
 		<script id="tmpltTests" type="text/x-handlebars-template">

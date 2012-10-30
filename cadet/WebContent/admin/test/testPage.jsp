@@ -110,10 +110,10 @@
 				<div class="container span9 offset2">
                     <div class="navbar">
                         <div class="navbar-inner">
-                            <div class="container pull-left"><a class="brand" href="#">Test : </a></div>
+                            <div class="container pull-left"><a class="brand" href="#">Test : <%=request.getAttribute("testName")%></a></div>
                         </div>
                     </div>
-                    <div class="container span3 offset2">
+                    <div class="container span8">
 						TEST PAGE
                     </div>
                 </div>
@@ -137,6 +137,7 @@
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
+		<script src="../../js/bootbox.js"></script>
         <script src="../../js/jsGlobal.js"></script>
     </body>
 </html>
