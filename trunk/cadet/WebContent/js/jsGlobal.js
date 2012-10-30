@@ -43,8 +43,8 @@ function databaseErrorDisplay(databaseErrorPage) {
 	
 				$("body").html(data);
 			}
-			else alert("Resource Not Available");
-		} catch(e) { alert(e.status+"\n"+e.message); }
+			else bootbox.alert("Resource Not Available");
+		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 }
 
@@ -75,7 +75,7 @@ function serverExceptionDisplay(serverExceptionPage) {
 	
 				$("body").html(data);
 			}
-			else alert("Resource Not Available");
-		} catch(e) { alert(e.status+"\n"+e.message); }
+			else bootbox.alert("Resource Not Available");
+		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 }

@@ -178,6 +178,7 @@
         <script src="../../js/jquery.validate.js"></script>
         <script src="../../js/additional-methods.js"></script>
         <script src="../../js/nicEdit.js"></script>
+		<script src="../../js/bootbox.js"></script>
         <script src="../../js/jsGlobal.js"></script>
         <script src="../../js/jsCreateTest.js"></script>
     </body>

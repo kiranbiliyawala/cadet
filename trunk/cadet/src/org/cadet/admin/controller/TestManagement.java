@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -146,14 +147,35 @@ public class TestManagement extends HttpServlet {
 				return;
 			}
 
-			/* AFTER TEST CREATION */
+			/* AFTER TEST CREATION -- Redirection to Test Page */
 
-			System.out.println(testID);
+			try {
+				request.setAttribute("testID",testID);
+				request.setAttribute("testName", testName);
+				request.setAttribute("testType",testType);
 
-			request.setAttribute("testID",testID);
-			request.setAttribute("testName", testName);
-			request.setAttribute("testType",testType);
-			response.sendRedirect("testPage.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
+				rd.forward(request, response);
+			} catch(NullPointerException e) {
+				e.printStackTrace();
+
+				data = new JSONObject();
+				try {
+					data.put("result","ServerException");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				out.println(data);
+				return;
+			}
+		}
+
+		else if(requestType.equals("editTest")) {
+
+			
 		}
 
 		else if(requestType.equals("deleteTest")) {
@@ -176,7 +198,7 @@ public class TestManagement extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 				data = new JSONObject();
 				try {
 					data.put("result", "DatabaseError");

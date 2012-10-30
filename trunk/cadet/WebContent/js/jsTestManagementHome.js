@@ -19,7 +19,7 @@ $(document).ready(function(e) {
 					var output = template(data);
 
 					$("#tblTests tbody").append(output);
-				} catch(e) { alert(e.status+"\n"+e.message); }
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 			}
 			else if(data.result==="DatabaseError") {
 				databaseErrorDisplay("../DatabaseError");
@@ -32,35 +32,49 @@ $(document).ready(function(e) {
 
 	$(".btnEdit").live("click",function(event) {
 		console.log($(this).attr("id"));
-//		$.post("testPage.jsp",{ testID : $(this).attr("id") });
+
+		try {
+			$.post("testPage.jsp",{ testID : $(this).attr("id") });
+		}catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 
 	$(".btnDelete").live("click",function(event) {
 
-		var cnfrm = confirm("Are you sure you want to delete the test ?");
 		var button = $(this);
 
-		if(cnfrm===true) {
+		event.preventDefault();
+		bootbox.confirm("Are you sure you want to delete the test ?",function(confirmed) {
 
-			$.post("TestManagement",
-					{
-						requestType : "deleteTest",
-						testID : $(this).attr("id")
-					},
-					function(data,textStatus,xhr) {
+			if(confirmed===true) {
 
-						try {
-							if(data.result===true) {
-								var row = button.parent().parent();
-								row.remove();
-							} else if(data.result==="DatabaseError") {
-								databaseErrorDisplay("../DatabaseError");
-							}
-							else if(data.result==="ServerException") {
-								serverExceptionDisplay("../ServerException");
-							}
-						} catch(e) { alert(e.status+"\n"+e.message); }
-				});
-		}
+				try {
+					$.post("TestManagement",
+							{
+								requestType : "deleteTest",
+								testID : button.attr("id")
+							},
+							function(data,textStatus,xhr) {
+
+								try {
+									if(data.result===true) {
+										var row = button.parent().parent();
+										var tBody = row.parent();
+										var siblingRows = row.siblings();
+										row.remove();
+
+										if(siblingRows.length===0) {
+											tBody.append("<tr><td><p class=\"text-warning\">No Test Available</p></td><td></td><td></td><td></td><td></td></tr>");
+										}
+									} else if(data.result==="DatabaseError") {
+										databaseErrorDisplay("../DatabaseError");
+									}
+									else if(data.result==="ServerException") {
+										serverExceptionDisplay("../ServerException");
+									}
+								} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+						});
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			}
+		});
 	});
 });
