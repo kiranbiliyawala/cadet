@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2012 at 10:30 AM
+-- Generation Time: Oct 09, 2012 at 02:18 PM
 -- Server version: 5.5.20
 -- PHP Version: 5.3.10
 
@@ -102,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `result` (
 CREATE TABLE IF NOT EXISTS `test` (
   `Testid` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Stores the test ID',
   `Type` varchar(15) NOT NULL COMMENT 'Stores the type of the Test',
+  `Testname` varchar(30) NOT NULL,
   `Tdate` date NOT NULL COMMENT 'Stores the date of the test',
   `Tduration` int(5) NOT NULL COMMENT 'Stores the duration of the test',
   `Initialdifficulty` int(5) NOT NULL COMMENT 'Stores the initial difficulty of the Test',
