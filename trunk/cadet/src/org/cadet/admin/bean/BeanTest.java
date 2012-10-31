@@ -3,6 +3,9 @@
  */
 package org.cadet.admin.bean;
 
+import java.sql.Timestamp;
+import java.sql.Date;
+
 
 /**
  * @author Udit Desai
@@ -17,62 +20,133 @@ public class BeanTest {
 		// TODO Auto-generated constructor stub
 	}
 
-	private Integer testID;
-	private String type;
+	private Integer testId;
+	private String testType;
 	private String testName;
-	private String testDate;
+	private String testDesc;
+	private Date testDate;
+	private Timestamp startTime;
+	private Timestamp endTime;
 	private Integer testDuration;
 	private Integer initialDifficulty;
 
-	public Integer getTestID() {
-		return testID;
+	/**
+	 * @return the testId
+	 */
+	public Integer getTestId() {
+		return testId;
 	}
-	public void setTestID(Integer testID) {
-		this.testID = testID;
+	/**
+	 * @param testId the testId to set
+	 */
+	public void setTestId(Integer testId) {
+		this.testId = testId;
 	}
-
-	public String getType() {
-		return type;
+	/**
+	 * @return the testType
+	 */
+	public String getTestType() {
+		return testType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	/**
+	 * @param testType the testType to set
+	 */
+	public void setTestType(String testType) {
+		this.testType = testType;
 	}
-
+	/**
+	 * @return the testName
+	 */
 	public String getTestName() {
 		return testName;
 	}
+	/**
+	 * @param testName the testName to set
+	 */
 	public void setTestName(String testName) {
 		this.testName = testName;
 	}
-
-	public String getTestDate() {
+	/**
+	 * @return the testDesc
+	 */
+	public String getTestDesc() {
+		return testDesc;
+	}
+	/**
+	 * @param testDesc the testDesc to set
+	 */
+	public void setTestDesc(String testDesc) {
+		this.testDesc = testDesc;
+	}
+	/**
+	 * @return the testDate
+	 */
+	public Date getTestDate() {
 		return testDate;
 	}
-	public void setTestDate(String testDate) {
+	/**
+	 * @param testDate the testDate to set
+	 */
+	public void setTestDate(Date testDate) {
 		this.testDate = testDate;
 	}
-
+	/**
+	 * @return the startTime
+	 */
+	public Timestamp getStartTime() {
+		return startTime;
+	}
+	/**
+	 * @param startTime the startTime to set
+	 */
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
+	}
+	/**
+	 * @return the endTime
+	 */
+	public Timestamp getEndTime() {
+		return endTime;
+	}
+	/**
+	 * @param endTime the endTime to set
+	 */
+	public void setEndTime(Timestamp endTime) {
+		this.endTime = endTime;
+	}
+	/**
+	 * @return the testDuration
+	 */
 	public Integer getTestDuration() {
 		return testDuration;
 	}
+	/**
+	 * @param testDuration the testDuration to set
+	 */
 	public void setTestDuration(Integer testDuration) {
 		this.testDuration = testDuration;
 	}
-
+	/**
+	 * @return the initialDifficulty
+	 */
 	public Integer getInitialDifficulty() {
 		return initialDifficulty;
 	}
+	/**
+	 * @param initialDifficulty the initialDifficulty to set
+	 */
 	public void setInitialDifficulty(Integer initialDifficulty) {
 		this.initialDifficulty = initialDifficulty;
 	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "BeanTest [testID=" + testID + ", type=" + type + ", testName="
-				+ testName + ", tDate=" + testDate + ", tDuration=" + testDuration
+		return "BeanTest [testId=" + testId + ", testType=" + testType
+				+ ", testName=" + testName + ", testDesc=" + testDesc
+				+ ", testDate=" + testDate + ", startTime=" + startTime
+				+ ", endTime=" + endTime + ", testDuration=" + testDuration
 				+ ", initialDifficulty=" + initialDifficulty + "]";
 	}
 }

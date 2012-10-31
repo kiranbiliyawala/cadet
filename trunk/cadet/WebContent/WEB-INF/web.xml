@@ -7,46 +7,6 @@
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
-    <welcome-file>Home</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <servlet-name>dashboard</servlet-name>
-    <jsp-file>/admin/dashboard.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>dashboard</servlet-name>
-    <url-pattern>/admin/dashboard</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>login</servlet-name>
-    <jsp-file>/Login.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>login</servlet-name>
-    <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>register</servlet-name>
-    <jsp-file>/Register.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>register</servlet-name>
-    <url-pattern>/Register</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>AddCategory</servlet-name>
-    <servlet-class>org.cadet.admin.controller.AddCategory</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddCategory</servlet-name>
-    <url-pattern>/admin/questionBank/AddCategory</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>ViewCategory</servlet-name>
-    <servlet-class>org.cadet.admin.controller.ViewCategory</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewCategory</servlet-name>
-    <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
-  </servlet-mapping>
 </web-app>

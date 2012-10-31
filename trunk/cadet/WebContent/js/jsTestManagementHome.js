@@ -22,19 +22,27 @@ $(document).ready(function(e) {
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 			}
 			else if(data.result==="DatabaseError") {
-				databaseErrorDisplay("../DatabaseError");
+				pageRedirect("../DatabaseError.html");
 			}
 			else if(data.result==="ServerException") {
-				serverExceptionDisplay("../ServerException");
+				pageRedirect("../ServerException.html");
 			}
 		}
 	);
 
 	$(".btnEdit").live("click",function(event) {
+
 		console.log($(this).attr("id"));
 
 		try {
-			$.post("testPage.jsp",{ testID : $(this).attr("id") });
+			$.post("TestManagement",
+				{
+					requestType : "editTest",
+					testID : $(this).attr("id")
+				},
+				function(data,textStatus,xhr) {
+					console.log(data);
+			});
 		}catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 
@@ -66,10 +74,10 @@ $(document).ready(function(e) {
 											tBody.append("<tr><td><p class=\"text-warning\">No Test Available</p></td><td></td><td></td><td></td><td></td></tr>");
 										}
 									} else if(data.result==="DatabaseError") {
-										databaseErrorDisplay("../DatabaseError");
+										pageRedirect("../DatabaseError.html");
 									}
 									else if(data.result==="ServerException") {
-										serverExceptionDisplay("../ServerException");
+										pageRedirect("../ServerException.html");
 									}
 								} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 						});

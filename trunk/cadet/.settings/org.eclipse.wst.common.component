@@ -2,8 +2,7 @@
     <wb-module deploy-name="cadet">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        
-        <property name="java-output-path" value="/cadet/build/classes"/>
         <property name="context-root" value="cadet"/>
+        <property name="java-output-path" value="/cadet/build/classes"/>
     </wb-module>
 </project-modules>

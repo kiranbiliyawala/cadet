@@ -117,33 +117,14 @@ public class TestManagement extends HttpServlet {
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+
 				e.printStackTrace();
-				
-				data = new JSONObject();
-				try {
-					data.put("result", "DatabaseError");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
+				response.sendRedirect("../DatabaseError.html");
 				return;
 			} catch(Exception e) {
 
 				e.printStackTrace();
-
-				data = new JSONObject();
-				try {
-					data.put("result","ServerException");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
+				response.sendRedirect("../ServerException.html");
 				return;
 			}
 
@@ -156,26 +137,18 @@ public class TestManagement extends HttpServlet {
 
 				RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
 				rd.forward(request, response);
-			} catch(NullPointerException e) {
-				e.printStackTrace();
+			} catch(Exception e) {
 
-				data = new JSONObject();
-				try {
-					data.put("result","ServerException");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
+				e.printStackTrace();
+				response.sendRedirect("../ServerException.html");
 				return;
 			}
 		}
 
 		else if(requestType.equals("editTest")) {
 
-			
+			int testID = Integer.parseInt(request.getParameter("testID").split("edit")[1]);
+			System.out.println(testID);
 		}
 
 		else if(requestType.equals("deleteTest")) {
