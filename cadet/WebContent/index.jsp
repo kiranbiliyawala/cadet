@@ -55,19 +55,20 @@ footer {
 	<div class="container">
 		<div class="row">
 
-			<div id="welcome">
+			<div id="welcome" class="container">
 				<div class="hero-unit">
 					Welcome to CADET ! <br>
 					<div id="joinus">
-						<a href=""> Join Us</a>
+						<button class="btn btn-primary">Join Us</button>
 					</div>
-					<span style="font: 60px calibri;">or</span>
+					<span style="font: 60px calibri;">&nbsp;</span>
 				</div>
 				<div id="hero-unit-support"></div>
+				<span style="font: 60px calibri; margin-top: -39px; display:block; position: relative">OR</span>
 				<div id="form">
 					<form action="" method="post">
-						<table align="center" border="1">
-						<caption> Login </caption>
+						<table align="center">
+							<caption>Login</caption>
 							<tr>
 								<td>Username:</td>
 								<td><input type="text" id="txtusername"
@@ -80,11 +81,13 @@ footer {
 							</tr>
 							<tr>
 								<td></td>
-								<td></td>
+								<td><input type="checkbox" /><span class="loginutils">
+										Remember me</span> <a href="#" class="loginutils">Forget Password</a>
+								</td>
 							</tr>
 							<tr>
-								<td></td>
-								<td></td>
+								<td colspan="2"><input type="submit" class="btn"
+									id="btnlogin" /></td>
 							</tr>
 						</table>
 					</form>
