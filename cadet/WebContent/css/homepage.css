@@ -1,0 +1,75 @@
+
+#logo{
+	height: auto;
+	width: 150px;	
+}
+
+
+.nav{
+	font-size: 150%;
+}
+
+#ulcontainer{
+	height: inherit;
+	margin-top: 10px;
+	margin-left: 25%;
+}
+
+#welcome{
+	font: 80px calibri serif;
+	text-align: center;
+	margin-top: 10%;
+	border: 2px #64696B solid;
+	border-radius: 20px;
+}
+
+.hero-unit{
+	border-radius: 20px;
+	
+}
+
+#joinus{
+	position: relative;
+	font: 50px calibri sans-serif;
+	height: auto;
+	background-color: #5095bf;
+	width: 20%;
+	margin-left: 40%;
+	margin-top: 10px;
+	border: 2px #3E7596 solid;	
+}
+
+#joinus > a{
+	color: #FAFAFA;
+}
+
+#joinus > a:hover{
+	color: #FFF;
+	text-decoration: none;	
+}
+
+caption{
+	text-align: left;
+	font: 40px calibri serif;
+}
+
+#form{
+	margin-top: 3%;
+	font: 25px calibri sans-serif;
+}
+
+td{
+	padding: 8px;
+}
+
+#hero-unit-support{
+	position: relative;
+	height: 50px;
+	width: 100%;
+	background-color: #EEE;
+	margin-top: -80px;
+}
+
+
+
+
