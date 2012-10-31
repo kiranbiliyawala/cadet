@@ -1,3 +1,7 @@
+*{
+
+}
+
 
 #logo{
 	height: auto;
@@ -15,51 +19,10 @@
 	margin-left: 25%;
 }
 
-#welcome{
-	font: 80px calibri serif;
-	text-align: center;
-	margin-top: 10%;
-	border: 2px #64696B solid;
-	border-radius: 20px;
-}
-
 .hero-unit{
+	position:relative;
 	border-radius: 20px;
-	
-}
-
-#joinus{
-	position: relative;
-	font: 50px calibri sans-serif;
-	height: auto;
-	background-color: #5095bf;
-	width: 20%;
-	margin-left: 40%;
-	margin-top: 10px;
-	border: 2px #3E7596 solid;	
-}
-
-#joinus > a{
-	color: #FAFAFA;
-}
-
-#joinus > a:hover{
-	color: #FFF;
-	text-decoration: none;	
-}
-
-caption{
-	text-align: left;
-	font: 40px calibri serif;
-}
-
-#form{
-	margin-top: 3%;
-	font: 25px calibri sans-serif;
-}
-
-td{
-	padding: 8px;
+	height:200px;
 }
 
 #hero-unit-support{
@@ -70,6 +33,61 @@ td{
 	margin-top: -80px;
 }
 
+
+#welcome{
+	font-size: 80px;
+	text-align: center;
+	margin-top: 10%;
+	border: 2px #64696B solid;
+	border-radius: 20px;
+	margin-bottom: 5%;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+#joinus{
+	position: relative;
+	font-size: 50px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8%;	
+}
+
+
+caption{
+	text-align: left;
+	font-size: 40px;
+	padding: 5px;
+	margin-bottom: 25px;	
+}
+
+#form{
+	margin-top: 5%;
+	font-size: 25px;
+}
+
+.loginutils{
+	font-size: 15px;
+	color: #000;
+}
+
+.btn-primary{
+	height: 60px;
+	width: 200px;
+	font-size: 25px;
+}
+
+#btnlogin{
+	height: 60px;
+	width: 200px;
+	font-size: 25px;
+}
+
+td{
+	padding: 5px;
+}
 
 
 
