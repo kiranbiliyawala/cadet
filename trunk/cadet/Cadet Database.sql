@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 09, 2012 at 02:18 PM
+-- Generation Time: Oct 15, 2012 at 06:33 AM
 -- Server version: 5.5.20
 -- PHP Version: 5.3.10
 
@@ -28,9 +28,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `admin` (
   `Username` varchar(25) NOT NULL COMMENT 'Stores Username Of Admin',
-  `Password` varchar(30) NOT NULL COMMENT 'Stores The Password of Admin',
+  `Password` varchar(250) NOT NULL COMMENT 'Stores The Password of Admin',
   `Name` varchar(30) NOT NULL COMMENT 'Stores Name of Admin',
   `Contact` int(15) NOT NULL COMMENT 'Stores Contact of Admin',
+  `Verified` varchar(1) NOT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Admin Table';
 
@@ -141,12 +142,14 @@ CREATE TABLE IF NOT EXISTS `test question` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `Username` varchar(25) NOT NULL COMMENT 'Stores Username of User',
-  `Password` varchar(30) NOT NULL COMMENT 'Stores Password of User',
+  `Password` varchar(250) NOT NULL COMMENT 'Stores Password of User',
   `Name` varchar(30) NOT NULL COMMENT 'Stores Name of User',
   `Contact` int(15) NOT NULL COMMENT 'Stores Contact of User',
+  `Verified` varchar(1) NOT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores Details of User';
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
