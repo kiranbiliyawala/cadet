@@ -16,66 +16,7 @@ if (!(window.console && console.log)) {
 
 // Global Variables & Function
 
-function databaseErrorDisplay(databaseErrorPage) {
+function pageRedirect(pagePath) {
 
-	$.post(databaseErrorPage,function(data,textStatus,xhr) {
-
-		try {
-			if(textStatus==="success") {
-				$("title").html("Database Error :(");
-	
-				$("html").css("padding","30px 10px");
-				$("html").css("font-size","20px");
-				$("html").css("line-height","1.4");
-				$("html").css("color","#737373");
-				$("html").css("background","#f0f0f0");
-				$("html").css("-webkit-text-size-adjust","100%");
-				$("html").css("-ms-text-size-adjust","100%");
-	
-				$("body").css("max-width","500px");
-				$("body").css("_width","500px");
-				$("body").css("padding","30px 20px 50px");
-				$("body").css("border","1px solid #b3b3b3");
-				$("body").css("border-radius","4px");
-				$("body").css("margin","0 auto");
-				$("body").css("box-shadow","0 1px 10px #a7a7a7, inset 0 1px 0 #fff");
-				$("body").css("background","#fcfcfc");
-	
-				$("body").html(data);
-			}
-			else bootbox.alert("Resource Not Available");
-		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
-	});
-}
-
-function serverExceptionDisplay(serverExceptionPage) {
-
-	$.post(serverExceptionPage,function(data,textStatus,xhr) {
-
-		try {
-			if(textStatus==="success") {
-				$("title").html("Server Exception :(");
-	
-				$("html").css("padding","30px 10px");
-				$("html").css("font-size","20px");
-				$("html").css("line-height","1.4");
-				$("html").css("color","#737373");
-				$("html").css("background","#f0f0f0");
-				$("html").css("-webkit-text-size-adjust","100%");
-				$("html").css("-ms-text-size-adjust","100%");
-	
-				$("body").css("max-width","500px");
-				$("body").css("_width","500px");
-				$("body").css("padding","30px 20px 50px");
-				$("body").css("border","1px solid #b3b3b3");
-				$("body").css("border-radius","4px");
-				$("body").css("margin","0 auto");
-				$("body").css("box-shadow","0 1px 10px #a7a7a7, inset 0 1px 0 #fff");
-				$("body").css("background","#fcfcfc");
-	
-				$("body").html(data);
-			}
-			else bootbox.alert("Resource Not Available");
-		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
-	});
+	window.locaiton.href = pagePath;
 }

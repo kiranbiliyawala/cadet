@@ -40,12 +40,15 @@ public class TestDbTransactions {
 		while(rs.next()) {
 
 			temp = new BeanTest();
-			temp.setTestID(rs.getInt("Testid"));
-			temp.setTestName(rs.getString("Testname"));
-			temp.setType(rs.getString("Type"));
-			temp.setTestDate(rs.getString("Tdate"));
-			temp.setTestDuration(rs.getInt("Tduration"));
-			temp.setInitialDifficulty(rs.getInt("Initialdifficulty"));
+			temp.setTestId(rs.getInt("TestId"));
+			temp.setTestType(rs.getString("TestType"));
+			temp.setTestName(rs.getString("TestName"));
+			temp.setTestDesc(rs.getString("TestDesc"));
+			temp.setTestDate(rs.getDate("TestDate"));
+			temp.setStartTime(rs.getTimestamp("StartTime"));
+			temp.setEndTime(rs.getTimestamp("EndTime"));
+			temp.setTestDuration(rs.getInt("TestDuration"));
+			temp.setInitialDifficulty(rs.getInt("InitialDifficulty"));
 
 			result.add(temp);
 		}

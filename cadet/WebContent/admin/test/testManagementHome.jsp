@@ -162,8 +162,8 @@
 						<td>{{testName}}</td>
 						<td>{{testDate}}</td>
 						<td>{{testDuration}} Mins.</td>
-						<td><a href="#" id={{#editButton}}{{testID}}{{/editButton}} class="btn btn-info btnEdit">Edit</a></td>
-						<td><a href="#" id={{#deleteButton}}{{testID}}{{/deleteButton}} class="btn btn-danger btnDelete">Delete</a></td>
+						<td><a href="#" id={{#editButton}}{{testId}}{{/editButton}} class="btn btn-info btnEdit">Edit</a></td>
+						<td><a href="#" id={{#deleteButton}}{{testId}}{{/deleteButton}} class="btn btn-danger btnDelete">Delete</a></td>
 					</tr>
 				{{/each}}
 			{{else}}
