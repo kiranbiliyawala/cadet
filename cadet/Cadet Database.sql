@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2012 at 06:33 AM
+-- Generation Time: Oct 15, 2012 at 03:13 PM
 -- Server version: 5.5.20
 -- PHP Version: 5.3.10
 
@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS `category` (
   `Categoryname` varchar(15) NOT NULL COMMENT 'Stores Name of Category',
   `Description` varchar(50) NOT NULL COMMENT 'Stores Description of Category',
   `Ausername` varchar(25) NOT NULL COMMENT 'Stores the name of admin who added the Category',
-  PRIMARY KEY (`Categoryname`)
+  PRIMARY KEY (`Categoryname`),
+  KEY `Ausername` (`Ausername`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores Details of Category';
 
 -- --------------------------------------------------------
@@ -76,7 +77,9 @@ CREATE TABLE IF NOT EXISTS `questionbank` (
   `Option D` text NOT NULL COMMENT 'Stores Option D of the Question',
   `Correct Option` text NOT NULL COMMENT 'Stores Correct Option of the Question',
   `Lid` int(5) NOT NULL COMMENT 'Stores Level of the Question',
-  PRIMARY KEY (`QID`)
+  PRIMARY KEY (`QID`),
+  KEY `CName` (`CName`),
+  KEY `Lid` (`Lid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores the details of the all the Question' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -91,7 +94,9 @@ CREATE TABLE IF NOT EXISTS `result` (
   `Marks` int(5) NOT NULL COMMENT 'Stores Marks of the User',
   `Attempted` int(5) NOT NULL COMMENT 'Stores the number of attempted question',
   `Correct` int(5) NOT NULL COMMENT 'Stores number of correct question',
-  PRIMARY KEY (`SUsername`,`Testid`)
+  PRIMARY KEY (`SUsername`,`Testid`),
+  KEY `Testid` (`Testid`),
+  KEY `SUsername` (`SUsername`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores the Result of the User';
 
 -- --------------------------------------------------------
@@ -117,9 +122,14 @@ CREATE TABLE IF NOT EXISTS `test` (
 --
 
 CREATE TABLE IF NOT EXISTS `testcategory` (
-  `Testid` int(5) NOT NULL COMMENT 'Stores ID of the Test ',
-  `Categoryid` int(5) NOT NULL COMMENT 'Stores ID of the Category'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores the list of Category (used only if adaptive)';
+  `TestID` int(5) NOT NULL,
+  `Categoryname` varchar(15) NOT NULL,
+  `Per_Category_Time` int(3) NOT NULL,
+  `Question_Per_Category` int(3) NOT NULL,
+  PRIMARY KEY (`TestID`,`Categoryname`),
+  KEY `Categoryname` (`Categoryname`),
+  KEY `TestID` (`TestID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -131,7 +141,9 @@ CREATE TABLE IF NOT EXISTS `test question` (
   `Testid` int(5) NOT NULL COMMENT 'Stores the testid',
   `Quesitonid` int(5) NOT NULL COMMENT 'Stores question id',
   `Negativemark` int(5) NOT NULL COMMENT 'Stores Negative Mark For the Questions in  Test',
-  PRIMARY KEY (`Testid`,`Quesitonid`)
+  PRIMARY KEY (`Testid`,`Quesitonid`),
+  KEY `Quesitonid` (`Quesitonid`),
+  KEY `Testid` (`Testid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores the list of question (used only if non adaptive)';
 
 -- --------------------------------------------------------
@@ -149,7 +161,44 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores Details of User';
 
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `category`
+--
+ALTER TABLE `category`
+  ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`Ausername`) REFERENCES `admin` (`Username`);
+
+--
+-- Constraints for table `questionbank`
+--
+ALTER TABLE `questionbank`
+  ADD CONSTRAINT `questionbank_ibfk_2` FOREIGN KEY (`Lid`) REFERENCES `level` (`Lid`),
+  ADD CONSTRAINT `questionbank_ibfk_1` FOREIGN KEY (`CName`) REFERENCES `category` (`Categoryname`);
+
+--
+-- Constraints for table `result`
+--
+ALTER TABLE `result`
+  ADD CONSTRAINT `result_ibfk_2` FOREIGN KEY (`Testid`) REFERENCES `test` (`Testid`),
+  ADD CONSTRAINT `result_ibfk_1` FOREIGN KEY (`SUsername`) REFERENCES `user` (`Username`);
+
+--
+-- Constraints for table `testcategory`
+--
+ALTER TABLE `testcategory`
+  ADD CONSTRAINT `testcategory_ibfk_2` FOREIGN KEY (`Categoryname`) REFERENCES `category` (`Categoryname`),
+  ADD CONSTRAINT `testcategory_ibfk_1` FOREIGN KEY (`TestID`) REFERENCES `test` (`Testid`);
+
+--
+-- Constraints for table `test question`
+--
+ALTER TABLE `test question`
+  ADD CONSTRAINT `test@0020question_ibfk_2` FOREIGN KEY (`Quesitonid`) REFERENCES `questionbank` (`QID`),
+  ADD CONSTRAINT `test@0020question_ibfk_1` FOREIGN KEY (`Testid`) REFERENCES `test` (`Testid`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
