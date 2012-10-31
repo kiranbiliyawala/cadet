@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="../../css/bootstrap.css">
         <style>
             body {
                 padding-top: 60px;
@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../css/main.css">
 
-        <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -108,9 +108,9 @@
                 </div>
         </footer>
 
-        <script src="../js/jquery-1.8.2.js"></script>
-        <script>window.jQuery || document.write('<script src="../js/jquery-1.8.2.js"><\/script>')</script>
+        <script src="../../js/jquery-1.8.2.js"></script>
+        <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
-        <script src="../js/bootstrap.js"></script>
+        <script src="../../js/bootstrap.js"></script>
     </body>
 </html>

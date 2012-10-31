@@ -20,7 +20,6 @@
 			footer { background: none scroll repeat 0 0 #FFFFFF; }
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="../css/main.css">
 
         <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
@@ -37,7 +36,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#home"><img src="../img/cadet.png" alt="CADET"></a>
+                    <a class="brand" href="#home"><img src="../img/cadet.gif" alt="CADET" width="66"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
                            <li class="active"><a href="#home">Home</a></li>
@@ -132,6 +131,5 @@
 
         <script src="../js/bootstrap.js"></script>
         <script src="../js/bootbox.js"></script>
-        <script src="../js/jsGlobal.js"></script>
     </body>
 </html>
