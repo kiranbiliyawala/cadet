@@ -7,16 +7,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width">
 <title>View all test</title>
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../../css/bootstrap.css">
  <style>
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
         </style>
-        <link rel="stylesheet" href="../css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="../css/main.css">
-        <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+        <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
 
