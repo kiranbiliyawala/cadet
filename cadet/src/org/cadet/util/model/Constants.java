@@ -37,6 +37,8 @@ public class Constants {
 		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
 		public static final String UpdateClientPassword = "UPDATE user SET Password=? WHERE Username = ?";
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
+		
+		public static final String checkTestWithinDuration="";
 	}
 	
 	public static final class email{
