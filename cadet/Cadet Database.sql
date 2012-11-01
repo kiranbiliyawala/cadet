@@ -103,7 +103,6 @@ INSERT INTO `candidatecategory` (`CandidateCategoryName`) VALUES
 ('MSCITARD'),
 ('MTECH'),
 ('PHD'),
-('Rucha'),
 ('Zzz'),
 ('zzzzz');
 
