@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 31, 2012 at 07:46 PM
+-- Generation Time: Nov 01, 2012 at 02:34 PM
 -- Server version: 5.1.53-community-log
 -- PHP Version: 5.3.4
 
@@ -92,12 +92,20 @@ CREATE TABLE IF NOT EXISTS `candidatecategory` (
 --
 
 INSERT INTO `candidatecategory` (`CandidateCategoryName`) VALUES
+('1'),
+('aa'),
+('aadesh'),
 ('BTECH'),
 ('MDES'),
+('Meet'),
+('MM'),
 ('MSCIT'),
 ('MSCITARD'),
 ('MTECH'),
-('PHD');
+('PHD'),
+('Rucha'),
+('Zzz'),
+('zzzzz');
 
 -- --------------------------------------------------------
 
@@ -237,6 +245,29 @@ INSERT INTO `test` (`TestId`, `TestType`, `TestName`, `TestDesc`, `TestDate`, `S
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `testcandidatecategory`
+--
+
+CREATE TABLE IF NOT EXISTS `testcandidatecategory` (
+  `TestId` int(5) NOT NULL COMMENT 'Stores ID of the Test',
+  `CandidateCategoryName` varchar(25) NOT NULL COMMENT 'Stores Candidate Category Name',
+  PRIMARY KEY (`TestId`,`CandidateCategoryName`),
+  KEY `CandidateCategoryName` (`CandidateCategoryName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Stores Which candidate category can apply for which test';
+
+--
+-- Dumping data for table `testcandidatecategory`
+--
+
+INSERT INTO `testcandidatecategory` (`TestId`, `CandidateCategoryName`) VALUES
+(1, 'BTECH'),
+(1, 'MDES'),
+(3, 'MSCIT'),
+(2, 'PHD');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `testcategory`
 --
 
@@ -318,6 +349,13 @@ ALTER TABLE `questionbank`
 ALTER TABLE `result`
   ADD CONSTRAINT `result_ibfk_1` FOREIGN KEY (`CUserName`) REFERENCES `candidate` (`CUserName`),
   ADD CONSTRAINT `result_ibfk_2` FOREIGN KEY (`TestId`) REFERENCES `test` (`TestId`);
+
+--
+-- Constraints for table `testcandidatecategory`
+--
+ALTER TABLE `testcandidatecategory`
+  ADD CONSTRAINT `testcandidatecategory_ibfk_2` FOREIGN KEY (`CandidateCategoryName`) REFERENCES `candidatecategory` (`CandidateCategoryName`),
+  ADD CONSTRAINT `testcandidatecategory_ibfk_1` FOREIGN KEY (`TestId`) REFERENCES `test` (`TestId`);
 
 --
 -- Constraints for table `testcategory`
