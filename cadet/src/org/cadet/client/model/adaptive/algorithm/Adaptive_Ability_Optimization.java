@@ -1,4 +1,4 @@
-package org.cadet.client.model.algorithm;
+package org.cadet.client.model.adaptive.algorithm;
 
 import java.security.InvalidAlgorithmParameterException;
 
