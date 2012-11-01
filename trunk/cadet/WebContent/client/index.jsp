@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="../../css/bootstrap.css">
+        <link rel="stylesheet" href="../css/bootstrap.css">
         <style>
             body {
                 padding-top: 60px;
@@ -18,7 +18,7 @@
             }
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="css/main.css">
 
         <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
@@ -35,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#home"><img src="../img/cadet.png" alt="CADET">&nbsp;&nbsp;&nbsp;CADET</a>
+                    <a class="brand" href="#home"><img id="logo" src="../img/cadet.gif" alt="CADET">&nbsp;&nbsp;&nbsp;CADET</a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
                            <li class="active"><a href="#home">Home</a></li>

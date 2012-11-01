@@ -74,8 +74,6 @@ public class NonAdaptiveTest {
 		test_details = details.split(",");
 	}
 
-
-
 	private void randomize() throws JSONException {
 		JSONObject category = Categorized_Questions;
 		ArrayList<JSONObject> questions;
