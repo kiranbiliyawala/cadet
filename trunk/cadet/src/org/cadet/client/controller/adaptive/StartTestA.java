@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.cadet.client.model.adaptive.AdaptiveTest;
 import org.cadet.client.model.adaptive.AdaptiveTestDBTransactions;
 import org.cadet.util.model.DatabaseConnection;
 
@@ -41,23 +42,20 @@ public class StartTestA extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		try {
-
-			// this code checks if the test is started in within the stipulated
-			// test duration.
-
 			HttpSession session = request.getSession();
 			Integer testID = Integer.parseInt(request.getAttribute("testID").toString());
 
 			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID.intValue())) {
-				request.setAttribute("testStarted", true);
+				session.setAttribute("testStarted", true);//check on pop up page whether test has been started so that candidate cannot restart the test by resubmitting the url.
+				AdaptiveTest test=new AdaptiveTest(testID.intValue());
 				
-				//pop up the test page and start test
+				//code here for pop up the test page and start test
+				
 				
 				
 
 			} else {
-				request.setAttribute("error",
-						"Either Test Period has not started or is over !!");
+				request.setAttribute("error", "Either Test Period has not started or is over !!");
 			}
 
 		} catch (SQLException sqle) {

@@ -20,7 +20,7 @@ public class AdaptiveTestDBTransactions {
 	}
 	
 	public static boolean checkTestWithinDuration(int testID) throws SQLException, Exception{
-		
+		// this method checks if the test is started in within the stipulated test duration.
 		
 			DatabaseConnection dbConn=DatabaseConnection.getInstance();
 			Connection conn=dbConn.getDbConnection();
