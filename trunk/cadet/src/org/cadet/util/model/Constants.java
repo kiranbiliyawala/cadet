@@ -47,6 +47,8 @@ public class Constants {
 		public static String getTestNegativeNA="";
 		public static String getTestDifficultyNA="";
 		public static String getTestQuestionsNA;
+		
+		public static String getDashboardTests = "SELECT t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc WHERE tcc.candidatecategoryname = ? and  t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0";
 	}
 	
 	public static final class email{
