@@ -11,7 +11,6 @@
 <title>CADET</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
-
 <link rel="stylesheet" href="./css/bootstrap.css">
 <style>
 body {
@@ -37,11 +36,9 @@ footer {
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container">
+			<div class="container-fluid">
 
-				<a class="brand" href="#"><img id="logo" src="./img/cadet.gif"
-					alt="CADET"></img></a>
-
+				<a class="brand" href="#"><img id="logo" src="./img/cadet.gif" alt="CADET"></img></a>
 				<ul class="nav" id="ulcontainer">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a class="liheader" href="#">Features</a></li>
@@ -52,51 +49,46 @@ footer {
 	</div>
 	<!--/.navbar -->
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div id="welcome" class="container" style="position: absolute;">
-				<div class="hero-unit">
-					Welcome to CADET ! <br>
-					<div id="joinus">
-						<button class="btn btn-primary">Join Us</button>
+			<div class="offset5">
+				<div id="welcome" style="position: absolute;">
+					<div class="hero-unit">
+						Welcome to CADET ! <br>
+						<div id="joinus">
+							<button class="btn btn-primary">Join Us</button>
+						</div>
+						<span style="font: 60px calibri;">&nbsp;</span>
 					</div>
-					<span style="font: 60px calibri;">&nbsp;</span>
-				</div>
-				<div id="hero-unit-support"></div>
-				<span style="font: 60px calibri; margin-top: -39px; display:block; position: relative">OR</span>
-				<div id="form">
-					<form action="" method="post">
-						<table align="center">
-							<caption>Login</caption>
-							<tr>
-								<td>Username:</td>
-								<td><input type="text" id="txtusername"
-									placeholder="Enter your username" /></td>
-							</tr>
-							<tr>
-								<td>Password:</td>
-								<td><input type="password" id="txtpassword"
-									placeholder="Password" /></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><input type="checkbox" /><span class="loginutils">
-										Remember me |</span> <a href="#" class="loginutils">Forget Password</a>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="submit" class="btn"
-									id="btnlogin" /></td>
-							</tr>
-						</table>
-					</form>
+					<div id="hero-unit-support"></div>
+					<span style="font: 60px calibri; margin-top: -39px; display:block; position: relative">OR</span>
+					<div id="form">
+						<form action="/LoginAuthorize" method="post">
+							<table align="center">
+								<caption>Login</caption>
+								<tr>
+									<td>Username:</td>
+									<td><input type="text" id="username" placeholder="Enter your username" /></td>
+								</tr>
+								<tr>
+									<td>Password:</td>
+									<td><input type="password" id="password" placeholder="Password" /></td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" /><span class="loginutils"> Remember me |</span> <a href="#" class="loginutils">Forget Password</a></td>
+								</tr>
+								<tr>
+									<td colspan="2"><input type="submit" class="btn" id="btnlogin" /></td>
+								</tr>
+							</table>
+						</form>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
-	<footer class="container navbar navbar-fixed-bottom">
+	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
 		<div class="row" style="margin-bottom: 10px;">
 			<a class="span pull-right" href="#">About</a> <a
