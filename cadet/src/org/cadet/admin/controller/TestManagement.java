@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,183 +23,223 @@ import org.json.JSONObject;
  */
 @WebServlet("/admin/test/TestManagement")
 public class TestManagement extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public TestManagement() {
-        super();
-        // TODO Auto-generated constructor stub
+	super();
+	// TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// TODO Auto-generated method stub
 
-		response.sendError(404,"No Get Request Allowed for this Page");
+	response.sendError(404, "No Get Request Allowed for this Page");
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// TODO Auto-generated method stub
+
+	String requestType = request.getParameter("requestType");
+	PrintWriter out = response.getWriter();
+	JSONObject data = null;
+
+	if (requestType.equals("getAllTests")) {
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+
+		data = TestDbTransactions.getAllTests(dbConnection);
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
+	else if (requestType.equals("createTest")) {
 
-		String requestType = request.getParameter("requestType");
-		PrintWriter out = response.getWriter();
-		JSONObject data = null;
+	    String testName = request.getParameter("txtTestName");
+	    String testType = request.getParameter("optTestType");
+	    String testDesc = request.getParameter("taTestDesc");
 
-		if(requestType.equals("getAllTests")) {
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+	    int testId;
 
-			DatabaseConnection dbConn = DatabaseConnection.getInstance();
-			Connection dbConnection = dbConn.getDbConnection();
+	    try {
 
-			try {
+		TestDbTransactions.createTest(dbConnection, testName, testType, testDesc);
 
-				data = TestDbTransactions.getAllTests(dbConnection);
-				data.put("result", true);
+		testId = TestDbTransactions.getLastInsertID(dbConnection);
 
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-			    out.println(data);
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				
-				data = new JSONObject();
-				try {
-					data.put("result", "DatabaseError");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
-				return;
-			} catch(Exception e) {
+		e.printStackTrace();
+		response.sendRedirect("../DatabaseError.html");
+		return;
+	    } catch (Exception e) {
 
-				e.printStackTrace();
+		e.printStackTrace();
+		response.sendRedirect("../ServerException.html");
+		return;
+	    }
 
-				data = new JSONObject();
-				try {
-					data.put("result","ServerException");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
-				return;
-			}
+	    /* AFTER TEST CREATION -- Redirection to Test Page */
+
+	    try {
+		if (testId != -1) {
+
+		    ArrayList<String> categoryNames = TestDbTransactions.getTestCategoryName(dbConnection, testId);
+
+		    request.setAttribute("testId", testId);
+		    request.setAttribute("testName", testName);
+		    request.setAttribute("categoryNames", categoryNames);
+
+		    RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
+		    rd.forward(request, response);
+		} else {
+		    response.sendRedirect("../ServerException.html");
+		    return;
 		}
+	    } catch (SQLException e) {
 
-		else if(requestType.equals("createTest")) {
+		e.printStackTrace();
+		response.sendRedirect("../DatabaseError.html");
+		return;
+	    } catch (Exception e) {
 
-			String testName = request.getParameter("txtTestName");
-			String testType = request.getParameter("optTestType");
-			String testDesc = request.getParameter("taTestDesc");
-
-
-			DatabaseConnection dbConn = DatabaseConnection.getInstance();
-			Connection dbConnection = dbConn.getDbConnection();
-			int testID;
-
-			try {
-
-				TestDbTransactions.createTest(dbConnection,testName,testType,testDesc);
-
-				testID = TestDbTransactions.getLastInsertID(dbConnection);
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-
-				e.printStackTrace();
-				response.sendRedirect("../DatabaseError.html");
-				return;
-			} catch(Exception e) {
-
-				e.printStackTrace();
-				response.sendRedirect("../ServerException.html");
-				return;
-			}
-
-			/* AFTER TEST CREATION -- Redirection to Test Page */
-
-			try {
-				request.setAttribute("testID",testID);
-				request.setAttribute("testName", testName);
-				request.setAttribute("testType",testType);
-
-				RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
-				rd.forward(request, response);
-			} catch(Exception e) {
-
-				e.printStackTrace();
-				response.sendRedirect("../ServerException.html");
-				return;
-			}
-		}
-
-		else if(requestType.equals("editTest")) {
-
-			int testID = Integer.parseInt(request.getParameter("testID").split("edit")[1]);
-			System.out.println(testID);
-		}
-
-		else if(requestType.equals("deleteTest")) {
-
-			int testID = Integer.parseInt(request.getParameter("testID").split("delete")[1]);
-
-			DatabaseConnection dbConn = DatabaseConnection.getInstance();
-			Connection dbConnection = dbConn.getDbConnection();
-
-			try {
-
-				TestDbTransactions.deleteTest(dbConnection, testID);
-
-				data = new JSONObject();
-				data.put("result", true);
-
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-				data = new JSONObject();
-				try {
-					data.put("result", "DatabaseError");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
-				return;
-			} catch(Exception e) {
-
-				e.printStackTrace();
-
-				data = new JSONObject();
-				try {
-					data.put("result","ServerException");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				out.println(data);
-				return;
-			}
-		}
+		e.printStackTrace();
+		response.sendRedirect("../ServerException.html");
+		return;
+	    }
 	}
+
+	else if (requestType.equals("editTest")) {
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+	    int testId;
+
+	    try {
+
+		testId = Integer.parseInt(request.getParameter("testId"));
+
+		ArrayList<String> categoryNames = TestDbTransactions.getTestCategoryName(dbConnection, testId);
+		String testName = TestDbTransactions.getTestName(dbConnection, testId);
+
+		request.setAttribute("testId", testId);
+		request.setAttribute("testName", testName);
+		request.setAttribute("categoryNames", categoryNames);
+
+		RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
+		rd.forward(request, response);
+	    } catch (SQLException e) {
+
+		e.printStackTrace();
+		response.sendRedirect("../DatabaseError.html");
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+		response.sendRedirect("../ServerException.html");
+		return;
+	    }
+	}
+
+	else if (requestType.equals("deleteTest")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId").split("delete")[1]);
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+
+		TestDbTransactions.deleteTest(dbConnection, testId);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+    }
 }

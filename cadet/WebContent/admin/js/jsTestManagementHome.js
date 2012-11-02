@@ -1,8 +1,5 @@
 $(document).ready(function(e) {
 
-	Handlebars.registerHelper("editButton",function(options) {
-		return "edit"+options.fn(this);
-	});
 	Handlebars.registerHelper("deleteButton",function(options) {
 		return "delete"+options.fn(this);
 	});
@@ -11,41 +8,36 @@ $(document).ready(function(e) {
 		{ requestType : "getAllTests" },
 		function(data,textStatus,xhr) {
 
-			if(data.result===true) {
+			try {
+				if(data.result===true) {
 
-				try {
 					var src = $("#tmpltTests").html();
 					var template = Handlebars.compile(src);
 					var output = template(data);
-
+	
 					$("#tblTests tbody").append(output);
-				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
-			}
-			else if(data.result==="DatabaseError") {
-				pageRedirect("../DatabaseError.html");
-			}
-			else if(data.result==="ServerException") {
-				pageRedirect("../ServerException.html");
-			}
-		}
-	);
+				}
+				else if(data.result==="DatabaseError") {
+					pageRedirect("../DatabaseError.html");
+				}
+				else if(data.result==="ServerException") {
+					pageRedirect("../ServerException.html");
+				}
+			} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+	});
 
 	$(".btnEdit").live("click",function(event) {
 
-		console.log($(this).attr("id"));
-
 		try {
-			$.post("TestManagement",
+			$.get("TestManagement",
 				{
 					requestType : "editTest",
-					testID : $(this).attr("id")
-				},
-				function(data,textStatus,xhr) {
-					console.log(data);
+					testId : $(this).attr("id")
 			});
 		}catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 
+	var alertDiv = "<div style=\"position:absolute; margin-top:0.1%;\" class=\"alert alert-success offset5 span3\">You have deleted the test <strong>successfully !!!</strong></div>";
 	$(".btnDelete").live("click",function(event) {
 
 		var button = $(this);
@@ -59,7 +51,7 @@ $(document).ready(function(e) {
 					$.post("TestManagement",
 							{
 								requestType : "deleteTest",
-								testID : button.attr("id")
+								testId : button.attr("id")
 							},
 							function(data,textStatus,xhr) {
 
@@ -68,7 +60,12 @@ $(document).ready(function(e) {
 										var row = button.parent().parent();
 										var tBody = row.parent();
 										var siblingRows = row.siblings();
-										row.remove();
+
+										setTimeout(function() {
+											row.remove();
+											$("body").prepend(alertDiv);
+											setTimeout(function() { $(".alert").alert("close"); },3000);
+										},600);
 
 										if(siblingRows.length===0) {
 											tBody.append("<tr><td><p class=\"text-warning\">No Test Available</p></td><td></td><td></td><td></td><td></td></tr>");
