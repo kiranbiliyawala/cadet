@@ -81,7 +81,7 @@
 					<tr class="tr">
 						<td><label class="Fieldnames">User Category :</label></td>
 						<td>
-						<select id="usercategory">
+						<select name="Category" id="usercategory">
 							<option>1</option>							
 						</select>
 						</td>
@@ -95,7 +95,7 @@
 							<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<%out.println(Constants.Captcha.publicKey);%>">
  							</script>  
   							<noscript>
-     							<iframe src="http://www.google.com/recaptcha/api/noscript?k=<%out.println(Constants.Captcha.publicKey);%>" height="300" width="400" frameborder="0"></iframe><br>
+     							<iframe src="http://www.google.com/recaptcha/api/noscript?k=<%out.println(Constants.Captcha.publicKey);%>" height="300" width="400" ></iframe><br>
      							<textarea name="recaptcha_challenge_field" id ="recaptcha_challenge_field" rows="3" cols="40">
      							</textarea>
      							<input type="hidden" name="recaptcha_response_field" id = "recaptcha_response_field" value="manual_challenge">
@@ -119,6 +119,7 @@
 		</div>
 	</div>
  	<script type="text/javascript" src="../js/jquery-1.8.2.js"></script>
+ 	<script type="text/javascript" src="../js/jquery.validate.js"></script>
 	<script type="text/javascript" src="../js/sha.js"></script>
 	<script type="text/javascript" src="../js/RegisterPage.js"></script>
 </body>
