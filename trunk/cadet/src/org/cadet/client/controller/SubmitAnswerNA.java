@@ -46,10 +46,10 @@ public class SubmitAnswerNA extends HttpServlet {
 		String ANS;
 		try{
 			test = (NonAdaptiveTest) session.getAttribute("test");
-			Category = request.getParameter("category").toString();
+			Category = request.getParameter("CATEGORY").toString();
 			QNO = request.getParameter("QNO").toString();
 			QID = request.getParameter("QID").toString();
-			ANS = request.getParameter("ans").toString();
+			ANS = request.getParameter("ANS").toString();
 		}catch(Exception e){
 			response.sendError(403);
 			return;
