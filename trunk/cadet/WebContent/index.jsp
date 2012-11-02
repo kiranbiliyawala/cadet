@@ -54,8 +54,7 @@ footer {
 
 	<div class="container">
 		<div class="row">
-
-			<div id="welcome" class="container">
+			<div id="welcome" class="container" style="position: absolute;">
 				<div class="hero-unit">
 					Welcome to CADET ! <br>
 					<div id="joinus">
@@ -82,7 +81,7 @@ footer {
 							<tr>
 								<td></td>
 								<td><input type="checkbox" /><span class="loginutils">
-										Remember me</span> <a href="#" class="loginutils">Forget Password</a>
+										Remember me |</span> <a href="#" class="loginutils">Forget Password</a>
 								</td>
 							</tr>
 							<tr>
