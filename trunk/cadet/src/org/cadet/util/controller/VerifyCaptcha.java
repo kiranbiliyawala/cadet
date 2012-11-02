@@ -42,7 +42,7 @@ public class VerifyCaptcha extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		String remoteip = request.getRemoteAddr();
 		String challenge = request.getParameter("recaptcha_challenge_field");
 		String respons = request.getParameter("recaptcha_response_field");

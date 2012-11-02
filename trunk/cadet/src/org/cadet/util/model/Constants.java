@@ -39,7 +39,7 @@ public class Constants {
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
 		
 		public static final String getTest="SELECT * from test where testId = ?";
-		public static String hasCategory="SELECT COUNT(*) FROM candidatecategory WHERE CandidateCategoryName = ?";
+		public static String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 		public static String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
 	}
 	
@@ -52,7 +52,7 @@ public class Constants {
 		public static final String SMTP_AUTH = "true";
 		public static final String EmailMessage = "Please Click following link to verify your email address https://localhost:9090/cadet/verifyEmail?";
 		public static final String EmailSubject = "[EMAIL Verification] CADET";
-		public static final String EmailRegex = "[a-zA-Z]*[0-9]*@[a-zA-Z]*.[a-zA-Z]*";
+		public static final String EmailRegex = "^(.+)@(.+)$";
 		
 	}
 	

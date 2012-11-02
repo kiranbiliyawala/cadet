@@ -78,12 +78,22 @@ public class RegisterUser extends HttpServlet {
 			contactok = true;
 		}
 		
-		if(UserControl.hasCategory(dbconnection,Category)){
-			categoryok = true;
+		try {
+			if(UserControl.hasCategory(dbconnection,Category)){
+				categoryok = true;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			response.sendError(500);
+			e1.printStackTrace();
+			return;
+
+			
 		}
 		
 		if(!(usernameok && passwordok && nameok && contactok && categoryok)){
 			response.sendError(403,"Inappropriate enrty");
+			System.out.println("Everything ok : " + usernameok + passwordok + nameok + contactok + categoryok);
 			return;
 		}
 		
@@ -107,6 +117,7 @@ public class RegisterUser extends HttpServlet {
 			
 			UserControl.AddClient(dbconnection, username, password, name, Contact,Category);
 			EmailSend.SendMail(username);
+			response.sendRedirect("EmailVerification");
 		} catch (SQLException e) {
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
 			response.sendError(500,new Date().toString()+"- Database Connection Error");
