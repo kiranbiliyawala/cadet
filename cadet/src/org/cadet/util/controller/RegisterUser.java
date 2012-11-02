@@ -93,7 +93,7 @@ public class RegisterUser extends HttpServlet {
 		
 		if(!(usernameok && passwordok && nameok && contactok && categoryok)){
 			response.sendError(403,"Inappropriate enrty");
-			System.out.println("Everything ok : " + usernameok + passwordok + nameok + contactok + categoryok);
+			//System.out.println("Everything ok : " + usernameok + passwordok + nameok + contactok + categoryok);
 			return;
 		}
 		
