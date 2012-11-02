@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>CADET | Home</title>
+        <title>CADET | Register</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -88,20 +88,20 @@
 						<td><i style="color: red;" id="contact_error"></i></td>
 					</tr>
 					
-<!-- 					<tr> -->
-<!-- 						<td></td> -->
-<!-- 						<td> -->
-<!-- 							<i id="captchaerror" style="color: red;"></i> -->
-<%-- 							<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<%out.println(Constants.Captcha.publicKey);%>"> --%>
-<!-- 							</script>  -->
-<!--   							<noscript> -->
-<%--      							<iframe src="http://www.google.com/recaptcha/api/noscript?k=<%out.println(Constants.Captcha.publicKey);%>" height="300" width="400" frameborder="0"></iframe><br> --%>
-<!--      							<textarea name="recaptcha_challenge_field" id ="recaptcha_challenge_field" rows="3" cols="40"> -->
-<!--      							</textarea> -->
-<!--      							<input type="hidden" name="recaptcha_response_field" id = "recaptcha_response_field" value="manual_challenge"> -->
-<!--   							</noscript> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
+					<tr>
+						<td></td>
+						<td>
+							<i id="captchaerror" style="color: red;"></i>
+							<script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<%out.println(Constants.Captcha.publicKey);%>">
+ 							</script>  
+  							<noscript>
+     							<iframe src="http://www.google.com/recaptcha/api/noscript?k=<%out.println(Constants.Captcha.publicKey);%>" height="300" width="400" frameborder="0"></iframe><br>
+     							<textarea name="recaptcha_challenge_field" id ="recaptcha_challenge_field" rows="3" cols="40">
+     							</textarea>
+     							<input type="hidden" name="recaptcha_response_field" id = "recaptcha_response_field" value="manual_challenge">
+  							</noscript>
+						</td>
+					</tr>
 					
 					<tr class="tr">
 						<td></td>
@@ -118,7 +118,7 @@
 		</form>
 		</div>
 	</div>
- 
+ 	<script type="text/javascript" src="../js/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="../js/sha.js"></script>
 	<script type="text/javascript" src="../js/RegisterPage.js"></script>
 </body>

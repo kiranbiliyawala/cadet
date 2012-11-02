@@ -2,14 +2,16 @@ var RecaptchaOptions = {
 		    theme : 'clean'
 		 };
 
-
-function populateUserCategories(){
+$(document).ready(function(e) {
+	populateUserCategories();	
+});
+	function populateUserCategories(){
 	$.ajax({
-		url:"/GetUserCategories",
+		url:"GetUserCategories",
 		type: 'POST',
 		async:false,
 		success:function(result){
-			$("categorySelect").html(result);
+			$("#usercategory").html(result);
 		}
 	});
 }

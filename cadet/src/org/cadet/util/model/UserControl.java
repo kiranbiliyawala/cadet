@@ -197,6 +197,7 @@ public class UserControl {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.hasCategory);
 		statement.setString(1, category);
 		ResultSet rs = statement.executeQuery();
+		rs.first();
 		if(rs.getInt("count")>0){
 			ret = true;
 		}
