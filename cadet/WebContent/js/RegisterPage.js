@@ -3,6 +3,18 @@ var RecaptchaOptions = {
 		 };
 
 
+function populateUserCategories(){
+	$.ajax({
+		url:"/GetUserCategories",
+		type: 'POST',
+		async:false,
+		success:function(result){
+			$("categorySelect").html(result);
+		}
+	});
+}
+
+
   function validate() {
 	  
 	  var username = document.getElementById("Username").value;
