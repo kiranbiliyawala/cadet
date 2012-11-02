@@ -27,6 +27,8 @@ public class Constants {
 		public static final String retrivePasswordClient = "SELECT Password FROM candidate WHERE CUserName = ";
 		public static final String retriveTests = "SELECT * FROM test";
 		public static final String retriveLastInsertID = "SELECT last_insert_id()";
+		public static final String retriveTestCategoryName = "SELECT CategoryName FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
+		public static final String retriveTestName = "SELECT TestName FROM test WHERE TestId = ?";
 		public static final String isClientAvailable = "SELECT COUNT(DISTINCT CUserName) AS count FROM candidate WHERE CUserName = ";
 		public static final String AddClient = "INSERT INTO candidate (CUserName, Password, Name, Contact, CandidateCategoryName, Verified) VALUES (?, ?, ?, ?, ?, ?)";
 		public static final String AddAdmin = "INSERT INTO admin (Username, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
