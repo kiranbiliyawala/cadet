@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -209,8 +210,12 @@ public class NonAdaptiveTest {
 		AttemptedQuestions = cat;
 	}
 	
-	public JSONObject GetAttemptedQuestions(){
-		return AttemptedQuestions;
+	protected boolean isAttempted(String cat,String QNO) throws JSONException{
+		boolean ret=false;;
+		if(AttemptedQuestions.has(cat)){
+			ret = AttemptedQuestions.getJSONObject(cat).has(QNO);
+		}
+		return ret;
 	}
 	
 	public boolean process_Answers(){
@@ -263,22 +268,35 @@ public class NonAdaptiveTest {
 		return Categorized_Questions.toString();
 	}
 	
-	public String getQuestionDistribution() throws JSONException{
+	protected JSONObject getQuestionDistribution() throws JSONException{
 		JSONObject categories = new JSONObject();
 		
 		JSONArray keys = Categorized_Questions.names();
-		Random r = new Random();
 		for(int i=0;i<keys.length();i++){
 		JSONArray questions =  Categorized_Questions.getJSONArray(keys.getString(i));
 			categories.put(keys.getString(i), questions.length());
 		}
-		return categories.toString();
+		return categories;
 	}
 	
 	public String getQuestions(String category,Integer qno) throws JSONException{
-		return Categorized_Questions.getJSONArray(category).getJSONObject(qno-1).toString();
+		String obj = Categorized_Questions.getJSONArray(category).getJSONObject(qno-1).toString();
+		JSONObject jso = new JSONObject(obj);
+		jso.put("ANSWER", get_answer(jso.getString("QID")));
+		return jso.toString();
 	}
 	
+	private String get_answer(String QID) {
+		
+		if(Answers.containsKey(QID)){
+			return Answers.get(QID);
+		}
+		
+		return "N";
+	}
+
+
+
 	public void startTest(){
 		createScheduler(Test_Duration);
 	}

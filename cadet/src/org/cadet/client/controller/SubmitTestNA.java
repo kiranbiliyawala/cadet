@@ -51,7 +51,7 @@ public class SubmitTestNA extends HttpServlet {
 			return;
 		}
 		
-			test.process_Answers(connection, username);
+			test.process_Answers();
 			
 		session.setAttribute("test", null);
 		session.setAttribute("testCategory", null);

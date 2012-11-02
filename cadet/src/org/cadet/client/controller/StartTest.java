@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.cadet.client.model.NAHTMLConvert;
 import org.cadet.client.model.NonAdaptiveTest;
 import org.json.JSONException;
 
@@ -43,14 +44,14 @@ public class StartTest extends HttpServlet {
 		NonAdaptiveTest test = (NonAdaptiveTest) session.getAttribute("test");
 		
 		try {
-			request.setAttribute("Catdistribution", test.getQuestionDistribution());
-			request.setAttribute("Attempted",test.GetAttemptedQuestions().toString());
+			request.setAttribute("Catselector", NAHTMLConvert.CatSelectorHTML(test));
+			request.setAttribute("Queselector", NAHTMLConvert.QuestionSelectorHTML(test));		
 			
 		} catch (JSONException e) {
 			response.sendError(500);
 		}
 		
-		
+		test.startTest();
 		RequestDispatcher dispacher = request.getRequestDispatcher("non_adaptive_test_que.jsp");
 		dispacher.include(request, response);
 	}
