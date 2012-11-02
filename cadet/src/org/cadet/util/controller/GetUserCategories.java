@@ -50,9 +50,12 @@ public class GetUserCategories extends HttpServlet {
 		}
 		
 		String out = "";
+		String categories_options_start ="<option value=\"";
+		String tag_end = "\">";
+		String option_end = "</option>";
 		
 		for(int i=0;i<Ar.size();i++){
-			out = out+Ar.get(i);
+			out = out+categories_options_start+Ar.get(i)+tag_end+Ar.get(i)+option_end;
 		}
 		
 		response.getWriter().print(out);
