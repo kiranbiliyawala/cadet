@@ -59,7 +59,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="span7 offset5">
+			<div class="span7 offset7">
 				<div id="welcome" style="position: absolute;">
 					<div class="hero-unit">
 						Welcome to CADET <br>
@@ -69,7 +69,7 @@
 						<span style="font: 60px calibri;">&nbsp;</span>
 					</div>
 					<div id="hero-unit-support"></div>
-					<span style="font: 60px calibri; margin-top: -39px; display:block; position: relative">OR</span>
+					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
 					<div id="form">
 						<form action="/LoginAuthorize" method="post">
 							<table align="center">
