@@ -3,9 +3,14 @@ package org.cadet.client.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -15,6 +20,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.cadet.util.model.Constants;
+import org.cadet.util.model.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,9 +43,9 @@ public class NonAdaptiveTest {
 	private boolean lock;
 	private String username;
 	private Connection connection;
-	private String[] test_details;
+	public String[] test_details;
 	
-	public NonAdaptiveTest(Connection connection,int testid,String username) throws JSONException {
+	public NonAdaptiveTest(Connection connection,int testid,String username) throws JSONException, SQLException {
 	
 		this.testid = testid;
 		this.connection = connection;
@@ -60,18 +66,24 @@ public class NonAdaptiveTest {
 
 	
 
-	private void fetchTestDetails() {
+	private void fetchTestDetails() throws SQLException {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestDurationNA);
 		statement.setInt(1, testid);
 		ResultSet rs = statement.executeQuery();
-		String name;
-		String date;
+		String name="";
+		String date="";
+		Integer test_hours=0;
+		Integer test_minutes=0;
 		while(rs.next()){
 			Test_Duration = rs.getInt("duration");
+			
+			test_hours = (int) (Test_Duration/60);
+			test_minutes = (int) (Test_Duration%60);
+			
 			name = rs.getString("Name");
 			date = rs.getString("Date");
 		}
-		String details = name+","+date+","+Test_Duration;
+		String details = name+","+date+","+test_hours+"::"+test_minutes;
 		test_details = details.split(",");
 	}
 
@@ -90,7 +102,7 @@ public class NonAdaptiveTest {
 		Categorized_Questions = category;
 	}
 
-	private void getNegativeMarks() {
+	private void getNegativeMarks() throws SQLException {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestNegativeNA);
 		statement.setInt(1, testid);
 		ResultSet rs = statement.executeQuery();
@@ -102,7 +114,7 @@ public class NonAdaptiveTest {
 		statement.close();
 	}
 
-	private void getDifficulty() {
+	private void getDifficulty() throws SQLException {
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestDifficultyNA);
 		statement.setInt(1, testid);
@@ -118,8 +130,8 @@ public class NonAdaptiveTest {
 		statement.close();
 	}
 
-	private void fetchQuestions() {
-		JSONObject category;
+	private void fetchQuestions() throws SQLException, JSONException {
+		JSONObject category = new JSONObject();
 		ArrayList<JSONObject> questions;
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestQuestionsNA);
@@ -218,7 +230,7 @@ public class NonAdaptiveTest {
 		return ret;
 	}
 	
-	public boolean process_Answers(){
+	public boolean process_Answers() throws SQLException{
 		boolean ret = false;
 		if(lock==true) 
 			{
@@ -231,7 +243,7 @@ public class NonAdaptiveTest {
 		return ret;
 	}
 
-	private void submit_result() {
+	private void submit_result() throws SQLException {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestQuestionsNA);
 		statement.setInt(1, testid);
 		statement.setString(2, username);
@@ -315,13 +327,58 @@ public class NonAdaptiveTest {
 		
 		@Override
 		public void run() {
-			test.process_Answers();
+			try {
+				test.process_Answers();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
 
-	public static boolean isAllowed(int testid2, String username2) {
-		// TODO Auto-generated method stub
-		return false;
+	public static boolean isAllowed(int testid2, String username2) throws SQLException {
+		boolean ret;
+		Connection connection= DatabaseConnection.getInstance().getDbConnection();
+		
+		PreparedStatement statement = connection.prepareStatement("select count(*) as allow from Results where CUserNAme=? and TestId=?");
+		statement.setString(1,username2);
+		statement.setInt(2,testid2);
+		ResultSet rs= statement.executeQuery();
+		int allow=rs.getInt("allow");
+		if(allow>0)
+		{
+		}
+		else
+		{
+			ret=false;
+		}
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		String today=dateFormat.format(date);
+		
+		PreparedStatement statement1 = connection.prepareStatement("SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?");
+		statement1.setString(1,today);
+		statement1.setInt(2,testid2);
+		ResultSet rs1=statement1.executeQuery();
+		int i = 0;
+		while(rs1.next())
+		{
+			i++;
+			
+		}
+		if(i>0)
+		{
+			ret = true;
+		}else{
+			ret = false;
+		}
+		rs1.close();
+		rs.close();
+		statement1.close();
+		statement.close();
+		return ret;
 	}
+	
 }

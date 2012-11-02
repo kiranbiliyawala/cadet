@@ -2,6 +2,7 @@ package org.cadet.client.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,7 +52,12 @@ public class SubmitTestNA extends HttpServlet {
 			return;
 		}
 		
-			test.process_Answers();
+			try {
+				test.process_Answers();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		session.setAttribute("test", null);
 		session.setAttribute("testCategory", null);

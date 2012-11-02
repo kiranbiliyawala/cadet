@@ -41,6 +41,10 @@ public class Constants {
 		public static final String getTest="SELECT * from test where testId = ?";
 		public static String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 		public static String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
+		public static String getTestDurationNA="";
+		public static String getTestNegativeNA="";
+		public static String getTestDifficultyNA="";
+		public static String getTestQuestionsNA;
 	}
 	
 	public static final class email{
