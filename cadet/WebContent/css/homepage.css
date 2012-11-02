@@ -5,24 +5,23 @@
 
 #logo{
 	height: auto;
-	width: 150px;	
+	width: 70px;	
 }
 
 
-.nav{
-	font-size: 150%;
-}
+/* .nav{ */
+/* 	font-size: 150%; */
+/* } */
 
-#ulcontainer{
+#ulcontainer{ 
 	height: inherit;
-	margin-top: 10px;
-	margin-left: 25%;
+	margin-left: 33%;
 }
 
 .hero-unit{
 	position:relative;
 	border-radius: 20px;
-	height:200px;
+	height:180px;
 }
 
 #hero-unit-support{
@@ -37,7 +36,7 @@
 #welcome{
 	font-size: 80px;
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 3%;
 	border: 2px #64696B solid;
 	border-radius: 20px;
 	margin-bottom: 5%;
@@ -61,10 +60,11 @@ caption{
 	font-size: 40px;
 	padding: 5px;
 	margin-bottom: 25px;	
+	border-bottom: 2px;
 }
 
 #form{
-	margin-top: 5%;
+	margin-top: 4%;
 	font-size: 25px;
 }
 
@@ -80,13 +80,13 @@ caption{
 }
 
 #btnlogin{
-	height: 60px;
-	width: 200px;
+	height: 50px;
+	width: 180px;
 	font-size: 25px;
 }
 
 td{
-	padding: 5px;
+	padding: 10px;
 }
 
 
