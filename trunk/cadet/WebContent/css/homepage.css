@@ -14,8 +14,9 @@
 /* } */
 
 #ulcontainer{ 
+	position: relative;
 	height: inherit;
-	margin-left: 33%;
+	margin-left: 42%;
 }
 
 .hero-unit{
