@@ -59,7 +59,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="offset5">
+			<div class="span7 offset5">
 				<div id="welcome" style="position: absolute;">
 					<div class="hero-unit">
 						Welcome to CADET <br>
@@ -99,13 +99,15 @@
 
 	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
-		<div class="row" style="margin-bottom: 10px;">
-			<a class="span pull-right" href="#">About</a> <a
-				class="span pull-right" href="#">FAQ</a> <a class="span pull-right"
-				href="#">Contact us</a> <a class="span pull-right" href="#">Help</a>
-			<a class="span pull-right" href="#">Privacy &amp; Policy</a>
+		<div class="row pull-right" style="0% 10% 10% 0%">
+			<a class="span*" href="#">About</a>
+			<a class="span*" href="#">FAQ</a>
+			<a class="span*" href="#">Contact us</a>
+			<a class="span*" href="#">Help</a>
+			<a class="span*" href="#">Privacy &amp; Policy</a>
 		</div>
 	</footer>
+
 
 	
 	<script src="./js/main.js"></script>

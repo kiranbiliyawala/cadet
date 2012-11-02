@@ -9,7 +9,7 @@
 }
 
 label{
-	font-size: 25px;
+	font-size: 15px;
 }
 
 /* .nav{ */
@@ -38,15 +38,14 @@ label{
 
 
 #welcome{
-	font-size: 80px;
+	position: relative;
+	font-size: 40px;
 	text-align: center;
 	border: 2px #64696B solid; 
 	border-radius: 20px;
 	margin-top: 3%;
 	margin-bottom: 5%;
-	margin-left: auto;
-	margin-right: auto;
-	
+	width: 50%;	
 }
 
 #joinus{
@@ -61,7 +60,7 @@ label{
 
 caption{
 	text-align: left;
-	font-size: 40px;
+	font-size: 20px;
 	padding: 5px;
 	margin-bottom: 25px;	
 	border-bottom: 2px;
@@ -73,7 +72,7 @@ caption{
 }
 
 .loginutils{
-	font-size: 15px;
+	font-size: 10px;
 	color: #000;
 	float: right;
 }
@@ -81,7 +80,7 @@ caption{
 .btn-primary{
 	height: 60px;
 	width: 200px;
-	font-size: 25px;
+	font-size: 20px;
 }
 
 #btnlogin{
