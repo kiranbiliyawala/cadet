@@ -42,6 +42,8 @@ public class verifyEmail extends HttpServlet {
 			String tempkey = UserControl.getHashEmail(username.toString());
 			if(tempkey.equals(key.toString())){
 				UserControl.VerifyClient(connection, username);
+				response.sendRedirect("Home");
+				return;
 			}else{
 				response.sendRedirect("EmailVerification");
 				return;
