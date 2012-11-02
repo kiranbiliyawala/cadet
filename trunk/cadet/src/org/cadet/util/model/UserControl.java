@@ -192,7 +192,7 @@ public class UserControl {
 	}
 
 
-	public static boolean hasCategory(Connection connection, String category) {
+	public static boolean hasCategory(Connection connection, String category) throws SQLException {
 		boolean ret = false;
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.hasCategory);
 		statement.setString(1, category);
@@ -205,7 +205,7 @@ public class UserControl {
 		return ret;
 	}
 	
-	public static ArrayList<String> getUserCategories(Connection connection){
+	public static ArrayList<String> getUserCategories(Connection connection) throws SQLException{
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getUserCategories);
 		ResultSet rs = statement.executeQuery();
 		ArrayList<String> Al = new ArrayList<>();

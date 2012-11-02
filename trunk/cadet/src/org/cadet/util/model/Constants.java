@@ -39,7 +39,8 @@ public class Constants {
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
 		
 		public static final String getTest="SELECT * from test where testId = ?";
-		public static String hasCategory;
+		public static String hasCategory="SELECT COUNT(*) FROM candidatecategory WHERE CandidateCategoryName = ?";
+		public static String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
 	}
 	
 	public static final class email{
