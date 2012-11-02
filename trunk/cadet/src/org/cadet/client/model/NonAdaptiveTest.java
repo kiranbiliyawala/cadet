@@ -319,4 +319,9 @@ public class NonAdaptiveTest {
 		}
 		
 	}
+
+	public static boolean isAllowed(int testid2, String username2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
