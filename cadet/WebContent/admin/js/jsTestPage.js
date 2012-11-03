@@ -6,7 +6,4 @@ $(document).ready(function(e) {
 			error.appendTo(element.parent());
 		}
 	});
-
-	if(window.location.href.lastIndexOf("#editTest")===-1)
-		window.location.href += "#editTest";
 });

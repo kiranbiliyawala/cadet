@@ -93,7 +93,7 @@ public class TestDbTransactions {
 	ps.close();
     }
 
-    public static ArrayList<BeanTestCategory> getTestCategoryName(Connection connection, int testId) throws SQLException {
+    public static ArrayList<BeanTestCategory> getTestCategoryDetails(Connection connection, int testId) throws SQLException {
 
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestCategoryDetails);
 	ps.setInt(1, testId);
@@ -105,6 +105,7 @@ public class TestDbTransactions {
 	while (rs.next()) {
 
 	    temp = new BeanTestCategory();
+	    temp.setCategoryId(rs.getInt("CategoryId"));
 	    temp.setCategoryName(rs.getString("CategoryName"));
 	    temp.setQuestionsPerCategory(rs.getInt("QuestionPerCategory"));
 	    temp.setTimePerCategory(rs.getInt("TimePerCategory"));
@@ -117,14 +118,43 @@ public class TestDbTransactions {
 	return result;
     }
 
-    public static String getTestName(Connection connection, int testId) throws SQLException {
+    public static void setTestCategoryDetails(Connection connection,int testId,int categoryId,int questionsPerCategory,int timePerCategory) throws SQLException {
 
-	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestName);
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.UpdateTestCategoryDetails);
+	ps.setInt(1, timePerCategory);
+	ps.setInt(2, questionsPerCategory);
+	ps.setInt(3, testId);
+	ps.setInt(4, categoryId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static BeanTest getTestDetails(Connection connection, int testId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestDetails);
 	ps.setInt(1, testId);
 
+	BeanTest result = null;
+
 	ResultSet rs = ps.executeQuery();
-	if (rs.next())
-	    return rs.getString("TestName");
-	return null;
+	if(rs.next()) {
+
+	    result = new BeanTest();
+	    result.setTestId(testId);
+	    result.setTestType(rs.getString("TestType")); 
+	    result.setTestName(rs.getString("TestName"));
+	    result.setTestDesc(rs.getString("TestDesc"));
+	    result.setTestDate(rs.getDate("TestDate"));
+	    result.setStartTime(rs.getTimestamp("StartTime"));
+	    result.setEndTime(rs.getTimestamp("EndTime"));
+	    result.setTestDuration(rs.getInt("TestDuration"));
+	    result.setInitialDifficulty(rs.getInt("InitialDifficulty"));
+	}
+	
+	rs.close();
+	ps.close();
+
+	return result;
     }
 }
