@@ -21,14 +21,10 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="./css/bootstrap.css">
 	<style>
-		body {
-			padding-top: 60px;
-			padding-bottom: 40px;
-		}
-
-		#accordionMenu {
-			position: fixed;
-		}
+ 		body { 
+ 			padding-top: 50px; 
+ 			padding-bottom: 40px; 
+ 		} 
 
 		footer {
 			background: none scroll repeat 0 0 #FFFFFF;
@@ -58,8 +54,9 @@
 	<!--/.navbar -->
 
 	<div class="container-fluid">
-		<div class="row">
-			<div class="span7 offset7">
+<!-- 		<div class="row"> -->
+			<div class="span6"></div>
+			<div class="span10">
 				<div id="welcome" style="position: absolute;">
 					<div class="hero-unit">
 						Welcome to CADET <br>
@@ -72,7 +69,7 @@
 					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
 					<div id="form">
 						<form action="/LoginAuthorize" method="post">
-							<table align="center">
+							<table stlye="margin-left: 100px;">
 								<caption>Login</caption>
 								<tr>
 									<td><label>Username: </label></td>
@@ -94,7 +91,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+			<div class="span6"></div>
+<!-- 		</div> -->
 	</div>
 
 	<footer class="container-fluid navbar navbar-fixed-bottom">

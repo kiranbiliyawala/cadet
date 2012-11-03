@@ -19,7 +19,7 @@ label{
 #ulcontainer{ 
 	position: relative;
 	height: inherit;
-	margin-left: 42%;
+	margin-left: 38%;
 }
 
 .hero-unit{
@@ -66,7 +66,6 @@ caption{
 
 #form{
 	margin-top: 4%;
-/* 	font-size: 25px; */
 }
 
 .loginutils{
@@ -86,6 +85,8 @@ caption{
 	width: 180px;
 	font-size: 25px;
 }
+
+
 
 td{
 	padding: 10px;
