@@ -52,6 +52,9 @@ public class Constants {
 		public static String getDashboardTests = "SELECT tcc.TestId, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc WHERE tcc.candidatecategoryname = 'BTECH' and  t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0";
 		
 		public static String getNotRegisterTestForUserSql = "select distinct a.TestName, a.TestDate, a.TestDuration, " + " a.testid from test a, testcandidatecategory c  where a.TestDate >= Sysdate() " + " and c.CandidateCategoryName = ? and a.TestId = c.TestId and a.TestId not in (select TestId from result where CUsername=?) order by TestDate;";
+		public static String getViewAllTestForUserSql = "select distinct a.TestName, a.TestDate, a.TestDuration, " + " a.testid,b.marks,b.attempted,b.correct from test a, result b, testcandidatecategory c  where " + " c.CandidateCategoryName = ? and a.TestId = c.TestId and a.TestId = b.TestId and b.CUserName = ? order by TestDate;";
+		public static String setRegisterTestForUserSql = "insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0, 0, 0)";
+		
 		public static String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
 		public static String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
 	}
