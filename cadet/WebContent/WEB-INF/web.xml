@@ -49,4 +49,12 @@
     <servlet-name>ViewCategory</servlet-name>
     <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
   </servlet-mapping>
+  <!--servlet>
+  	<servlet-name>StartTestA</servlet-name>
+  	<servlet-class>org.cadet.client.controller.adaptive.StartTestA</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StartTestA</servlet-name>
+  	<url-pattern>/Test/Adaptive/StartTestA</url-pattern>
+  </servlet-mapping-->
 </web-app>

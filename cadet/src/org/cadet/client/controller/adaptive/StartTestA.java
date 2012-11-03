@@ -1,7 +1,9 @@
 package org.cadet.client.controller.adaptive;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,7 +75,7 @@ public class StartTestA extends HttpServlet {
 			request.getRequestDispatcher("/client/index.jsp").forward(request, response);
 
 		}
-
+	
 	}
 
 	/**
