@@ -17,7 +17,7 @@ import org.cadet.util.model.DatabaseConnection;
 /**
  * Servlet implementation class CreateTest
  */
-@WebServlet("/Test/NonAdaptive/CreateTest")
+@WebServlet("/client/Test/NonAdaptive/CreateTest")
 public class CreateTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -75,7 +75,7 @@ public class CreateTest extends HttpServlet {
 		}
 	
 		
-		RequestDispatcher rd = request.getRequestDispatcher("Test");
+		RequestDispatcher rd = request.getRequestDispatcher("Test.jsp");
 		rd.include(request, response);
 	}
 
