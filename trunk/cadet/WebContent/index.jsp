@@ -81,7 +81,7 @@
 					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
 					<div id="form">
 						<form action="LoginAuthorize" method="POST" onsubmit="return submit_val();">
-							<table stlye="margin-left: 100px;">
+							<table style="margin-left: 90px;">
 								<caption>Login</caption>
 								<tr>
 									<td><label>Username: </label></td>
