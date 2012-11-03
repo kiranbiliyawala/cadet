@@ -16,15 +16,19 @@ import java.util.logging.Level;
 public class UserControl {
 
 	public static Boolean checkAdminTable(Connection connection,String username,String password) throws SQLException{
+		if(password==null) return false;
 		Boolean ret = false;
-		String dbpassword=null;
+		String dbpassword="";
 		Statement statement=null;;
 		ResultSet rs=null;
 		try{
 			statement = connection.createStatement();
 		rs = statement.executeQuery(Constants.sqlCommands.retrivePasswordAdmin+"'"+username+"'");
-		rs.first();
+		int count = 0;
+		while(rs.next()){
 		dbpassword = rs.getString("Password");
+		count++;
+		}if(count==0) ret = false;
 		}catch(SQLException e){
 			throw e;
 		}finally{
@@ -40,14 +44,19 @@ public class UserControl {
 	
 
 	public static Boolean checkClientTable(Connection connection,String username,String password) throws SQLException{
+		if(password==null) return false;
 		Boolean ret = false;
-		String dbpassword=null;
+		String dbpassword="";
 		Statement statement=null;;
 		ResultSet rs=null;
 		try{
 			statement = connection.createStatement();
 		rs = statement.executeQuery(Constants.sqlCommands.retrivePasswordClient+"'"+username+"'");
+		int count = 0;
+		while(rs.next()){
 		dbpassword = rs.getString("Password");
+		count++;
+		}if(count==0) ret = false;
 		}catch(SQLException e){
 			throw e;
 		}finally{

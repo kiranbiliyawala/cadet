@@ -89,14 +89,21 @@ public class NonAdaptiveTest {
 
 	private void randomize() throws JSONException {
 		JSONObject category = Categorized_Questions;
-		ArrayList<JSONObject> questions;
+		JSONArray questions;
 		
 		JSONArray keys = category.names();
 		Random r = new Random();
 		for(int i=0;i<keys.length();i++){
-			questions = (ArrayList<JSONObject>) category.get(keys.getString(i));
-			Collections.shuffle(questions, r);
-			JSONArray js = new JSONArray(questions);
+			questions = category.getJSONArray(keys.getString(i));
+			
+			ArrayList<JSONObject> temp = new ArrayList<>();
+			
+			for(int j=0;j<questions.length();j++){
+				temp.add(questions.getJSONObject(j));
+			}
+			
+			Collections.shuffle(temp, new Random());
+			JSONArray js = new JSONArray(temp);
 			category.put(keys.getString(i), js);
 		}
 		Categorized_Questions = category;
@@ -132,7 +139,7 @@ public class NonAdaptiveTest {
 
 	private void fetchQuestions() throws SQLException, JSONException {
 		JSONObject category = new JSONObject();
-		ArrayList<JSONObject> questions;
+		JSONArray questions;
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestQuestionsNA);
 		statement.setInt(1, testid);
@@ -162,12 +169,12 @@ public class NonAdaptiveTest {
 			question.put("OPTIOND", OptionD);
 			
 			if(category.has(cat)){
-				questions = (ArrayList<JSONObject>) category.get(cat);
-				questions.add(question);
+				questions = category.getJSONArray(cat);
+				questions.put(question);
 				category.put(cat, questions);
 			}else{
-				questions = new ArrayList<JSONObject>();
-				questions.add(question);
+				questions = new JSONArray();
+				questions.put(question);
 				category.put(cat, questions);
 			}
 			
@@ -345,6 +352,7 @@ public class NonAdaptiveTest {
 		statement.setString(1,username2);
 		statement.setInt(2,testid2);
 		ResultSet rs= statement.executeQuery();
+		rs.first();
 		int allow=rs.getInt("allow");
 		if(allow>0)
 		{

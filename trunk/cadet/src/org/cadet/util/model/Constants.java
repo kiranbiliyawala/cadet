@@ -23,7 +23,7 @@ public class Constants {
 	}
 
 	public static final class sqlCommands{
-		public static final String retrivePasswordAdmin = "SELECT Password FROM admin WHERE Username = "; 
+		public static final String retrivePasswordAdmin = "SELECT Password FROM admin WHERE AUserName = "; 
 		public static final String retrivePasswordClient = "SELECT Password FROM candidate WHERE CUserName = ";
 		public static final String retriveTests = "SELECT * FROM test";
 		public static final String retriveLastInsertID = "SELECT last_insert_id()";
@@ -31,22 +31,22 @@ public class Constants {
 		public static final String retriveTestName = "SELECT TestName FROM test WHERE TestId = ?";
 		public static final String isClientAvailable = "SELECT COUNT(DISTINCT CUserName) AS count FROM candidate WHERE CUserName = ";
 		public static final String AddClient = "INSERT INTO candidate (CUserName, Password, Name, Contact, CandidateCategoryName, Verified) VALUES (?, ?, ?, ?, ?, ?)";
-		public static final String AddAdmin = "INSERT INTO admin (Username, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
+		public static final String AddAdmin = "INSERT INTO admin (AUserName, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
 		public static final String AddTest = "INSERT INTO test (TestName,TestType,TestDesc) VALUES (?,?,?)";
 		public static final String VerifyClient = "UPDATE candidate SET Verified='Y' WHERE CUserName = ?";
-		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE Username = ?";
+		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE AUserName = ?";
 		public static final String CheckClientVerification = "SELECT Verified FROM candidate WHERE CUserName = ?";
-		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
+		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE AUserName = ?";
 		public static final String UpdateClientPassword = "UPDATE candidate SET Password=? WHERE CUserName = ?";
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
 		
 		public static final String getTest="SELECT * from test where testId = ?";
 		public static String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 		public static String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
-		public static String getTestDurationNA="";
-		public static String getTestNegativeNA="";
-		public static String getTestDifficultyNA="";
-		public static String getTestQuestionsNA;
+		public static String getTestDurationNA="SELECT TestDuration as duration, TestName as name, TestDate as Date FROM test WHERE TestId=?";
+		public static String getTestNegativeNA="SELECT NegMark as NegativeMarks FROM testquestion WHERE TestId=?";
+		public static String getTestDifficultyNA="SELECT LevelId as LID , Marks as Marks FROM levelmarks WHERE TestId=?";
+		public static String getTestQuestionsNA="SELECT Q.QuestionId AS \'QID\',(SELECT C.CategoryName FROM category C where C.CategoryId=Q.CategoryId) AS \'CNAME\' , Q.LevelId AS \'LID\', Q.Question AS \'Question\', Q.OptA AS \'OptionA\', Q.OptB \'OptionB\', Q.OptC AS \'OptionC\', Q.OptD AS \'OptionD\', Q.CorrectAnswer AS \'CorrectAnswer\' FROM questionbank Q WHERE Q.QuestionId in (SELECT T.QuesitonId FROM testquestion T WHERE T.TestId=?)";
 		
 		public static String getDashboardTests = "SELECT t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc WHERE tcc.candidatecategoryname = ? and  t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0";
 	}
