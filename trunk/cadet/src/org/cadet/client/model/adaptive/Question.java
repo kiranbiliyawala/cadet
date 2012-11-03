@@ -9,7 +9,7 @@ public class Question {
 	
 	private int questionId;
 	private int level;
-	private int marks;
+	private int marks;//marks might not be of any use but still.
 	private int negativeMarks;
 	private String category;
 	private String question;

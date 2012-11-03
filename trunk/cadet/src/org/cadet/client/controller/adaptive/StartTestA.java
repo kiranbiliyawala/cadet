@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.cadet.client.model.adaptive.AdaptiveTest;
 import org.cadet.client.model.adaptive.AdaptiveTestDBTransactions;
-import org.cadet.util.model.DatabaseConnection;
-
-import com.mysql.jdbc.Connection;
 
 /**
  * Servlet implementation class StartTestA
@@ -43,11 +40,21 @@ public class StartTestA extends HttpServlet {
 
 		try {
 			HttpSession session = request.getSession();
+			String testStatus=session.getAttribute("testStatus").toString();
+			if(testStatus!=null){
+				request.getRequestDispatcher("").forward(request, response);//send to client dashboard from where start test button was clicked.
+			}
 			Integer testID = Integer.parseInt(request.getAttribute("testID").toString());
 
 			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID.intValue())) {
 				session.setAttribute("testStarted", true);//check on pop up page whether test has been started so that candidate cannot restart the test by resubmitting the url.
-				AdaptiveTest test=new AdaptiveTest(testID.intValue());
+				try {
+					AdaptiveTest test=new AdaptiveTest(testID.intValue());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					request.setAttribute("error", e.getMessage());
+					request.getRequestDispatcher("").forward(request, response);//send to client dashboard to display error message from where start test button was clicked.
+				}
 				
 				//code here for pop up the test page and start test
 				
