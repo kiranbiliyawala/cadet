@@ -1,10 +1,10 @@
 package org.cadet.client.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
@@ -14,19 +14,22 @@ import org.cadet.util.model.ErrorLogging;
 
 public class TestRegister {
 	Connection connection;
-	
-	public TestRegister (){
+	Statement statement;
+	public TestRegister (Connection connection){
 		try{
-			Class.forName(Constants.DB.driver);
-			if(Constants.DB.hasPassword){
-				connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
-			}else{
-				connection = DriverManager.getConnection(Constants.DB.dburl);
-			}
+			this.connection=connection;
+//			statement = this.connection.createStatement();
+//			Class.forName(Constants.DB.driver);
+//			if(Constants.DB.hasPassword){
+//				connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
+//			}else{
+//				connection = DriverManager.getConnection(Constants.DB.dburl);
+//			}
 		}catch(Exception e)
 		{
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
 		}
+		
 	};
 	
 	public BeanTest[] getNotRegisterTestForUser (String CUserName, String CCatName)
@@ -34,16 +37,14 @@ public class TestRegister {
 		ArrayList<BeanTest> test1= new ArrayList<>();
 		try {
 			
-			PreparedStatement pst = connection.prepareStatement("select distinct a.TestName, a.TestDate, a.TestDuration, "
-					 + " a.testid from test a, testcandidatecategory c  where a.TestDate >= Sysdate() " + 
-					" and c.CandidateCategoryName = ? and a.TestId = c.TestId and a.TestId not in (select TestId from result where CUsername=?) order by TestDate;");
+			PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getNotRegisterTestForUserSql);
+			statement.setString(1, CCatName);
+			statement.setString(2, CUserName);
+			ResultSet rs = statement.executeQuery();
 			
-			
-			
-				pst.setString(1, CCatName);
-				pst.setString(2, CUserName);
+				
 			//	System.out.println(""+pst);
-				ResultSet rs= pst.executeQuery();
+		
 					
 				BeanTest objTest;
 			
@@ -56,7 +57,7 @@ public class TestRegister {
 					test1.add(objTest);
 					
 				}
-				connection.close();				
+//				connection.close();				
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,13 +73,11 @@ public class TestRegister {
 		
 		try {
 			
-				PreparedStatement pst = connection.prepareStatement("select distinct a.TestName, a.TestDate, a.TestDuration, "
-						 + " a.testid,b.marks,b.attempted,b.correct from test a, result b, testcandidatecategory c  where " + 
-						" c.CandidateCategoryName = ? and a.TestId = c.TestId and a.TestId = b.TestId and b.CUserName = ? order by TestDate;");
+				PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getViewAllTestForUserSql);
 		
-				pst.setString(1, CCatName);
-				pst.setString(2, CUserName);
-				ResultSet rs = pst.executeQuery();
+				statement.setString(1, CCatName);
+				statement.setString(2, CUserName);
+				ResultSet rs = statement.executeQuery();
 				
 				BeanTest objTest;
 				
@@ -98,7 +97,7 @@ public class TestRegister {
 					test2.add(objTest);
 				}
 							
-				connection.close();
+				//connection.close();
 		}		
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -116,13 +115,13 @@ public class TestRegister {
 		int i=0;
 		try {
 			
-				PreparedStatement pst = connection.prepareStatement("insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0, 0, 0);");
+				PreparedStatement statement = connection.prepareStatement("insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0, 0, 0);");
 				
-				pst.setString(1, CUserName);
-				pst.setInt(2, TestId);
-				i = pst.executeUpdate();
+				statement.setString(1, CUserName);
+				statement.setInt(2, TestId);
+				i = statement.executeUpdate();
 								
-				connection.close();
+				//connection.close();
 		}		
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
