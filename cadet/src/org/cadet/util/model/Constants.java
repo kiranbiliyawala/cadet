@@ -39,8 +39,9 @@ public class Constants {
 		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE AUserName = ?";
 		public static final String UpdateClientPassword = "UPDATE candidate SET Password=? WHERE CUserName = ?";
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
-		
 		public static final String getTest="SELECT * from test where testId = ?";
+		public static final String getQuestionCountOfTest="SELECT SUM(QuestionPerCategory) from test WHERE testId = ?";
+		public static final String fetchNextQuestion="";
 		public static String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 		public static String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
 		public static String getTestDurationNA="SELECT TestDuration as duration, TestName as name, TestDate as Date FROM test WHERE TestId=?";
@@ -68,4 +69,9 @@ public class Constants {
 		
 	}
 	
+	public static final class adaptive{
+		public static final Double MIN_DIFFICULTY=1.0;
+		public static final Double MAX_DIFFICULTY=10.0;
+		public static final Double DIFFERENCE_BETWEEN_TWO_DIFFICULTIES=1.0;
+	}
 }
