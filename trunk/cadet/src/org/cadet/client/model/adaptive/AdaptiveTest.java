@@ -19,9 +19,12 @@ public class AdaptiveTest {
 	public AdaptiveTest(int testID) throws Exception{
 		this.testId=testID;
 		aao= AdaptiveTestDBTransactions.generateAAO(testID);
-		question=AdaptiveTestDBTransactions.fetchNextQuestion(aao.getDifficulty(),askedQuestions);
-		//while(askedQuestions.contains((question=AdaptiveTestDBTransactions.fetchNextQuestion()).getQuestionId())) { //to ensure that once asked; a question is never repeated }
 		
+		ArrayList<Integer> temp= new ArrayList<Integer>();//since initially askedQuestions would be empty and NOT IN() would give error. Also no question would have 0 as questionId ;)
+		temp.add(new Integer(0));
+		question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, aao.getDifficulty(), temp);
+		
+		askedQuestions.add(question.getQuestionId());
 	}
 	
 	public void startTest(){
