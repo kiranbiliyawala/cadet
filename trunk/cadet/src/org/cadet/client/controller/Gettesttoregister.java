@@ -2,6 +2,7 @@ package org.cadet.client.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.cadet.client.bean.BeanTest;
 import org.cadet.client.model.TestRegister;
+import org.cadet.util.model.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +44,9 @@ public class Gettesttoregister extends HttpServlet {
 		
 		JSONArray objJarray= new JSONArray();
 		
-		TestRegister objTestRegister= new TestRegister();
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+		TestRegister objTestRegister = new TestRegister(dbConnection);
 		
 		BeanTest[] objTests= objTestRegister.getNotRegisterTestForUser(CUserName, CCatName);
 		

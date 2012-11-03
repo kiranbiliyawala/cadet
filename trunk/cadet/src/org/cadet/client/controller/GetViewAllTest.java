@@ -2,6 +2,7 @@ package org.cadet.client.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.cadet.client.bean.BeanTest;
 import org.cadet.client.model.TestRegister;
+import org.cadet.util.model.DatabaseConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +46,8 @@ public class GetViewAllTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
+	DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	Connection dbConnection = dbConn.getDbConnection();
 	String CCatName;
 	String CUserName;
 	CUserName = "user8";
@@ -51,7 +55,7 @@ public class GetViewAllTest extends HttpServlet {
 	
 	JSONArray objJarray = new JSONArray();
 	
-	TestRegister objTestRegister = new TestRegister();
+	TestRegister objTestRegister = new TestRegister(dbConnection);
 	
 	BeanTest[] objTests = objTestRegister.getViewAllTestForUser(CUserName, CCatName);
 	
