@@ -36,17 +36,17 @@ footer {
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="../index.jsp"><img
-					src="../../img/cadet.gif" alt="CADET" width="66"></a>
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="../index.jsp"><img src="../../img/cadet.gif" alt="CADET" width="66"></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li><a href="../index.jsp">Home</a></li>
 						<li><a href="#questionBank">Question Bank</a></li>
-						<li class="active"><a href="#testManagement">Test
-								Management</a></li>
+						<li class="active"><a href="#testManagement">Test Management</a></li>
 						<li><a href="#candidateCategory">Candidate Category</a></li>
 					</ul>
 					<button class="btn btn-danger pull-right">Logout</button>
@@ -63,15 +63,13 @@ footer {
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-parent="#accordionMenu"
-							href="../index.jsp">Home</a>
+						<a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
 					</div>
 				</div>
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							data-parent="#accordionMenu" href="#collapse2">Question Bank</a>
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Question Bank</a>
 					</div>
 					<div id="collapse2" class="accordion-body collapse">
 						<div class="accordion-inner">
@@ -86,16 +84,14 @@ footer {
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							data-parent="#accordionMenu" href="#collapse3">Test
-							Management</a>
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Test Management</a>
 					</div>
 					<div id="collapse3" class="accordion-body collapse in">
 						<div class="accordion-inner">
 							<ul class="nav">
 								<li class="active"><a href="#testManagement">View Test</a></li>
 								<li><a href="createTest.jsp">Create Test</a></li>
-								<li><a href="#result">Result</a></li>
+								<li><a href="resultHome.jsp">Results</a></li>
 							</ul>
 						</div>
 					</div>
@@ -103,9 +99,7 @@ footer {
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							data-parent="#accordionMenu" href="#collapse4">Candidate
-							Category</a>
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse4">Candidate Category</a>
 					</div>
 					<div id="collapse4" class="accordion-body collapse">
 						<div class="accordion-inner">
@@ -159,9 +153,10 @@ footer {
 	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
 		<div class="row" style="margin-bottom: 10px;">
-			<a class="span pull-right" href="#">About</a> <a
-				class="span pull-right" href="#">FAQ</a> <a class="span pull-right"
-				href="#">Contact us</a> <a class="span pull-right" href="#">Help</a>
+			<a class="span pull-right" href="#">About</a>
+			<a class="span pull-right" href="#">FAQ</a>
+			<a class="span pull-right" href="#">Contact us</a>
+			<a class="span pull-right" href="#">Help</a>
 			<a class="span pull-right" href="#">Privacy &amp; Policy</a>
 		</div>
 	</footer>
@@ -185,7 +180,7 @@ footer {
 							<form style="margin:0px" method="post" action="TestManagement">
 								<input type="hidden" id="testId" name="testId" value={{testId}}>
 								<input type="hidden" id="requestType" name="requestType" value="editTest">
-								<button type="submit" class="btn btn-info">Edit</button>
+								<input type="submit" class="btn btn-info" value="Edit">
 							</form>
 						</td>
 						<td><a href="#" id={{#deleteButton}}{{testId}}{{/deleteButton}} class="btn btn-danger btnDelete">Delete</a></td>

@@ -3,8 +3,7 @@ package org.cadet.util.model;
 public class Constants {
 
 	public static final String logfile = "logfile.log";
-	
-	
+
 	public static final class Captcha{
 		
 		public static String VerifyUrl = "http://www.google.com/recaptcha/api/verify";
@@ -27,18 +26,20 @@ public class Constants {
 		public static final String retrivePasswordClient = "SELECT Password FROM candidate WHERE CUserName = ";
 		public static final String retriveTests = "SELECT * FROM test";
 		public static final String retriveLastInsertID = "SELECT last_insert_id()";
-		public static final String retriveTestCategoryDetails = "SELECT CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
-		public static final String retriveTestName = "SELECT TestName FROM test WHERE TestId = ?";
+		public static final String retriveTestCategoryDetails = "SELECT category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
+		public static final String retriveTestDetails = "SELECT * FROM test WHERE TestId = ?";
 		public static final String isClientAvailable = "SELECT COUNT(DISTINCT CUserName) AS count FROM candidate WHERE CUserName = ";
 		public static final String AddClient = "INSERT INTO candidate (CUserName, Password, Name, Contact, CandidateCategoryName, Verified) VALUES (?, ?, ?, ?, ?, ?)";
 		public static final String AddAdmin = "INSERT INTO admin (AUserName, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
 		public static final String AddTest = "INSERT INTO test (TestName,TestType,TestDesc) VALUES (?,?,?)";
 		public static final String VerifyClient = "UPDATE candidate SET Verified='Y' WHERE CUserName = ?";
-		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE AUserName = ?";
+		public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE Username = ?";
 		public static final String CheckClientVerification = "SELECT Verified FROM candidate WHERE CUserName = ?";
-		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE AUserName = ?";
+		public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
 		public static final String UpdateClientPassword = "UPDATE candidate SET Password=? WHERE CUserName = ?";
+		public static final String UpdateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
+
 		public static final String getTest="SELECT * from test where testId = ?";
 		public static final String getQuestionCountOfTest="SELECT SUM(QuestionPerCategory) from test WHERE testId = ?";
 		public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks, t.NegMark FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
