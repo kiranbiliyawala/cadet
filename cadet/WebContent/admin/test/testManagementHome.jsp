@@ -24,6 +24,7 @@ footer {
 }
 </style>
 <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../../css/main.css">
 
 <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
@@ -184,7 +185,7 @@ footer {
 							<form style="margin:0px" method="post" action="TestManagement">
 								<input type="hidden" id="testId" name="testId" value={{testId}}>
 								<input type="hidden" id="requestType" name="requestType" value="editTest">
-								<input type="submit" value="Edit" class="btn btn-info">
+								<button type="submit" class="btn btn-info">Edit</button>
 							</form>
 						</td>
 						<td><a href="#" id={{#deleteButton}}{{testId}}{{/deleteButton}} class="btn btn-danger btnDelete">Delete</a></td>

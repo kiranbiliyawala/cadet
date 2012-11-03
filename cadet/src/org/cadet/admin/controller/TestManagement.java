@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.cadet.admin.bean.BeanTestCategory;
 import org.cadet.admin.model.TestDbTransactions;
 import org.cadet.util.model.DatabaseConnection;
 import org.json.JSONException;
@@ -135,11 +137,11 @@ public class TestManagement extends HttpServlet {
 	    try {
 		if (testId != -1) {
 
-		    ArrayList<String> categoryNames = TestDbTransactions.getTestCategoryName(dbConnection, testId);
+		    ArrayList<BeanTestCategory> categoryDetails = TestDbTransactions.getTestCategoryName(dbConnection, testId);
 
 		    request.setAttribute("testId", testId);
 		    request.setAttribute("testName", testName);
-		    request.setAttribute("categoryNames", categoryNames);
+		    request.setAttribute("categoryDetails", categoryDetails);
 
 		    RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
 		    rd.forward(request, response);
@@ -170,12 +172,12 @@ public class TestManagement extends HttpServlet {
 
 		testId = Integer.parseInt(request.getParameter("testId"));
 
-		ArrayList<String> categoryNames = TestDbTransactions.getTestCategoryName(dbConnection, testId);
+		ArrayList<BeanTestCategory> categoryDetails = TestDbTransactions.getTestCategoryName(dbConnection, testId);
 		String testName = TestDbTransactions.getTestName(dbConnection, testId);
 
 		request.setAttribute("testId", testId);
 		request.setAttribute("testName", testName);
-		request.setAttribute("categoryNames", categoryNames);
+		request.setAttribute("categoryDetails", categoryDetails);
 
 		RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
 		rd.forward(request, response);
@@ -190,6 +192,14 @@ public class TestManagement extends HttpServlet {
 		response.sendRedirect("../ServerException.html");
 		return;
 	    }
+	}
+
+	else if(requestType.equals("saveTest")) {
+
+	    Enumeration<String> param = request.getParameterNames();
+	    response.setContentType("text/html");
+	    while(param.hasMoreElements())
+		System.out.println("Para : "+param.nextElement());
 	}
 
 	else if (requestType.equals("deleteTest")) {

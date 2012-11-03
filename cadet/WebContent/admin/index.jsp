@@ -24,6 +24,7 @@ footer {
 }
 </style>
 <link rel="stylesheet" href="../css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../css/main.css">
 
 <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>

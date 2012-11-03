@@ -1,5 +1,10 @@
 $(document).ready(function(e) {
-	$("#frmCreateTest").validate();
+	$("#frmCreateTest").validate({
+		errorClass : "text-error",
+		errorPlacement : function(error,element) {
+			error.appendTo(element.parent());
+		}
+	});
 
 	bkLib.onDomLoaded(function() {
 
