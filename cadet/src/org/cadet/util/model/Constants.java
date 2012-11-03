@@ -49,6 +49,8 @@ public class Constants {
 		public static String getTestQuestionsNA="SELECT Q.QuestionId AS \'QID\',(SELECT C.CategoryName FROM category C where C.CategoryId=Q.CategoryId) AS \'CNAME\' , Q.LevelId AS \'LID\', Q.Question AS \'Question\', Q.OptA AS \'OptionA\', Q.OptB \'OptionB\', Q.OptC AS \'OptionC\', Q.OptD AS \'OptionD\', Q.CorrectAnswer AS \'CorrectAnswer\' FROM questionbank Q WHERE Q.QuestionId in (SELECT T.QuesitonId FROM testquestion T WHERE T.TestId=?)";
 		
 		public static String getDashboardTests = "SELECT tcc.TestId, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc WHERE tcc.candidatecategoryname = 'BTECH' and  t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0";
+		public static String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
+		public static String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
 	}
 	
 	public static final class email{
