@@ -29,11 +29,23 @@
 		footer {
 			background: none scroll repeat 0 0 #FFFFFF;
 		}
+/* 		.containe{ */
+/* 		position: fixed; */
+/* 		left:30%; */
+/* 		height: 60%; */
+/* 		right:20%; */
+/* 		top:10%; */
+/* 		bottom: 10%; */
+/* 		} */
 	</style>
 	<link rel="stylesheet" href="./css/bootstrap-responsive.css">
 	<!-- <link rel="stylesheet" href="./css/main.css"> -->
 	<link rel="stylesheet" href="./css/homepage.css">
-	<script src="./js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+	
+	<script type="text/javascript" src="js/sha.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	
 </head>
 
 <body>
@@ -68,23 +80,23 @@
 					<div id="hero-unit-support"></div>
 					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
 					<div id="form">
-						<form action="/LoginAuthorize" method="post">
+						<form action="LoginAuthorize" method="POST" onsubmit="return submit_val();">
 							<table stlye="margin-left: 100px;">
 								<caption>Login</caption>
 								<tr>
 									<td><label>Username: </label></td>
-									<td><input type="text" id="username" placeholder="Enter your username" /></td>
+									<td><input type="text" id="username" name="username" placeholder="Enter your username" /></td>
 								</tr>
 								<tr>
 									<td><label>Password: </label></td>
-									<td><input type="password" id="password" placeholder="Enter Password" /></td>
+									<td><input type="password" id="password" name="password" placeholder="Enter Password" /></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td><!-- <input type="checkbox" /><span class="loginutils"> Remember me |</span>  --><a href="#" class="loginutils">Forgot Password</a></td>
 								</tr>
 								<tr>
-									<td colspan="2"><input type="submit" class="btn" id="btnlogin" /></td>
+									<td colspan="2"><input type="submit" class="btn" id="btnlogin"/></td>
 								</tr>
 							</table>
 						</form>
@@ -106,8 +118,8 @@
 		</div>
 	</footer>
 
-
 	
-	<script src="./js/main.js"></script>
+	
+	
 </body>
 </html>
