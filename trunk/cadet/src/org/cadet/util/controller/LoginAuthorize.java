@@ -35,7 +35,7 @@ public class LoginAuthorize extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(404,"No Get Request Allowed for this Page");
+		response.sendError(403,"No Get Request Allowed for this Page");
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class LoginAuthorize extends HttpServlet {
 		}else{
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", false);
-			response.sendRedirect("Login.jsp");
+			response.sendRedirect("index.jsp");
 			return;
 		}
 		}catch(SQLException e){
