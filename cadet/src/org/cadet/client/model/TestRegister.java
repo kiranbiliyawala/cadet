@@ -115,7 +115,7 @@ public class TestRegister {
 		int i=0;
 		try {
 			
-				PreparedStatement statement = connection.prepareStatement("insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0, 0, 0);");
+				PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.setRegisterTestForUserSql);
 				
 				statement.setString(1, CUserName);
 				statement.setInt(2, TestId);
