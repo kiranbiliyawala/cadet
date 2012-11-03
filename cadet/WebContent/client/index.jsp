@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>CADET | Home</title>
+        <title>CADET | Dashboard</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -16,11 +16,14 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+            footer {
+				background: none scroll repeat 0 0 #FFFFFF;
+			}
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -29,13 +32,13 @@
 
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <div class="container">
+                <div class="container-fluid">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#home"><img id="logo" src="../img/cadet.gif" alt="CADET">&nbsp;&nbsp;&nbsp;CADET</a>
+                    <a class="brand" href="#home"><img id="logo" src="../img/cadet.gif" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
                            <li class="active"><a href="#home">Home</a></li>
@@ -48,7 +51,7 @@
             </div>
         </div>	<!--/.navbar -->
         
-        <div class="container">
+        <div class="container-fluid">
         	<div class="row">
                 <div class="accordion span2" id="accordionMenu">
 
@@ -89,17 +92,37 @@
     
                 </div>	<!--/#accordion -->
 
-				<div class="container span9 offset*">
-					CADET - CANDIDATE DASH BOARD
-                </div>
-
-            </div>	<!--/.row div -->
-
+				
+				<div class="container-fluid span9">
+					<div class="navbar">
+						<div class="navbar-inner">
+							<div class="container-fluid pull-left">
+								<a class="brand" href="#">Tests</a>
+							</div>
+						</div>
+					</div>
+					<div class="container-fluid span8">
+						<table id="tblTests" class="table table-striped table-condensed table-hover">
+							<thead>
+								<tr>
+									<th>Test Name</th>
+									<th>Date</th>
+									<th>Duration</th>
+									<th>Appear</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>	<!--/.row div -->
         </div>	<!--/.container div -->
 
 		<hr>
+		
         <footer>
-                <div class="container row">
+                <div class="container-fluid row">
                     <a class="span pull-right" href="#">About</a>
                     <a class="span pull-right" href="#">FAQ</a>
                     <a class="span pull-right" href="#">Contact us</a>
@@ -108,9 +131,35 @@
                 </div>
         </footer>
 
-        <script src="../../js/jquery-1.8.2.js"></script>
-        <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
-
-        <script src="../../js/bootstrap.js"></script>
+        <script src="../js/jquery-1.8.2.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/handlebars.js"></script>
+        <script src="../js/bootbox.js"></script>
+        <script id="gettests" type="text/x-handlebars-template">
+        	{{#if testList}}
+				{{#each testList}}
+					<tr>
+						<td>{{testName}}</td>
+						<td>{{#if testDate}}{{testDate}}{{else}}NA{{/if}}</td>
+						<td>{{testDuration}} Mins.</td>
+						<td>
+							<form style="margin:0px" method="post" action="#">
+								<input type="hidden" id="testId" name="testId" value={{testId}}>
+								<input type="submit" value="Appear" class="btn btn-info">
+							</form>
+						</td>
+					</tr>
+				{{/each}}
+			{{else}}
+				<tr>
+					<td><p class="text-warning">No Test Available</p></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			{{/if}}
+    	</script>
+    	<script src="js/main.js"></script>
     </body>
 </html>
