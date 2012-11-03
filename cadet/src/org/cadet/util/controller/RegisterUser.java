@@ -117,7 +117,6 @@ public class RegisterUser extends HttpServlet {
 			
 			UserControl.AddClient(dbconnection, username, password, name, Contact,Category);
 			EmailSend.SendMail(username);
-			response.sendRedirect("EmailVerification");
 		} catch (SQLException e) {
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
 			response.sendError(500,new Date().toString()+"- Database Connection Error");

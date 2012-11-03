@@ -48,7 +48,7 @@ public class Constants {
 		public static String getTestDifficultyNA="SELECT LevelId as LID , Marks as Marks FROM levelmarks WHERE TestId=?";
 		public static String getTestQuestionsNA="SELECT Q.QuestionId AS \'QID\',(SELECT C.CategoryName FROM category C where C.CategoryId=Q.CategoryId) AS \'CNAME\' , Q.LevelId AS \'LID\', Q.Question AS \'Question\', Q.OptA AS \'OptionA\', Q.OptB \'OptionB\', Q.OptC AS \'OptionC\', Q.OptD AS \'OptionD\', Q.CorrectAnswer AS \'CorrectAnswer\' FROM questionbank Q WHERE Q.QuestionId in (SELECT T.QuesitonId FROM testquestion T WHERE T.TestId=?)";
 		
-		public static String getDashboardTests = "SELECT t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc WHERE tcc.candidatecategoryname = ? and  t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0";
+		public static String getDashboardTests = "SELECT tcc.TestId, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc WHERE tcc.candidatecategoryname = 'BTECH' and  t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0";
 	}
 	
 	public static final class email{
