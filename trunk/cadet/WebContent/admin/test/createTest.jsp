@@ -24,6 +24,7 @@ body {
 }
 </style>
 <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../../css/main.css">
 
 <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
@@ -163,9 +164,8 @@ body {
 
 						<div class="control-group">
 							<div class="controls span3">
-								<input class="btn btn-primary pull-left" type="submit"
-									value="Create"> <a href="testManagementHome.jsp"
-									class="btn btn-danger pull-right">Cancel</a>
+								<button class="btn btn-primary pull-left" type="submit">Create</button>
+								<button href="testManagementHome.jsp" class="btn btn-danger pull-right">Cancel</button>
 							</div>
 						</div>
 

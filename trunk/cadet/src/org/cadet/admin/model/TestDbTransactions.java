@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.cadet.admin.bean.BeanTest;
+import org.cadet.admin.bean.BeanTestCategory;
 import org.cadet.util.model.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,16 +93,23 @@ public class TestDbTransactions {
 	ps.close();
     }
 
-    public static ArrayList<String> getTestCategoryName(Connection connection, int testId) throws SQLException {
+    public static ArrayList<BeanTestCategory> getTestCategoryName(Connection connection, int testId) throws SQLException {
 
-	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestCategoryName);
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestCategoryDetails);
 	ps.setInt(1, testId);
 
-	ArrayList<String> result = new ArrayList<String>();
+	ArrayList<BeanTestCategory> result = new ArrayList<BeanTestCategory>();
+	BeanTestCategory temp = null;
 
 	ResultSet rs = ps.executeQuery();
-	while (rs.next())
-	    result.add(rs.getString("CategoryName"));
+	while (rs.next()) {
+
+	    temp = new BeanTestCategory();
+	    temp.setCategoryName(rs.getString("CategoryName"));
+	    temp.setQuestionsPerCategory(rs.getInt("QuestionPerCategory"));
+	    temp.setTimePerCategory(rs.getInt("TimePerCategory"));
+	    result.add(temp);
+	}
 
 	rs.close();
 	ps.close();

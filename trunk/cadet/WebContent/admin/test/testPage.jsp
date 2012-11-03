@@ -27,6 +27,7 @@ footer {
 }
 </style>
 <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../../css/main.css">
 
 <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
@@ -128,7 +129,7 @@ footer {
 				<div class="navbar">
 					<div class="navbar-inner">
 						<div class="container-fluid">
-							<a class="brand" href="#">Test : <c:out value="${testName}"></c:out></a>
+							<a class="brand" href="#editTest">Test : <c:out value="${testName}"></c:out></a>
 							<div style="margin:1.1%;" class="pull-right">
 								<strong>Total Duration :&nbsp;&nbsp;</strong><span class="badge badge-info">&nbsp;&nbsp;0&nbsp;&nbsp;</span>&nbsp;&nbsp;Min.
 							</div>
@@ -138,26 +139,36 @@ footer {
 				<div class="container-fluid span8">
 					<div class="container-fluid">
 						<button class="btn btn-primary">Add Category</button>
+						<button class="btn btn-danger offset1">Remove Category</button>
 						<button class="btn btn-primary offset1">Test Settings</button>
 					</div>
 					<hr>
-					<form id="frmSaveTest" class="container-fluid form-horizontal" method="post" action="TestManagement">
+					<form id="frmSaveTest" class="container-fluid" method="post" action="TestManagement">
 						<table class="table table-striped table-condensed table-hover">
 							<thead>
 								<tr>
-									<th>Category</th>
-									<th>Number of Questions</th>
-									<th>Duration</th>
+									<th class="span2">Category</th>
+									<th class="span6">Number of Questions</th>
+									<th class="span6">Duration</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:choose>
-									<c:when test="${not empty categoryNames}">
-										<c:forEach var="i" items="${categoryNames}">
+									<c:when test="${not empty categoryDetails}">
+										<c:forEach var="i" items="${categoryDetails}">
 											<tr>
-												<td>${i}</td>
-												<td><input id="${i}NoQue" name="${i}NoQue" type="number" required placeholder="No. of questions in this category" min=1></td>
-												<td><input id="${i}Duration" name="${i}Duration" type="number" required placeholder="In Minutes" min=1></td>
+												<td class="span2">
+													<c:out value="${i.categoryName}"></c:out>
+												</td>
+												<td class="span6">
+													<input class="input-large" id='<c:out value="${i.categoryName}NoQue"></c:out>' name='<c:out value="${i.categoryName}NoQue"></c:out>' type="number" required placeholder="Questions per Category" min=0 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
+												</td>
+												<td class="span6">
+													<div class="input-append">
+														<input class="input-large" id='<c:out value="${i.categoryName}Duration"></c:out>' name='<c:out value="${i.categoryName}Duration"></c:out>' type="number" required placeholder="In Minutes" min=0 value='<c:out value="${i.timePerCategory}"></c:out>'>
+														<span class="add-on">Min.</span>
+													</div>
+												</td>
 											</tr>
 										</c:forEach>
 									</c:when>
@@ -171,9 +182,15 @@ footer {
 								</c:choose>
 							</tbody>
 						</table>
-						<input type="hidden" id="requestType" name="requestType" value="saveTest">
-						<input type="hidden" id="testId" name="testId" value="<%=request.getAttribute("testId")%>">
-						<input type="submit" value="Save" class="btn btn-success pull-right">
+
+						<div class="control-group pull-right">
+							<div class="controls">
+								<input type="hidden" id="requestType" name="requestType" value="saveTest">
+								<input type="hidden" id="testId" name="testId" value="<c:out value="${testId}"></c:out>">
+								<button type="submit" <c:if test="${not empty saveFlag}">disabled="disabled"</c:if> class="btn btn-success">Save</button>
+								<button href="testManagementHome.jsp" class="btn btn-danger">Cancel</button>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>

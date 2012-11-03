@@ -26,17 +26,6 @@ $(document).ready(function(e) {
 			} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 
-	$(".btnEdit").live("click",function(event) {
-
-		try {
-			$.get("TestManagement",
-				{
-					requestType : "editTest",
-					testId : $(this).attr("id")
-			});
-		}catch(e) { bootbox.alert(e.status+"\n"+e.message); }
-	});
-
 	var alertDiv = "<div style=\"position:absolute; margin-top:0.1%;\" class=\"alert alert-success offset5 span3\">You have deleted the test <strong>successfully !!!</strong></div>";
 	$(".btnDelete").live("click",function(event) {
 
