@@ -11,7 +11,21 @@ public class DashboardBean {
 	private Timestamp startTime;
 	private Timestamp endTime;
 	private Integer testDuration;
+	private String username;
+	private String candidatecategory;
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getCandidatecategory() {
+		return candidatecategory;
+	}
+	public void setCandidatecategory(String candidatecategory) {
+		this.candidatecategory = candidatecategory;
+	}
 	public Integer getTestId() {
 		return testId;
 	}
