@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width">
-<title>Register for test</title>
+<title>CADET | Register for test</title>
 <link rel="stylesheet" href="../../css/bootstrap.css">
  <style>
             body {
@@ -20,6 +20,11 @@
         <script src="../../js/handlebars.js"></script>
 </head>
 <body>
+
+
+
+
+
 <button class="btn btn-info" id="btnGetTest">Get Test to Register </button>
 
 <table id="tblTests" class="table table-striped table-condensed table-hover">
