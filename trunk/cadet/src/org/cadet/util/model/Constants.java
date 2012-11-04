@@ -67,6 +67,8 @@ public class Constants {
 		
 		public static String getAllUserCategoriesSql = "Select CandidateCategoryName FROM candidatecategory";
 		public static String submitAnswersNA="UPDATE Result SET 'marks'= ?, 'Attempted'= ?,'Correct'= ? WHERE 'CUserName'=? AND 'TestId'=?";
+		public static String addUserCategoriesSql = "Insert INTO CandidateCategory Values (?)";
+		public static String deleteCandidateCategorySql = "DELETE FROM candidatecategory WHERE CandidateCategoryName = ?";
 
 	}
 	
