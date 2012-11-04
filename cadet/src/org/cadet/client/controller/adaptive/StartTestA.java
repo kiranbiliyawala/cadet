@@ -1,10 +1,7 @@
 package org.cadet.client.controller.adaptive;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,6 +49,7 @@ public class StartTestA extends HttpServlet {
 				session.setAttribute("testStarted", true);//check on pop up page whether test has been started so that candidate cannot restart the test by resubmitting the url.
 				try {
 					AdaptiveTest test=new AdaptiveTest(testID.intValue());
+					session.setAttribute("test", test);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					request.setAttribute("error", e.getMessage());

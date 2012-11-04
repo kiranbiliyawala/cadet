@@ -41,9 +41,11 @@ public class Constants {
 		public static final String deleteTest = "DELETE from test WHERE TestId = ?";
 
 		public static final String getTest="SELECT * from test where testId = ?";
-		public static final String getQuestionCountOfTest="SELECT SUM(QuestionPerCategory) from test WHERE testId = ?";
-		public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks, t.NegMark FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
-		public static final String fetchNextQuestion2=") LIMIT 1";
+		public static final String getQuestionCountOfCategoryOfTest="SELECT CategoryId, QuestionPerCategory FROM test WHERE testId = ?";
+		public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks, t.NegMark FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND q.CategoryId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
+		public static final String fetchNextQuestion2=") ORDER BY RAND() LIMIT 1";
+		public static final String saveResult="INSERT INTO result VALUES(?,?,?,?,?)";
+		
 		public static String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 		public static String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
 		public static String getTestDurationNA="SELECT TestDuration as duration, TestName as name, TestDate as Date FROM test WHERE TestId=?";
