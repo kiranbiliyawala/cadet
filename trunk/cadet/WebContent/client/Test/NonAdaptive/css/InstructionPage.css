@@ -30,7 +30,8 @@
 	margin-top:70%;
 	margin-left:45%;
 	position:absolute;
-	background-color:#F30
+	background-color:#CCC;
+	cursor: pointer;
 }
 .header
 {
@@ -39,7 +40,7 @@
 }
 
 .closestartbtn:hover{
-	background-color:#F00;
+	background-color:#999;
 }
 .Time{
 	position:absolute;
