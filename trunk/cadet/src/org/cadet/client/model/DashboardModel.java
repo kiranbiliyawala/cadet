@@ -1,9 +1,9 @@
 package org.cadet.client.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.cadet.client.bean.DashboardBean;
@@ -16,22 +16,21 @@ public class DashboardModel {
 	
 
 	
-	public static JSONObject getTests(Connection connection) throws SQLException, JSONException {
+	public static JSONObject getTests(Connection connection, String username) throws SQLException, JSONException {
 
-		Statement statement = connection.createStatement();
+		
 
 		ArrayList<DashboardBean> result = new ArrayList<DashboardBean>();
 		DashboardBean temp = null;
-
-		ResultSet rs = statement.executeQuery(Constants.sqlCommands.getDashboardTests);
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getDashboardTests);
+		statement.setString(1, username);
+		ResultSet rs = statement.executeQuery();
 		while (rs.next()) {
 
 		    temp = new DashboardBean();
 		    temp.setTestId(rs.getInt("TestId"));
 		    temp.setTestName(rs.getString("TestName"));
 		    temp.setTestDate(rs.getDate("TestDate"));
-//		    temp.setStartTime(rs.getTimestamp("StartTime"));
-//		    temp.setEndTime(rs.getTimestamp("EndTime"));
 		    temp.setTestDuration(rs.getInt("TestDuration"));
 
 		    result.add(temp);
