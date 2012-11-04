@@ -3,14 +3,17 @@ package org.cadet.client.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.cadet.client.bean.BeanTest;
+import org.cadet.client.model.CandidateCategory;
 import org.cadet.client.model.TestRegister;
 import org.cadet.util.model.DatabaseConnection;
 import org.json.JSONArray;
@@ -38,15 +41,26 @@ public class Gettesttoregister extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String CUserName,CCatName;
-		CUserName="user8";
-		CCatName="PHD";
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+		
+		TestRegister objTestRegister = new TestRegister(dbConnection);
+		
+		HttpSession cadetsession = request.getSession();
+		String CUserName = (String) cadetsession.getAttribute("user");
+		String CCatName=null;
+		try {
+			CCatName = CandidateCategory.fetch(dbConnection, CUserName);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		
 		JSONArray objJarray= new JSONArray();
 		
-		DatabaseConnection dbConn = DatabaseConnection.getInstance();
-		Connection dbConnection = dbConn.getDbConnection();
-		TestRegister objTestRegister = new TestRegister(dbConnection);
+		
 		
 		BeanTest[] objTests= objTestRegister.getNotRegisterTestForUser(CUserName, CCatName);
 		
