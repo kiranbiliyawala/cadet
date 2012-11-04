@@ -2,7 +2,9 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,8 +24,6 @@
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="css/main.css">
-
-        <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -41,7 +41,7 @@
                     <a class="brand" href="#home"><img id="logo" src="../img/cadet.gif" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li class="active"><a href="#home">Home</a></li>
+                           <li class="active"><a href="/cadet/client/index.jsp">Home</a></li>
                            <li><a href="#test">Test</a></li>
                            <li><a href="#profile">Profile</a></li>
                        </ul>
@@ -60,7 +60,6 @@
                             <a class="accordion-toggle" data-parent="#accordionMenu" href="#home">Home</a>
                         </div>
                     </div>
-    
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Test</a>
@@ -68,8 +67,8 @@
                         <div id="collapse2" class="accordion-body collapse">
                             <div class="accordion-inner">
                                 <ul class="nav">
-                                    <li><a href="#">Register for Test</a></li>
-                                    <li><a href="#">View All Test</a></li>
+                                    <li><a href="/cadet/client/Test/registerfortest.jsp">Register for Test</a></li>
+                                    <li><a href="/cadet/client/Test/viewalltest.jsp">View All Test</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -79,12 +78,12 @@
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Profile</a>
                         </div>
-                        <div id="collapse3" class="accordion-body collapse in">
+                        <div id="collapse3" class="accordion-body collapse">
                             <div class="accordion-inner">
 
                                 <ul class="nav">
-                                    <li><a href="#">Change Details</a></li>
-                                    <li><a href="#result">Change Password</a></li>
+                                    <li><a href="GetCandidateProfileServlet">Change Details</a></li>
+                                    <li><a href="/cadet/client/profile/changepassword.jsp">Change Password</a></li>
                                 </ul>
                             </div>
                         </div>
