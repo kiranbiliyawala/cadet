@@ -25,7 +25,7 @@
 			}
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
-		<link rel="stylesheet" href="../css/homepage.css">
+ 		<link rel="stylesheet" href="../css/homepage.css"> 
         <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
  <body>
@@ -44,11 +44,16 @@
 		</div>
 	</div>
 	<!--/.navbar -->
- 	
- 	<form action="../EmailResend" method="post">
- 		<div class="hero-unit">We've send an email to your email id. Please verify your email id.</div>
- 		
+ 	<div class="container-fluid">
+ 		<form action="../EmailResend" method="post">
+ 			<div class="hero-unit span10 offset4">
+ 				<h2>Hey, <%= request.getAttribute("username") %></h2>
+ 				<h3>We've send an email to your email id. Please verify your email id.</h3>
+ 				<p>If you haven't got the email Click on &nbsp;<input type="submit" class="btn" name="btnsubmit" value="Resend"/></p>
+ 			</div>
  	</form>
+ 	</div>
+ 	
  	
 </body>
 </html>
