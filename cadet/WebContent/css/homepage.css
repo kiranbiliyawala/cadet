@@ -17,12 +17,12 @@ label{
 /* } */
 
 #ulcontainer{ 
-	position: relative;
-	height: inherit;
-	margin-left: 38%;
+/* 	position: relative; */
+/* 	height: inherit; */
+	margin-left: 40%;
 }
 
-.hero-unit{
+#cadettext{
 	position:relative;
  	border-radius: 20px; 
 	height:140px;
@@ -81,9 +81,9 @@ caption{
 }
 
 #btnlogin{
-	height: 50px;
-	width: 180px;
-	font-size: 25px;
+	height: 35px;
+	width: 120px;
+	font-size: 20px;
 }
 
 
