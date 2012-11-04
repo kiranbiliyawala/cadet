@@ -42,9 +42,6 @@
 	<!-- <link rel="stylesheet" href="./css/main.css"> -->
 	<link rel="stylesheet" href="./css/homepage.css">
 	
-	<script type="text/javascript" src="js/sha.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
 	
 </head>
 
@@ -70,7 +67,7 @@
 			<div class="span6"></div>
 			<div class="span10">
 				<div id="welcome" style="position: absolute;">
-					<div class="hero-unit">
+					<div class="hero-unit" id="cadettext">
 						Welcome to CADET <br>
 						<div id="joinus">
 							<button class="btn btn-primary" onclick="transferRegisteration()">Join Us</button>
@@ -80,7 +77,7 @@
 					<div id="hero-unit-support"></div>
 					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
 					<div id="form">
-						<form action="LoginAuthorize" method="POST" onsubmit="return submit_val();">
+						<form action="LoginAuthorize" method="POST" >
 							<table style="margin-left: 90px;">
 								<caption>Login</caption>
 								<tr>
@@ -106,7 +103,11 @@
 			<div class="span6"></div>
 <!-- 		</div> -->
 	</div>
-
+	<%	
+		
+		session.setAttribute("username", request.getParameter("username"));
+		
+	%>
 	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
 		<div class="row pull-right" style="0% 10% 10% 0%">
@@ -117,8 +118,10 @@
 			<a class="span*" href="#">Privacy &amp; Policy</a>
 		</div>
 	</footer>
-
-	
+	<script src="js/jquery-1.8.2.js"></script>
+	<script type="text/javascript" src="js/sha.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 	
 	
 </body>
