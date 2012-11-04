@@ -47,6 +47,12 @@ public class NonAdaptiveTest {
 	
 	public NonAdaptiveTest(Connection connection,int testid,String username) throws JSONException, SQLException {
 	
+		Answers = new HashMap<>();
+		CorrectAnswers = new HashMap<>();
+		AttemptedQuestions = new JSONObject();
+		Question_difficulty = new HashMap<>();
+		Difficulty_Marks = new HashMap<>();
+		
 		this.testid = testid;
 		this.connection = connection;
 		this.username = username;
@@ -83,7 +89,7 @@ public class NonAdaptiveTest {
 			name = rs.getString("Name");
 			date = rs.getString("Date");
 		}
-		String details = name+","+date+","+test_hours+"::"+test_minutes;
+		String details = name+","+date+","+test_hours+":"+test_minutes;
 		test_details = details.split(",");
 	}
 
@@ -251,10 +257,12 @@ public class NonAdaptiveTest {
 	}
 
 	private void submit_result() throws SQLException {
-		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getTestQuestionsNA);
-		statement.setInt(1, testid);
-		statement.setString(2, username);
-		statement.setDouble(3, score);
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.submitAnswersNA);
+		statement.setInt(5, testid);
+		statement.setString(4, username);
+		statement.setDouble(1, score);
+		statement.setInt(2, attempted);
+		statement.setInt(3, Correct);
 		statement.executeUpdate();
 		statement.close();
 	}
@@ -287,7 +295,7 @@ public class NonAdaptiveTest {
 		return Categorized_Questions.toString();
 	}
 	
-	protected JSONObject getQuestionDistribution() throws JSONException{
+	public JSONObject getQuestionDistribution() throws JSONException{
 		JSONObject categories = new JSONObject();
 		
 		JSONArray keys = Categorized_Questions.names();
@@ -348,7 +356,7 @@ public class NonAdaptiveTest {
 		boolean ret;
 		Connection connection= DatabaseConnection.getInstance().getDbConnection();
 		
-		PreparedStatement statement = connection.prepareStatement("select count(*) as allow from Results where CUserNAme=? and TestId=?");
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.test_Allowed_query1);
 		statement.setString(1,username2);
 		statement.setInt(2,testid2);
 		ResultSet rs= statement.executeQuery();
@@ -366,7 +374,7 @@ public class NonAdaptiveTest {
 		Date date = new Date();
 		String today=dateFormat.format(date);
 		
-		PreparedStatement statement1 = connection.prepareStatement("SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?");
+		PreparedStatement statement1 = connection.prepareStatement(Constants.sqlCommands.test_Allowed_query2);
 		statement1.setString(1,today);
 		statement1.setInt(2,testid2);
 		ResultSet rs1=statement1.executeQuery();
@@ -386,7 +394,8 @@ public class NonAdaptiveTest {
 		rs.close();
 		statement1.close();
 		statement.close();
-		return ret;
+		//return ret;
+		return true;
 	}
 	
 }
