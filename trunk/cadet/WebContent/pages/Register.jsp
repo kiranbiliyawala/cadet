@@ -118,9 +118,15 @@
 		</form>
 		</div>
 	</div>
+		<%	
+		
+		session.setAttribute("username", request.getParameter("Username"));
+		
+		%>
  	<script type="text/javascript" src="../js/jquery-1.8.2.js"></script>
  	<script type="text/javascript" src="../js/jquery.validate.js"></script>
 	<script type="text/javascript" src="../js/sha.js"></script>
 	<script type="text/javascript" src="../js/RegisterPage.js"></script>
+
 </body>
 </html>
