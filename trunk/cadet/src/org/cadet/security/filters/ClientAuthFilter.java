@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class ClientAuthFilter
@@ -41,21 +42,24 @@ public class ClientAuthFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		/*
-		 * HttpServletRequest request = (HttpServletRequest) req; ======= /*
-		 * HttpServletRequest request = (HttpServletRequest) req;
-		 * HttpServletResponse response = (HttpServletResponse) res; HttpSession
-		 * session = request.getSession(); try{ Boolean ClientAuth = (Boolean)
-		 * session.getAttribute("ClientAuth");
-		 * if(ClientAuth==false||ClientAuth==null){ throw new
-		 * NullPointerException(); } }catch (NullPointerException e) {
-		 * response.sendRedirect("Login"); } // pass the request along the
-		 * filter chain
-		 */
+
+		HttpServletRequest request = (HttpServletRequest) req;
+		// HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
+		HttpSession session = request.getSession();
+		try {
+			Boolean ClientAuth = (Boolean) session.getAttribute("ClientAuth");
+			if (ClientAuth == false || ClientAuth == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			response.sendRedirect("/cadet/Login");
+			return;
+		} // pass the request along thefilter chain
 
 		// pass the request along the filter chain*/
-		// chain.doFilter(request, response);
-		chain.doFilter(req, res);
+		chain.doFilter(request, response);
+		// chain.doFilter(req, res);
 	}
 
 	/**

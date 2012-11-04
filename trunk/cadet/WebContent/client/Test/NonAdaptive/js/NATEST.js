@@ -221,5 +221,4 @@ if (r==true)
 function finish_test()
 {
 	$("form").submit();
-		alert("a");
 }

@@ -17,7 +17,7 @@ import org.cadet.util.model.UserControl;
 /**
  * Servlet implementation class GetUserCategories
  */
-@WebServlet("/pages/GetUserCategories")
+@WebServlet("/GetUserCategories")
 public class GetUserCategories extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

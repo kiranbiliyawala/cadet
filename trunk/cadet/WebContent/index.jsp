@@ -77,7 +77,7 @@
 					<div id="hero-unit-support"></div>
 					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
 					<div id="form">
-						<form action="LoginAuthorize" method="POST" >
+						<form action="LoginAuthorize" method="POST" onsubmit="submit_val()" >
 							<table style="margin-left: 90px;">
 								<caption>Login</caption>
 								<tr>

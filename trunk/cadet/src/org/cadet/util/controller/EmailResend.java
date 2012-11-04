@@ -37,6 +37,10 @@ public class EmailResend extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
+		if(username==null){
+			response.sendError(403,"Inaprpriate Entry");
+			return;
+		}
 		try{
 			Connection connection = DatabaseConnection.getInstance().getDbConnection();
 			try {
