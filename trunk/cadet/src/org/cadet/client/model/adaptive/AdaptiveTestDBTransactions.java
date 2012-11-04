@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
 import org.cadet.util.model.DatabaseConnection;
 import org.cadet.util.model.Constants;
@@ -27,7 +29,7 @@ public class AdaptiveTestDBTransactions {
 			DatabaseConnection dbConn=DatabaseConnection.getInstance();
 			Connection conn=dbConn.getDbConnection();
 			PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.getTest);
-			ps.setInt(0, testID);
+			ps.setInt(1, testID);
 			
 			ResultSet rs=ps.executeQuery();
 			if(rs.first()){
@@ -49,16 +51,33 @@ public class AdaptiveTestDBTransactions {
 		return false;
 	}
 
-	public static Adaptive_Ability_Optimization generateAAO(int testId) throws SQLException, Exception{
+	public static HashMap<Integer, Integer> getCategoryWiseQuestionCount(int testId) throws SQLException, Exception{
+		
+		DatabaseConnection dbConn=DatabaseConnection.getInstance();
+		Connection conn=dbConn.getDbConnection();
+		PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.getQuestionCountOfCategoryOfTest);
+		ps.setInt(1, testId);
+		ResultSet rs=ps.executeQuery();
+		rs.beforeFirst();
+		HashMap<Integer, Integer> catWiseQuestionCount=new HashMap<Integer, Integer>();
+		while(rs.next()){
+			catWiseQuestionCount.put(new Integer(rs.getInt(1)), new Integer(rs.getInt(2)));
+		}
+		if(catWiseQuestionCount.isEmpty())
+			throw new Exception("Category wise questions not defined!");
+		return catWiseQuestionCount;
+	}
+	
+	public static Adaptive_Ability_Optimization generateAAO(int testId, int noOfQuestions) throws SQLException, Exception{
 		//this method generates an instance of Adaptive_Optimization_Class based on the testId
 		
 		double initialDifficulty;
-		int noOfQuestions;
+		
 		
 		DatabaseConnection dbConn=DatabaseConnection.getInstance();
 		PreparedStatement ps=dbConn.getDbConnection().prepareStatement(Constants.sqlCommands.getTest);
 		
-		ps.setInt(0, testId);
+		ps.setInt(1, testId);
 		
 		ResultSet rs=ps.executeQuery();
 		if(rs.first()){
@@ -67,39 +86,26 @@ public class AdaptiveTestDBTransactions {
 		else{
 			throw new Exception("No such Test Exists !");
 		}
-		
-		ps=dbConn.getDbConnection().prepareStatement(Constants.sqlCommands.getQuestionCountOfTest);
-		ps.setInt(0, testId);
-		rs=null;
-		rs=ps.executeQuery();
-		
-		if(rs.first()){
-			noOfQuestions=rs.getInt(0);
-		}
-		else{
-			throw new Exception("No such Test Exists !");
-		}
 				
 		return new Adaptive_Ability_Optimization(Constants.adaptive.MIN_DIFFICULTY, Constants.adaptive.MAX_DIFFICULTY, initialDifficulty, noOfQuestions, Constants.adaptive.DIFFERENCE_BETWEEN_TWO_DIFFICULTIES);
 	}
 
-	public static Question fetchNextQuestion(int testId, Double difficulty, ArrayList<Integer> askedQuestions) throws SQLException, Exception {
+	public static Question fetchNextQuestion(int testId, int categoryId, Double difficulty, ArrayList<Integer> askedQuestions) throws SQLException, Exception {
 		
-		String question_marks= "";
-		
-		while(askedQuestions.iterator().hasNext()){
-			question_marks+= "?,";
-		}
-		question_marks= question_marks.substring(0, question_marks.length()-1);
-		
-		DatabaseConnection dbConn= DatabaseConnection.getInstance();
-		PreparedStatement ps= dbConn.getDbConnection().prepareStatement(Constants.sqlCommands.fetchNextQuestion1 + question_marks + Constants.sqlCommands.fetchNextQuestion2);
-		ps.setInt(0, testId);
-		ps.setInt(1, difficulty.intValue());
+		String questions_asked= "";
 		
 		for(int i=0; i<askedQuestions.size(); i++) {
-			ps.setInt(i+2, askedQuestions.get(i));
+			questions_asked+= askedQuestions.get(i) + ",";
 		}
+		
+		questions_asked= questions_asked.substring(0, questions_asked.length()-1);
+		
+		DatabaseConnection dbConn= DatabaseConnection.getInstance();
+		PreparedStatement ps= dbConn.getDbConnection().prepareStatement(Constants.sqlCommands.fetchNextQuestion1 + questions_asked + Constants.sqlCommands.fetchNextQuestion2);
+		ps.setInt(1, testId);
+		ps.setInt(2, categoryId);
+		ps.setInt(3, difficulty.intValue());
+		
 		
 		ResultSet rs= ps.executeQuery();
 		
@@ -109,5 +115,19 @@ public class AdaptiveTestDBTransactions {
 		else{
 			throw new Exception("Questions for the given difficulty are exhausted !");
 		}
+	}
+	
+	public static void saveResult(String username, int testId, Double ability, int attempted, int correctAnswers) throws SQLException {
+		
+		DatabaseConnection dbConn=DatabaseConnection.getInstance();
+		Connection conn=dbConn.getDbConnection();
+		PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.saveResult);
+		ps.setString(1, username);
+		ps.setInt(2, testId);
+		ps.setInt(3, ability.intValue());//currently int value is inserted. Update to double once database change is done.
+		ps.setInt(4, attempted);
+		ps.setInt(5, correctAnswers);
+		
+		ps.execute();
 	}
 }
