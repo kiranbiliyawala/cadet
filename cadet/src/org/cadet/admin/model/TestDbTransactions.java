@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.cadet.admin.bean.BeanCategory;
 import org.cadet.admin.bean.BeanTest;
 import org.cadet.admin.bean.BeanTestCategory;
 import org.cadet.util.model.Constants;
@@ -60,6 +61,18 @@ public class TestDbTransactions {
 	data.put("testList", result.toArray(new BeanTest[result.size()]));
 
 	return data;
+    }
+
+    public static JSONObject getAllCategories(Connection connection) {
+
+	Statement statement = connection.createStatement();
+	ArrayList<BeanCategory> result = new ArrayList<BeanCategory>();
+	BeanCategory temp = null;
+
+	ResultSet rs = statement.executeQuery(Constants.sqlCommands.retriveCategories);
+
+	JSONObject data = new JSONObject();
+	data.put("categoryList",);
     }
 
     public static void createTest(Connection connection, String testName, String testType, String testDesc) throws SQLException {

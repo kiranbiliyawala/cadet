@@ -131,9 +131,9 @@ footer {
 				</div>
 				<div class="container-fluid span8">
 					<div class="container-fluid">
-						<button class="btn btn-primary pull-left">Add Category</button>
-						<button class="btn btn-danger offset1">Remove Category</button>
-						<button class="btn btn-primary offset1">Test Settings</button>
+						<button id="btnAddCat" href="#divAddCat" id="btnAddCat" role="button" class="btn btn-primary pull-left" data-toggle="modal">Add Category</button>
+						<button id="btnDelCat" class="btn btn-danger offset1">Remove Category</button>
+						<button id="btnTestSettings" class="btn btn-primary offset1">Test Settings</button>
 					</div>
 					<hr>
 					<form id="frmSaveTest" class="container-fluid form-horizontal" method="post" action="TestManagement">
@@ -178,6 +178,7 @@ footer {
 									</c:when>
 									<c:otherwise>
 										<tr>
+											<td></td>
 											<td><p class="text-warning">No Category Available</p></td>
 											<td></td>
 											<td></td>
@@ -216,6 +217,37 @@ footer {
 		</div>
 	</footer>
 
+	<div id="divAddCat" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="lblAddCat" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<h3 id="lblAddCat">Add Category</h3>
+		</div>
+		<div class="modal-body">
+			<form class="container=fluid form-horizontal">
+				<div class="control-group">
+					<div class="control-label" for="optCatList">Select Category : </div>
+					<div class="controls">
+						<select id="optCatList" name="optCatList">
+							<option>(New Category)</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary">Add</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		</div>
+	</div>
+
+	<script id="tmpltCategories" type="text/x-handlebars-template">
+		{{#if categoryList}}
+			{{#each categoryList}}
+				<select> {{category}} </select>
+			{{/each}}
+		{{/if}}
+	</script>
+
 	<script src="../../js/jquery-1.8.2.js"></script>
 	<script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
@@ -225,5 +257,18 @@ footer {
 	<script src="../../js/additional-methods.js"></script>
 	<script src="../js/jsGlobal.js"></script>
 	<script src="../js/jsTestPage.js"></script>
+
+	<c:if test="${result eq true}">
+		<script>
+			var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
+			$(document).ready(function(e) {
+				setTimeout(function() {
+					$("body").prepend(alertDiv);
+					setTimeout(function() { $(".alert").alert("close"); },3000);
+				},600);
+			});
+		</script>
+	</c:if>
+
 </body>
 </html>

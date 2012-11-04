@@ -25,6 +25,7 @@ public class Constants {
 		public static final String retrivePasswordAdmin = "SELECT Password FROM admin WHERE AUserName = "; 
 		public static final String retrivePasswordClient = "SELECT Password FROM candidate WHERE CUserName = ";
 		public static final String retriveTests = "SELECT * FROM test";
+		public static final String retriveCategories = "SELECT * FROM category";
 		public static final String retriveLastInsertID = "SELECT last_insert_id()";
 		public static final String retriveTestCategoryDetails = "SELECT category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 		public static final String retriveTestDetails = "SELECT * FROM test WHERE TestId = ?";

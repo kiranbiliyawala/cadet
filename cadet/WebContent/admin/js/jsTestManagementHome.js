@@ -14,7 +14,7 @@ $(document).ready(function(e) {
 					var src = $("#tmpltTests").html();
 					var template = Handlebars.compile(src);
 					var output = template(data);
-	
+
 					$("#tblTests tbody").append(output);
 				}
 				else if(data.result==="DatabaseError") {
@@ -26,12 +26,11 @@ $(document).ready(function(e) {
 			} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 	});
 
-	var alertDiv = "<div style=\"position:absolute; margin-top:0.1%;\" class=\"alert alert-success offset5 span3\">You have deleted the test <strong>successfully !!!</strong></div>";
+	var alertDiv = "<div style=\"position:absolute; margin-top:0.17%;\" class=\"alert alert-success offset4 span3\">You have deleted the test <strong>successfully !!!</strong></div>";
 	$(".btnDelete").live("click",function(event) {
 
 		var button = $(this);
 
-		event.preventDefault();
 		bootbox.confirm("Are you sure you want to delete the test ?",function(confirmed) {
 
 			if(confirmed===true) {
