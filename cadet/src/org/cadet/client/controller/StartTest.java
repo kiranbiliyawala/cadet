@@ -17,7 +17,7 @@ import org.json.JSONException;
 /**
  * Servlet implementation class StartTest
  */
-@WebServlet("/Test/NonAdaptive/StartTest")
+@WebServlet("/client/Test/NonAdaptive/StartTest")
 public class StartTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,12 +47,14 @@ public class StartTest extends HttpServlet {
 			request.setAttribute("Catselector", NAHTMLConvert.CatSelectorHTML(test));
 			request.setAttribute("Queselector", NAHTMLConvert.QuestionSelectorHTML(test));		
 			
+			request.setAttribute("CatDistribution", test.getQuestionDistribution().toString());
+			
 		} catch (JSONException e) {
 			response.sendError(500);
 		}
 		
 		test.startTest();
-		RequestDispatcher dispacher = request.getRequestDispatcher("non_adaptive_test_que.jsp");
+		RequestDispatcher dispacher = request.getRequestDispatcher("Test.jsp");
 		dispacher.include(request, response);
 	}
 

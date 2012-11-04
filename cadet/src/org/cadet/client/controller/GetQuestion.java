@@ -13,7 +13,7 @@ import org.cadet.client.model.NonAdaptiveTest;
 /**
  * Servlet implementation class GetQuestion
  */
-@WebServlet("/Test/NonAdaptive/GetQuestion")
+@WebServlet("/client/Test/NonAdaptive/GetQuestion")
 public class GetQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,6 +54,8 @@ public class GetQuestion extends HttpServlet {
 		
 		try{
 				test = (NonAdaptiveTest) session.getAttribute("test");
+				String data = test.getQuestions(category, qno);
+				response.getWriter().print(data);
 		}catch(Exception e){
 			response.sendError(403);
 			return;
