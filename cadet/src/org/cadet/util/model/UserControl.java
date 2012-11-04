@@ -179,6 +179,7 @@ public class UserControl {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.CheckClientVerification);
 		statement.setString(1, username);
 		ResultSet rs = statement.executeQuery();
+		rs.first();
 		if(rs.getString("Verified").equals("Y")){
 			ret = true;
 		}
@@ -192,6 +193,7 @@ public class UserControl {
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.CheckAdminVerification);
 		statement.setString(1, username);
 		ResultSet rs = statement.executeQuery();
+		rs.first();
 		if(rs.getString("Verified").equals("Y")){
 			ret = true;
 		}
