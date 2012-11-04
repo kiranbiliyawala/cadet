@@ -63,7 +63,11 @@ public class Constants {
 		
 		public static String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
 		public static String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
+
+		
+		public static String getAllUserCategoriesSql = "Select CandidateCategoryName FROM candidatecategory";
 		public static String submitAnswersNA="UPDATE Result SET 'marks'= ?, 'Attempted'= ?,'Correct'= ? WHERE 'CUserName'=? AND 'TestId'=?";
+
 	}
 	
 	public static final class email{
