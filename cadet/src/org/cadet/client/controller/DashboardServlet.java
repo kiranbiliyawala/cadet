@@ -10,10 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.cadet.util.model.DatabaseConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.cadet.client.model.CandidateCategory;
 import org.cadet.client.model.DashboardModel;;
 
 /**
@@ -47,11 +49,14 @@ public class DashboardServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		JSONObject data = null;
 
-
+		HttpSession cadetsession = request.getSession();
+		String username= (String) cadetsession.getAttribute("user"); 
 	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
 	    Connection dbConnection = dbConn.getDbConnection();
+	  
+	    
 	    try {
-			data = DashboardModel.getTests(dbConnection);
+			data = DashboardModel.getTests(dbConnection, username);
 			data.put("result", true);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
