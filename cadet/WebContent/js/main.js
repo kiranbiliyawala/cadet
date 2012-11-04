@@ -1,5 +1,5 @@
 function transferRegisteration(){
-	window.location="./pages/Register.jsp";
+	window.location="Register";
 }
 
 function submit_val(){

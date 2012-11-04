@@ -41,17 +41,21 @@ public class AdminAuthFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		/*
-		 * HttpServletRequest request = (HttpServletRequest) req;
-		 * HttpServletResponse response = (HttpServletResponse) res; HttpSession
-		 * session = request.getSession(); try{ Boolean AdminAuth = (Boolean)
-		 * session.getAttribute("AdminAuth");
-		 * if(AdminAuth==false||AdminAuth==null){ throw new
-		 * NullPointerException(); } }catch (NullPointerException e) {
-		 * response.sendRedirect("Login"); } // pass the request along the
-		 * filter chain
-		 */// chain.doFilter(request, response);
-		chain.doFilter(req, res);
+
+		HttpServletRequest request = (HttpServletRequest) req;
+		HttpServletResponse response = (HttpServletResponse) res;
+		HttpSession session = request.getSession();
+		try {
+			Boolean AdminAuth = (Boolean) session.getAttribute("AdminAuth");
+			if (AdminAuth == false || AdminAuth == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			response.sendRedirect("/Login");
+			return;
+		} // pass the request along the filter chain
+		chain.doFilter(request, response);
+		// chain.doFilter(req, res);
 	}
 
 	/**

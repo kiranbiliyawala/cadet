@@ -47,6 +47,7 @@ public class LoginAuthorize extends HttpServlet {
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		session.setAttribute("user", username);
 		try{
 		if(UserControl.checkAdminTable(dbconnection, username, password)){
 			if(!UserControl.CheckAdminVerification(dbconnection, username)){
@@ -73,7 +74,7 @@ public class LoginAuthorize extends HttpServlet {
 		}else{
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", false);
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("Login");
 			return;
 		}
 		}catch(SQLException e){
