@@ -61,6 +61,11 @@ public class Constants {
 		public static String getViewAllTestForUserSql = "select distinct a.TestName, a.TestDate, a.TestDuration, " + " a.testid,b.marks,b.attempted,b.correct from test a, result b, testcandidatecategory c  where " + " c.CandidateCategoryName = ? and a.TestId = c.TestId and a.TestId = b.TestId and b.CUserName = ? order by TestDate;";
 		public static String setRegisterTestForUserSql = "insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0, 0, 0)";
 		
+		public static String getCandidateProfileDataSql = "Select CUserName Name,Contact,CandidateCategoryName FROM candidate where CUserName=?";
+		public static String updateCandidateProfileDataSql = "Update Candidate SET Name=?,  Contact=? ,CandidateCategoryName=? WHERE CUserName=?";
+		public static String updateCandidatePasswordSql = "Update Candidate SET Password =? where cusername=? ";
+		public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
+		
 		public static String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
 		public static String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
 
