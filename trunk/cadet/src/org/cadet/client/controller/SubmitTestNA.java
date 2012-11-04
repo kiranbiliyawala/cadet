@@ -17,7 +17,7 @@ import org.cadet.util.model.DatabaseConnection;
 /**
  * Servlet implementation class SubmitAnswerNA
  */
-@WebServlet("/Test/NonAdaptive/SubmitTest")
+@WebServlet("/client/Test/NonAdaptive/SubmitTest")
 public class SubmitTestNA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -71,11 +71,12 @@ public class CreateTest extends HttpServlet {
 		}
 		}catch(Exception e){
 			response.sendError(500);
+			e.printStackTrace();
 			return;
 		}
 	
 		
-		RequestDispatcher rd = request.getRequestDispatcher("Test.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("TestStartPageNA.jsp");
 		rd.include(request, response);
 	}
 
