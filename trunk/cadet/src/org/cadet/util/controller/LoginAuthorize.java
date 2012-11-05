@@ -59,6 +59,7 @@ public class LoginAuthorize extends HttpServlet {
 			session.setAttribute("ClientAuth", false);
 			session.setAttribute("homeurl","admin/dashboard");
 			session.setAttribute("categoryId", "0");
+			session.setAttribute("categoryName", "All Categories");
 			response.sendRedirect("admin/dashboard");
 			return;
 		}else if(UserControl.checkClientTable(dbconnection, username, password)){
