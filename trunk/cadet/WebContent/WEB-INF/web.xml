@@ -76,6 +76,55 @@
     <servlet-name>RemoveCategory</servlet-name>
     <url-pattern>/admin/questionBank/RemoveCategory</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>UploadByFile</servlet-name>
+    <jsp-file>/admin/questionbank/UploadByFile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadByFile</servlet-name>
+    <url-pattern>/admin/questionBank/UploadByFile</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>TestManagement</servlet-name>
+    <jsp-file>/admin/test/testManagementHome.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestManagement</servlet-name>
+    <url-pattern>/admin/test/testManagementHome</url-pattern>
+  </servlet-mapping>  
+  
+  
+   <servlet>
+    <servlet-name>createtest</servlet-name>
+    <jsp-file>/admin/test/createTest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createtest</servlet-name>
+    <url-pattern>/admin/test/createTest</url-pattern>
+  </servlet-mapping> 
+  
+  
+  <servlet>
+    <servlet-name>ViewCat</servlet-name>
+    <jsp-file>/admin/usercategory/viewallcategory.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewCat</servlet-name>
+    <url-pattern>/admin/usercategory/viewallcategory</url-pattern>
+  </servlet-mapping> 
+   
+  
+   <servlet>
+    <servlet-name>resulthome</servlet-name>
+    <jsp-file>/admin/test/resultHome.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resulthome</servlet-name>
+    <url-pattern>/admin/test/resultHome</url-pattern>
+  </servlet-mapping>  
+  
   <servlet>
     <servlet-name>AddQuestions</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddQuestions</servlet-class>
