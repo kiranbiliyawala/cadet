@@ -65,84 +65,17 @@
 		session.setAttribute("categoryName", "Quantitative");
 		%>
 		<form id="form1">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#">CADET</a>
-                    <div class="nav-collapse collapse">
-                       <ul class="nav">
-                           <li class="active"><a href="#home">Home</a></li>
-                           <li><a href="#questionBank">Question Bank</a></li>
-                           <li><a href="#testManagement">Test Management</a></li>
-                           <li><a href="#candidateCategory">Candidate Category</a></li>
-                       </ul>
-                    </div>
-                </div>	<!--/.container -->
-            </div>
-        </div>	<!--/.navbar -->
+        <jsp:include page="/admin/NavBar.jsp"></jsp:include>
+        	<!--/.navbar -->
         
         <div class="container">
         	<div class="row">
-                <div class="accordion span2" id="accordionMenu">
+                
+<jsp:include page="/admin/Accordian.jsp"></jsp:include>
+	<!--/#accordion -->
 
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#">Home</a>
-                        </div>
-                    </div>
-    
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Question Bank</a>
-                        </div>
-                        <div id="collapse2" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <ul class="nav">
-                                    <li><a href="ViewQuestion">Add/View Questions</a></li>
-                                    <li><a href="#">Upload Questions</a></li>
-                                    <li><a href="ViewCategory">Add/View Category</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Test Management</a>
-                        </div>
-                        <div id="collapse3" class="accordion-body collapse in">
-                            <div class="accordion-inner">
-                                <ul class="nav">
-                                    <li><a href="#">Create/View Test</a></li>
-                                    <li><a href="#">Result</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse4">Candidate Category</a>
-                        </div>
-                        <div id="collapse4" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <ul class="nav">
-                                    <li><a href="#">Add Category</a></li>
-                                    <li><a href="#">Edit Category</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>	<!--/#accordion -->
-
-				<div class="container span9 offset*">
-                    <div class="navbar navbar-inverse">
+				<div class="container span9 offset*" >
+                    <div class="navbar">
                         <div class="navbar-inner">
                             <div class="container pull-left">
                             	<table>
@@ -263,15 +196,7 @@
 		</form>
 
 		<hr>
-        <footer>
-                <div class="container row">
-                    <a class="span pull-right" href="#">About</a>
-                    <a class="span pull-right" href="#">FAQ</a>
-                    <a class="span pull-right" href="#">Contact us</a>
-                    <a class="span pull-right" href="#">Help</a>
-                    <a class="span pull-right" href="#">Privacy & Policy</a>
-                </div>
-        </footer>
+        <jsp:include page="/admin/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
@@ -362,5 +287,10 @@
         		return xmlHttp1;
         	}
         </script>
+        
+         <script type="text/javascript">
+        $("#question").addClass("active");
+        </script>
+        
     </body>
 </html>
