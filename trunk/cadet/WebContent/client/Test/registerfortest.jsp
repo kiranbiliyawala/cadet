@@ -36,7 +36,7 @@
                     <a class="brand" href="#home"><img id="logo" src="../../img/cadet.gif" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                          <li><a href="/cadet/client/index.jsp">Home</a></li>
+                          <li><a href="client/dashboard">Home</a></li>
                            <li class="active"><a href="/cadet/client/Test/registerfortest.jsp">Test</a></li>
                            <li><a href="/cadet/client/Test/viewalltest.jsp">Profile</a></li>
                        </ul>
@@ -53,22 +53,22 @@
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-parent="#accordionMenu" href="/cadet/client/index.jsp">Home</a>
                         </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Test</a>
                     </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Test</a>
-                        </div>
-                        <div id="collapse2" class="accordion-body collapse in">
-                            <div class="accordion-inner">
-                                <ul class="nav">
-                                    <li><a href="/cadet/client/Test/registerfortest.jsp">Register for Test</a></li>
-                                    <li><a href="/cadet/client/Test/viewalltest.jsp">View All Test</a></li>
-                                </ul>
-                            </div>
+                    <div id="collapse2" class="accordion-body collapse in">
+                    	<div class="accordion-inner">
+                        	<ul class="nav">
+                            	<li><a href="/cadet/client/Test/registerfortest.jsp">Register for Test</a></li>
+                                <li><a href="/cadet/client/Test/viewalltest.jsp">View All Test</a></li>
+                            </ul>
                         </div>
                     </div>
+                </div>
     	
-                    <div class="accordion-group">
+                <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Profile</a>
                         </div>
@@ -82,9 +82,7 @@
                             </div>
                         </div>
                     </div>
-    
                 </div>	<!--/#accordion -->
-				
 				<div class="container-fluid span9">
 					<div class="navbar">
 						<div class="navbar-inner">
@@ -92,9 +90,6 @@
 								<a class="brand" href="#">Tests</a>
 							</div>
 						</div>
-							<div>
-								
-							</div>
 							<div>
 								<table id="tblTests" class="table table-striped table-condensed table-hover">
         		                	<thead>
