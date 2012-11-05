@@ -14,6 +14,15 @@ import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
  */
 public class AdaptiveTest {
 
+	//To do list
+	
+	//add userId/username private
+	//add function public HashMap<Integer, String> getCategories() // returns HashMap<Integer categoryId, String categoryName>
+	//add duration for current category and initialize in constructor and startNextSection
+	//add scheduler in startTest method
+	//create a runnable class that calls submitSection
+	//split startNextQuestion into SubmitSection i.e. submit a particular category; and startSection(int categoryId)
+	
 	private int testId;
 	private int categoryId;
 	private HashMap<Integer, Integer> categoryWiseQuestions;
@@ -34,11 +43,6 @@ public class AdaptiveTest {
 		this.categoryWiseAbility=new HashMap<Integer,Double>();
 		this.categoryWiseTimedAbility=new HashMap<Integer,Double>();
 		this.categoryDone=new HashMap<Integer, Integer>();
-		/*Iterator<Integer> iter=this.categoryWiseQuestions.keySet().iterator();
-		while(iter.hasNext()){
-			this.categoryWiseAbility.put((Integer)iter.next(), null);
-		}
-		iter=null;*/
 		int noOfQuestions=0;
 		if(!categoryWiseQuestions.isEmpty()){
 			Iterator<Entry<Integer,Integer>> iterator=categoryWiseQuestions.entrySet().iterator();
@@ -180,10 +184,7 @@ public class AdaptiveTest {
 		final_ability=final_ability/count;
 		
 		AdaptiveTestDBTransactions.saveResult(username, this.testId, final_ability, attempted, this.correctAnswers);
-		//call here a method of DBTransaction.
 		
-		//Define that method in DBTransaction which stores the timed ability into database.
-		//do we have to manage time per section? if yes then create mechanism that calls the startNextSection() method as the time finishes. A timer basically.
 		return null;
 	}
 }
