@@ -106,10 +106,12 @@
 					</div>
 					<div class="container-fluid span8">
 							<%
+								System.out.println(request.getAttribute("CandidateProfileData"));
          					   List<String> list = (List<String>) request.getAttribute("CandidateProfileData");
-           					   Iterator it = list.iterator();
+           					   Iterator<String> it = list.iterator();
+                               //System.out.println("List: " + it);
             				   while (it.hasNext()) {
-              
+            					   
               					  String name = (String) it.next();
                 				  String contact = (String) it.next();
 							%>
@@ -129,9 +131,9 @@
                         				<td> <select name="usercategory">
 											<%
                                					 List<String> list2 = (List<String>) request.getAttribute("CandidateCategory");
-                               					 Iterator it1 = list2.iterator();
+                               					 Iterator<String> it1 = list2.iterator();
                                					 while (it1.hasNext()) {
-                                      				 String cat=(String)it1.next();
+                                      				 String cat=it1.next();
                                        				 out.print("hh"+cat);
                             				%>
                             			<option value="<%=cat%>"><%=cat%></option>
@@ -141,8 +143,8 @@
                        
                        				</tr>
                     				<tr>	
-                        				<td> <button name="save" type="submit" value="Save">Save</button></td>
-                        				<td> <a name="back" href="	./index.jsp">Back</a></td>
+                        				<td> <button class="btn btn-primary" name="save" type="submit" value="Save">Save</button></td>
+                        				<td> <a class="btn btn-danger" name="Cancel" href="./index.jsp">Cancel</a></td>
                     				</tr>
                 			</table>
         				</form>
