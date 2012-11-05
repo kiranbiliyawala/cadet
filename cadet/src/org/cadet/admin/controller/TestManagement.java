@@ -17,6 +17,7 @@ import org.cadet.admin.bean.BeanTest;
 import org.cadet.admin.bean.BeanTestCategory;
 import org.cadet.admin.model.TestDbTransactions;
 import org.cadet.util.model.DatabaseConnection;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,6 +70,7 @@ public class TestManagement extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(data);
+		return;
 
 	    } catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -116,6 +118,7 @@ public class TestManagement extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(data);
+		return;
 
 	    } catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -167,6 +170,64 @@ public class TestManagement extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("removeCategory")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+	    JSONArray delCatList = null;
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+		delCatList = new JSONArray(request.getParameter("delCatList"));
+
+		for(int i=0;i<delCatList.length();i++) {
+		    int categoryId = Integer.parseInt(delCatList.getJSONObject(i).getString("checkboxValue").split("chk")[1]);
+
+		    TestDbTransactions.removeCategory(dbConnection,testId,categoryId);
+		}
+
+		data = new JSONObject();
+		data.put("result", true);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+
 	    } catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -217,6 +278,7 @@ public class TestManagement extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(data);
+		return;
 	    } catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -410,6 +472,7 @@ public class TestManagement extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(data);
+		return;
 	    } catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
