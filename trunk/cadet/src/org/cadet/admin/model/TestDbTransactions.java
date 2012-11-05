@@ -131,6 +131,7 @@ public class TestDbTransactions {
 	while (rs.next()) {
 
 	    temp = new BeanTestCategory();
+	    temp.setTestId(testId);
 	    temp.setCategoryId(rs.getInt("CategoryId"));
 	    temp.setCategoryName(rs.getString("CategoryName"));
 	    temp.setQuestionsPerCategory(rs.getInt("QuestionPerCategory"));
@@ -191,5 +192,47 @@ public class TestDbTransactions {
 
 	ps.executeUpdate();
 	ps.close();
+    }
+
+    public static void addCategoryToTest(Connection connection, int testId, int categoryId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddCategoryToTest);
+	ps.setInt(1,testId);
+	ps.setInt(2, categoryId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static JSONObject getSpecificTestCategoryDetails(Connection connection, int testId, int categoryId) throws SQLException, JSONException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveSpecificTestCategoryDetails);
+	ps.setInt(1, testId);
+	ps.setInt(2, categoryId);
+
+	BeanTestCategory result = null;
+
+	ResultSet rs = ps.executeQuery();
+	if(rs.next()) {
+
+	    result = new BeanTestCategory();
+	    result.setTestId(rs.getInt("TestId"));
+	    result.setCategoryId(rs.getInt("CategoryId"));
+	    result.setCategoryName(rs.getString("CategoryName"));
+	    result.setQuestionsPerCategory(rs.getInt("QuestionPerCategory"));
+	    result.setTimePerCategory(rs.getInt("TimePerCategory"));
+	}
+	rs.close();
+	ps.close();
+
+	JSONObject data = new JSONObject();
+
+	data.put("testId", result.getTestId());
+	data.put("categoryId", result.getCategoryId());
+	data.put("categoryName", result.getCategoryName());
+	data.put("questionPerCategory", result.getQuestionsPerCategory());
+	data.put("timePerCategory", result.getTimePerCategory());
+
+	return data;
     }
 }
