@@ -83,7 +83,6 @@
                         </div>
                         <div id="collapse3" class="accordion-body collapse">
                             <div class="accordion-inner">
-
                                 <ul class="nav">
                                     <li><a href="profile/GetCandidateProfileServlet">Change Details</a></li>
                                     <li><a href="profile/changepassword.jsp">Change Password</a></li>
