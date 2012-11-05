@@ -106,7 +106,7 @@
 					</div>
 					<div class="container-fluid span8">
 							<%
-								System.out.println(request.getAttribute("CandidateProfileData"));
+// 								System.out.println(request.getAttribute("CandidateProfileData"));
          					   List<String> list = (List<String>) request.getAttribute("CandidateProfileData");
            					   Iterator<String> it = list.iterator();
                                //System.out.println("List: " + it);
@@ -115,15 +115,15 @@
               					  String name = (String) it.next();
                 				  String contact = (String) it.next();
 							%>
-							<form action="GetCandidateProfileServlet" method="post">
+							<form action="UpdateCandidateProfileServlet" method="post">
             					<table>
                   					<tr>
                         				<td><label for="Name:">Name</label></td>
-                        				<td><input type="Text" name="Name :" value="<%=name%>" ></td>
+                        				<td><input type="Text" name="name" value="<%=name%>" ></td>
                     				</tr>
 									<tr>
                         				<td><label for="Contact">Contact</label></td>
-                        				<td> <input type="Text" name="Contact :" value="<%=contact%>"></td>
+                        				<td> <input type="Text" name="contact" value="<%=contact%>"></td>
                     				</tr>
                     		<%}%>
                     				<tr>
@@ -144,7 +144,7 @@
                        				</tr>
                     				<tr>	
                         				<td> <button class="btn btn-primary" name="save" type="submit" value="Save">Save</button></td>
-                        				<td> <a class="btn btn-danger" name="Cancel" href="./index.jsp">Cancel</a></td>
+                        				<td> <a class="btn btn-danger" name="Cancel" href="/cadet/client/index.jsp">Cancel</a></td>
                     				</tr>
                 			</table>
         				</form>

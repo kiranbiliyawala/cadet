@@ -103,20 +103,16 @@
 								<form action="UpdateCandidatePassword" method="post">
             						<table>
             							<tr>
-                							<td><label for="Old Password">Old Password</label></td>
-                							<td> <input type="password" name="currentpassword" value="" ></td>
+                							<td> <label>New Password</label></td>
+                							<td> <input type="password" name="changepassword" value="" placeholder="password"> </td>
             							</tr>
             							<tr>
-                							<td> <label for="New Password:">New Password</label></td>
-                							<td> <input type="password" name="changepassword" value=""> </td>
-            							</tr>
-            							<tr>
-                							<td><label for="Change Password:">Confirm Password</label></td>
-                							<td> <input type="password" name="confirmpassword" value=""></td>
+                							<td><label>Confirm Password</label></td>
+                							<td> <input type="password" name="confirmpassword" value="" placeholder="password"></td>
             							</tr>
             							<tr>
                 							<td> <button class="btn btn-primary" name="save" type="submit" value="Save" onclick="submit_val()">Save</button></td>
-                							<td> <a class="btn btn-danger" href="./index.jsp">Cancel</a></td>
+                							<td> <a class="btn btn-danger" href="/cadet/client/index.jsp">Cancel</a></td>
             							</tr>
           							</table>
           						</form>
