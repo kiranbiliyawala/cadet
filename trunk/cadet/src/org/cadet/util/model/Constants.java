@@ -84,6 +84,7 @@ public class Constants {
 	public static final String UpdateCategory = "UPDATE category SET CategoryName = ?, Description = ? , Ausername = ? WHERE CategoryId = ?";
 	public static final String RemoveCategory = "DELETE FROM category WHERE CategoryId=?";
 	public static final String RetrieveCategories = "SELECT * FROM category";
+	public static final String RetrieveCategoryByCategoryID = "SELECT CategoryName FROM category WHERE CategoryId = ?";
 	public static final String AddQuestion = "INSERT INTO questionbank(CategoryId, LevelId, Question, OptA, OptB, OptC, OptD, CorrectAnswer) VALUES (?,?,?,?,?,?,?,?)";
 	public static final String UpdateQuestion = "UPDATE questionbank SET CategoryId = ?, LevelId = ?, Question = ?, OptA = ?, OptB = ?, OptC = ?, OptD = ?, CorrectAnswer = ? WHERE QuestionId= ?";
 	public static final String RemoveQuestion = "DELETE from questionbank WHERE QuestionId = ?";
