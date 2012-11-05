@@ -44,7 +44,7 @@ footer {
 				<a class="brand" href="../index.jsp"><img src="../../img/cadet.gif" alt="CADET" width="66"></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="../index.jsp">Home</a></li>
+						<li><a href="../dashboard">Home</a></li>
 						<li><a href="#questionBank">Question Bank</a></li>
 						<li class="active"><a href="#testManagement">Test Management</a></li>
 						<li><a href="#candidateCategory">Candidate Category</a></li>
@@ -63,7 +63,7 @@ footer {
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
+						<a class="accordion-toggle" data-parent="#accordionMenu" href="../dashboard">Home</a>
 					</div>
 				</div>
 
