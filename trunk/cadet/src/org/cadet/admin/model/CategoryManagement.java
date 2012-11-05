@@ -16,7 +16,7 @@ public class CategoryManagement {
 	DatabaseConnection objConnection = DatabaseConnection.getInstance();
 	
 	public void addCategory(Category category) throws SQLException { 
-		PreparedStatement pst = objConnection.getDbConnection().prepareStatement(Constants.sqlCommands.AddCategory);
+		PreparedStatement pst = objConnection.getDbConnection().prepareStatement(Constants.sqlCommands.AddQuestionCategory);
         pst.setString(1, category.getCategoryName());
         pst.setString(2, category.getCategoryDescription());
         pst.setString(3, category.getAdminUsername());
