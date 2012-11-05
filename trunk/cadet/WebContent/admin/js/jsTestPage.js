@@ -7,7 +7,7 @@ $(document).ready(function(e) {
 		}
 	});
 
-	var alertDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have added the category <strong>successfully !!!</strong></div>";
+	var alertAddCategoryDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have added the category <strong>successfully !!!</strong></div>";
 	$("#frmNewCat").validate({
 		errorClass : "text-error",
 		submitHandler : function() {
@@ -21,7 +21,7 @@ $(document).ready(function(e) {
 						if(data.result===true) {
 
 							setTimeout(function() {
-								$("#divAddCat").prepend(alertDiv);
+								$("#divAddCat").prepend(alertAddCategoryDiv);
 								$("#txtCategoryName").val("");
 								setTimeout(function() { $(".alert").alert("close"); },3000);
 							},600);
@@ -166,6 +166,56 @@ $(document).ready(function(e) {
 					}
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 		});
+	});
+
+	$("#btnTestSettings").bind("click",function(e) {
+
+		$("#txtTestDate").val(new Date().getDate()+"."+new Date().getMonth()+"."+new Date().getFullYear());
+		$("#txtTPStart,#txtTPEnd").val(new Date().getHours()+":"+new Date().getMinutes());
+		$("#divTestSettings").modal("show");
+	});
+
+	$("#txtDP").datepicker();
+	$("#txtTPStart,#txtTPEnd").timepicker({
+		minuteStep : 1,
+		showMeridian : false,
+		disableFocus : true,
+		modalBackdrop : true
+	});
+
+	var alertTimeSaveDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have saved the details <strong>successfully !!!</strong></div>";
+	$("#frmDateTime").validate({
+		errorClass : "text-error",
+		errorPlacement : function(error,element) {
+			error.appendTo(element.parent());
+		},
+		submitHandler : function() {
+			$.post("TestManagement",
+				{
+					requestType : "saveTimeSettings",
+					testId : $("#testId").val(),
+					testDate : $("#txtTestDate").val(),
+					startTime : $("#txtTPStart").val(),
+					endTime : $("#txtTPEnd").val(),
+				},
+				function(data,textStatus,xhr) {
+					try {
+						if(data.result===true) {
+
+							setTimeout(function() {
+								$("#divTestSettings").prepend(alertTimeSaveDiv);
+								setTimeout(function() { $(".alert").alert("close"); },3000);
+							},600);
+						}
+						else if(data.result==="DatabaseError") {
+							pageRedirect("../DatabaseError.html");
+						}
+						else if(data.result==="ServerException") {
+							pageRedirect("../ServerException.html");
+						}
+					} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			});
+		}
 	});
 });
 
