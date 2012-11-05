@@ -159,7 +159,7 @@ footer {
 													<c:set var="TestAdaptive" value="Adaptive"></c:set>
 													<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
 													<c:choose>
-														<c:when test="${testType  eq TestAdaptive}">
+														<c:when test="${testType eq TestAdaptive}">
 															<input id='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' name='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' type="number" required placeholder="Questions per Category" min=0 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
 														</c:when>
 														<c:otherwise>
@@ -273,7 +273,7 @@ footer {
 	<script id="tmpltCategoryDetails" type="text/x-handlebars-template">
 		{{#if category}}
 			<tr>
-				<td><input type="checkbox" id="chkDelCatList" name="chkDelCatList" value="{{category.categoryId}}"></td>
+				<td><input type="checkbox" id="chkDelCatList" name="chkDelCatList" value="chk{{category.categoryId}}"></td>
 				<td class="span4">{{category.categoryName}}</td>
 				<td class="span6">
 					<c:choose>
@@ -296,6 +296,7 @@ footer {
 	</script>
 
 	<script src="../../js/jquery-1.8.2.js"></script>
+	<script src="../../js/jquery.json-2.3.js"></script>
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/bootbox.js"></script>
 	<script src="../../js/handlebars.js"></script>
