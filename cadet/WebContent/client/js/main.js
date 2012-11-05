@@ -1,4 +1,18 @@
 
+function submit_val(){
+	
+	var pass = document.getElementById("password");
+	
+	pass.value = hashmap(pass.value);
+
+}
+
+function hashmap(input){
+	var shaobj = new jsSHA(input,"ASCII");
+	var hash = shaobj.getHash("SHA-512", "HEX");
+	return hash;
+}
+
 $.post("DashboardServlet",
 		{ requestType : "getTests" },
 		function(data,textStatus,xhr) {

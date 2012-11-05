@@ -84,8 +84,8 @@
                             <div class="accordion-inner">
 
                                 <ul class="nav">
-                                    <li><a href="GetCandidateProfileServlet">Change Details</a></li>
-                                    <li><a href="/cadet/client/profile/changepassword.jsp">Change Password</a></li>
+                                    <li><a href="profile/GetCandidateProfileServlet">Change Details</a></li>
+                                    <li><a href="profile/changepassword.jsp">Change Password</a></li>
                                 </ul>
                             </div>
                         </div>
