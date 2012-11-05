@@ -368,6 +368,8 @@ public class NonAdaptiveTest {
 		else
 		{
 			ret=false;
+	//		rs.close();
+	//		statement.close();
 		}
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
