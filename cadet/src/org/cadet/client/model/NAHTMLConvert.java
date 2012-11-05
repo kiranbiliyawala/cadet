@@ -57,7 +57,7 @@ public class NAHTMLConvert {
 	private static String generate_section(NonAdaptiveTest test,String category,int no_ofQuestion) throws JSONException{
 		String cover_div = "";
 		cover_div = cover_div+text_div_start+
-				text_class_start+"CatCover accordion-body collapse in"+text_text_end+
+				text_class_start+"CatCover accordion-body collapse"+text_text_end+
 				text_id_start+"cover"+category+text_text_end+
 				tag_end+category+text_div_start+
 				text_class_start+"accordion-inner"+text_text_end+
