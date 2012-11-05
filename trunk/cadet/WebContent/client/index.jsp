@@ -144,9 +144,8 @@
 						<td>{{#if testDate}}{{testDate}}{{else}}NA{{/if}}</td>
 						<td>{{testDuration}} Mins.</td>
 						<td>
-							<form style="margin:0px" method="post" action="#">
 								<input type="hidden" id="testId" name="testId" value={{testId}}>
-								<input type="submit" value="Appear" class="btn btn-info">
+								<input type="submit" value="Appear" class="btn btn-info" onclick="start_test('{{testType}}','{{testId}}')">
 							</form>
 						</td>
 					</tr>
