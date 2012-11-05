@@ -14,7 +14,7 @@
 
         <link rel="stylesheet" href="../css/bootstrap.css">
         <style>
-            body {
+          body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
@@ -41,12 +41,13 @@
                     <a class="brand" href="#home"><img id="logo" src="../img/cadet.gif" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li class="active"><a href="/cadet/client/index.jsp">Home</a></li>
+                           <li class="active"><a href="dashboard">Home</a></li>
                            <li><a href="#test">Test</a></li>
                            <li><a href="#profile">Profile</a></li>
                        </ul>
                        <form action="/cadet/Logout">
                        <button type="submit" class="btn btn-danger pull-right">Logout</button>
+                       
                        </form>
                     </div>
                 </div>	<!--/.container -->
@@ -144,9 +145,13 @@
 						<td>{{#if testDate}}{{testDate}}{{else}}NA{{/if}}</td>
 						<td>{{testDuration}} Mins.</td>
 						<td>
+							{{#if givetest}}
 								<input type="hidden" id="testId" name="testId" value={{testId}}>
-								<input type="submit" value="Appear" class="btn btn-info" onclick="start_test('{{testType}}','{{testId}}')">
-							</form>
+								<button class="btn btn-info" onclick="start_test('{{testType}}','{{testId}}')">Appear Test {{givetest}}</button>
+							{{else}}
+								<input type="hidden" id="testId" name="testId" value={{testId}}>
+								<button disabled="disabled" class="btn btn-info">Appear Test {{givetest}}</button>
+							{{/if}}
 						</td>
 					</tr>
 				{{/each}}

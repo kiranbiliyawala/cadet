@@ -7,6 +7,27 @@ function submit_val(){
 
 }
 
+
+$(document).ready(
+		function(){
+			$.post("DashboardServlet",
+					{ requestType : "getTests" },
+					function(data,textStatus,xhr) {
+
+						try {
+							if(data.result===true) {
+								var src = $("#gettests").html();
+								var template = Handlebars.compile(src);
+								var output = template(data);
+								$("#tblTests tbody").append(output);
+							}
+						} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			});
+		}
+);
+
+
+
 function start_test(testtype,testid){
 	window.open('Test/'+testtype+'/CreateTest?testid='+testid,'_blank','location=0,menubar=0,statusbar=0,titelebar=0,toolbar=0',false);
 }
@@ -17,17 +38,3 @@ function hashmap(input){
 	return hash;
 }
 
-$.post("DashboardServlet",
-		{ requestType : "getTests" },
-		function(data,textStatus,xhr) {
-
-			try {
-				if(data.result===true) {
-					var src = $("#gettests").html();
-					var template = Handlebars.compile(src);
-					var output = template(data);
-	
-					$("#tblTests tbody").append(output);
-				}
-			} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
-	});

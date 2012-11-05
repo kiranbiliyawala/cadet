@@ -81,38 +81,36 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-    
+                    </div>	
                 </div>	<!--/#accordion -->
-				
-				<div class="container-fluid span9">
+                <div class="container-fluid span9">
 					<div class="navbar">
 						<div class="navbar-inner">
 							<div class="container-fluid pull-left">
 								<a class="brand" href="#">Tests</a>
 							</div>
 						</div>
-							<div>
-								
-							</div>
-							<div>
-								<table id="tblTests" class="table table-striped table-condensed table-hover">
-        		                	<thead>
-                 			           	<tr>
-                            		    	<th>Test Name</th>
-                                    		<th>Date</th>
-                                    		<th>Duration</th>
-                                    		<th></th>
-                                    	</tr>
-                            		</thead>
-                            		<tbody>
-                            		</tbody>
-                        		</table>								
-							</div>							
-						</div>						
-					</div>
+						<div>
+							<table id="tblTests" class="table table-striped table-condensed table-hover">
+								<thead>
+								<tr>
+									<th>Test Name</th>
+									<th>Date</th>
+									<th>Duration</th>
+									<th>Attempted / All</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>			
+						</table>											
+					</div>						
 				</div>
 			</div>
+            </div>
+        </div>
+				
+
 		<script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
         <script src="../../js/jquery-1.8.2.js"></script>
         <script src="../../js/bootstrap.js"></script>
@@ -120,22 +118,22 @@
 		<script id="tmpltTests" type="text/x-handlebars-template">
 			{{#if tests}}
 				{{#each tests}}
-					<tr>
-						<td>{{testName}}</td>
-						<td>{{testDate}}</td>
-						<td>{{testDuration}} Mins.</td>
-						<td><button id='btnTest{{testId}}' onclick='registerForTest(this,{{testId}})' class="btn btn-Primary">Register</Button></td>			
-					</tr>
-				{{/each}}
+				<tr>
+					<td> {{testName}} </td>
+					<td> {{testDate}} </td>
+					<td> {{testDuration}} Mins. </td>
+					<td> {{testDesc}}</td>
+				</tr>
+			{{/each}}
 			{{else}}
 				<tr>
 					<td><p class="text-warning">No Test Available</p></td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td></td>		
 				</tr>
 			{{/if}}
-	</script>
-	<script src="../js/jsregisterfortest.js"></script>
+		</script>
+	<script src="../js/jsviewalltest.js"></script>
 </body>
 </html>
