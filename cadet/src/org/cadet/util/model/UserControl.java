@@ -131,7 +131,7 @@ public class UserControl {
 		statement.setString(3, name);
 		statement.setString(4, Contact);
 		statement.setString(5, Category);
-		statement.setString(5, "N");
+		statement.setString(6, "N");
 		statement.executeUpdate();
 		statement.close();
 	}

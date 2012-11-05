@@ -30,9 +30,9 @@ public class Constants {
 	public static final String AddClient = "INSERT INTO candidate (CUserName, Password, Name, Contact, CandidateCategoryName, Verified) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String AddAdmin = "INSERT INTO admin (AUserName, Password, Name, Contact, Verified) VALUES (?, ?, ?, ?, ?)";
 	public static final String VerifyClient = "UPDATE candidate SET Verified='Y' WHERE CUserName = ?";
-	public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE Username = ?";
+	public static final String VerifyAdmin = "UPDATE admin SET Verified='Y' WHERE AUsername = ?";
 	public static final String CheckClientVerification = "SELECT Verified FROM candidate WHERE CUserName = ?";
-	public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE Username = ?";
+	public static final String CheckAdminVerification = "SELECT Verified FROM admin WHERE AUsername = ?";
 	public static final String UpdateClientPassword = "UPDATE candidate SET Password=? WHERE CUserName = ?";
 	public static final String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 	public static final String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
