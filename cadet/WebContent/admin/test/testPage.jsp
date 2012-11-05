@@ -141,9 +141,9 @@ footer {
 							<thead>
 								<tr>
 									<th></th>
-									<th class="2">Category</th>
-									<th class="6">Number of Questions</th>
-									<th class="6">Duration</th>
+									<th class="span4">Category</th>
+									<th class="span6">Number of Questions</th>
+									<th class="span6">Duration</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -152,7 +152,7 @@ footer {
 										<c:forEach var="i" items="${categoryDetails}">
 											<tr>
 												<td><input type="checkbox" id="chkDelCatList" name="chkDelCatList" value='<c:out value="chk${i.categoryId}"></c:out>'></td>
-												<td class="span2">
+												<td class="span4">
 													<c:out value="${i.categoryName}"></c:out>
 												</td>
 												<td class="span6">
@@ -267,6 +267,31 @@ footer {
 			{{#each categoryList}}
 				<option value="{{categoryId}}"> {{categoryName}} </option>
 			{{/each}}
+		{{/if}}
+	</script>
+
+	<script id="tmpltCategoryDetails" type="text/x-handlebars-template">
+		{{#if category}}
+			<tr>
+				<td><input type="checkbox" id="chkDelCatList" name="chkDelCatList" value="{{category.categoryId}}"></td>
+				<td class="span4">{{category.categoryName}}</td>
+				<td class="span6">
+					<c:choose>
+						<c:when test="${testType  eq TestAdaptive}">
+							<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="Questions per Category" min=0 value="{{category.questionPerCategory}}">
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-primary">Add/View Questions</button>
+						</c:otherwise>
+					</c:choose>
+				</td>
+				<td class="span6">
+					<div class="input-append">
+						<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="In Minutes" min=0 value="{{category.timePerCategory}}">
+						<span class="add-on">Min.</span>
+					</div>
+				</td>
+			</tr>
 		{{/if}}
 	</script>
 
