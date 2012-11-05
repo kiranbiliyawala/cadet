@@ -78,6 +78,18 @@ public class Constants {
 	public static String addUserCategoriesSql = "Insert INTO CandidateCategory Values (?)";
 	public static String deleteCandidateCategorySql = "DELETE FROM candidatecategory WHERE CandidateCategoryName = ?";
 
+	/* Kiran Queries */
+	public static final String AddCategory = "INSERT INTO category (CategoryName, Description, Ausername) VALUES(?,?,?)";
+	public static final String UpdateCategory = "UPDATE category SET CategoryName = ?, Description = ? , Ausername = ? WHERE CategoryId = ?";
+	public static final String RemoveCategory = "DELETE FROM category WHERE CategoryId=?";
+	public static final String RetrieveCategories = "SELECT * FROM category";
+	public static final String AddQuestion = "INSERT INTO questionbank(CategoryId, LevelId, Question, OptA, OptB, OptC, OptD, CorrectAnswer) VALUES (?,?,?,?,?,?,?,?)";
+	public static final String UpdateQuestion = "UPDATE questionbank SET CategoryId = ?, LevelId = ?, Question = ?, OptA = ?, OptB = ?, OptC = ?, OptD = ?, CorrectAnswer = ? WHERE QuestionId= ?";
+	public static final String RemoveQuestion = "DELETE from questionbank WHERE QuestionId = ?";
+	public static final String RetrieveAllQuestion = "SELECT * FROM questionbank";
+	public static final String RetrieveCategorywiseQuestion = "SELECT * FROM questionbank WHERE CategoryId = ?";
+	public static final String RetrieveQuestionByQuestionID = "SELECT * FROM questionbank WHERE QuestionId = ?";
+
 	/* Unknowm */
 	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
 	public static final String getQuestionCountOfCategoryOfTest="SELECT CategoryId, QuestionPerCategory FROM test WHERE testId = ?";
