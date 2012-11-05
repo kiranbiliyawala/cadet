@@ -87,16 +87,17 @@ public class Constants {
 	public static final String getTest="SELECT * from test where testId = ?";
     }
 	
-    public static final class email{
-	public static final String SMTP_HOST_NAME = "smtp.gmail.com";
-	public static final String EmailUsername = "cadet.daiict@gmail.com";
-	public static final String EmailPassword = "cadet.daiict";
-	public static final Integer SMTP_PORT = 465;
-	public static final String SMTP_SSL = "true";
-	public static final String SMTP_AUTH = "true";
-	public static final String EmailMessage = "Please Click following link to verify your email address https://localhost:9090/cadet/verifyEmail?";
-	public static final String EmailSubject = "[EMAIL Verification] CADET";
-	public static final String EmailRegex = "^(.+)@(.+)$";
+	public static final class email{
+		public static final String SMTP_HOST_NAME = "smtp.gmail.com";
+		public static final String EmailUsername = "cadet.daiict@gmail.com";
+		public static final String EmailPassword = "cadet.daiict";
+		public static final Integer SMTP_PORT = 465;
+		public static final String SMTP_SSL = "true";
+		public static final String SMTP_AUTH = "true";
+		public static final String EmailMessage = "Please Click following link to verify your email address http://localhost:9090/cadet/verifyEmail?";
+		public static final String EmailSubject = "[EMAIL Verification] CADET";
+		public static final String EmailRegex = "^(.+)@(.+)$";
+		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://localhost:9090/cadet/ForgotPassword?";
 		
     }
 	
