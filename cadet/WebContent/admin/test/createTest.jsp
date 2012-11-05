@@ -127,7 +127,7 @@ body {
 						<div class="control-group">
 							<label class="control-label" for="txtTestName">Test Name : </label>
 							<div class="controls">
-								<input type="text" id="txtTestName" name="txtTestName" placeholder="Test Name" required minlength=2 maxlength=30>
+								<input type="text" id="txtTestName" name="txtTestName" placeholder="Test Name" required minlength=2>
 							</div>
 						</div>
 
@@ -181,8 +181,6 @@ body {
 	</div>
 
 	<script src="../../js/jquery-1.8.2.js"></script>
-	<script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
-
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/jquery.validate.js"></script>
 	<script src="../../js/additional-methods.js"></script>

@@ -7,7 +7,63 @@ $(document).ready(function(e) {
 		}
 	});
 
-	$("#btnAddCat").bind("click",function(e) {
+	var alertDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have added the category <strong>successfully !!!</strong></div>";
+	$("#frmNewCat").validate({
+		errorClass : "text-error",
+		submitHandler : function() {
+			$.post("TestManagement",
+				{
+					requestType : "newCategory",
+					categoryName : $("#txtCategoryName").val()
+				},
+				function(data,textStatus) {
+					try {
+						if(data.result===true) {
+
+							setTimeout(function() {
+								$("#divAddCat").prepend(alertDiv);
+								$("#txtCategoryName").val("");
+								setTimeout(function() { $(".alert").alert("close"); },3000);
+							},600);
+							$("#divNewCat").modal("hide");
+							$("#btnAddCat").click();
+						} else if(data.result==="DatabaseError") {
+							pageRedirect("../DatabaseError.html");
+						}
+						else if(data.result==="ServerException") {
+							pageRedirect("../ServerException.html");
+						}
+					} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			});
+		}
+	});
+
+	$("#btnAddCatConfirm").live("click",function(e) {
+
+		try {
+			var option = $("#optCatList option:selected").val();
+
+			if(option==="optNewCat") {
+
+				$("#divAddCat").modal("hide");
+				$("#divNewCat").modal("show");
+
+			} else {
+
+				$.post("TestManagement",
+					{
+						requestType : "addCategory",
+						testId : $("#testId").val(),
+						categoryId : option
+ 					},
+					function(data,textStatus,xhr) {
+						console.log("Added");
+				});
+			}
+		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+	});
+
+	$("#btnAddCat").live("click",function(e) {
 
 		$.post("TestManagement",
 			{ requestType : "getAllCategories" },
@@ -19,7 +75,10 @@ $(document).ready(function(e) {
 						var template = Handlebars.compile(src);
 						var output = template(data);
 
-						$("#optCatList").append(output);
+						var initOption = "<option value=\"optNewCat\">--(New Category)--</option>";
+						$("#optCatList").html(initOption+output);
+
+						$("#divAddCat").modal("show");
 					}
 					else if(data.result==="DatabaseError") {
 						pageRedirect("../DatabaseError.html");

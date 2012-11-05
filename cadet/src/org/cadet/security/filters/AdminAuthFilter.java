@@ -1,6 +1,7 @@
 package org.cadet.security.filters;
 
 import java.io.IOException;
+
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,7 +12,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class AdminAuthFilter
@@ -44,7 +44,7 @@ public class AdminAuthFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-		HttpSession session = request.getSession();
+/*		HttpSession session = request.getSession();
 		try {
 			Boolean AdminAuth = (Boolean) session.getAttribute("AdminAuth");
 			if (AdminAuth == false || AdminAuth == null) {
@@ -54,7 +54,7 @@ public class AdminAuthFilter implements Filter {
 			response.sendRedirect("/Login");
 			return;
 		} // pass the request along the filter chain
-		chain.doFilter(request, response);
+*/		chain.doFilter(request, response);
 		// chain.doFilter(req, res);
 	}
 

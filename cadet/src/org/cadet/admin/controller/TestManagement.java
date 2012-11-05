@@ -150,6 +150,64 @@ public class TestManagement extends HttpServlet {
 	    }
 	}
 
+	else if(requestType.equals("addCategory")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+	    int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+	    System.out.println(testId);
+	    System.out.println(categoryId);
+	}
+
+	else if(requestType.equals("newCategory")) {
+
+	    String categoryName = request.getParameter("categoryName");
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try{
+
+		TestDbTransactions.addCategory(dbConnection,categoryName);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
 	else if (requestType.equals("createTest")) {
 
 	    String testName = request.getParameter("txtTestName");
