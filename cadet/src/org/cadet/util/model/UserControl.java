@@ -136,7 +136,7 @@ public class UserControl {
 		statement.close();
 	}
 
-	public static void UpdateClientPassword(Connection connection,String username,String password) throws SQLException{
+	public static boolean UpdateClientPassword(Connection connection,String username,String password) throws SQLException{
 		String PasswordHash = Hashify(password);
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.UpdateClientPassword);
@@ -144,7 +144,8 @@ public class UserControl {
 		statement.setString(2,username);
 		statement.executeUpdate();
 		statement.close();
-
+		
+		return true;
 	}
 	
 	public static void AddAdmin(Connection connection,String username,String password,String name,String Contact) throws SQLException{
