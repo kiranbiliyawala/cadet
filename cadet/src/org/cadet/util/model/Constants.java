@@ -62,7 +62,7 @@ public class Constants {
 
 	/* Rajan Queries */
 
-	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId), t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c WHERE t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName";
+	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName and r.CUserName = c.CUserName and r.Marks<>0 and r.Attempted<>0 and r.Correct<>0 and c.CUserName = ?";
 	public static final String getCandidateCategory = "SELECT CandidateCategoryName from candidate where CUserName=?";
 
 	/* Shailee Queries */
