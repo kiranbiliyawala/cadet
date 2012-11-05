@@ -18,13 +18,6 @@ public class TestRegister {
 	public TestRegister (Connection connection){
 		try{
 			this.connection=connection;
-//			statement = this.connection.createStatement();
-//			Class.forName(Constants.DB.driver);
-//			if(Constants.DB.hasPassword){
-//				connection = DriverManager.getConnection(Constants.DB.dburl, Constants.DB.username, Constants.DB.password);
-//			}else{
-//				connection = DriverManager.getConnection(Constants.DB.dburl);
-//			}
 		}catch(Exception e)
 		{
 			ErrorLogging.getInstance().log(Level.SEVERE, e);
@@ -43,10 +36,7 @@ public class TestRegister {
 			ResultSet rs = statement.executeQuery();
 			
 				
-			//	System.out.println(""+pst);
-		
-					
-				BeanTest objTest;
+			BeanTest objTest;
 			
 				while(rs.next()){
 					objTest= new BeanTest();
@@ -57,7 +47,9 @@ public class TestRegister {
 					test1.add(objTest);
 					
 				}
-//				connection.close();				
+				rs.close();
+				statement.close();
+				
 			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,7 +88,9 @@ public class TestRegister {
 					
 					test2.add(objTest);
 				}
-							
+				
+				rs.close();
+				statement.close();
 				//connection.close();
 		}		
 		catch (SQLException e) {
@@ -120,7 +114,8 @@ public class TestRegister {
 				statement.setString(1, CUserName);
 				statement.setInt(2, TestId);
 				i = statement.executeUpdate();
-								
+
+				statement.close();
 				//connection.close();
 		}		
 		catch (SQLException e) {

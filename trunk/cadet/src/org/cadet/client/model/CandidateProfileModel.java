@@ -39,17 +39,16 @@ public class CandidateProfileModel {
 		try {
 			PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getCandidateProfileDataSql);
 			statement.setString(1, username);
+			System.out.println("username form Candidate profile model:" + username);
 			ResultSet rs = statement.executeQuery();
 			
 			while (rs.next()) {
 			    list.add(rs.getString("Name"));
 			    list.add(rs.getString("Contact"));
-			   
-			    for(int i=0;i<list.size();i++)
-			    {
-			    	System.out.println(list.get(i));			    
-			    }
 			}
+			System.out.println("List form Candidate profile model:" + list);
+			rs.close();
+			statement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,6 +70,8 @@ public class CandidateProfileModel {
 			    list.add(rs.getString("CandidateCategoryName"));			   
 			   
 			}
+			rs.close();
+			statement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,8 +94,9 @@ public class CandidateProfileModel {
 			statement.setString(4, username);
 			
 			rs = statement.executeUpdate();
+			System.out.print("success");
 			
-			
+			statement.close();
 		
 	}catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -102,45 +104,47 @@ public class CandidateProfileModel {
 	}
 		return rs;
 }
-	public boolean updateCandidatePassword(String currentpassword, String newpassword, String username){
-		
-		PreparedStatement statement=null;
-		int rCount=0;
-		boolean flag=false;
-		
-		try {
-			statement = connection.prepareStatement(Constants.sqlCommands.getPasswordClient);
-			statement.setString(1, username);
-			
-			ResultSet rs = statement.executeQuery();
-			
-			if (rs.next()) {
-				if (rs.getString("Password").equals(currentpassword)) //old password corrected
-                {
-					statement = connection.prepareStatement(Constants.sqlCommands.updateCandidatePasswordSql);
-					statement.setString(1, newpassword);
-					statement.setString(2, username);
-					rCount = statement.executeUpdate();	
-					if (rCount > 0) {
-                        System.out.println("Password Changed !!");
-                        flag=true;
-                    } else {
-                        flag = false;
-                    }
-                }
-			}
-				else
-				{
-					flag=false;
-				}
-			}catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			return flag;
-	}
+//	public boolean updateCandidatePassword(String newpassword, String username){
+//		
+//		PreparedStatement statement=null;
+//		int rCount=0;
+//		boolean flag=false;
+//		
+//		try {
+//			statement = connection.prepareStatement(Constants.sqlCommands.getPasswordClient);
+//			statement.setString(1, username);
+//			
+//			ResultSet rs = statement.executeQuery();
+//			
+//			if (rs.next()) {
+//				if (rs.getString("Password").equals(currentpassword)) //old password corrected
+//                {
+//					statement = connection.prepareStatement(Constants.sqlCommands.updateCandidatePasswordSql);
+//					statement.setString(1, newpassword);
+//					statement.setString(2, username);
+//					rCount = statement.executeUpdate();	
+//					if (rCount > 0) {
+//                        System.out.println("Password Changed !!");
+//                        flag=true;
+//                    } else {
+//                        flag = false;
+//                    }
+//                }
+//			}
+//				else
+//				{
+//					flag=false;
+//				}
+//			rs.close();
+//			statement.close();
+//			}catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			
+//			return flag;
+//	}
 
 	public static String Hashify(String Plaintext){
 		MessageDigest md;

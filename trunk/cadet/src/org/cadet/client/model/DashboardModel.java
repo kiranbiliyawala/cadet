@@ -23,38 +23,40 @@ public class DashboardModel {
 
 		ArrayList<DashboardBean> result = new ArrayList<DashboardBean>();
 		DashboardBean temp = null;
+		
+		String candidatecategory  = CandidateCategory.fetch(connection, username);
+		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getDashboardTests);
-		statement.setString(1, username);
+		
+		
+		statement.setString(1, candidatecategory);
+		statement.setString(2, username);
+		
 		ResultSet rs = statement.executeQuery();
-//		while (rs.next()) {
-//
-//		    
-////		    temp.setTestId(rs.getInt("TestId"));
-////		    temp.setTestName(rs.getString("TestName"));
-////		    temp.setTestDate(rs.getDate("TestDate"));
-////		    temp.setTestDuration(rs.getInt("TestDuration"));
-//		    
-//		}
-		temp = new DashboardBean();
-		temp.setTestId(1);
-		temp.setTestType("NonAdaptive");
-	    temp.setTestName("DAIICT");
-	    temp.setTestDate(new Date(100));
-	    temp.setTestDuration(120);
-	    result.add(temp);
-	    temp = new DashboardBean();
-	    temp.setTestId(2);
-	    temp.setTestType("NonAdaptive");
-	    temp.setTestName("DAIICT");
-	    temp.setTestDate(new Date(100));
-	    temp.setTestDuration(120);
-	    result.add(temp);
+		while (rs.next()) {
+			temp = new DashboardBean();
+		    temp.setTestId(rs.getInt("TestId"));
+		    temp.setTestType(rs.getString("NonAdaptive"));
+		    temp.setTestName(rs.getString("TestName"));
+		    temp.setTestDate(rs.getDate("TestDate"));
+		    temp.setTestDuration(rs.getInt("TestDuration"));
+		    if(!(NonAdaptiveTest.isAllowed(rs.getInt("TestId"), username)))
+		    {
+		    	temp.setGivetest("true");
+		    }
+		    else
+		    {
+		    	temp.setGivetest(null);
+		    }
+		    result.add(temp);
+		    
+		}
 		rs.close();
 		statement.close();
 
 		JSONObject data = new JSONObject();
 		data.put("testList", result.toArray(new DashboardBean[result.size()]));
-		System.out.println("dashboard: " + data);
+		
 		return data;
 	    }
 	
