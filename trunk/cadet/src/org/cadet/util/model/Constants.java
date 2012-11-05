@@ -56,7 +56,8 @@ public class Constants {
 	public static final String AddCategory = "INSERT INTO category (CategoryName) VALUES (?)";
 	public static final String AddCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId) VALUES (?,?)";
 	public static final String UpdateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
-	public static final String deleteTest = "DELETE from test WHERE TestId = ?";
+	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
+	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
 
 
 	/* Rajan Queries */
