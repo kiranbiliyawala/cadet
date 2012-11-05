@@ -412,6 +412,7 @@
         
          <script type="text/javascript">
         $("#question").addClass("active");
+        $("#collapse2").addClass("in");
         </script>
         
     </body>
