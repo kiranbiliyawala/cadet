@@ -23,6 +23,8 @@ public class CandidateCategory {
 		rs.first();
 		candidatecategory = rs.getString("CandidateCategoryName");
 		bean.setCandidatecategory(candidatecategory);
+		rs.close();
+		statement.close();
 		return candidatecategory;
 		
 	}
