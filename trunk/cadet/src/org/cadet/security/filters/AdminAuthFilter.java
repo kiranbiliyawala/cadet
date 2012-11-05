@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class AdminAuthFilter
@@ -44,17 +45,17 @@ public class AdminAuthFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-/*		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		try {
 			Boolean AdminAuth = (Boolean) session.getAttribute("AdminAuth");
 			if (AdminAuth == false || AdminAuth == null) {
 				throw new NullPointerException();
 			}
 		} catch (NullPointerException e) {
-			response.sendRedirect("/Login");
+			response.sendRedirect("/cadet/Login");
 			return;
 		} // pass the request along the filter chain
-*/		chain.doFilter(request, response);
+		chain.doFilter(request, response);
 		// chain.doFilter(req, res);
 	}
 
