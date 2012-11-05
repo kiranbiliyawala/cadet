@@ -3,7 +3,9 @@ package org.cadet.admin.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -504,6 +506,21 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    }
+	}
+	
+	else if (requestType.equals("saveTimeSettings")) {
+
+/*	    int testId = Integer.parseInt(request.getParameter("testId"));
+	    long longTestDate = Long.parseLong(request.getParameter("testDate").replaceAll(".", ""));
+	    Date testDate = new Date(longTestDate);
+	    Timestamp startTime = new Timestamp(new Date(request.getParameter("testDate")+" "+request.getParameter("startTime")).getTime());
+	    @SuppressWarnings("deprecation")
+	    Timestamp endTime = new Timestamp(new Date(request.getParameter("testDate")+" "+request.getParameter("endTime")).getTime());
+
+	    System.out.println(testId);
+	    System.out.println(testDate);
+	    System.out.println(startTime);
+	    System.out.println(endTime);*/
 	}
     }
 }
