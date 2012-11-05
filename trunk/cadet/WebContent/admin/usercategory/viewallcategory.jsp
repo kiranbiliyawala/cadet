@@ -33,89 +33,12 @@ body {
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="../index.jsp"><img
-					src="../../img/cadet.gif" alt="CADET" width="66"></a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li><a href="../index.jsp">Home</a></li>
-						<li><a href="#questionBank">Question Bank</a></li>
-						<li class="active"><a href="testManagementHome.jsp">Test
-								Management</a></li>
-						<li><a href="#candidateCategory">Candidate Category</a></li>
-					</ul>
-					<button class="btn btn-danger pull-right">Logout</button>
-				</div>
-			</div>
-			<!--/.container -->
-		</div>
-	</div>
+	<jsp:include page="/admin/NavBar.jsp"></jsp:include>
 	<!--/.navbar -->
 
 	<div class="container-fluid">
 		<div class="row">
-			<div class="accordion span2" id="accordionMenu">
-
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-parent="#accordionMenu"
-							href="../index.jsp">Home</a>
-					</div>
-				</div>
-
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							data-parent="#accordionMenu" href="#collapse2">Question Bank</a>
-					</div>
-					<div id="collapse2" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<ul class="nav">
-								<li><a href="#">Add/View Questions</a></li>
-								<li><a href="#">Upload Questions</a></li>
-								<li><a href="#">Add/View Category</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							data-parent="#accordionMenu" href="#collapse3">Test
-							Management</a>
-					</div>
-					<div id="collapse3" class="accordion-body collapse in">
-						<div class="accordion-inner">
-							<ul class="nav">
-								<li><a href="testManagementHome.jsp">View Test</a></li>
-								<li class="active"><a href="#createTest">Create Test</a></li>
-								<li><a href="#result">Result</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse"
-							data-parent="#accordionMenu" href="#collapse4">Candidate
-							Category</a>
-					</div>
-					<div id="collapse4" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<ul class="nav">
-								<li><a href="#">Add Category</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			<jsp:include page="/admin/Accordian.jsp"></jsp:include>
 			<div class="container-fluid span7">
 				<div class="navbar">
 					<div class="navbar-inner">
@@ -145,15 +68,7 @@ body {
 	</div>
 	<!--/main container -->
 
-	<div id="footer" class="container-fluid navbar navbar-fixed-bottom">
-		<hr>
-		<div class="row" style="margin-bottom: 10px;">
-			<a class="span pull-right" href="#">About</a> <a
-				class="span pull-right" href="#">FAQ</a> <a class="span pull-right"
-				href="#">Contact us</a> <a class="span pull-right" href="#">Help</a>
-			<a class="span pull-right" href="#">Privacy &amp; Policy</a>
-		</div>
-	</div>
+	<jsp:include page="/admin/Footer.jsp"></jsp:include>
 
 	
 	<script src="../../js/jquery-1.8.2.js"></script>
@@ -183,6 +98,13 @@ body {
 				</tr>
 			{{/if}}
     	</script>
+    	
+    	
 	<script src="../js/jsUserCategory.js"></script>
+	
+	<script type="text/javascript">
+	$("#category").addClass("active");
+	</script>
+	
 </body>
 </html>
