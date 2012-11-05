@@ -22,7 +22,7 @@ function registerForTest(objTd,testId){
 	
 $(document).ready(function(){
 	$.ajax({
-		url:"../../Test/newRegisterList",
+		url:"newRegisterList",
 		dataType:"json",
 		type:"GET",
 		success:function(data){
