@@ -41,7 +41,7 @@ body {
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="../index.jsp"><img src="../../img/cadet.gif" alt="CADET" width="66"></a>
+				<a class="brand" href="../dashboard"><img src="../../img/cadet.gif" alt="CADET" width="66"></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li><a href="../index.jsp">Home</a></li>
@@ -63,7 +63,7 @@ body {
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
+						<a class="accordion-toggle" data-parent="#accordionMenu" href="../dashboard">Home</a>
 					</div>
 				</div>
 
