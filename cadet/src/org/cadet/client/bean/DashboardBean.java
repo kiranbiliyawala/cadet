@@ -13,7 +13,14 @@ public class DashboardBean {
 	private Integer testDuration;
 	private String username;
 	private String candidatecategory;
+	private String givetest;
 	
+	public String getGivetest() {
+		return givetest;
+	}
+	public void setGivetest(String givetest) {
+		this.givetest = givetest;
+	}
 	public String getUsername() {
 		return username;
 	}
