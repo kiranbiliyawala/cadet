@@ -131,11 +131,11 @@ public class UserControl {
 		statement.setString(3, name);
 		statement.setString(4, Contact);
 		statement.setString(5, Category);
-		statement.setString(6, "N");
+		statement.setString(5, "N");
 		statement.executeUpdate();
 		statement.close();
 	}
-	
+
 	public static void UpdateClientPassword(Connection connection,String username,String password) throws SQLException{
 		String PasswordHash = Hashify(password);
 		
