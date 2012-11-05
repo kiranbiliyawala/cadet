@@ -63,16 +63,29 @@ public class TestDbTransactions {
 	return data;
     }
 
-    public static JSONObject getAllCategories(Connection connection) {
+    public static JSONObject getAllCategories(Connection connection) throws SQLException, JSONException {
 
 	Statement statement = connection.createStatement();
 	ArrayList<BeanCategory> result = new ArrayList<BeanCategory>();
 	BeanCategory temp = null;
 
 	ResultSet rs = statement.executeQuery(Constants.sqlCommands.retriveCategories);
+	while(rs.next()) {
+
+	    temp = new BeanCategory();
+	    temp.setCategoryId(rs.getInt("CategoryId"));
+	    temp.setCategoryName(rs.getString("CategoryName"));
+	    temp.setCategoryDesc(rs.getString("CategoryDescription"));
+
+	    result.add(temp);
+	}
+	rs.close();
+	statement.close();
 
 	JSONObject data = new JSONObject();
-	data.put("categoryList",);
+	data.put("categoryList", result.toArray(new BeanCategory[result.size()]));
+
+	return data;
     }
 
     public static void createTest(Connection connection, String testName, String testType, String testDesc) throws SQLException {
@@ -169,5 +182,14 @@ public class TestDbTransactions {
 	ps.close();
 
 	return result;
+    }
+
+    public static void addCategory(Connection connection,String categoryName) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddCategory);
+	ps.setString(1, categoryName);
+
+	ps.executeUpdate();
+	ps.close();
     }
 }

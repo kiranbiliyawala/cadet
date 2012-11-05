@@ -131,7 +131,7 @@ footer {
 				</div>
 				<div class="container-fluid span8">
 					<div class="container-fluid">
-						<button id="btnAddCat" href="#divAddCat" id="btnAddCat" role="button" class="btn btn-primary pull-left" data-toggle="modal">Add Category</button>
+						<button id="btnAddCat" id="btnAddCat" class="btn btn-primary pull-left" data-toggle="modal">Add Category</button>
 						<button id="btnDelCat" class="btn btn-danger offset1">Remove Category</button>
 						<button id="btnTestSettings" class="btn btn-primary offset1">Test Settings</button>
 					</div>
@@ -160,7 +160,7 @@ footer {
 													<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
 													<c:choose>
 														<c:when test="${testType  eq TestAdaptive}">
-															<input class="" id='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' name='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' type="number" required placeholder="Questions per Category" min=0 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
+															<input id='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' name='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' type="number" required placeholder="Questions per Category" min=0 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
 														</c:when>
 														<c:otherwise>
 															<button class="btn btn-primary">Add/View Questions</button>
@@ -169,7 +169,7 @@ footer {
 												</td>
 												<td class="span6">
 													<div class="input-append">
-														<input class="" id='<c:out value="txtTimeCat${i.categoryId}"></c:out>' name='<c:out value="txtTimeCat${i.categoryId}"></c:out>' type="number" required placeholder="In Minutes" min=0 value='<c:out value="${i.timePerCategory}"></c:out>'>
+														<input id='<c:out value="txtTimeCat${i.categoryId}"></c:out>' name='<c:out value="txtTimeCat${i.categoryId}"></c:out>' type="number" required placeholder="In Minutes" min=0 value='<c:out value="${i.timePerCategory}"></c:out>'>
 														<span class="add-on">Min.</span>
 													</div>
 												</td>
@@ -217,42 +217,63 @@ footer {
 		</div>
 	</footer>
 
-	<div id="divAddCat" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="lblAddCat" aria-hidden="true">
+	<div id="divAddCat" class="modal hide fade" style="display:none;">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<button type="button" class="close" data-dismiss="modal">x</button>
 			<h3 id="lblAddCat">Add Category</h3>
 		</div>
 		<div class="modal-body">
 			<form class="container=fluid form-horizontal">
 				<div class="control-group">
-					<div class="control-label" for="optCatList">Select Category : </div>
+					<label class="control-label" for="optCatList">Select Category : </label>
 					<div class="controls">
 						<select id="optCatList" name="optCatList">
-							<option>(New Category)</option>
 						</select>
 					</div>
 				</div>
 			</form>
 		</div>
-		<div class="modal-footer">
-			<button class="btn btn-primary">Add</button>
-			<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+ 		<div class="modal-footer">
+			<button id="btnAddCatConfirm" class="btn btn-primary">Add</button>
+			<button class="btn" data-dismiss="modal">Cancel</button>
+		</div>
+	</div>
+
+	<div id="divNewCat" class="modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h3 id="lblNewCat">New Category</h3>
+		</div>
+		<div class="modal-body">
+			<form id="frmNewCat" class="container=fluid form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="optCatList">Category Name : </label>
+					<div class="controls">
+						<input type="text" id="txtCategoryName" name="txtCategoryName" placeholder="Category Name" required minlength=2>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="submit" id="btnNewCatConfirm" class="btn btn-primary" value="Add">
+						<a class="btn" data-dismiss="modal">Cancel</a>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 
 	<script id="tmpltCategories" type="text/x-handlebars-template">
 		{{#if categoryList}}
 			{{#each categoryList}}
-				<select> {{category}} </select>
+				<option value="{{categoryId}}"> {{categoryName}} </option>
 			{{/each}}
 		{{/if}}
 	</script>
 
 	<script src="../../js/jquery-1.8.2.js"></script>
-	<script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
-
 	<script src="../../js/bootstrap.js"></script>
 	<script src="../../js/bootbox.js"></script>
+	<script src="../../js/handlebars.js"></script>
 	<script src="../../js/jquery.validate.js"></script>
 	<script src="../../js/additional-methods.js"></script>
 	<script src="../js/jsGlobal.js"></script>
