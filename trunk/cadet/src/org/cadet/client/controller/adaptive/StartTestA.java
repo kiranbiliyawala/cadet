@@ -37,6 +37,8 @@ public class StartTestA extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		//put this into doPost rather than doGet when Rajan's work is done and when you link the modules.
+		
 		try {
 			HttpSession session = request.getSession();
 			String testStatus=session.getAttribute("testStatus").toString();
