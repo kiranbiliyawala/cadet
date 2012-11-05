@@ -46,10 +46,10 @@ public class GetCandidateProfileServlet extends HttpServlet {
 	    Connection dbConnection = dbConn.getDbConnection();
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        System.out.println("in servlet");
+        
         HttpSession cadetsession = request.getSession();
 		String CUserName = (String) cadetsession.getAttribute("user"); // "cadet.daiict@gmail.com"; 
-        
+		System.out.println("in servlet: " + CUserName);
         CandidateProfileModel cpm = new CandidateProfileModel(dbConnection); 
         try {            
 

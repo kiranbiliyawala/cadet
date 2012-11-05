@@ -18,7 +18,7 @@ import org.cadet.util.model.DatabaseConnection;
 /**
  * Servlet implementation class UpdateCandidateProfileServlet
  */
-@WebServlet("/UpdateCandidateProfileServlet")
+@WebServlet("/client/profile/UpdateCandidateProfileServlet")
 public class UpdateCandidateProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -45,11 +45,11 @@ public class UpdateCandidateProfileServlet extends HttpServlet {
 		DatabaseConnection dbConn = DatabaseConnection.getInstance();
 	    Connection dbConnection = dbConn.getDbConnection();
 		response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        //PrintWriter out = response.getWriter();
         
         HttpSession cadetsession = request.getSession();
 		String CUserName = (String) cadetsession.getAttribute("user");
-        
+        System.out.println("UpdateCandidateProfileServlet : " + CUserName);
         CandidateProfileModel cpm = new CandidateProfileModel(dbConnection);
         try {
              String candidatename = request.getParameter("name");
@@ -66,7 +66,7 @@ public class UpdateCandidateProfileServlet extends HttpServlet {
              {
             	 cadetsession.setAttribute("result", false);
              }
-             request.getRequestDispatcher("changedetails.jsp").forward(request,response);
+             request.getRequestDispatcher("GetCandidateProfileServlet").forward(request,response);
         } catch(Exception ex)
         {
         	ex.printStackTrace();

@@ -23,7 +23,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class Gettesttoregister
  */
-@WebServlet("/Test/newRegisterList")
+@WebServlet("/client/Test/newRegisterList")
 public class Gettesttoregister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,8 +49,10 @@ public class Gettesttoregister extends HttpServlet {
 		HttpSession cadetsession = request.getSession();
 		String CUserName = (String) cadetsession.getAttribute("user");
 		String CCatName=null;
+		
 		try {
 			CCatName = CandidateCategory.fetch(dbConnection, CUserName);
+			System.out.println("Gettesttoregister" + CCatName);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -73,7 +75,7 @@ public class Gettesttoregister extends HttpServlet {
 				jObj.put("testDate", oTest.getTestDate());
 				jObj.put("testDuration", oTest.getTestDuration());
 				jObj.put("testId", oTest.getTestId());
-				
+				System.out.println("Gettesttoregister" + jObj);
 				objJarray.put(jObj);
 		
 			} catch (JSONException e) {
@@ -97,6 +99,7 @@ public class Gettesttoregister extends HttpServlet {
 		
 		
 		out.print(jResp);
+		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

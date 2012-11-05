@@ -48,19 +48,20 @@ public class DashboardServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		JSONObject data = null;
-
+		
 		HttpSession cadetsession = request.getSession();
 		String username= (String) cadetsession.getAttribute("user"); 
+		System.out.println("DashboardServlet : "  + username);
 	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
 	    Connection dbConnection = dbConn.getDbConnection();
-	  
+	    
 	    
 	    try {
 			data = DashboardModel.getTests(dbConnection, username);
 			data.put("result", true);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			System.out.println(data);
+			//System.out.println(data);
 			out.println(data);
 		} catch (SQLException | JSONException e) {
 			// TODO Auto-generated catch block

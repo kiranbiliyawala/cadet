@@ -3,6 +3,7 @@ package org.cadet.client.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.cadet.client.model.CandidateProfileModel;
 import org.cadet.util.model.DatabaseConnection;
+import org.cadet.util.model.UserControl;
 
 /**
  * Servlet implementation class UpdateCandidatePassword
@@ -51,27 +53,31 @@ public class UpdateCandidatePassword extends HttpServlet {
 		CandidateProfileModel cpm = new CandidateProfileModel(dbConnection);
 		
 		try {
-            String pwd=request.getParameter("currentpassword");
             String newPass= request.getParameter("changepassword");
-            String newcPass= request.getParameter("confirmpassword");
-            String hashpass = CandidateProfileModel.Hashify(pwd);
-            System.out.println(hashpass);
-            if(! newcPass.equals(newPass)){
-            	System.out.println("Password confirmed");
+            String password= request.getParameter("confirmpassword");
+            
+            if(! password.equals(newPass)){
+            	//System.out.println("Password confirmed");
             	cadetsession.setAttribute("passwordconfirmcheck", false);
                 //out.println("New pass & Confirm pass is not matched");
             }else{
 
             //Change_Password
             
-            boolean success = cpm.updateCandidatePassword(hashpass, newPass, CUserName);
-
-            if(success == true){
-            	cadetsession.setAttribute("passwordcheck", true);
-
-            }else{
-            	cadetsession.setAttribute("passwordcheck", false);
-            }
+            //boolean success = cpm.updateCandidatePassword(newPass, CUserName);
+            boolean success;
+			try {
+				success = UserControl.UpdateClientPassword(dbConnection, CUserName, password);
+				if(success == true){
+					cadetsession.setAttribute("passwordcheck", true);
+	            }
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				cadetsession.setAttribute("passwordcheck", false);
+			}
+            
             }
             request.getRequestDispatcher("changepassword.jsp").forward(request,response);
         } finally { 
