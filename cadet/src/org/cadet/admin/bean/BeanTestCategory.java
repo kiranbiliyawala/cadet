@@ -6,6 +6,7 @@ public class BeanTestCategory {
 	// TODO Auto-generated constructor stub
     }
 
+    private int testId;
     private int categoryId;
     private String categoryName;
     private int timePerCategory;
@@ -39,8 +40,16 @@ public class BeanTestCategory {
 	this.categoryId = categoryId;
     }
 
+    public int getTestId() {
+	return testId;
+    }
+    public void setTestId(int testId) {
+	this.testId = testId;
+    }
+
     @Override
     public String toString() {
-	return "BeanTestCategory [categoryName=" + categoryName + ", timePerCategory=" + timePerCategory + ", questionsPerCategory=" + questionsPerCategory + "]";
+	return "BeanTestCategory [testId=" + testId + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", timePerCategory=" + timePerCategory + ", questionsPerCategory="
+		+ questionsPerCategory + "]";
     }
 }
