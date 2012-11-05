@@ -57,7 +57,29 @@ $(document).ready(function(e) {
 						categoryId : option
  					},
 					function(data,textStatus,xhr) {
-						console.log("Added");
+ 						try {
+ 							if(data.result===true) {
+
+ 								console.log(data.category);
+ 								var src = $("#tmpltCategoryDetails").html();
+ 								var template = Handlebars.compile(src);
+ 								var output = template(data);
+
+ 								$("#frmSaveTest tbody").append(output);
+
+ 								$("#divAddCat").modal("hide");
+ 								setTimeout(function() {
+ 									$("#body").prepend(alertDiv);
+ 									setTimeout(function() { $(".alert").alert("close"); },3000);
+ 								},600);
+ 							}
+ 							else if(data.result==="DatabaseError") {
+ 								pageRedirect("../DatabaseError.html");
+ 							}
+ 							else if(data.result==="ServerException") {
+ 								pageRedirect("../ServerException.html");
+ 							}
+ 						} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 				});
 			}
 		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
