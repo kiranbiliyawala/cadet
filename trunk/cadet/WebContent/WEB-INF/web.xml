@@ -6,7 +6,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>Adashboard</servlet-name>
-    <jsp-file>/admin/dashboard.jsp</jsp-file>
+    <jsp-file>/admin/index.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Adashboard</servlet-name>
@@ -124,4 +124,12 @@
     <servlet-name>AddQuestion</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestion</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  
+  
+  <session-config>
+    <session-timeout>300</session-timeout>
+  </session-config>
 </web-app>

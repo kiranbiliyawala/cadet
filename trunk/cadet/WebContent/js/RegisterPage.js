@@ -43,7 +43,7 @@ $(document).ready(function(e) {
 	    return false;
 	    }
 	  
-	  if(Ajax_username("../isUserNameAvailable?username="+username, "username_error")==false){
+	  if(Ajax_username("isUserNameAvailable?username="+username, "username_error")==false){
 		  return false;
 	  }
 	  
@@ -70,7 +70,7 @@ $(document).ready(function(e) {
 	  var challenge=document.getElementById("recaptcha_challenge_field").value;
 	  var response=document.getElementById("recaptcha_response_field").value;
 	  var message = "recaptcha_challenge_field="+challenge+"&recaptcha_response_field="+response;
-	if( Ajax("../VerifyCaptcha?"+message,"captchaerror")==false){
+	if( Ajax("VerifyCaptcha?"+message,"captchaerror")==false){
 		return false;
 	}
 	
