@@ -16,6 +16,7 @@
 <meta name="viewport" content="width=device-width">
 
 <link rel="stylesheet" href="../../css/bootstrap.css">
+<link rel="stylesheet" href="../../css/datepicker.css">
 <style>
 body {
 	padding-top: 60px;
@@ -27,6 +28,7 @@ footer {
 }
 </style>
 <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
+<link rel="stylesheet" href="../../css/timepicker.css">
 <link rel="stylesheet" href="../../css/main.css">
 
 <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
@@ -268,7 +270,59 @@ footer {
 			<h3 id="lblNewCat">Test Settings</h3>
 		</div>
 		<div class="modal-body">
-			Test Settings
+			<div class=" container-fluid tabbable" style="margin-bottom: 18px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab1" data-toggle="tab">Time Settings</a></li>
+					<li><a href="#tab2" data-toggle="tab">Marking System</a></li>
+					<li><a href="#tab3" data-toggle="tab">Accessibility</a></li>
+              	</ul>
+				<div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+					<div class="container-fluid tab-pane active" id="tab1">
+						<form id="frmDateTime" class="form-horizontal container-fluid">
+							<div class="control-group">
+								<label class="control-label" for="txtDP">Date : </label>
+								<div class="controls">
+									<div class="input-append date" id="txtDP" data-date="05.11.2012" data-date-format="dd.mm.yyyy">
+										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" value="05.11.2012" readonly depends>
+										<span class="add-on"><i class="icon-calendar"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="txtTPStart">Start Time : </label>
+								<div class="controls">
+									<div class="input-append bootstrap-timepicker-component">
+										<input id="txtTPStart" name="txtTPStart" class="input-small" type="text" required readonly>
+										<span class="add-on"><i class="icon-time"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="txtTPEnd">End Time : </label>
+								<div class="controls">
+									<div class="input-append bootstrap-timepicker-component">
+										<input id="txtTPEnd" name="txtTPEnd" class="input-small" type="text" required readonly>
+										<span class="add-on"><i class="icon-time"></i></span>
+									</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="controls">
+									<button class="btn btn-success" id="btnSaveTimeSettings">Save</button>
+									<a class="btn" data-dismiss="modal">Cancel</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="tab-pane" id="tab2">
+						<p>Howdy, I'm in Section 2.</p>
+					</div>
+					<div class="tab-pane" id="tab3">
+						<p>What up girl, this is Section 3.</p>
+					</div>
+				</div>
+            </div>
+
 		</div>
 	</div>
 
@@ -309,6 +363,8 @@ footer {
 	<script src="../../js/jquery-1.8.2.js"></script>
 	<script src="../../js/jquery.json-2.3.js"></script>
 	<script src="../../js/bootstrap.js"></script>
+	<script src="../../js/bootstrap-datepicker.js"></script>
+	<script src="../../js/bootstrap-timepicker.js"></script>
 	<script src="../../js/bootbox.js"></script>
 	<script src="../../js/handlebars.js"></script>
 	<script src="../../js/jquery.validate.js"></script>
