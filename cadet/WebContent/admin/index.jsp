@@ -105,7 +105,6 @@ footer {
 						</div>
 					</div>
 				</div>
-
 				<div class="accordion-group">
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse4">Candidate Category</a>
@@ -113,8 +112,7 @@ footer {
 					<div id="collapse4" class="accordion-body collapse">
 						<div class="accordion-inner">
 							<ul class="nav">
-								<li><a href="#">Add Category</a></li>
-								<li><a href="#">Edit Category</a></li>
+								<li><a href="/cadet/admin/usercategory/viewallcategory.jsp">Add Category</a></li>
 							</ul>
 						</div>
 					</div>
