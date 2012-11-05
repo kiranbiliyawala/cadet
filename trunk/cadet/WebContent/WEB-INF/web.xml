@@ -45,6 +45,14 @@
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>ViewCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.ViewCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewCategory</servlet-name>
+    <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AddCategory</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddCategory</servlet-class>
   </servlet>
@@ -53,11 +61,67 @@
     <url-pattern>/admin/questionBank/AddCategory</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>ViewCategory</servlet-name>
-    <servlet-class>org.cadet.admin.controller.ViewCategory</servlet-class>
+    <servlet-name>EditCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.EditCategory</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ViewCategory</servlet-name>
-    <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
+    <servlet-name>EditCategory</servlet-name>
+    <url-pattern>/admin/questionBank/EditCategory</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RemoveCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.RemoveCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveCategory</servlet-name>
+    <url-pattern>/admin/questionBank/RemoveCategory</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddQuestions</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddQuestions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestions</servlet-name>
+    <url-pattern>/admin/questionBank/AddQuestions</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EditQuestions</servlet-name>
+    <servlet-class>org.cadet.admin.controller.EditQuestions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditQuestions</servlet-name>
+    <url-pattern>/admin/questionBank/EditQuestions</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ViewQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.ViewQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/ViewQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RemoveQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.RemoveQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/RemoveQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>EditQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.EditQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/EditQuestion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/AddQuestion</url-pattern>
   </servlet-mapping>
 </web-app>
