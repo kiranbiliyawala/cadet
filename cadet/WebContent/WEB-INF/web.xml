@@ -4,8 +4,6 @@
   <welcome-file-list>
     <welcome-file>Home</welcome-file>
   </welcome-file-list>
-  
-   
   <servlet>
     <servlet-name>Adashboard</servlet-name>
     <jsp-file>/admin/dashboard.jsp</jsp-file>
@@ -14,7 +12,6 @@
     <servlet-name>Adashboard</servlet-name>
     <url-pattern>/admin/dashboard</url-pattern>
   </servlet-mapping>
- 
   <servlet>
     <servlet-name>Cdashboard</servlet-name>
     <jsp-file>/client/index.jsp</jsp-file>
@@ -23,8 +20,6 @@
     <servlet-name>Cdashboard</servlet-name>
     <url-pattern>/client/dashboard</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>login</servlet-name>
     <jsp-file>/index.jsp</jsp-file>
@@ -34,15 +29,13 @@
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   <servlet>
-  
-  <servlet-name>emailvery</servlet-name>
+    <servlet-name>emailvery</servlet-name>
     <jsp-file>/pages/EmailVerification.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>emailvery</servlet-name>
     <url-pattern>/EmailVerification</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>register</servlet-name>
     <jsp-file>/pages/Register.jsp</jsp-file>
@@ -51,7 +44,6 @@
     <servlet-name>register</servlet-name>
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>AddCategory</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddCategory</servlet-class>
@@ -68,12 +60,4 @@
     <servlet-name>ViewCategory</servlet-name>
     <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
   </servlet-mapping>
-  <!--servlet>
-  	<servlet-name>StartTestA</servlet-name>
-  	<servlet-class>org.cadet.client.controller.adaptive.StartTestA</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>StartTestA</servlet-name>
-  	<url-pattern>/Test/Adaptive/StartTestA</url-pattern>
-  </servlet-mapping-->
 </web-app>

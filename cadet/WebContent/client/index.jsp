@@ -45,7 +45,9 @@
                            <li><a href="#test">Test</a></li>
                            <li><a href="#profile">Profile</a></li>
                        </ul>
-                       <button class="btn btn-danger pull-right">Logout</button>
+                       <form action="/cadet/Logout">
+                       <button type="submit" class="btn btn-danger pull-right">Logout</button>
+                       </form>
                     </div>
                 </div>	<!--/.container -->
             </div>
