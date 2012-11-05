@@ -6,9 +6,9 @@ public class Constants {
 
     public static final class Captcha {
 
-	public static String VerifyUrl = "http://www.google.com/recaptcha/api/verify";
-	public static String publicKey = "6LeOsdcSAAAAAOHjj6wziFhEdSzLzxCQDjPbYPXo";
-	public static String privateKey = "6LeOsdcSAAAAAP3OwUfT_kxNXh5r9oJwvG3H4uSS";
+	public static final String VerifyUrl = "http://www.google.com/recaptcha/api/verify";
+	public static final String publicKey = "6LeOsdcSAAAAAOHjj6wziFhEdSzLzxCQDjPbYPXo";
+	public static final String privateKey = "6LeOsdcSAAAAAP3OwUfT_kxNXh5r9oJwvG3H4uSS";
 
     }
 
@@ -73,11 +73,11 @@ public class Constants {
 
 
 	/* Sadhana Queries */
-	public static String getCandidateProfileDataSql = "Select CUserName Name,Contact,CandidateCategoryName FROM candidate where CUserName=?";
-	public static String updateCandidateProfileDataSql = "Update Candidate SET Name=?,  Contact=? ,CandidateCategoryName=? WHERE CUserName=?";
-	public static String updateCandidatePasswordSql = "Update Candidate SET Password =? where cusername=? ";
-	public static String addUserCategoriesSql = "Insert INTO CandidateCategory Values (?)";
-	public static String deleteCandidateCategorySql = "DELETE FROM candidatecategory WHERE CandidateCategoryName = ?";
+	public static final String getCandidateProfileDataSql = "Select CUserName Name,Contact,CandidateCategoryName FROM candidate where CUserName=?";
+	public static final String updateCandidateProfileDataSql = "Update Candidate SET Name=?,  Contact=? ,CandidateCategoryName=? WHERE CUserName=?";
+	public static final String updateCandidatePasswordSql = "Update Candidate SET Password =? where cusername=? ";
+	public static final String addUserCategoriesSql = "Insert INTO CandidateCategory Values (?)";
+	public static final String deleteCandidateCategorySql = "DELETE FROM candidatecategory WHERE CandidateCategoryName = ?";
 
 	/* Kiran Queries */
 	public static final String AddQuestionCategory = "INSERT INTO category (CategoryName, Description, Ausername) VALUES(?,?,?)";
@@ -92,6 +92,11 @@ public class Constants {
 	public static final String RetrieveCategorywiseQuestion = "SELECT * FROM questionbank WHERE CategoryId = ?";
 	public static final String RetrieveQuestionByQuestionID = "SELECT * FROM questionbank WHERE QuestionId = ?";
 
+	
+	/* Komal Queries */
+	
+	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where TestDate>=now()";
+	
 	/* Unknowm */
 	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
 	public static final String getQuestionCountOfCategoryOfTest="SELECT CategoryId, QuestionPerCategory FROM test WHERE testId = ?";

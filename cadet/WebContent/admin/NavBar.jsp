@@ -12,9 +12,9 @@
 						<li id="dashboard"><a href="/cadet/Home">Home</a></li>
 						<li id="question"><a href="/cadet/admin/questionBank/ViewQuestion">Question Bank</a></li>
 						<li id="test"><a href="/cadet/admin/test/testManagementHome">Test Management</a></li>
-						<li id ="category"><a href="#candidateCategory">Candidate Category</a></li>
+						<li id ="category"><a href="/cadet/admin/usercategory/viewallcategory">Candidate Category</a></li>
 					</ul>
-					<button class="btn btn-danger pull-right">Logout</button>
+					<a href="/cadet/Logout" type="submit" class="btn btn-danger pull-right">Logout</a>
 				</div>
 			</div>
 			<!--/.container -->

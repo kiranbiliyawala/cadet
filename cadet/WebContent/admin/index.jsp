@@ -49,8 +49,16 @@ footer {
 <jsp:include page="/admin/Accordian.jsp"></jsp:include>
 
 			<div class="container-fluid span9">
-				TITLE
-				<div class="container-fluid span8">ADMIN DASH BOARD</div>
+				<div class="navbar">
+						<div class="navbar-inner">
+							<div class="container-fluid pull-left">
+								<a class="brand" href="#">Tests</a>
+							</div>
+						</div>
+					</div>
+				<div class="container-fluid span8">
+				<jsp:include page="admindashboard.jsp"></jsp:include>
+				</div>
 			</div>
 
 		</div>
