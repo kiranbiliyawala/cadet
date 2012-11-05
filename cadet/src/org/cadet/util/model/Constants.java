@@ -51,13 +51,11 @@ public class Constants {
 	public static final String retriveLastInsertID = "SELECT last_insert_id()";
 	public static final String retriveTestCategoryDetails = "SELECT category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveTestDetails = "SELECT * FROM test WHERE TestId = ?";
-	public static final String getTest="SELECT * from test where testId = ?";
-
+	public static final String retriveSpecificTestCategoryDetails = "SELECT test.TestId,category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND category.CategoryId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String AddTest = "INSERT INTO test (TestName,TestType,TestDesc) VALUES (?,?,?)";
 	public static final String AddCategory = "INSERT INTO category (CategoryName) VALUES (?)";
-
+	public static final String AddCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId) VALUES (?,?)";
 	public static final String UpdateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
-
 	public static final String deleteTest = "DELETE from test WHERE TestId = ?";
 
 
@@ -86,6 +84,7 @@ public class Constants {
 	public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks, t.NegMark FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND q.CategoryId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
 	public static final String fetchNextQuestion2=") ORDER BY RAND() LIMIT 1";
 	public static final String saveResult="INSERT INTO result VALUES(?,?,?,?,?)";
+	public static final String getTest="SELECT * from test where testId = ?";
     }
 	
     public static final class email{
