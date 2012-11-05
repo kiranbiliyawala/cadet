@@ -44,7 +44,7 @@ footer {
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="../index.jsp"><img src="../../img/cadet.gif" alt="CADET" width="66"></a>
+				<a class="brand" href="../dashboard"><img src="../../img/cadet.gif" alt="CADET" width="66"></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li><a href="../index.jsp">Home</a></li>
@@ -67,7 +67,7 @@ footer {
 
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-parent="#accordionMenu" href="../index.jsp">Home</a>
+						<a class="accordion-toggle" data-parent="#accordionMenu" href="../dashboard">Home</a>
 					</div>
 				</div>
 
@@ -261,6 +261,17 @@ footer {
 			</form>
 		</div>
 	</div>
+
+	<div id="divTestSettings" class="modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h3 id="lblNewCat">Test Settings</h3>
+		</div>
+		<div class="modal-body">
+			Test Settings
+		</div>
+	</div>
+
 
 	<script id="tmpltCategories" type="text/x-handlebars-template">
 		{{#if categoryList}}
