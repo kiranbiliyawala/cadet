@@ -65,6 +65,8 @@ $(document).ready(function(e) {
  								var template = Handlebars.compile(src);
  								var output = template(data);
 
+ 								if($("#frmSaveTest table tbody tr:first-child td:eq('1') p").html()==="No Category Available")
+ 									$("#frmSaveTest table tbody tr:first-child").remove();
  								$("#frmSaveTest tbody").append(output);
 
  								$("#divAddCat").modal("hide");
@@ -111,4 +113,78 @@ $(document).ready(function(e) {
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 		});
 	});
+
+	$("#btnDelCat").bind("click",function(e) {
+
+		var checkList = $("#chkDelCatList:checked");
+
+		function checkListClass(name,value) {
+
+			this.checkboxName;
+			this.checkboxValue;
+
+			this.checkboxName = name;
+			this.checkboxValue = value;
+		}
+
+		var data = new Array();
+		var i=0;
+		$(checkList).each(function() {
+			data[i++] = new checkListClass($(this).attr("name"),$(this).val());
+		});
+
+		var dataJSON = $.toJSON(data);
+
+		$.post("TestManagement",
+			{
+				requestType : "removeCategory",
+				testId : $("#testId").val(),
+				delCatList : dataJSON
+			},
+			function(data,textStatus,xhr) {
+
+				try {
+					if(data.result===true) {
+
+						$(checkList).each(function() {
+
+							var row = $(this).parent().parent();
+							var tbody = row.parent();
+							var siblingRows = row.siblings();
+
+							$(this).parent().parent().remove();
+							if(siblingRows.length===0) {
+								tbody.append("<tr><td></td><td><p class=\"text-warning\">No Category Available</p></td><td></td><td></td></tr>");
+							}
+						});
+					}
+					else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+		});
+	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
