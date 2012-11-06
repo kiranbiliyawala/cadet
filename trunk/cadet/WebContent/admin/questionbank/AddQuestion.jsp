@@ -13,7 +13,6 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="../../css/bootstrap.css">
-        <link rel="icon" type="image/ico" href="../../img/favicon.ico">
         <style>
             body {
                 padding-top: 60px;
@@ -29,47 +28,55 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-        
-        <jsp:include page="/admin/NavBar.jsp"></jsp:include>
-        
-        <div class="container">
+
+		<jsp:include page="/admin/NavBar.jsp"></jsp:include>
+		
+		<div class="container">
         	<div class="row">
                 
-<jsp:include page="/admin/Accordian.jsp"></jsp:include>
-	<!--/#accordion -->
-
+		<jsp:include page="/admin/Accordian.jsp"></jsp:include>
+		<!--/#accordion -->
 				<div class="container span9 offset*">
-                    <div class="navbar navbar">
+                    <div class="navbar navbar-inverse">
                         <div class="navbar-inner">
                             <div class="container pull-left">
-                            	<a class="brand" href="#">Add Question - Category <font style="text-transform:capitalize;"><%= session.getAttribute("categoryName") %></font></a>
+                            	<a class="brand" href="#">Add Question - Category <font style="text-transform: uppercase; font-weight: 700;"><%= session.getAttribute("categoryName").toString() %></font></a>
                             </div>
                         </div>
                     </div>
                     <div>
                     	<% int count = 0;%>
-                    	<form action="" method="POST"> 
+                    	<form action="" id="frmAddQuestion" name="frmAddQuestion"> 
                     	<input type="submit" id="btnSubmit" name="btnSubmit" style="display:none;" class=""/>
                     	<table>
                     		<tr>
                     			<td id="tdNotification" style="display: none; color:green;">
-									<%=count %> - Question Added...			                    				
+									<%=count %> - Question Added...
+									<input type="hidden" id="hdnCategoryId" name="hdnCategoryId" value=""/>			                    				
                     			</td>
                     		</tr>
 		                    <tr>
-		                        <td colspan="3" width="100%">
+		                        <td colspan="5" style="width:70%;">
 		                        	Question:<br/>
 		                        	<textarea id="txtQuestion" name="txtQuestion" style="width:800px" rows="4"></textarea>
-		                        </td>
+								</td>
 		                    </tr>
 		                    <tr>
-		                        <td width="70%">
+			                    <td id="divQuestion" align="left" style="height: 30px; color:red;" colspan="5">
+									
+			                    </td>
+			                </tr>
+		                    <tr>
+		                        <td style="width:250px">
 		                        	A.
-		                        	<input type="radio" id="radOptionA" name="radOption" value="txtOptionA" style="vertical-align:baseline;"/>
-		                        	<input type="text" id="txtOptionA" name="txtOptionA"/>		                        </td>
-		                        <td align="right" rowspan="4">Set Level:</td>
-		                        <td align="left" rowspan="4">
-		                            <select id="selOption">
+		                        	<input type="radio" id="radOptionA" name="radOption" value="txtOptionA" style="vertical-align:baseline;" checked="checked"/>
+		                        	<input type="text" id="txtOptionA" name="txtOptionA"/>
+		                        </td>
+		                        <td id="divOptionA" style="width:150px; color:red;" align="left">
+		                        </td>
+		                        <td align="right" rowspan="4" style="width:100px;">Set Level:</td>
+		                        <td align="left" rowspan="4" style="width:200px">
+		                            <select id="selLevel" onChange="selLevelSelectionChanged()">
 		                            	<option selected="selected" style="color: #cdc9c9;" disabled="disabled"><i>Select Level</i></option>
 		                                <option>1</option>
 		                                <option>2</option>
@@ -82,19 +89,26 @@
 		                                <option>9</option>
 		                                <option>10</option>
 		                            </select>
+		                        </td>    
+		                        <td id="divSelLevel" style="color: red;" rowspan="4">
 		                        </td>
 		                    </tr>
                     		<tr>
 		                        <td>
 		                            B.
 		                            <input type="radio" id="radOptionB" name="radOption" value="txtOptionB" style="vertical-align:baseline;"/>
-									<input type="text" id="txtOptionB" name="txtOptionB" value=""/>		                        </td>
+									<input type="text" id="txtOptionB" name="txtOptionB" value=""/>
+								</td>
+		                        <td id="divOptionB" style="width:150px; color:red;" align="left" colspan="4">		                        	
+		                        </td>
 	                        </tr>
 	                        <tr>
 		                        <td>
 		                            C.
 		                            <input type="radio" id="radOptionC" name="radOption" value="txtOptionC" style="vertical-align:baseline;"/>
 									<input type="text" id="txtOptionC" name="txtOptionC" value=""/>
+								</td>
+		                        <td id="divOptionC" style="width:150px; color:red;" align="left" colspan="4">
 		                        </td>
 	                        </tr>
 	                        <tr>
@@ -102,13 +116,15 @@
 		                            D.
 		                            <input type="radio" id="radOptionD" name="radOption" value="txtOptionD" style="vertical-align:baseline;"/>
 									<input type="text" id="txtOptionD" name="txtOptionD" value=""/>
+								</td>
+		                        <td id="divOptionD" style="width:150px; color:red;" align="left" colspan="4">
 		                        </td>
 		                    </tr>
 		                    <tr style="height:100px">
-		                        <td colspan="3" align="center">
+		                        <td colspan="5" align="center">
 		                        	<input type="button" class="btn btn-primary" id="btnSaveQuestion" name="btnSaveQuestion" onClick="changeAction('SaveQuestion', <%= count %>)" value="Save Question" />
 		                        	&nbsp;&nbsp;&nbsp;
-		                        	<button class="btn btn-danger" id="btnBack" name="btnBack" onClick="back('<%=session.getAttribute("categoryId")%>')">Back</button>
+		                        	<a href="ViewQuestion" class="btn btn-danger" id="btnBack" name="btnBack" >Back</a>
 		                        </td>
 		                    </tr>
 		                </table>
@@ -121,19 +137,17 @@
         </div>	<!--/.container div -->
 
 		<hr>
-        <jsp:include page="/admin/Footer.jsp"></jsp:include>
+		<jsp:include page="/admin/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
 
-        <script src="../../js/plugins.js"></script>
         <script src="../../js/main.js"></script>
         
         <script type="text/javascript">
         
-        	//window.addEventListener('load', doFirst, false);
         	var count = 0
 	    	function getCheckedRadio(radio_group) {
 	    	    for (var i = 0; i < radio_group.length; i++) {
@@ -145,32 +159,73 @@
 	    	    return undefined;
 	    	}
 	    	
-	    	function validate( val ){
-	    		error = "";
+        	function selLevelSelectionChanged(){
+    			var elementOption = document.getElementById("selLevel");
+    			var level = elementOption.options[elementOption.selectedIndex].text;
+    			if(level == 'Select Level')
+    				document.getElementById("divSelLevel").innerHTML = "Select level for question";
+    			else
+    				document.getElementById("divSelLevel").innerHTML = "";
+        	}
+
+        	function validate( val ){
 	    		if(val == 'SaveQuestion'){
-	    			var elementOption = document.getElementById("selOption");
-        			var level = elementOption.options[elementOption.selectedIndex].text;
-        			if(level == 'Select Level')
-        				error += "Select level for question\n";
-	    		}
-	    		return error;
-	    	}
+	    			if(document.getElementById("txtQuestion").value.toString().length == 0)
+	    				document.getElementById("divQuestion").innerHTML = "Question cannot be blank";
+	    			else
+	    				document.getElementById("divQuestion").innerHTML = "";
+	    			
+	    			if(document.getElementById("txtOptionA").value.toString().length == 0)
+	    				document.getElementById("divOptionA").innerHTML = "Option cannot be blank";
+	    			else
+	    				document.getElementById("divOptionA").innerHTML = "";
+	    			
+	    			if(document.getElementById("txtOptionB").value.toString().length == 0)
+	    				document.getElementById("divOptionB").innerHTML = "Option cannot be blank";
+	    			else
+	    				document.getElementById("divOptionB").innerHTML = "";
+	    			
+	    			if(document.getElementById("txtOptionC").value.toString().length == 0)
+	    				document.getElementById("divOptionC").innerHTML = "Option cannot be blank";
+	    			else
+	    				document.getElementById("divOptionC").innerHTML = "";
+	    			
+	    			if(document.getElementById("txtOptionD").value.toString().length == 0)
+	    				document.getElementById("divOptionD").innerHTML = "Option cannot be blank";
+	    			else
+	    				document.getElementById("divOptionD").innerHTML = "";
+
+	    			var elementOption = document.getElementById("selLevel");
+	    			var level = elementOption.options[elementOption.selectedIndex].text;
+	    			if(level == 'Select Level')
+	    				document.getElementById("divSelLevel").innerHTML = "Select level";
+	    			else
+	    				document.getElementById("divSelLevel").innerHTML = "";
+    			}
+    		}
 
 	    	function changeAction( action, cnt ){
         		if(action == 'SaveQuestion'){
         			validate(action);
-        			if(error.length > 0)
-        				alert(error);
-        			var checkedOption = getCheckedRadio(document.forms[0].elements.radOption);
-        			var question = document.getElementById('txtQuestion').value;
-        			var optionA =  document.getElementById('txtOptionA').value;
-        			var optionB =  document.getElementById('txtOptionB').value;
-        			var optionC =  document.getElementById('txtOptionC').value;
-        			var optionD =  document.getElementById('txtOptionD').value;
-        			var correctAnswer = document.getElementById(checkedOption.value).value;
-        			var e = document.getElementById("selOption");
-        			var level = e.options[e.selectedIndex].text;
-        			addQuestion(level, question, optionA, optionB, optionC, optionD, correctAnswer);
+        			if(
+        					document.getElementById("divQuestion").innerHTML.toString().length == 0 &&
+        					document.getElementById("divOptionA").innerHTML.toString().length == 0 &&
+        					document.getElementById("divOptionB").innerHTML.toString().length == 0 &&
+        					document.getElementById("divOptionC").innerHTML.toString().length == 0 &&
+        					document.getElementById("divOptionD").innerHTML.toString().length == 0 &&
+        					document.getElementById("divSelLevel").innerHTML.toString().length == 0
+        			){
+	        			var checkedOption = getCheckedRadio(document.forms[0].elements.radOption);
+	        			var question = document.getElementById('txtQuestion').value;
+	        			var optionA =  document.getElementById('txtOptionA').value;
+	        			var optionB =  document.getElementById('txtOptionB').value;
+	        			var optionC =  document.getElementById('txtOptionC').value;
+	        			var optionD =  document.getElementById('txtOptionD').value;
+	        			var correctAnswer = document.getElementById(checkedOption.value).value;
+	        			var e = document.getElementById("selLevel");
+	        			var level = e.options[e.selectedIndex].text;
+	        			addQuestion(level, question, optionA, optionB, optionC, optionD, correctAnswer);
+        			}
         		}
         	}
         	
@@ -210,14 +265,9 @@
 	    		}
 	    		return xmlHttp;
 	    	}
-	    	
-        	function back( categoryId ){        		
-       	        document.forms[0].action = "/cadet/admin/questionBank/ViewQuestion?categoryId=" + categoryId;
-       	     	document.getElementById("btnSubmit").click();
-        	}
-        </script>
-        
-        <script type="text/javascript">
+		</script>
+		
+		<script type="text/javascript">
         $("#question").addClass("active");
         $("#collapse2").addClass("in");
         </script>
