@@ -43,6 +43,7 @@ public class Constants {
 	public static final String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
 	public static final String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
 	public static final String submitAnswersNA="UPDATE Result SET 'marks'= ?, 'Attempted'= ?,'Correct'= ? WHERE 'CUserName'=? AND 'TestId'=?";
+	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
 
 
 	/* Udit Queries */
@@ -52,10 +53,11 @@ public class Constants {
 	public static final String retriveTestCategoryDetails = "SELECT category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveTestDetails = "SELECT * FROM test WHERE TestId = ?";
 	public static final String retriveSpecificTestCategoryDetails = "SELECT test.TestId,category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND category.CategoryId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
-	public static final String AddTest = "INSERT INTO test (TestName,TestType,TestDesc) VALUES (?,?,?)";
-	public static final String AddCategory = "INSERT INTO category (CategoryName) VALUES (?)";
-	public static final String AddCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId) VALUES (?,?)";
-	public static final String UpdateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
+	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc) VALUES (?,?,?)";
+	public static final String addCategory = "INSERT INTO category (CategoryName) VALUES (?)";
+	public static final String addCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId) VALUES (?,?)";
+	public static final String updateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
+	public static final String updateTestTimeSettings = "UPDATE test SET TestDate = STR_TO_DATE(?,'%d-%m-%Y'), StartTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i'), EndTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i') WHERE TestId = ?";
 	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
 	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
 
@@ -97,8 +99,7 @@ public class Constants {
 	
 	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where TestDate>=now()";
 	
-	/* Unknowm */
-	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
+	/* Varun Queries */
 	public static final String getQuestionCountAndCategoryOfTest="SELECT tc.CategoryId, c.CategoryName, tc.TimePerCategory, tc.QuestionPerCategory FROM testcategory tc JOIN category c on tc.CategoryId = c.CategoryId WHERE testId = ?";
 	public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks, t.NegMark FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND q.CategoryId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
 	public static final String fetchNextQuestion2=") ORDER BY RAND() LIMIT 1";
