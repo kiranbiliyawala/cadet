@@ -56,10 +56,10 @@ body {
 						<th> Add Candidate Categories</th>
 					</thead>
 					<tbody>
-					<form method="post" action="AddCandidateCategory">
-					<tr><td><input type="text" name="txtcandidatecategory"/></td></tr>
-					<tr><td><input type="Submit" class="btn" value="Save"/></td></tr>
-					</form>
+						<form method="post" action="AddCandidateCategory">
+							<tr><td><input type="text" name="txtcandidatecategory"/></td></tr>
+							<tr><td><input type="Submit" class="btn" value="Save"/></td></tr>
+						</form>
 					</tbody>
 				</table>
 			</div>
@@ -83,7 +83,7 @@ body {
 	<script type="text/javascript">
 	
 	$("#category").addClass("active");
-	
+	$("#collapse4").addClass("in");
 	</script>
 	
 </body>

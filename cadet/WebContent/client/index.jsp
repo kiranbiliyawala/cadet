@@ -74,6 +74,9 @@
         <script src="../js/jquery-1.8.2.js"></script>
         <script src="../js/bootstrap.js"></script>
         <script src="../js/handlebars.js"></script>
+        <script type="text/javascript">
+    		$("#dashboard").addClass("active");
+    	</script>
         <script src="../js/bootbox.js"></script>
         <script id="gettests" type="text/x-handlebars-template">
         	{{#if testList}}
@@ -105,9 +108,7 @@
     	</script>
     	<script src="js/main.js"></script>
     	
-    	<script type="text/javascript">
-    	$("#dashboard").addClass("active");
-    	</script>
+    	
     	
     </body>
 </html>

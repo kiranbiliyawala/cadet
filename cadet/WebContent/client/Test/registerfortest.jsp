@@ -67,6 +67,10 @@
 		 <script src="../../js/jquery-1.8.2.js"></script>
         <script src="../../js/bootstrap.js"></script>
         <script src="../../js/handlebars.js"></script>
+        <script type="text/javascript">
+        	$("#test").addClass("active");
+        	$("#collapse2").addClass("in");
+        </script>
 		<script id="tmpltTests" type="text/x-handlebars-template">
 			{{#if tests}}
 				{{#each tests}}

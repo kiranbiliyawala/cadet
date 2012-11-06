@@ -82,15 +82,8 @@ body {
 					<tr>
 						
 						<td>{{candidateCategory}}</td>
-						<td>
-						<div class="pull-right">
-						<form method="post" action="DeleteCandidateCategory">
-						<input type="hidden" name="checkbox" value={{candidateCategory}}>
-						<input type="Submit" name="submit" class="btn btn-danger" value="Delete"/>
-						</form>
-						</div>
-						</td>
-						</form>
+						
+						
 					</tr>
 				{{/each}}
 			{{else}}
@@ -105,6 +98,7 @@ body {
 	
 	<script type="text/javascript">
 	$("#category").addClass("active");
+	$("#collapse4").addClass("in");
 	</script>
 	
 </body>

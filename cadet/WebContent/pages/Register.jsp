@@ -37,7 +37,6 @@ footer {
 <link rel="stylesheet" href="css/homepage.css"/>
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
-
 <body>
 	<div id="joinuscontainer">
 	<div class="navbar navbar-fixed-top">
@@ -61,6 +60,9 @@ footer {
 			<form id="regform" method="post" action="RegisterUser"
 				onsubmit="return validate()">
 				<table>
+					<tr>
+						<td colspan="2" id="registrationtitle">Registration Form</td>
+					</tr>
 					<tr class="tr">
 						<td><label class="Fieldnames">Email :</label></td>
 						<td><input class="required email" name="Username"
@@ -84,7 +86,7 @@ footer {
 
 					<tr class="tr">
 						<td><label class="Fieldnames">Name :</label></td>
-						<td><input class="required alpha" name="Name" id="Name"
+						<td><input class="required" name="Name" id="Name"
 							placeholder="Name" type="text" /></td>
 					</tr>
 
@@ -142,6 +144,5 @@ footer {
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/sha.js"></script>
 	<script type="text/javascript" src="js/RegisterPage.js"></script>
-
 </body>
 </html>

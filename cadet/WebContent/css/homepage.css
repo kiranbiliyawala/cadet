@@ -77,12 +77,18 @@ body{
 	font-size: 20px;
 }
 
+#registrationtitle{
+	padding-top: 3%;
+	padding-bottom: 3%;
+	font-size: 20px;
+}
 
 #registrationform{
-	margin-top: 3%;
-	margin-left: 37%;
+	margin-top: 6%;
+	margin-left: 41%;
 	margin-right: auto;
 }
+
 
 
 

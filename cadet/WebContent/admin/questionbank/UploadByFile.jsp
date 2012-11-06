@@ -89,4 +89,4 @@
         $("#collapse2").addClass("in");
         </script>
     </body>
-</html>>
+</html>

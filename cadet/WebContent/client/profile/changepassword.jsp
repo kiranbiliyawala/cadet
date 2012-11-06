@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -50,11 +51,11 @@
 								<form class="cmxform" id="passwordform" action="UpdateCandidatePassword" method="post" onsubmit="return submit_val_cp()">
             						<table>
             							<tr>
-                							<td> <label>New Password</label></td>
+                							<td> <label>New Password: </label></td>
                 							<td> <input type="password" name="changepassword" id="changepassword" minlength='6' class="required" equalTo="#confirmpassword" value="" placeholder="password"> </td>
             							</tr>
             							<tr>
-                							<td><label>Confirm Password</label></td>
+                							<td><label>Confirm Password: </label></td>
                 							<td> <input type="password" name="confirmpassword" id="confirmpassword" minlength='6' equalTo="#changepassword" class="required" value="" placeholder="password"></td>
             							</tr>
             							<tr>
@@ -82,8 +83,22 @@
         <script src="../../js/handlebars.js"></script>
         <script src="../../js/bootbox.js"></script>
         <script src="../../js/sha.js"></script>
+        <script type="text/javascript">
+        	$("#dashboard").addClass("active");
+        	$("#collapse3").addClass("in");
+        </script>
         <script src="../js/main.js"></script>
-       
+       <c:if test="${passwordcheck eq true}">
+		<script>
+			var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the password <strong>successfully !!!</strong></div>";
+			$(document).ready(function(e) {
+				setTimeout(function() {
+					$("body").prepend(alertDiv);
+					setTimeout(function() { $(".alert").alert("close"); },3000);
+				},600);
+			});
+		</script>
+	</c:if>
     	
     </body>
 </html>

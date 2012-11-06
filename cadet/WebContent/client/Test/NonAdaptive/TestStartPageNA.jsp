@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/InstructionPage.css">
 <title><%= session.getAttribute("test_name") %></title>
-<link rel="icon" type="image/ico" href="../../../img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="css/InstructionPage.css"></link>
+<link rel="icon" type="image/ico" href="../../../img/favicon.ico"></link>
 </head>
 
 <body>
@@ -15,11 +15,11 @@ Duration : <%= request.getAttribute("TestTime") %>
 </div>
 
 <div class="instruction">
-Istructions.....
+Instructions.....
 </div>
 <form method="post" action="StartTest">
 <input class="closestartbtn"type="submit" value="Start Test"/>
 </form>
-
+</div>
 </body>
 </html>
