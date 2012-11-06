@@ -49,7 +49,7 @@ public class ForgotPassword extends HttpServlet {
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", true);
 			session.setAttribute("homeurl","client/dashboard");
-			response.sendRedirect("client/ChangePassword");
+			response.sendRedirect("/cadet/client/profile/ChangePassword");
 			return;
 		}else{
 			response.sendError(403,"Invalid Access Parameters");
