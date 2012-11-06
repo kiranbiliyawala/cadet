@@ -79,7 +79,7 @@ public class UpdateCandidatePassword extends HttpServlet {
 			}
             
             }
-            request.getRequestDispatcher("changepassword.jsp").forward(request,response);
+            response.sendRedirect("/cadet/Home");
         } finally { 
             out.close();
         }

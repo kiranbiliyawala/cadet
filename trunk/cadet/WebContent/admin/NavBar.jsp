@@ -6,7 +6,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#home"><img src="/cadet/img/cadet.gif" alt="CADET" width="66"></a>
+				<a class="brand" href="/cadet/Home"><img src="/cadet/img/cadet.gif" alt="CADET" width="66"></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li id="dashboard"><a href="/cadet/Home">Home</a></li>

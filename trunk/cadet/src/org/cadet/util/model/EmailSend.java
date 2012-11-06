@@ -63,10 +63,9 @@ public class EmailSend {
 public static Boolean SendForgotMail(String username) throws MessagingException {
     	
 	
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date dt = new Date();
+	String timekey = new Long((new Date().getTime())/600000).toString();
 	
-		String datakey = UserControl.getHashEmail(username+dateFormat.format(dt));
+		String datakey = UserControl.getHashEmail(username+timekey);
 	
     	Pattern p = Pattern.compile(Constants.email.EmailRegex);
     	if(!p.matcher(username).matches()){

@@ -11,7 +11,7 @@
         <title>CADET | Change Password</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
+<script src="../js/main.js"></script>
         <link rel="stylesheet" href="../../css/bootstrap.css">
         <style>
             body {
@@ -47,19 +47,19 @@
 							</div>
 						</div>
 							<div class="container-fluid span9">
-								<form action="UpdateCandidatePassword" method="post">
+								<form action="UpdateCandidatePassword" method="post" onsubmit="return submit_val_cp()">
             						<table>
             							<tr>
                 							<td> <label>New Password</label></td>
-                							<td> <input type="password" name="changepassword" value="" placeholder="password"> </td>
+                							<td> <input type="password" name="changepassword" id="changepassword" value="" placeholder="password"> </td>
             							</tr>
             							<tr>
                 							<td><label>Confirm Password</label></td>
-                							<td> <input type="password" name="confirmpassword" value="" placeholder="password"></td>
+                							<td> <input type="password" name="confirmpassword" id="confirmpassword" value="" placeholder="password"></td>
             							</tr>
             							<tr>
-                							<td> <button class="btn btn-primary" name="save" type="submit" value="Save" onclick="submit_val()">Save</button></td>
-                							<td> <a class="btn btn-danger" href="/cadet/client/index.jsp">Cancel</a></td>
+                							<td> <button class="btn btn-primary" name="save" type="submit" value="Save">Save</button></td>
+                							<td> <a class="btn btn-danger" href="/cadet/client/dashboard">Cancel</a></td>
             							</tr>
           							</table>
           						</form>
@@ -80,7 +80,8 @@
         <script src="../../js/bootstrap.js"></script>
         <script src="../../js/handlebars.js"></script>
         <script src="../../js/bootbox.js"></script>
+        <script src="../../js/sha.js"></script>
        
-    	<script src="../js/main.js"></script>
+    	
     </body>
 </html>
