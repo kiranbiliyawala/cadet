@@ -12,7 +12,11 @@
 <title>CADET | Register</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
-
+<script>
+var RecaptchaOptions = {
+	    theme : 'clean'
+	 };
+	 </script>
 <link rel="stylesheet" href="css/bootstrap.css">
 <style>
 body {
@@ -78,7 +82,7 @@ footer {
 
 					<tr class="tr">
 						<td><label class="Fieldnames">Name :</label></td>
-						<td><input class="required" name="Name" id="Name"
+						<td><input class="required alpha" name="Name" id="Name"
 							placeholder="Name" type="text" /></td>
 					</tr>
 

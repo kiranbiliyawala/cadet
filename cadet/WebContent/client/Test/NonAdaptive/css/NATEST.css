@@ -1,11 +1,17 @@
 .body{
 background-color:#CCC;
+margin-top: 1%;
+}
+
+.container{
+	background-color: #F9F9F9;
+	box-shadow: 8px 8px 8px #555;
+	border:medium;
+	border-style: groove;
 }
 
 .Controls {
 	border-radius:15px;
-	border: medium solid #000;
-	background-color: #FFF;
 	position:fixed;
 	bottom:3%;
 	height:10%;
@@ -16,8 +22,6 @@ background-color:#CCC;
 }
 .Nav_Bar {
 	border-radius:15px;
-	border: medium solid #000;
-	background-color: #FFF;
 	position:fixed;
 	right:3%;
 	height:80%;
@@ -25,9 +29,7 @@ background-color:#CCC;
 }
 .question_portion {
 	border-radius:15px;
-	border: medium solid #000;
 	position:fixed;
-	background-color: #FFF;
 	left:5%;
 	height:80%;
 	width:70%;
@@ -72,19 +74,19 @@ background-color:#CCC;
 }
 .Timer{
 	border-radius:5px;
-	border: medium solid #000;
-	position:relative;
-	height:10%;
+	border: thin solid #000;
+	position:absolute;
+	height:15%;
 	width:80%;
 	left:10%;
 	right:10%;
-	margin-top:10%;
+	margin-top:5%;
 	margin-bottom:5%;
 	text-align:center;
 }
 .Section{
 	border-radius:5px;
-	border: medium solid #000;
+	border: thin solid #000;
 	position:absolute;
 	height:40%;
 	width:80%;
@@ -92,7 +94,7 @@ background-color:#CCC;
 	right:10%;
 	margin-top:10%;
 	padding:1%;
-	top:10%;
+	top:15%;
 	overflow:auto;
 	
 }
@@ -100,7 +102,7 @@ background-color:#CCC;
 
 .Legend{
 	border-radius:5px;
-	border: medium solid #000;
+	border: thin solid #000;
 	position:absolute;
 	width:80%;
 	left:10%;
@@ -110,24 +112,29 @@ background-color:#CCC;
 	bottom:2%;
 }
 
+
 .stub{
-	border: thin solid #000;
+	border:2px solid #888;
+	border-style:inset;
 	position:relative;
 	float:left;
 	height:30px;
 	width:30px;
 	margin:5px;
-	border-spacing:5%;
-	text-align:center;
 	cursor: pointer;
+	text-align: center;
 }
 
 .cover{
 	float:left;
 	margin:1%;
 }
+
+
+
 .butn
 {
+	box-shadow: 3px 3px 3px #555;
    font-weight:bold;
    width:15%;
    height:80%;
@@ -136,11 +143,7 @@ background-color:#CCC;
    border-radius:10px;
    box-shadow:#666;
    text-shadow:#999;
-}
-
-.butn:hover{
-	color:white;
-	cursor:pointer;
+   cursor: pointer;
 }
 
 .Attempted{
@@ -155,35 +158,6 @@ background-color:#CCC;
 	background-color:#FF6;
 }
 
-.prev_next_btn{
-	background-color:#36F;
-}
-.prev_next_btn:hover{
-	background-color:#03F;
-}
-
-.section_btn{
-	background-color:#F90;
-}
-
-.section_btn:hover{
-	background-color:#F60;
-}
-
-.skip_btn{
-	background-color:#999;
-}
-
-.skip_btn:hover{
-	background-color:#666;
-}
-
-.test_fin_btn{
-	background-color:#F30;
-}
-.test_fin_btn:hover{
-	background-color:#F00;
-}
 
 #Attempted{
 	margin:0%;

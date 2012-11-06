@@ -95,10 +95,10 @@ public class NAHTMLConvert {
 	
 	private static String generate_stub(NonAdaptiveTest test,String category,String QNO) throws JSONException{
 		
-		String status = "NotAttempted";
+		String status = "btn-danger";
 		
 		if(test.isAttempted(category, QNO)){
-			status = "Attempted";
+			status = "btn-success";
 		}
 		
 		String out = "";
