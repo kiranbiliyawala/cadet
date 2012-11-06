@@ -20,66 +20,6 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
-            /*div#deleteConfirmationPopup
-			{
-			    position:absolute;
-			    display:none;
-			    top:275px;
-			    left:50%;
-			    width:400px; 
-			    margin-left:-250px;
-			    border:5px solid black;
-			    -webkit-box-shadow:rgba(110,110,110,.6) 10px 10px 10px;
-			    border-radius:10px; 
-			    padding:20px;
-			    background-color:rgba(250,250,250,.8);
-			}
-			div#deleteConfirmationPopupTitle{
-				font-weight:600;
-				position:absolute;
-			    display:none;
-			    top:240px;
-			    left:50%;
-			    width:420px;
-			    height:25px;
-			    margin-left:-250px;
-			    border:5px solid black;
-			    -webkit-box-shadow:rgba(110,110,110,.6) 10px 10px 10px;
-			    border-radius:10px;
-			    padding-left:20px;
-			    padding-top:5px; 
-			    background-color:rgba(250,250,250,.8);
-			}
-			div#addNewCategoryPopup
-			{
-			    position:absolute;
-			    display:none;
-			    top:235px;
-			    left:50%;
-			    width:600px; 
-			    margin-left:-250px;
-			    border:5px solid black;
-			    -webkit-box-shadow:rgba(110,110,110,.6) 10px 10px 10px; 
-			    border-radius:10px; 
-			    padding:20px;
-			    background-color:rgba(250,250,250,.8);
-			}
-			div#addNewCategoryPopupTitle{
-				font-weight:600;
-				position:absolute;
-			    display:none;
-			    top:200px;
-			    left:50%;
-			    width:620px;
-			    height:30px;
-			    margin-left:-250px;
-			    border:5px solid black;
-			    -webkit-box-shadow:rgba(110,110,110,.6) 10px 10px 10px;
-			    border-radius:10px;
-			    padding-left:20px;
-			    padding-top:5px; 
-			    background-color:rgba(250,250,250,.8);
-			}*/
         </style>
         <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../../css/main.css">
@@ -90,7 +30,7 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-        <%
+		<%
         	session.setAttribute("user", "admin");
 			session.setAttribute("AdminAuth", true);
 			session.setAttribute("ClientAuth", false);
@@ -104,6 +44,8 @@
         	<div class="row">
                 <jsp:include page="/admin/Accordian.jsp"></jsp:include>
                 	<!--/#accordion -->
+
+        <form id="form1" action="" method="POST">
 
 				<div class="container span9 offset*">
                     <div class="navbar navbar">
@@ -353,62 +295,6 @@
 	        	return xmlHttp;
 	        }
 	
-	        /*var table = document.getElementById(tblCategory);
-	
-	        var row = table.insertRow(1);
-	
-	        //Cell1
-	        var cell1 = row.insertCell(0);
-	        var element1 = document.createElement("input");
-	        var element2 = document.createElement("input");
-	        //CategoryName
-	        element1.type = "text";
-	        element1.setAttribute('id','txtI'+categoryName);
-	        element1.setAttribute('name','txtI'+categoryName);
-	        element1.setAttribute('value',categoryName);
-	        element1.setAttribute('readonly','readonly');
-	        element1.setAttribute('style','display: none;');
-	        //CategoryDescription
-	        element2.type = "text";
-	        element2.setAttribute('id','txtD'+categoryDescription);
-	        element2.setAttribute('name','txtD'+categoryDescription);
-	        element2.setAttribute('value',categoryDescription);
-	        element2.setAttribute('readonly','readonly');
-	
-	        cell1.appendChild(element1);
-	        cell1.appendChild(element2);
-	
-	        var cell2 = row.insertCell(1);
-	        var element1 = document.createElement("a");
-	        var element2 = document.createElement("a");
-	
-	        element1.setAttribute('href','#');
-	        element1.setAttribute('id','lnkEdit'+categoryName);
-	        element1.setAttribute('name','lnkEdit'+categoryName);
-	        element1.setAttribute('onClick',"modifyCategory('Edit','" + categoryName + "')");
-	        element1.innerHTML = "Edit | ";
-	
-	        element2.setAttribute('href','#');
-	        element2.setAttribute('id','lnkRemove'+categoryName);
-	        element2.setAttribute('name','lnkRemove'+categoryName);
-	        element2.setAttribute('onClick',"document.getElementById('btnSubmit').value = '" + categoryName + "'; document.getElementById('deleteConfirmationPopup').style.display = 'block'; document.getElementById('deleteConfirmationPopupTitle').style.display = 'block'; return false;");
-	        element2.innerHTML = "Remove";
-	
-	        cell2.appendChild(element1);
-	        cell2.appendChild(element2);
-	
-	        var cell3 = row.insertCell(2);
-	        var element1 = document.createElement("input");
-	
-	        element1.type = "button";
-	        element1.setAttribute('id','btnSaveCategory'+categoryName);
-	        element1.setAttribute('name','btnSaveCategory'+categoryName);
-	        element1.setAttribute('value','Save');
-	        element1.setAttribute('onClick',"modifyCategory('Save','" + categoryName + "')");
-	        element1.setAttribute('style','display: none;');
-	        element1.setAttribute('class','');
-	
-	        cell3.appendChild(element1);*/
         </script>
         
          <script type="text/javascript">
