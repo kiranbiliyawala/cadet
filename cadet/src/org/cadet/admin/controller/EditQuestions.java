@@ -59,7 +59,7 @@ public class EditQuestions extends HttpServlet {
 			session.setAttribute("ClientAuth", false);
 			session.setAttribute("homeurl","admin/dashboard");        
 
-			int questionId = Integer.parseInt(request.getParameter("questionId"));
+			int questionId = Integer.parseInt(request.getParameter("hdnQuestionId"));
 			
 			//get question detail through Question ID
         	question = objQuestionBankManagement.viewQuestionByQuestionId(questionId);
