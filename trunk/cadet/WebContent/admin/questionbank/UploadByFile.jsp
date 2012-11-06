@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -13,7 +14,6 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="../../css/bootstrap.css">
-        <link rel="icon" type="image/ico" href="../../img/favicon.ico">
         <style>
             body {
                 padding-top: 60px;
@@ -39,33 +39,33 @@
                 	<!--/#accordion -->
 
 				<div class="container span9 offset*">
-                    <div class="navbar">
+                    <div class="navbar navbar-inverse">
                         <div class="navbar-inner">
                             <div class="container pull-left"><a class="brand" href="#">Upload Question Using File:</a></div>
                         </div>
                     </div>
                     <div>
-		                <table>
-		                    <tr>
-		                        <td>Select Category:</td>
-		                        <td>
-		                            <select>
-		                                <option>cat1</option>
-		                                <option>cat2</option>
-		                            </select>
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td colspan="2" style="height:50px">
-		                            <input type="file" name="filQuestion" id="filQuestion" /> <!-- onchange="fileSelected();"  -->
-		                        </td>
-		                    </tr>
-		                    <tr>
-		                        <td colspan="2">
-		                            <input type="button" class="btn btn-primary" name="btnUploadQuestion" id="btnUploadQuestion" onclick="upload()" value="Upload Questions"/>
-		                        </td>
-		                    </tr>
-		                </table>
+                    	<form action="/cadet/admin/questionBank/AddQuestionByFile" METHOD="post" ENCTYPE="multipart/form-data">
+			                <table>
+			                	<tr>
+			                		<td style="color:green; font-weight: 600;">
+					                	<c:if test="${requestScope.status eq 'success'}">
+					                		Successfully file uploaded.!!!
+					                	</c:if>
+				                	</td>
+			                	</tr>
+			                    <tr>
+			                        <td colspan="2" style="height:50px">
+			                            <input type="file" name="filename" id="filename" /> <!-- onchange="fileSelected();"  -->
+			                        </td>
+			                    </tr>
+			                    <tr>
+			                        <td colspan="2">
+			                            <input type="submit" class="btn btn-primary" name="btnUploadQuestion" id="btnUploadQuestion" onclick="return validate()" value="Upload Questions"/>
+			                        </td>
+			                    </tr>
+			                </table>
+		                </form>
 					</div>
                 </div>
 
@@ -73,8 +73,8 @@
 
         </div>	<!--/.container div -->
 
-		<hr>
-        <jsp:include page="/admin/Footer.jsp"></jsp:include>
+			<hr>
+		<jsp:include page="/admin/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
@@ -83,10 +83,25 @@
 
         <script src="../../js/plugins.js"></script>
         <script src="../../js/main.js"></script>
-        
+        <script type="text/javascript">
+        	function validate(){
+        		var file = document.getElementById("filename").value;
+        		if(file != null){
+        			if(file.substring(file.lastIndexOf(".")+1) == "CSV" || file.substring(file.lastIndexOf(".")+1) == "csv")
+        				return true;
+        			else 
+        				alert("Upload .CSV files only");
+        				return false;
+        		}
+        		else{
+        			alert("Select File to Upload");
+        		}
+        	}
+        </script>
+
          <script type="text/javascript">
         $("#question").addClass("active");
         $("#collapse2").addClass("in");
         </script>
-    </body>
-</html>
+	</body>
+</html>>
