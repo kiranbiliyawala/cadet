@@ -41,8 +41,6 @@ public class AddQuestion extends HttpServlet {
         QuestionBank question = new QuestionBank();
         QuestionBankManagement objQuestionBankManagement = new QuestionBankManagement();
         try{
-        	session.setAttribute("categoryId", request.getParameter("i"));
-        	session.setAttribute("categoryName", request.getParameter("c"));
         	question.setCategoryId(session.getAttribute("categoryId").toString());
             question.setLevelId(request.getParameter("level"));
             question.setQuestion(request.getParameter("question"));

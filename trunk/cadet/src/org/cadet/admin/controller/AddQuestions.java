@@ -38,19 +38,25 @@ public class AddQuestions extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		String error="";
 		try {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", "admin");
 			session.setAttribute("AdminAuth", true);
 			session.setAttribute("ClientAuth", false);
 			session.setAttribute("homeurl","admin/dashboard");        
-
+			
+			
+			
+        	int categoryId = Integer.parseInt(request.getParameter("hdnCategoryId"));
 			ArrayList<Category> categories = null;
 			CategoryManagement objCategoryManagement = new CategoryManagement();
-			String status = "", error="";
+			String status = "";
 			        
 			try{
 			    categories = objCategoryManagement.viewCategory();
+			    session.setAttribute("categoryId", Integer.toString(categoryId));
+			    session.setAttribute("categoryName", objCategoryManagement.viewCategoryByCategoryId(categoryId));
 			    status = "success";
 			}
 			catch(Exception e){
@@ -66,18 +72,18 @@ public class AddQuestions extends HttpServlet {
 			out.println("<body>");
 			out.println("<h1>" + status + "</h1><br/>");
 			out.println("<h3>" + categories + "</h3>");
-			out.println("<h1>" + error + "</h1>");
-			out.println("</body>");
-			out.println("</html>");
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/questionbank/AddQuestion.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			error=e.getMessage();
 		}finally{
-			out.close();
 		}
+		out.println("<h1>" + error + "</h1>");
+		out.println("</body>");
+		out.println("</html>");
 	}
 
 	/**

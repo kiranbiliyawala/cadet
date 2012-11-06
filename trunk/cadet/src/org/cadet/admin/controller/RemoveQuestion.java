@@ -37,6 +37,7 @@ public class RemoveQuestion extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		QuestionBankManagement objQuestionBankManagement = new QuestionBankManagement();
         int questionId = Integer.parseInt(request.getParameter("questionId"));
+        String error="";
 
         try{
             objQuestionBankManagement.removeQuestion(questionId);
@@ -44,6 +45,7 @@ public class RemoveQuestion extends HttpServlet {
         }
         catch(Exception e){
             status = false;
+            error=e.getMessage();
         }
         if(status){
         	out.print("Question Removed");
@@ -51,7 +53,7 @@ public class RemoveQuestion extends HttpServlet {
         }
         else{
         	out.print("Question Not Removed");
-        	request.setAttribute("status", "Fail");
+        	request.setAttribute("status", "Fail, error:" + error);
         }
 	}
 

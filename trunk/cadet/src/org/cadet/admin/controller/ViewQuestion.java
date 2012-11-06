@@ -58,7 +58,14 @@ public class ViewQuestion extends HttpServlet {
 			String status = "", error="", categoryId="";
 			try{
 				//out.println("TRY block-2 Begins<br/><br/>");
-				categoryId = request.getParameter("categoryId").toString();
+				try{
+					categoryId = request.getParameter("hdnCategoryId").toString();
+					session.setAttribute("categoryId", categoryId);
+					session.setAttribute("categoryName", objCategoryManagement.viewCategoryByCategoryId(Integer.parseInt(categoryId)));
+				}
+				catch(Exception e){
+					categoryId = (String)session.getAttribute("categoryId");
+				}
 				//out.println("<h3>CategoryId: " + categoryId + " </h3><br/>");
 				if(categoryId.compareTo("0") == 0){
 					questions = objQuestionBankManagement.viewAllQuestion();
