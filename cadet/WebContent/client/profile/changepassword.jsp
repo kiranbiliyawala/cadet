@@ -30,66 +30,13 @@
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#home"><img id="logo" src="../../img/cadet.gif" alt="CADET"></a>
-                    <div class="nav-collapse collapse">
-                       <ul class="nav">
-                           <li><a href="/cadet/client/index.jsp">Home</a></li>
-                           <li><a href="/cadet/client/Test/registerfortest.jsp">Test</a></li>
-                           <li class="active"><a href="/cadet/client/Test/viewalltest.jsp">Profile</a></li>
-                       </ul>
-                       <button class="btn btn-danger pull-right">Logout</button>
-                    </div>
-                </div>	<!--/.container -->
-            </div>
-        </div>	<!--/.navbar -->
+        <jsp:include page="/client/NavBar.jsp"></jsp:include>
+        	<!--/.navbar -->
         
         <div class="container-fluid">
         	<div class="row">
-                <div class="accordion span2" id="accordionMenu">
-
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="/cadet/client/index.jsp">Home</a>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse2">Test</a>
-                        </div>
-                        <div id="collapse2" class="accordion-body collapse">
-                            <div class="accordion-inner">
-                                <ul class="nav">
-                                    <li><a href="/cadet/client/Test/registerfortest.jsp">Register for Test</a></li>
-                                    <li><a href="/cadet/client/Test/viewalltest.jsp">View All Test</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMenu" href="#collapse3">Profile</a>
-                        </div>
-                        <div id="collapse3" class="accordion-body collapse">
-                            <div class="accordion-inner in">
-
-                                <ul class="nav">
-                                    <li><a href="/cadet/client/profile/changedetails.jsp">Change Details</a></li>
-                                    <li><a href="/cadet/client/profile/changepassword.jsp">Change Password</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-    
-                </div>	<!--/#accordion -->
+                <jsp:include page="/client/Accordian.jsp"></jsp:include>
+                	<!--/#accordion -->
 
 				
 				<div class="container-fluid span9">
@@ -127,15 +74,7 @@
 
 		<hr>
 		
-        <footer>
-                <div class="container-fluid row">
-                    <a class="span pull-right" href="#">About</a>
-                    <a class="span pull-right" href="#">FAQ</a>
-                    <a class="span pull-right" href="#">Contact us</a>
-                    <a class="span pull-right" href="#">Help</a>
-                    <a class="span pull-right" href="#">Privacy &amp; Policy</a>
-                </div>
-        </footer>
+        <jsp:include page="/client/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
         <script src="../../js/bootstrap.js"></script>
