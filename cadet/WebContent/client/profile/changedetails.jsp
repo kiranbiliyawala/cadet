@@ -56,21 +56,23 @@
 // 								System.out.println(request.getAttribute("CandidateProfileData"));
          					   List<String> list = (List<String>) request.getAttribute("CandidateProfileData");
            					   Iterator<String> it = list.iterator();
+           					String currentcat=null;
                                //System.out.println("List: " + it);
             				   while (it.hasNext()) {
             					   
-              					  String name = (String) it.next();
-                				  String contact = (String) it.next();
+              					  String name = it.next();
+                				  String contact = it.next();
+                				  currentcat = it.next();
 							%>
-							<form action="UpdateCandidateProfileServlet" method="post">
+							<form id="detailform" action="UpdateCandidateProfileServlet" method="post" onsubmit="return validate()">
             					<table>
                   					<tr>
                         				<td><label for="Name:">Name</label></td>
-                        				<td><input type="Text" name="name" value="<%=name%>" ></td>
+                        				<td><input type="Text" class="required" name="name" id="name" placeholder="Name" value="<%=name%>" ></td>
                     				</tr>
 									<tr>
                         				<td><label for="Contact">Contact</label></td>
-                        				<td> <input type="Text" name="contact" value="<%=contact%>"></td>
+                        				<td> <input type="Text" class="required digits" minlength='10' name="contact" id="contact" placeholder="Contact No." value="<%=contact%>"></td>
                     				</tr>
                     		<%}%>
                     				<tr>
@@ -83,7 +85,7 @@
                                       				 String cat=it1.next();
                                        				 out.print("hh"+cat);
                             				%>
-                            			<option value="<%=cat%>"><%=cat%></option>
+                            			<option <%if(currentcat.equals(cat)) {out.print("selected='selected'");}  %> value="<%=cat%>"><%=cat%></option>
 											<%}%>
                            					 </select>
                         				</td>
@@ -109,7 +111,13 @@
         <script src="../../js/bootstrap.js"></script>
         <script src="../../js/handlebars.js"></script>
         <script src="../../js/bootbox.js"></script>
+        <script src="../../js/jquery.validate.js"></script>
        
     	<script src="../js/main.js"></script>
+    	<script type="text/javascript">
+    	function validate(){
+    	return	$("#detailform").valid();
+    	}
+    	</script>
     </body>
 </html>

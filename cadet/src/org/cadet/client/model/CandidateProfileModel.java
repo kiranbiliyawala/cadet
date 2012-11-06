@@ -45,6 +45,7 @@ public class CandidateProfileModel {
 			while (rs.next()) {
 			    list.add(rs.getString("Name"));
 			    list.add(rs.getString("Contact"));
+			    list.add(rs.getString("CandidateCategoryName"));
 			}
 			System.out.println("List form Candidate profile model:" + list);
 			rs.close();

@@ -47,15 +47,15 @@
 							</div>
 						</div>
 							<div class="container-fluid span9">
-								<form action="UpdateCandidatePassword" method="post" onsubmit="return submit_val_cp()">
+								<form class="cmxform" id="passwordform" action="UpdateCandidatePassword" method="post" onsubmit="return submit_val_cp()">
             						<table>
             							<tr>
                 							<td> <label>New Password</label></td>
-                							<td> <input type="password" name="changepassword" id="changepassword" value="" placeholder="password"> </td>
+                							<td> <input type="password" name="changepassword" id="changepassword" minlength='6' class="required" equalTo="#confirmpassword" value="" placeholder="password"> </td>
             							</tr>
             							<tr>
                 							<td><label>Confirm Password</label></td>
-                							<td> <input type="password" name="confirmpassword" id="confirmpassword" value="" placeholder="password"></td>
+                							<td> <input type="password" name="confirmpassword" id="confirmpassword" minlength='6' equalTo="#changepassword" class="required" value="" placeholder="password"></td>
             							</tr>
             							<tr>
                 							<td> <button class="btn btn-primary" name="save" type="submit" value="Save">Save</button></td>
@@ -77,10 +77,12 @@
         <jsp:include page="/client/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
+        <script src="../../js/jquery.validate.js"></script>
         <script src="../../js/bootstrap.js"></script>
         <script src="../../js/handlebars.js"></script>
         <script src="../../js/bootbox.js"></script>
         <script src="../../js/sha.js"></script>
+        
        
     	
     </body>

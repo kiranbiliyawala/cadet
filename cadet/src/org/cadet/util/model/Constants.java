@@ -73,7 +73,7 @@ public class Constants {
 
 
 	/* Sadhana Queries */
-	public static final String getCandidateProfileDataSql = "Select CUserName Name,Contact,CandidateCategoryName FROM candidate where CUserName=?";
+	public static final String getCandidateProfileDataSql = "Select CUserName, Name, Contact, CandidateCategoryName FROM candidate where CUserName=?";
 	public static final String updateCandidateProfileDataSql = "Update Candidate SET Name=?,  Contact=? ,CandidateCategoryName=? WHERE CUserName=?";
 	public static final String updateCandidatePasswordSql = "Update Candidate SET Password =? where cusername=? ";
 	public static final String addUserCategoriesSql = "Insert INTO CandidateCategory Values (?)";
