@@ -33,7 +33,7 @@ footer {
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
-
+	<div id="joinuscontainer">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -129,11 +129,8 @@ footer {
 			</form>
 		</div>
 	</div>
-	<%	
-		
-		session.setAttribute("username", request.getParameter("Username"));
-		
-		%>
+	</div>
+	
 	<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/sha.js"></script>

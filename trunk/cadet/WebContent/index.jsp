@@ -22,21 +22,13 @@
 	<link rel="stylesheet" href="./css/bootstrap.css">
 	<style>
  		body { 
- 			padding-top: 50px; 
+ 			padding-top: 0px; 
  			padding-bottom: 40px; 
  		} 
 
 		footer {
 			background: none scroll repeat 0 0 #FFFFFF;
 		}
-/* 		.containe{ */
-/* 		position: fixed; */
-/* 		left:30%; */
-/* 		height: 60%; */
-/* 		right:20%; */
-/* 		top:10%; */
-/* 		bottom: 10%; */
-/* 		} */
 	</style>
 	<link rel="stylesheet" href="./css/bootstrap-responsive.css">
 	<!-- <link rel="stylesheet" href="./css/main.css"> -->
@@ -46,7 +38,7 @@
 </head>
 
 <body>
-	
+	<div id="wholebody">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container-fluid">
@@ -61,53 +53,52 @@
 		</div>
 	</div>
 	<!--/.navbar -->
+	<div>
+		<div id="joinuscontainer">
+			<div id="welcometitle">Welcome to CADET</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span2"><button class="btn btn-primary" id="joinus" onclick="transferRegisteration()">Join Us</button></div>
+					<div class="span1 offset3" id="verticalline">&nbsp;</div>
+					<div class="span3 offset1" id="form">
+							<form action="LoginAuthorize" class="form-horizontal" method="POST" onsubmit="submit_val()">
+								<div class="caption">
+      									<h2>Login</h2>
+  								</div>
+  								<div id="horizontalline">
+  								</div>
+  								<div class="control-group">
+    								<label class="control-label" for="username">Email: </label>
+    								<div class="controls">
+      									<input type="text" id="username" placeholder="Enter your mailid">
+    								</div>
+  								</div>
+  								<div class="control-group">
+    								<label class="control-label" for="password">Password: </label>
+    								<div class="controls">
+      									<input type="password" id="password" placeholder="Password">
+    								</div>
+  								</div>
+  								<div class="control-group">
+    								<div class="controls">
+      									<a href="#">Forgot Password</a>
+    								</div>
+  								</div>
+  								<div class="control-group">
+    								<div class="controls">
+      									<input type="submit" class="btn" value="Login" id="btnlogin"/>
+    								</div>
+  								</div>
+							</form>
+					</div>
 
-	<div class="container-fluid">
-<!-- 		<div class="row"> -->
-			<div class="span6"></div>
-			<div class="span10">
-				<div id="welcome" style="position: absolute;">
-					<div class="hero-unit" id="cadettext">
-						Welcome to CADET <br>
-						<div id="joinus">
-							<button class="btn btn-primary" onclick="transferRegisteration()">Join Us</button>
-						</div>
-						<span style="font: 60px calibri;">&nbsp;</span>
-					</div>
-					<div id="hero-unit-support"></div>
-					<span style="font: 20px calibri; margin-top: -35px; display:block; position: relative">OR</span>
-					<div id="form">
-						<form action="LoginAuthorize" method="POST" onsubmit="submit_val()" >
-							<table style="margin-left: 90px;">
-								<caption>Login</caption>
-								<tr>
-									<td><label>Username: </label></td>
-									<td><input type="text" id="username" name="username" placeholder="Enter your username" /></td>
-								</tr>
-								<tr>
-									<td><label>Password: </label></td>
-									<td><input type="password" id="password" name="password" placeholder="Enter Password" /></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td><!-- <input type="checkbox" /><span class="loginutils"> Remember me |</span>  --><a href="#" class="loginutils">Forgot Password</a></td>
-								</tr>
-								<tr>
-									<td colspan="2"><input type="submit" class="btn" id="btnlogin"/></td>
-								</tr>
-							</table>
-						</form>
-					</div>
 				</div>
 			</div>
-			<div class="span6"></div>
-<!-- 		</div> -->
+					
+			</div>
+		</div>
 	</div>
-	<%	
-		
-		session.setAttribute("username", request.getParameter("username"));
-		
-	%>
+	
 	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
 		<div class="row pull-right" style="0% 10% 10% 0%">
@@ -121,6 +112,12 @@
 	<script src="js/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="js/sha.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+		function setFocus()
+		{
+			document.getElementById("username").focus();
+		}
+	</script>
 	<script type="text/javascript" src="js/main.js"></script>
 	
 	
