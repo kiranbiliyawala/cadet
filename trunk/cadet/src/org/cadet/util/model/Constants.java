@@ -37,7 +37,7 @@ public class Constants {
 	public static final String hasCategory="SELECT COUNT(*) as count FROM candidatecategory WHERE CandidateCategoryName = ?";
 	public static final String getUserCategories="SELECT CandidateCategoryName as Category FROM candidatecategory";
 	public static final String getTestDurationNA="SELECT TestDuration as duration, TestName as name, TestDate as Date FROM test WHERE TestId=?";
-	public static final String getTestNegativeNA="SELECT NegMark as NegativeMarks FROM testquestion WHERE TestId=?";
+	public static final String getTestNegativeNA="SELECT NegMark FROM test WHERE TestId=?";
 	public static final String getTestDifficultyNA="SELECT LevelId as LID , Marks as Marks FROM levelmarks WHERE TestId=?";
 	public static final String getTestQuestionsNA="SELECT Q.QuestionId AS \'QID\',(SELECT C.CategoryName FROM category C where C.CategoryId=Q.CategoryId) AS \'CNAME\' , Q.LevelId AS \'LID\', Q.Question AS \'Question\', Q.OptA AS \'OptionA\', Q.OptB \'OptionB\', Q.OptC AS \'OptionC\', Q.OptD AS \'OptionD\', Q.CorrectAnswer AS \'CorrectAnswer\' FROM questionbank Q WHERE Q.QuestionId in (SELECT T.QuesitonId FROM testquestion T WHERE T.TestId=?)";
 	public static final String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
@@ -64,7 +64,7 @@ public class Constants {
 
 	/* Rajan Queries */
 
-	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName and r.CUserName = c.CUserName and r.Marks<>0 and r.Attempted<>0 and r.Correct<>0 and c.CUserName = ?";
+	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName and r.CUserName = c.CUserName and r.Marks=0.0 and r.Attempted=0 and r.Correct=0 and c.CUserName = ?";
 	public static final String getCandidateCategory = "SELECT CandidateCategoryName from candidate where CUserName=?";
 
 	/* Shailee Queries */
