@@ -10,6 +10,7 @@ var QID;
 var selectedop = null;
 var flag = false;
 var lock = false;
+var blurcount=4;
 
 
 function set_counter(starttime){
@@ -218,8 +219,29 @@ QID=result.QID;
 change_question_data();
 }
 
+function disableF5(e) { if (e.which) e.preventDefault(); };
 
-$("document").ready(function(){
+
+
+$(window).bind('keypress',disableF5);
+$(window).bind('keydown',disableF5);
+$(window).bind('keyup',disableF5);
+
+
+$(window).blur(function(){
+	blurcount--;
+	if(blurcount<=0){
+		finish_test();
+		return;
+	}
+	alert('Go outside this window '+blurcount+' more times and I will Submit Your Test');
+});
+
+$(window).bind("contextmenu",function(e){
+    return false;
+});
+
+$(document).ready(function(){
 	show_catselector();
 	set_counter(1200000);
 });
