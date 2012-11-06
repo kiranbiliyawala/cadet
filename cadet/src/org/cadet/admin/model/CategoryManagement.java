@@ -41,6 +41,14 @@ public class CategoryManagement {
         pst.close();
 	}
 	
+	public String viewCategoryByCategoryId(int categoryId) throws SQLException{
+		PreparedStatement pst = objConnection.getDbConnection().prepareStatement(Constants.sqlCommands.RetrieveCategoryByCategoryID);
+		pst.setInt(1, categoryId);
+		ResultSet rs = pst.executeQuery();
+		rs.next();
+		return rs.getString(1);
+	}
+	
 	public ArrayList<Category> viewCategory() throws SQLException {
         Statement st = objConnection.getDbConnection().createStatement();
         ResultSet rs = st.executeQuery(Constants.sqlCommands.RetrieveCategories);
