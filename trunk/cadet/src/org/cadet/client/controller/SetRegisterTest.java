@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.cadet.client.model.TestRegister;
 import org.cadet.util.model.DatabaseConnection;
@@ -44,8 +45,8 @@ public class SetRegisterTest extends HttpServlet {
 		Connection dbConnection = dbConn.getDbConnection();
 		TestRegister objTest = new TestRegister(dbConnection);
 		int testid = Integer.parseInt(request.getParameter("testid"));
-		
-		String CUserName = "user8";
+		HttpSession cadetsession = request.getSession();
+		String CUserName = (String) cadetsession.getAttribute("user");
 		
 		
 		

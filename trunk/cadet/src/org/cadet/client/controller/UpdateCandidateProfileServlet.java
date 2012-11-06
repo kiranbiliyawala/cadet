@@ -3,6 +3,7 @@ package org.cadet.client.controller;
 import java.io.IOException;
 import java.sql.Connection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,7 @@ public class UpdateCandidateProfileServlet extends HttpServlet {
 		Connection dbConnection = dbConn.getDbConnection();
 		response.setContentType("text/html;charset=UTF-8");
 		// PrintWriter out = response.getWriter();
-
+		int success=0;
 		HttpSession cadetsession = request.getSession();
 		String CUserName = (String) cadetsession.getAttribute("user");
 		System.out.println("UpdateCandidateProfileServlet : " + CUserName);
@@ -61,15 +62,17 @@ public class UpdateCandidateProfileServlet extends HttpServlet {
 			String ccandidatecategoryname = request
 					.getParameter("usercategory");
 
-			int success = cpm.updateCandidateProfileData(CUserName,
+			success = cpm.updateCandidateProfileData(CUserName,
 					candidatename, candidatecontact, ccandidatecategoryname);
 
 			if (success != 0) {
-				cadetsession.setAttribute("result", true);
+				request.setAttribute("result", true);
 			} else {
-				cadetsession.setAttribute("result", false);
+				request.setAttribute("result", false);
 			}
-			response.sendRedirect("/cadet/Home");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("GetCandidateProfileServlet");
+		    rd.forward(request, response);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

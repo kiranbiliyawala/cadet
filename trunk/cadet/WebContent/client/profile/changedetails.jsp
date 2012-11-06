@@ -1,3 +1,4 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.*" %>
 <%@page import="java.lang.*" %>
 <!DOCTYPE html>
@@ -119,6 +120,20 @@
     	function validate(){
     	return	$("#detailform").valid();
     	}
+    	
+    	$("#profile").addClass("active");	
+    	$("#collapse3").addClass("in");
     	</script>
+    	<c:if test="${result eq true}">
+		<script>
+			var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
+			$(document).ready(function(e) {
+				setTimeout(function() {
+					$("body").prepend(alertDiv);
+					setTimeout(function() { $(".alert").alert("close"); },3000);
+				},600);
+			});
+		</script>
+	</c:if>
     </body>
 </html>

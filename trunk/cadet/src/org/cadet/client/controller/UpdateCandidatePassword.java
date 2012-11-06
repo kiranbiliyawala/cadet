@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +48,7 @@ public class UpdateCandidatePassword extends HttpServlet {
 	    Connection dbConnection = dbConn.getDbConnection();
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        boolean success=false;
         HttpSession cadetsession = request.getSession();
 		String CUserName = (String) cadetsession.getAttribute("user");
 		CandidateProfileModel cpm = new CandidateProfileModel(dbConnection);
@@ -56,30 +57,32 @@ public class UpdateCandidatePassword extends HttpServlet {
             String newPass= request.getParameter("changepassword");
             String password= request.getParameter("confirmpassword");
             
-            if(! password.equals(newPass)){
+            if((! password.equals(newPass)) && password.equals(null) && newPass.equals(null)){
             	//System.out.println("Password confirmed");
-            	cadetsession.setAttribute("passwordconfirmcheck", false);
+            	cadetsession.setAttribute("passwordcheck", false);
                 //out.println("New pass & Confirm pass is not matched");
             }else{
 
             //Change_Password
             
             //boolean success = cpm.updateCandidatePassword(newPass, CUserName);
-            boolean success;
+            
 			try {
 				success = UserControl.UpdateClientPassword(dbConnection, CUserName, password);
 				if(success == true){
-					cadetsession.setAttribute("passwordcheck", true);
+					request.setAttribute("passwordcheck", true);
 	            }
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				cadetsession.setAttribute("passwordcheck", false);
+				request.setAttribute("passwordcheck", false);
 			}
             
             }
-            response.sendRedirect("/cadet/Home");
+            RequestDispatcher rd = request.getRequestDispatcher("/client/profile/ChangePassword");
+		    rd.forward(request, response);
+//            response.sendRedirect("/cadet/client/profile/ChangePassword");
         } finally { 
             out.close();
         }
