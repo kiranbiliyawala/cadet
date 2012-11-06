@@ -1,7 +1,6 @@
 *{
 	margin: 0%;
 	padding: 0%;
-	display: block;
 }
 
 #logo{
@@ -27,8 +26,8 @@
 }
 
 #welcometitle{
-	font-size: 80px;
-	margin-top: 4%;
+	font-size: 50px;
+	margin-top: 8%;
 	margin-left: 80px;
 	height:15%;
 	text-align: left;
