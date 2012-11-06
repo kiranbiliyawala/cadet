@@ -276,6 +276,7 @@ public class AdaptiveTest {
 		final_ability = final_ability/count;
 		
 		AdaptiveTestDBTransactions.saveResult(username, this.testId, final_ability, attempted, this.correctAnswers);
+		throw new Exception("Test Finished!");
 	}
 	
 	private void createScheduler(long delay){
