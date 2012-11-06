@@ -212,7 +212,14 @@
     <url-pattern>/client/profile/ChangePassword</url-pattern>
   </servlet-mapping>  
   
-  
+  <servlet>
+    <servlet-name>ForgotPassword</servlet-name>
+    <jsp-file>/pages/ForgotPasswordWait.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPassword</servlet-name>
+    <url-pattern>/ForgotPasswordWait</url-pattern>
+  </servlet-mapping>  
   
   <session-config>
     <session-timeout>300</session-timeout>
