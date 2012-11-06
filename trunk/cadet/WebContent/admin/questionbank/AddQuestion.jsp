@@ -136,7 +136,7 @@
 
         </div>	<!--/.container div -->
 
-		<hr>
+		
 		<jsp:include page="/admin/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
