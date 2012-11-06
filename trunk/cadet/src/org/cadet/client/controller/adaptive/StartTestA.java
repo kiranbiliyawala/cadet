@@ -18,7 +18,7 @@ import org.cadet.client.model.adaptive.AdaptiveTestDBTransactions;
  * @author Varun Jamdar
  * 
  */
-@WebServlet("/Test/Adaptive/StartTestA")
+@WebServlet("/client/Test/Adaptive/StartTestA")
 public class StartTestA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class StartTestA extends HttpServlet {
 			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID.intValue())) {
 				session.setAttribute("testStarted", true);//check on pop up page whether test has been started so that candidate cannot restart the test by resubmitting the url.
 				try {
-					AdaptiveTest test=new AdaptiveTest(testID.intValue());
+					AdaptiveTest test=new AdaptiveTest(testID.intValue(),session.getAttribute("username").toString());
 					session.setAttribute("test", test);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

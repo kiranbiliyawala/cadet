@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
+import org.cadet.client.bean.CategoryAdaptiveTest;
+import org.cadet.client.bean.Question;
 import org.cadet.util.model.DatabaseConnection;
 import org.cadet.util.model.Constants;
 
@@ -51,21 +53,26 @@ public class AdaptiveTestDBTransactions {
 		return false;
 	}
 
-	public static HashMap<Integer, Integer> getCategoryWiseQuestionCount(int testId) throws SQLException, Exception{
+	public static HashMap<Integer, CategoryAdaptiveTest> getCategoryWiseQuestionCount(int testId) throws SQLException, Exception{
+		
+		HashMap<Integer, CategoryAdaptiveTest> categories = new HashMap<Integer,CategoryAdaptiveTest>();
+		CategoryAdaptiveTest category;
 		
 		DatabaseConnection dbConn=DatabaseConnection.getInstance();
 		Connection conn=dbConn.getDbConnection();
-		PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.getQuestionCountOfCategoryOfTest);
+		PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.getQuestionCountAndCategoryOfTest);
 		ps.setInt(1, testId);
 		ResultSet rs=ps.executeQuery();
 		rs.beforeFirst();
-		HashMap<Integer, Integer> catWiseQuestionCount=new HashMap<Integer, Integer>();
+		
 		while(rs.next()){
-			catWiseQuestionCount.put(new Integer(rs.getInt(1)), new Integer(rs.getInt(2)));
+			category=new CategoryAdaptiveTest(testId, rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
+			categories.put(category.getCategoryId(), category);
+			
 		}
-		if(catWiseQuestionCount.isEmpty())
+		if(categories.isEmpty())
 			throw new Exception("Category wise questions not defined!");
-		return catWiseQuestionCount;
+		return categories;
 	}
 	
 	public static Adaptive_Ability_Optimization generateAAO(int testId, int noOfQuestions) throws SQLException, Exception{
