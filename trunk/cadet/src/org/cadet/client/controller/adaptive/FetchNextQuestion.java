@@ -147,8 +147,15 @@ public class FetchNextQuestion extends HttpServlet {
 							return;
 						}
 						default:
-							ex.printStackTrace();
-							return;
+							try {
+								data.put("result", "unknownError");
+								out.println(data);
+								return;
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+								return;
+							}
 					}
 				}
 				

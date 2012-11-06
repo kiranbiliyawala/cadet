@@ -19,7 +19,6 @@ public class CategoryAdaptiveTest extends BeanTestCategory {
 	 */
 	
 	private Double ability;
-	
 	private Double timedAbility;
 	private boolean done;
 	private ArrayList<Integer> askedQuestions;
@@ -32,6 +31,8 @@ public class CategoryAdaptiveTest extends BeanTestCategory {
 		this.setCategoryName(categoryName);
 		this.setTimePerCategory(timePerCategory);
 		this.setQuestionsPerCategory(questionsPerCategory);
+		this.askedQuestions=new ArrayList<Integer>();
+		done=false;
 	}
 
 	public Double getAbility() {
