@@ -89,7 +89,7 @@ public class NonAdaptiveTest {
 			name = rs.getString("Name");
 			date = rs.getString("Date");
 		}
-		String details = name+","+date+","+test_hours+":"+test_minutes;
+		String details = name+","+date+","+test_hours+":"+test_minutes+":00";
 		test_details = details.split(",");
 	}
 

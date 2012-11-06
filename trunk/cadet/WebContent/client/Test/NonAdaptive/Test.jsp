@@ -7,23 +7,27 @@
 <script src="js/NATEST.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/NATEST.css">
+<link rel="stylesheet" type="text/css" href="/cadet/client/css/jquery.countdown.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><%= request.getAttribute("TestTime") %></title>
+<title><%= request.getAttribute("TestName") %></title>
 
 <script type="text/javascript">
 
 var questiondistribution = <%= request.getAttribute("CatDistribution")%>;
-
+var Time= '<%= request.getAttribute("TimeDuration")%>';
 </script>
 
+<script type="text/javascript" src="/cadet/client/js/jquery.countdown.js"></script>
+
+
 </head>
-<body class="body" onload="body_load()">
-	<div id = "catselector" class="accordion question_portion">
+<body class="body">
+	<div id = "catselector" class="container accordion question_portion">
 	<div style="margin-top: 5%"></div>
 	<div class="Category" style="font-size: 20px;margin-bottom: .5%"> Categories </div>
 	<%= request.getAttribute("Catselector") %>
 	</div>
-	<div class="question_portion" id = "question_portion">
+	<div class="container question_portion" id = "question_portion">
 		<div class="Question_no">
         <h1 class="QNO" id="QNO">1</h1>
          <br/>
@@ -46,9 +50,11 @@ var questiondistribution = <%= request.getAttribute("CatDistribution")%>;
          </form>
 		</div>
 </div>
-	<div class="Nav_Bar" id="Nav_Bar">
+	<div class="container Nav_Bar" id="Nav_Bar">
 		
-        <div class="Timer" >Timer</div>
+        <div class="Timer" >
+	 <div id="countdowntimer"></div>
+ 	</div>
         <br />
        
         <div class="Section" id="Section">
@@ -58,23 +64,23 @@ var questiondistribution = <%= request.getAttribute("CatDistribution")%>;
         	
        <div class="Legend"> 
     <div class="cover">
-    <div  class="stub Attempted" id="Attempted"></div>Attempted</div>
+    <div  class="stub btn-success" id="Attempted"></div>Attempted</div>
     <div class="cover">
-    <div class="stub NotAttempted" id="NotAttempted"></div>
+    <div class="stub btn-danger" id="NotAttempted"></div>
     Not Attempted
     </div>
     <div class="cover">
-    <div class="stub Flagged" id="Flagged"></div>
+    <div class="stub btn-warning" id="Flagged"></div>
     Flagged
     </div>
     </div>
       
-	<div class="Controls" id = "Controls">
-		<button class="butn prev_next_btn" type="button" onclick="previous()" name="Previous" text="Previous" style="float:left;"/>&lt; Previous</button>
-        <button class="butn section_btn" type="button" onclick="show_catselector()" name="Change Section" text="Change Section"/>Change Section</button>
-		<button class="butn test_fin_btn" type="button" onclick="finish_test_confirm()" name="Finish Test" text="Finish Test"/>Finish Test</button>
-        <button class="butn prev_next_btn" type="button" onclick="submit_next()" name="Next&ampSubmit" text="Next &amp Submit" style="float:right"/>Next &amp Submit &gt;</button>
-        <button class="butn skip_btn" type="button" onclick="skip()" name="Skip" text="Skip" style="float:right"/>Skip</button>
+	<div class="container Controls" id = "Controls">
+		<button class="btn butn btn-primary" type="button" onclick="previous()" name="Previous" text="Previous" style="float:left;"/>&lt; Previous</button>
+        <button class="btn butn btn-warning" type="button" onclick="show_catselector()" name="Change Section" text="Change Section"/>Change Section</button>
+		<button class="btn butn btn-danger"  type="button" onclick="finish_test_confirm()" name="Finish Test" text="Finish Test"/>Finish Test</button>
+        <button class="btn butn btn-primary" type="button" onclick="submit_next()" name="Next&ampSubmit" text="Next &amp Submit" style="float:right"/>Next &amp Submit &gt;</button>
+        <button class="btn butn btn-info" type="button" onclick="skip()" name="Skip" text="Skip" style="float:right"/>Skip</button>
 	</div>
 </body>
 </html>

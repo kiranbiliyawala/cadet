@@ -12,24 +12,35 @@ var flag = false;
 var lock = false;
 
 
+function set_counter(starttime){
+	$('#countdowntimer').countdown({
+        timestamp : new Date().getTime()+starttime,
+        callback    : function(days, hours, minutes, seconds){
+        	if(days===0&&hours===0&&minutes===0&&seconds===0){
+        		finish_test();
+        	}
+        }
+      });
+}
+
 function update_Attempted(command,cat,question){
 	
 	var internal = "#Section #Qstub"+cat+question+", #catselector #Qstub"+cat+question;
 
 	if(command=="Attempted"){
-		$(internal).addClass("Attempted");
-		$(internal).removeClass("NotAttempted");
-		$(internal).removeClass("Flagged");
+		$(internal).addClass("btn-success");
+		$(internal).removeClass("btn-danger");
+		$(internal).removeClass("btn-warning");
 	}
 	else if(command=="Flagged"){
-		$(internal).addClass("Flagged");
-		$(internal).removeClass("NotAttempted");
-		$(internal).removeClass("Attempted");
+		$(internal).addClass("btn-warning");
+		$(internal).removeClass("btn-danger");
+		$(internal).removeClass("btn-success");
 	}
 	else if(command=="NotAttempted"){
-		$(internal).addClass("NotAttempted");
-		$(internal).removeClass("Attempted");
-		$(internal).removeClass("Flagged");
+		$(internal).addClass("btn-danger");
+		$(internal).removeClass("btn-success");
+		$(internal).removeClass("btn-warning");
 	}
 }
 
@@ -55,7 +66,10 @@ function ajax_caller(callurl,data_value,async_value,callback){
 
 
 function show_cat(covercat){
-	$(".CatCover:not(#"+covercat+")").hide();
+	$("#Section .CatCover").removeClass("in");
+	$("#Section .CatCover:not(#"+covercat+")").hide();
+	$("#Section #"+covercat).show();
+	$("#Section #"+covercat).addClass("in");
 }
 
 function change_question_data(){
@@ -93,7 +107,7 @@ function submit_next(){
 	if(ans!=null)
 	{
 	submit_answer(ans);
-	}else if($("#Qstub"+category+qno).hasClass('Attempted'))
+	}else if($("#Qstub"+category+qno).hasClass('btn-success'))
 	{
 		remove_answer();
 	}
@@ -150,7 +164,6 @@ function previous(){
 }
 
 function show_catselector(){
-	$(".CatCover").show();
 	$("#question_portion").hide();
 	$("#Section").hide();
 	$("#Controls").hide();
@@ -206,9 +219,10 @@ change_question_data();
 }
 
 
-function body_load(){
+$("document").ready(function(){
 	show_catselector();
-}
+	set_counter(1200000);
+});
 
 function finish_test_confirm(){
 var r=confirm("Are you sure to finish the test ?");

@@ -1,6 +1,3 @@
-var RecaptchaOptions = {
-		    theme : 'clean'
-		 };
 
 $(document).ready(function(e) {
 	populateUserCategories();	
@@ -18,6 +15,11 @@ $(document).ready(function(e) {
 
 
   function validate() {
+	  
+	  $.validator.addMethod("alpha", function(value,element)
+			  {
+			     return this.optional(element) || /^[a-zA-Z]$/i.test(value); 
+			  }, "Alphabets only");
 	  
 	  var username = document.getElementById("Username").value;
 	  var password = document.getElementById("Password");
