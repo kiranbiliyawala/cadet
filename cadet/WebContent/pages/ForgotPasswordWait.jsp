@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>CADET | Verify Email address</title>
+        <title>CADET | Forgot Password</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -28,7 +28,7 @@
  		<link rel="stylesheet" href="css/homepage.css"> 
         <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
- <body>
+<body>
  
  	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
@@ -45,16 +45,13 @@
 	</div>
 	<!--/.navbar -->
  	<div class="container-fluid">
- 		<form action="EmailResend" method="post">
  			<div class="hero-unit span12">
  				<h2>Hey, </h2>
- 				<input type="hidden" name="username" value="<%= session.getAttribute("user") %>"/>
- 				<h3>We've send an email to your email id. Please verify your email id.</h3>
- 				<p>If you haven't got the email Click on &nbsp;<input type="submit" class="btn" name="btnsubmit" value="Resend"/></p>
+ 				<h3>We've send an email to your email id. Please check your email id for password reset.</h3>
  			</div>
- 	</form>
  	</div>
  	
  	
 </body>
 </html>
+    
