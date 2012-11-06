@@ -91,7 +91,7 @@ public class AdaptiveTestDBTransactions {
 			initialDifficulty=(double)rs.getInt(9);
 		}
 		else{
-			throw new Exception("No such Test Exists !");
+			throw new Exception("No such Test Exists!");
 		}
 				
 		return new Adaptive_Ability_Optimization(Constants.adaptive.MIN_DIFFICULTY, Constants.adaptive.MAX_DIFFICULTY, initialDifficulty, noOfQuestions, Constants.adaptive.DIFFERENCE_BETWEEN_TWO_DIFFICULTIES);

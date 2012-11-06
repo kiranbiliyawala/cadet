@@ -28,11 +28,12 @@ public class AdaptiveTest {
 	
 	//add userId/username private
 	//add function public HashMap<Integer, String> getCategories() // returns HashMap<Integer currentCategoryId, String categoryName>
-	
 	//add duration for current category and initialize in constructor and startNextSection
 	//add scheduler in startTest method
 	//create a runnable class that calls submitSection
 	//split startNextQuestion into SubmitSection i.e. submit a particular category; and startSection(int currentCategoryId)
+	
+	//in startSection method handle QuestionsHaveBeenExhaustedForDifficultyLevel in try catch call increaseDifficulty. 
 	
 	private int testId;
 	private int currentCategoryId;
@@ -49,7 +50,7 @@ public class AdaptiveTest {
 	private int correctAnswers=0;
 	
 	
-	public AdaptiveTest(int testID, String username) throws Exception{
+	public AdaptiveTest(int testID, String username) throws SQLException, Exception{
 		this.testId=testID;
 		this.username=username;		
 		this.categories= AdaptiveTestDBTransactions.getCategoryWiseQuestionCount(this.testId);
@@ -85,11 +86,7 @@ public class AdaptiveTest {
 */	
 		}
 	
-	public void startTest(){
-		aao.start_test();
-	}
-	
-	public HashMap<Integer, CategoryAdaptiveTest> getUnattemptedCategories() throws Exception{
+	public HashMap<Integer, CategoryAdaptiveTest> getUnattemptedCategories() throws SQLException, Exception{
 		HashMap<Integer, CategoryAdaptiveTest> categories = new HashMap<Integer, CategoryAdaptiveTest>();
 		Iterator<CategoryAdaptiveTest> iterator = this.categories.values().iterator();
 		CategoryAdaptiveTest category;
@@ -103,13 +100,13 @@ public class AdaptiveTest {
 		return categories;
 	}
 
-	public Question skipQuestion() throws Exception {
+	public Question skipQuestion() throws SQLException, Exception {
 		
 		aao.skip_question();
 		this.skippedQuestions++;
 		
 		//if (this.categoryDone.get(this.currentCategoryId)<this.categoryWiseQuestions.get(this.currentCategoryId)) {
-		if(!this.categories.get(this.currentCategoryId).checkQuestionsForCategoryAsked()) {
+		if((!this.categories.get(this.currentCategoryId).checkQuestionsForCategoryAsked())&&(!this.categories.get(this.currentCategoryId).isDone())) {
 			//if no of questions already asked for current category is less than no of questions to be asked for current category.
 			try {
 				//this.question = AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, aao.getDifficulty(), this.askedQuestions);
@@ -137,7 +134,7 @@ public class AdaptiveTest {
 		}
 	}
 	
-	public Question submitQuestion(String answer) throws Exception {
+	public Question submitQuestion(String answer) throws SQLException, Exception {
 		
 		boolean isAnsweredCorrectly=this.question.getCorrectAnswer().equals(answer);
 		if(isAnsweredCorrectly)
@@ -146,7 +143,7 @@ public class AdaptiveTest {
 		Double d= this.aao.process_answer(isAnsweredCorrectly);
 		
 		//if (this.categoryDone.get(this.currentCategoryId)<this.categoryWiseQuestions.get(this.currentCategoryId)) {
-		if(!this.categories.get(this.currentCategoryId).checkQuestionsForCategoryAsked()) {
+		if((!this.categories.get(this.currentCategoryId).checkQuestionsForCategoryAsked())&&(!this.categories.get(this.currentCategoryId).isDone())) {
 			//if no of questions already asked for current category is less than no of questions to be asked for current category.
 			try {
 				//this.question = AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, d, this.askedQuestions);
@@ -174,7 +171,7 @@ public class AdaptiveTest {
 		}
 	}
 	
-	public Question startSection(int categoryId) throws Exception {
+	public Question startSection(int categoryId) throws SQLException, Exception {
 		
 		/*
 		this.categoryWiseAbility.put(this.currentCategoryId, aao.getAbility());
@@ -211,20 +208,23 @@ public class AdaptiveTest {
 			this.aao=AdaptiveTestDBTransactions.generateAAO(this.testId, this.categories.get(this.currentCategoryId).getQuestionsPerCategory());
 			this.question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
 			this.categories.get(this.currentCategoryId).addAskedQuestion(this.question.getQuestionId());
+			this.aao.start_test();
 			createScheduler(this.categories.get(this.currentCategoryId).getTimePerCategory());
 			return this.question;
 		}
 	}
 	
-	private Question increaseDifficulty() throws Exception{
+	private Question increaseDifficulty() throws SQLException, Exception{
 		try {
 			this.aao.increase_difficulty();
 			return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
 		} catch (InvalidAlgorithmParameterException e) {
 			throw new Exception("Section completed!");
 		} catch(Exception ex){
-			if(ex.getMessage().equals("Questions for the given difficulty are exhausted !"))
-				throw new Exception("Section completed!", ex);
+			if(ex.getMessage().equals("Questions for the given difficulty are exhausted !")){
+				this.aao.increase_difficulty();
+				return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
+			}
 			else
 				throw ex;
 		}
@@ -234,7 +234,7 @@ public class AdaptiveTest {
 		this.categories.get(this.currentCategoryId).setDone(true);
 	}
 	
-	private void finishTest(String username) throws Exception{
+	private void finishTest(String username) throws SQLException, Exception{
 		
 		int attempted=0;
 		double final_ability=1.0;
