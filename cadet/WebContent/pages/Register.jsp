@@ -20,6 +20,9 @@ var RecaptchaOptions = {
 
 <link rel="icon" type="image/ico" href="img/favicon.ico">
 <style>
+body {
+	padding-bottom: 40px;
+}
 
 #accordionMenu {
 	position: fixed;

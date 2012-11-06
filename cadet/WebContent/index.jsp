@@ -44,8 +44,8 @@
 					<a class="brand" href="#"><img id="logo" src="./img/cadet.gif"
 						alt="CADET"></img></a>
 					<ul class="nav" id="ulcontainer">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a class="liheader" href="#">Features</a></li>
+						<li class="active"><a href="">Home</a></li>
+						<li><a class="liheader" href="#features">Features</a></li>
 					</ul>
 				</div>
 				<!--/.container -->
@@ -96,7 +96,9 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="features">
+		
+	</div>
 	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
 		<div class="row pull-right" style="">
