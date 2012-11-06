@@ -51,7 +51,7 @@
 				<!--/.container -->
 			</div>
 		</div>
-	</div>
+	
 	<!--/.navbar -->
 	<div>
 		<div id="joinuscontainer">
@@ -70,7 +70,7 @@
   								<div class="control-group">
     								<label class="control-label" for="username">Email: </label>
     								<div class="controls">
-      									<input type="text" id="username" name="username" class="required email" placeholder="Enter your mailid">
+      									<input type="text" id="username" name="username" class="required email" placeholder="Enter your email id">
     								</div>
   								</div>
   								<div class="control-group">
@@ -81,7 +81,7 @@
   								</div>
   								<div class="control-group">
     								<div class="controls">
-      									<a href="#">Forgot Password</a>
+      									<a href="#forgotpassword" role="button" data-toggle="modal">Forgot Password</a>
     								</div>
   								</div>
   								<div class="control-group">
@@ -96,6 +96,24 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="forgotpassword" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		 <div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    		<h3 id="myModalLabel">Forgot Password</h3>
+  		</div>
+  		<form action="IForgotPassword" method="post">
+  		<div class="modal-body">
+    			<label>Email: </label>
+    			<input type="text" name="username" placeholder="Enter your email id">
+  		</div>
+  		<div class="modal-footer">
+    		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    		<button type="submit" class="btn btn-primary">Send</button>
+  		</div>
+  		</form>
+	</div>
+	
 	<div id="features">
 		
 	</div>
