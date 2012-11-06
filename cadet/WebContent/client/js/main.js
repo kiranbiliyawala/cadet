@@ -11,6 +11,15 @@ function submit_val(){
 
 }
 
+function submit_val_cp(){
+	var pass = document.getElementById("changepassword");
+	pass.value = hashmap(pass.value);
+pass = document.getElementById("confirmpassword");
+	
+	pass.value = hashmap(pass.value);
+
+}
+
 function hashmap(input){
 	var shaobj = new jsSHA(input,"ASCII");
 	var hash = shaobj.getHash("SHA-512", "HEX");

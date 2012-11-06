@@ -41,10 +41,9 @@ public class ForgotPassword extends HttpServlet {
 		String username = request.getParameter("user");
 		String key = request.getParameter("key");
 		HttpSession session = request.getSession();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date dt = new Date();
+		String timekey = new Long((new Date().getTime())/600000).toString();
 		
-		String datakey = UserControl.getHashEmail(username+dateFormat.format(dt));
+		String datakey = UserControl.getHashEmail(username+timekey);
 		if(datakey.equals(key)){
 			session.setAttribute("user", username);
 			session.setAttribute("AdminAuth", false);
