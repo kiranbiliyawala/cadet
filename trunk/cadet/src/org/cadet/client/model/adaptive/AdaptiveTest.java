@@ -33,7 +33,7 @@ public class AdaptiveTest {
 	//create a runnable class that calls submitSection
 	//split startNextQuestion into SubmitSection i.e. submit a particular category; and startSection(int currentCategoryId)
 	
-	//in startSection method handle QuestionsHaveBeenExhaustedForDifficultyLevel in try catch call increaseDifficulty. 
+	//in startSection method handle QuestionsHaveBeenExhaustedForDifficultyLevel in try catch call increaseDifficulty. Though this would not be required as such but still worst case.
 	
 	private int testId;
 	private int currentCategoryId;
