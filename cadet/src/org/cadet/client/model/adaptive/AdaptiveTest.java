@@ -1,6 +1,7 @@
 package org.cadet.client.model.adaptive;
 
 import java.security.InvalidAlgorithmParameterException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,10 @@ public class AdaptiveTest {
 	private int testId;
 	private int currentCategoryId;
 	private String username;
+	private String testName;
+	private String testDescription;
+	private Date testDate;
+	private Double initialDifficulty;
 	private HashMap<Integer, CategoryAdaptiveTest> categories;
 	//private HashMap<Integer, Integer> categoryWiseQuestions;
 	//private HashMap<Integer, Double> categoryWiseAbility;
@@ -52,8 +57,23 @@ public class AdaptiveTest {
 	
 	public AdaptiveTest(int testID, String username) throws SQLException, Exception{
 		this.testId=testID;
-		this.username=username;		
+		this.username=username;
+		ArrayList<Object> testDetails=AdaptiveTestDBTransactions.getTestDetails(this.testId);
+		this.testName=(String)testDetails.get(0);
+		this.testDescription=(String)testDetails.get(1);
+		this.testDate=(Date)testDetails.get(2);
+		this.initialDifficulty=(Double)testDetails.get(3);
+		
 		this.categories= AdaptiveTestDBTransactions.getCategoryWiseQuestionCount(this.testId);
+		Iterator<CategoryAdaptiveTest> iter=this.categories.values().iterator();
+		CategoryAdaptiveTest cat;
+		while(iter.hasNext()){
+			cat=iter.next();
+			cat.setAbility(this.initialDifficulty);
+			cat.setTimedAbility(this.initialDifficulty);
+		}
+		iter=null;
+			
 		
 		/*this.categoryWiseAbility=new HashMap<Integer,Double>();
 		this.categoryWiseTimedAbility=new HashMap<Integer,Double>();
@@ -86,6 +106,22 @@ public class AdaptiveTest {
 */	
 		}
 	
+	public String getUsername() {
+		return this.username;
+	}
+
+	public String getTestName() {
+		return this.testName;
+	}
+
+	public String getTestDescription() {
+		return this.testDescription;
+	}
+
+	public Date getTestDate() {
+		return this.testDate;
+	}
+
 	public HashMap<Integer, CategoryAdaptiveTest> getUnattemptedCategories() throws SQLException, Exception{
 		HashMap<Integer, CategoryAdaptiveTest> categories = new HashMap<Integer, CategoryAdaptiveTest>();
 		Iterator<CategoryAdaptiveTest> iterator = this.categories.values().iterator();
@@ -231,21 +267,21 @@ public class AdaptiveTest {
 	}
 
 	private void submitSection(){
-		this.categories.get(this.currentCategoryId).setDone(true);
-	}
-	
-	private void finishTest(String username) throws SQLException, Exception{
-		
-		int attempted=0;
-		double final_ability=1.0;
-		int count=0;
-		
-		//this.categoryWiseAbility.put(this.currentCategoryId, aao.getAbility());
-		//this.categoryWiseTimedAbility.put(this.currentCategoryId, aao.getTimedAbility());
 		this.categories.get(this.currentCategoryId).setAbility(this.aao.getAbility());
 		this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
 		this.categories.get(this.currentCategoryId).setDone(true);
+	}
+	
+	public void finishTest(String username) throws SQLException, Exception{
 		
+		int attempted=0;
+		double final_ability=1.0;
+		
+		//this.categoryWiseAbility.put(this.currentCategoryId, aao.getAbility());
+		//this.categoryWiseTimedAbility.put(this.currentCategoryId, aao.getTimedAbility());
+		//this.categories.get(this.currentCategoryId).setAbility(this.aao.getAbility());
+		//this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
+		//this.categories.get(this.currentCategoryId).setDone(true);
 		
 		/*Iterator<Entry<Integer,Integer>> iter=this.categoryDone.entrySet().iterator();
 		while(iter.hasNext()){
@@ -267,13 +303,12 @@ public class AdaptiveTest {
 			category = iterator.next();
 			attempted += category.getQuestionsPerCategory();
 			final_ability += category.getTimedAbility();
-			count++;
 		}
 		iterator=null;
 		
 		attempted -= this.skippedQuestions;
 		
-		final_ability = final_ability/count;
+		final_ability = final_ability/this.categories.size();
 		
 		AdaptiveTestDBTransactions.saveResult(username, this.testId, final_ability, attempted, this.correctAnswers);
 		throw new Exception("Test Finished!");

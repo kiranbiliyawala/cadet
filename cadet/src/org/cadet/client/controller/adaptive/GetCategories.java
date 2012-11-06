@@ -51,15 +51,17 @@ public class GetCategories extends HttpServlet {
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		JSONObject data = new JSONObject();
-		JSONArray array = new JSONArray();
-		JSONArray element;
-
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		
+		JSONObject data = null;
+		JSONArray array = null;
+		JSONArray element;		
 		PrintWriter out;
+		
 		try {
+			data = new JSONObject();
+			array = new JSONArray();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			
 			out = response.getWriter();
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
@@ -95,6 +97,7 @@ public class GetCategories extends HttpServlet {
 						element = new JSONArray();
 						element.put(0, cat.getCategoryId());
 						element.put(1, cat.getCategoryName());
+						element.put(2, new Long(cat.getTimePerCategory()*60*1000));
 						array.put(element);
 					}
 				

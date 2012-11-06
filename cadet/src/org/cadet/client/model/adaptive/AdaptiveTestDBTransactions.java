@@ -40,7 +40,7 @@ public class AdaptiveTestDBTransactions {
 				Date endTime=rs.getDate(7);
 				
 				long testDuration=rs.getInt(8)*60*60*1000;
-				
+				rs.close();
 				Date now=new Date(new java.util.Date().getTime());
 				
 				if((now.getTime()>startTime.getTime())&&(now.getTime()<(endTime.getTime()-testDuration))){
@@ -53,6 +53,29 @@ public class AdaptiveTestDBTransactions {
 		return false;
 	}
 
+	public static ArrayList<Object> getTestDetails(int testId) throws SQLException, Exception {
+		
+		ArrayList<Object> testDetails=new ArrayList<Object>();
+		
+		DatabaseConnection dbConn=DatabaseConnection.getInstance();
+		Connection conn=dbConn.getDbConnection();
+		PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.getTestDetails);
+		ps.setInt(1, testId);
+		
+		ResultSet rs=ps.executeQuery();
+		rs.beforeFirst();
+		if(rs.next()){
+			testDetails.add(0, rs.getString(1));
+			testDetails.add(1, rs.getString(2));
+			testDetails.add(2, rs.getDate(3));
+			testDetails.add(3, new Double(rs.getInt(4)));
+		}
+		else throw new Exception("No such Test Exists !");
+		
+		rs.close();
+		return testDetails;
+	}
+	
 	public static HashMap<Integer, CategoryAdaptiveTest> getCategoryWiseQuestionCount(int testId) throws SQLException, Exception{
 		
 		HashMap<Integer, CategoryAdaptiveTest> categories = new HashMap<Integer,CategoryAdaptiveTest>();
@@ -70,6 +93,7 @@ public class AdaptiveTestDBTransactions {
 			categories.put(category.getCategoryId(), category);
 			
 		}
+		rs.close();
 		if(categories.isEmpty())
 			throw new Exception("Category wise questions not defined!");
 		return categories;
@@ -93,13 +117,14 @@ public class AdaptiveTestDBTransactions {
 		else{
 			throw new Exception("No such Test Exists!");
 		}
-				
+		rs.close();
 		return new Adaptive_Ability_Optimization(Constants.adaptive.MIN_DIFFICULTY, Constants.adaptive.MAX_DIFFICULTY, initialDifficulty, noOfQuestions, Constants.adaptive.DIFFERENCE_BETWEEN_TWO_DIFFICULTIES);
 	}
 
 	public static Question fetchNextQuestion(int testId, int categoryId, Double difficulty, ArrayList<Integer> askedQuestions) throws SQLException, Exception {
 		
 		String questions_asked= "";
+		Question q;
 		
 		for(int i=0; i<askedQuestions.size(); i++) {
 			questions_asked+= askedQuestions.get(i) + ",";
@@ -117,11 +142,13 @@ public class AdaptiveTestDBTransactions {
 		ResultSet rs= ps.executeQuery();
 		
 		if(rs.first()){
-			return new Question(rs.getInt(1), rs.getInt(2), rs.getInt(10), rs.getInt(11), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+			q= new Question(rs.getInt(1), rs.getInt(2), rs.getInt(10), rs.getInt(11), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
 		}
 		else{
 			throw new Exception("Questions for the given difficulty are exhausted !");
 		}
+		rs.close();
+		return q;
 	}
 	
 	public static void saveResult(String username, int testId, Double ability, int attempted, int correctAnswers) throws SQLException {
