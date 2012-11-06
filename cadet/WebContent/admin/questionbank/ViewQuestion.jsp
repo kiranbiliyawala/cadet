@@ -1,6 +1,8 @@
+<%@page import="org.cadet.admin.model.CategoryManagement"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -14,42 +16,11 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="../../css/bootstrap.css">
-        <link rel="icon" type="image/ico" href="../../img/favicon.ico">
         <style>
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
-            div#deleteConfirmationPopup
-			{
-			    position:absolute;
-			    display:none;
-			    top:235px;
-			    left:50%;
-			    width:400px; 
-			    margin-left:-250px;
-			    border:5px solid black;
-			    -webkit-box-shadow:rgba(110,110,110,.6) 10px 10px 10px;
-			    border-radius:10px; 
-			    padding:20px;
-			    background-color:rgba(250,250,250,.8);
-			}
-			div#deleteConfirmationPopupTitle{
-				font-weight:600;
-				position:absolute;
-			    display:none;
-			    top:200px;
-			    left:50%;
-			    width:420px;
-			    height:25px;
-			    margin-left:-250px;
-			    border:5px solid black;
-			    -webkit-box-shadow:rgba(110,110,110,.6) 10px 10px 10px;
-			    border-radius:10px;
-			    padding-left:20px;
-			    padding-top:5px; 
-			    background-color:rgba(250,250,250,.8);
-			}
         </style>
         <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../../css/main.css">
@@ -60,13 +31,8 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-
-		<% 
-		session.setAttribute("categoryId", "1");
-		session.setAttribute("categoryName", "Quantitative");
-		%>
 		<form id="form1">
-        <jsp:include page="/admin/NavBar.jsp"></jsp:include>
+ <jsp:include page="/admin/NavBar.jsp"></jsp:include>
         	<!--/.navbar -->
         
         <div class="container">
@@ -75,8 +41,8 @@
 <jsp:include page="/admin/Accordian.jsp"></jsp:include>
 	<!--/#accordion -->
 
-				<div class="container span9 offset*" >
-                    <div class="navbar">
+				<div class="container span9 offset*">
+                    <div class="navbar navbar-inverse">
                         <div class="navbar-inner">
                             <div class="container pull-left">
                             	<table>
@@ -109,14 +75,17 @@
 
 										<c:if test="${requestScope.status eq 'success'}">
 											<input type="hidden" id="hdnCategoryId" name="hdnCategoryId" value="${requestScope.categoryId}"/>
+											<input type="hidden" id="hdnQuestionId" name="hdnQuestionId" value=""/>
 											<div class="accordion" id="accordionQuestion">
 					                			<c:forEach items="${requestScope.questions}" var="question">
-													<div class="accordion-group">
+													<div id="div${question.questionId}" class="accordion-group">
 														<div class="accordion-heading span9">
 															<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionQuestion" href="#collapseQuestion${question.questionId}">
-																<span class="span7"><b>Question <%= cnt++%></b></span>
-																<a href="#" id="lnkRemove${question.questionId}" name="lnkRemove${question.questionId}" class="span1 pull-right" onClick="document.getElementById('btnSubmit').value = '${question.questionId}'; document.getElementById('deleteConfirmationPopup').style.display = 'block'; document.getElementById('deleteConfirmationPopupTitle').style.display = 'block'; return false;">Remove</a>
+																<c:set var="questionBegining" value="${fn:substring(question.question, 0, 10)}" />
+																<span class="span7"><b>Question: ${questionBegining}...</b></span>
 																<a href="#" id="lnkEdit${question.questionId}" name="lnkEdit${question.questionId}" class="span1 pull-right" onClick="modifyQuestion('Edit','${question.questionId}')">Edit</a>
+																<a href="#deleteConfirmationPopup" class="span1 pull-right" id="lnkRemove${question.questionId}" name="lnkRemove${question.questionId}" data-toggle="modal" onClick="document.getElementById('btnSubmit').value = '${question.questionId}'; return false;">Remove</a>
+																
 															</a>
 												    	</div>
 														<div id="collapseQuestion${question.questionId}" class="accordion-body collapse">
@@ -147,47 +116,23 @@
 							                    </c:forEach>
 											</div>
 						                </c:if>
-
-											<!-- 
-	                                    <div id="divQuestionHeader"></div>
-										<c:if test="${requestScope.status eq 'success'}">
-											<input type="hidden" id="hdnCategoryId" name="hdnCategoryId" value="${requestScope.categoryId}"/>
-					                		<c:forEach items="${requestScope.questions}" var="question">
-					                			<div id="divQuestionTitle${question.questionId}">
-													<b>Question %= cnt++%></b><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-													<a href="#" id="lnkEdit${question.questionId}" name="lnkEdit${question.questionId}" onClick="modifyQuestion('Edit','${question.questionId}')">Edit</a> | 
-													<a href="#" id="lnkRemove${question.questionId}" name="lnkRemove${question.questionId}" onClick="document.getElementById('btnSubmit').value = '${question.questionId}'; document.getElementById('deleteConfirmationPopup').style.display = 'block'; document.getElementById('deleteConfirmationPopupTitle').style.display = 'block'; return false;">Remove</a>
-					                			</div>
-						                		<div id="divQuestionBody${question.questionId}">
-						                			<textarea id="txtQuestion${question.questionId}" name="txtQuestion${question.questionId}" style="width:450%; border-radius:10px;" rows="4">${question.question}&#10;- Level ${question.levelId}</textarea><br/><br/>
-		                                            <input type="radio" id="radOptionA${question.questionId}" name="radOption${question.questionId}" value="${question.questionId}" disabled='disabled' style="vertical-align: top; padding-left: 10px;"/>&nbsp;&nbsp;${question.optionA}<br/>
-		                                            <input type="radio" id="radOptionB${question.questionId}" name="radOption${question.questionId}" value="${question.questionId}" disabled='disabled' style="vertical-align: top; "/>&nbsp;&nbsp;${question.optionB}<br/>
-		                                            <input type="radio" id="radOptionC${question.questionId}" name="radOption${question.questionId}" value="${question.questionId}" disabled='disabled' style="vertical-align: top; "/>&nbsp;&nbsp;${question.optionC}<br/>
-		                                            <input type="radio" id="radOptionD${question.questionId}" name="radOption${question.questionId}" value="${question.questionId}" disabled='disabled' style="vertical-align: top; "/>&nbsp;&nbsp;${question.optionD}<br/>
-							                    </div>
-							                    <hr width="480%">
-						                    </c:forEach>
-						                </c:if>
-						                 -->
 			                        </td>
 			                    </tr>
 			                </table>
 	    				</div>
-	    				<div id="deleteConfirmationPopupTitle">
-	                		Delete Question
-	                	</div>
-		                <div id="deleteConfirmationPopup">
-		                    <p>Are you sure you want to delete the question permanently?</p>
-						    <p>
-						    <center>
-						        <a href="#" class="btn btn-primary" id="lnkRemoveQuestion" name="lnkRemoveQuestion" onClick="modifyQuestion('Remove','btnSubmit')">
-						            Yes
-						        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						        <a class="btn btn-danger" onclick="document.getElementById('deleteConfirmationPopup').style.display = 'none'; document.getElementById('deleteConfirmationPopupTitle').style.display = 'none'; return false;">
-						            No
-						        </a>
-						    </center>
-						    </p>
+	    				
+		                <div id="deleteConfirmationPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		                	<div class="modal-header">
+							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							    <h3 id="myModalLabel">Delete Question</h3>
+							</div>
+							<div class="modal-body">
+							    <p>Are you sure you want to delete the category permanently?</p>
+							</div>
+							<div class="modal-footer">
+								<input type="button" class="btn btn-primary" id="btnRemoveQuestion" name="btnRemoveQuestion" value="Yes" onClick="modifyQuestion('Remove','btnSubmit')" data-dismiss="modal" aria-hidden="true"/>
+							    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">No</button>
+							</div>
 						</div>
                 </div>
 
@@ -212,6 +157,8 @@
     		
     		function doFirst(){
         		var category = document.getElementById("hdnCategoryId").value;
+        		if(category == "0")
+        			document.getElementById("btnAddNewQuestion").setAttribute('disabled','disabled');
        			var categoryOptions = document.getElementById("selCategory");
        		    for(var i = 0; i < categoryOptions.length; i++){
        		        if(categoryOptions[i].id == category){
@@ -223,7 +170,7 @@
         	function viewQuestion(){
     			var e = document.getElementById("selCategory");
     			var categoryId = e.options[e.selectedIndex].id;
-    			window.location = "/cadet/admin/questionBank/ViewQuestion?categoryId=" + categoryId;
+    			window.location = "/cadet/admin/questionBank/ViewQuestion?hdnCategoryId=" + categoryId;
         	}
 
         	function addQuestion(){
@@ -231,7 +178,6 @@
     			var e = document.getElementById("selCategory");
     			var categoryId = e.options[e.selectedIndex].id;
     			var categoryName = e.options[e.selectedIndex].text;
-    			alert(categoryId + "name" + categoryName);
        	        document.forms[0].action = "/cadet/admin/questionBank/AddQuestions?i=" + categoryId + "&c=" + categoryName;
        	     	document.getElementById("btnSubmit").click();
     			//window.location = "/cadet/admin/questionBank/AddQuestions?i=" + categoryId + "&c=" + categoryName;
@@ -243,9 +189,8 @@
         			removeQuestion(queId);
         		}
         		else if (action=='Edit') {
-					editQuestionId = val;
-					alert("action=" + action + " and question id=" + val);
-	       	        document.forms[0].action = "/cadet/admin/questionBank/EditQuestion?questionId=" + val;
+					document.getElementById("hdnQuestionId").value = val;
+	       	        document.forms[0].action = "/cadet/admin/questionBank/EditQuestions";
 	       	     	document.getElementById("btnSubmit").click();
 				}
         	}
@@ -264,10 +209,7 @@
         		if(xmlHttp1.readyState==4 || xmlHttp1.readyState=="complete"){
         			var status=xmlHttp1.responseText;
         			if(status == "Question Removed"){
-        				document.getElementById('deleteConfirmationPopup').setAttribute("style","display: none;");
-        				document.getElementById('deleteConfirmationPopupTitle').setAttribute("style","display: none;");
-        				document.getElementById("divQuestionTitle" + removeQuestionId).setAttribute("style","display: none;");
-        				document.getElementById("divQuestionBody" + removeQuestionId).setAttribute("style","display: none;");
+        				document.getElementById("div" + removeQuestionId).setAttribute("style","display: none;");
         			}
         		} 
         	}
