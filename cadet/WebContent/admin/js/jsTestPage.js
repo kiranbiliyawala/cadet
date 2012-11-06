@@ -170,9 +170,30 @@ $(document).ready(function(e) {
 
 	$("#btnTestSettings").bind("click",function(e) {
 
-		$("#txtTestDate").val(new Date().getDate()+"."+new Date().getMonth()+"."+new Date().getFullYear());
-		$("#txtTPStart,#txtTPEnd").val(new Date().getHours()+":"+new Date().getMinutes());
-		$("#divTestSettings").modal("show");
+		/* from database */
+
+		$.post("TestManagement",
+			{
+				requestType : "getTestTimeSettings",
+				testId : $("#testId").val()
+			},
+			function(data,textStatus,xhr) {
+				try {
+					if(data.result===true) {
+
+						$("#txtTestDate").val(data.testDate);
+						$("#txtTPStart").val(data.startTime);
+						$("#txtTPEnd").val(data.endTime);
+						$("#divTestSettings").modal("show");
+					}
+					else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+		});
 	});
 
 	$("#txtDP").datepicker();
