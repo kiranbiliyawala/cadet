@@ -3,9 +3,8 @@ package org.cadet.admin.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -507,20 +506,122 @@ public class TestManagement extends HttpServlet {
 		return;
 	    }
 	}
-	
+
 	else if (requestType.equals("saveTimeSettings")) {
 
-/*	    int testId = Integer.parseInt(request.getParameter("testId"));
-	    long longTestDate = Long.parseLong(request.getParameter("testDate").replaceAll(".", ""));
-	    Date testDate = new Date(longTestDate);
-	    Timestamp startTime = new Timestamp(new Date(request.getParameter("testDate")+" "+request.getParameter("startTime")).getTime());
-	    @SuppressWarnings("deprecation")
-	    Timestamp endTime = new Timestamp(new Date(request.getParameter("testDate")+" "+request.getParameter("endTime")).getTime());
+	    try {
 
-	    System.out.println(testId);
-	    System.out.println(testDate);
-	    System.out.println(startTime);
-	    System.out.println(endTime);*/
+		int testId = Integer.parseInt(request.getParameter("testId"));
+
+		String strTestDate[] = request.getParameter("testDate").split("-");
+		String strStartTime[] = request.getParameter("startTime").split(":");
+		String strEndTime[] = request.getParameter("endTime").split(":");
+
+		String testDate = strTestDate[0]+"-"+strTestDate[1]+"-"+strTestDate[2];
+		String startTime = strTestDate[0]+"-"+strTestDate[1]+"-"+strTestDate[2]+" "+strStartTime[0]+":"+strStartTime[1];
+		String endTime = strTestDate[0]+"-"+strTestDate[1]+"-"+strTestDate[2]+" "+strEndTime[0]+":"+strEndTime[1];
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		System.out.println(testDate);
+		System.out.println(startTime);
+		System.out.println(endTime);
+
+		TestDbTransactions.saveTimeSettings(dbConnection,testId,testDate,startTime,endTime);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if (requestType.equals("getTestTimeSettings")) {
+
+	    try {
+
+		int testId = Integer.parseInt(request.getParameter("testId"));
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		BeanTest test = TestDbTransactions.getTestDetails(dbConnection, testId);
+
+		data = new JSONObject();
+		data.put("testDate", dateFormat.format(test.getTestDate()));
+		data.put("startTime", timeFormat.format(test.getStartTime()));
+		data.put("endTime", timeFormat.format(test.getEndTime()));
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
 	}
     }
 }
