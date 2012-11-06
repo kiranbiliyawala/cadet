@@ -270,7 +270,7 @@ footer {
 			<h3 id="lblNewCat">Test Settings</h3>
 		</div>
 		<div class="modal-body">
-			<div class=" container-fluid tabbable" style="margin-bottom: 18px;">
+			<div class="container-fluid tabbable" style="margin-bottom: 18px;">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab1" data-toggle="tab">Time Settings</a></li>
 					<li><a href="#tab2" data-toggle="tab">Marking System</a></li>
@@ -282,8 +282,8 @@ footer {
 							<div class="control-group">
 								<label class="control-label" for="txtDP">Date : </label>
 								<div class="controls">
-									<div class="input-append date" id="txtDP" data-date="05.11.2012" data-date-format="dd.mm.yyyy">
-										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" value="05.11.2012" readonly depends>
+									<div class="input-append date" id="txtDP" data-date="05-11-2012" data-date-format="dd-mm-yyyy">
+										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" value="05-11-2012" readonly>
 										<span class="add-on"><i class="icon-calendar"></i></span>
 									</div>
 								</div>
