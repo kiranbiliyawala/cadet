@@ -51,47 +51,44 @@
 				<!--/.container -->
 			</div>
 		</div>
-		<!--/.navbar -->
-		<div>
-			<div id="joinuscontainer">
-				<div id="welcometitle">Welcome to CADET</div>
-				<div class="container-fluid">
-					<div class="row-fluid">
-						<div class="span2">
-							<button class="btn btn-primary" id="joinus"
-								onclick="transferRegisteration()">Join Us</button>
-						</div>
-						<div class="span1 offset3" id="verticalline">&nbsp;</div>
-						<div class="span3 offset1" id="form">
-							<form action="LoginAuthorize" class="form-horizontal"
-								method="POST" onsubmit="submit_val()">
+	</div>
+	<!--/.navbar -->
+	<div>
+		<div id="joinuscontainer">
+			<div id="welcometitle">Welcome to CADET</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span2"><button class="btn btn-primary" id="joinus" onclick="transferRegisteration()">Join Us</button></div>
+					<div class="span1 offset3" id="verticalline">&nbsp;</div>
+					<div class="span3 offset1" id="form">
+							<form id="loginform" action="LoginAuthorize" class="form-horizontal" method="POST" onsubmit="return submit_val()">
 								<div class="caption">
-									<h2>Login</h2>
-								</div>
-								<div id="horizontalline"></div>
-								<div class="control-group">
-									<label class="control-label" for="username">Email: </label>
-									<div class="controls">
-										<input type="text" id="username"
-											placeholder="Enter your mailid">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="password">Password: </label>
-									<div class="controls">
-										<input type="password" id="password" placeholder="Password">
-									</div>
-								</div>
-								<div class="control-group">
-									<div class="controls">
-										<a href="#">Forgot Password</a>
-									</div>
-								</div>
-								<div class="control-group">
-									<div class="controls">
-										<input type="submit" class="btn" value="Login" id="btnlogin" />
-									</div>
-								</div>
+      									<h2>Login</h2>
+  								</div>
+  								<div id="horizontalline">
+  								</div>
+  								<div class="control-group">
+    								<label class="control-label" for="username">Email: </label>
+    								<div class="controls">
+      									<input type="text" id="username" name="username" class="required email" placeholder="Enter your mailid">
+    								</div>
+  								</div>
+  								<div class="control-group">
+    								<label class="control-label" for="password">Password: </label>
+    								<div class="controls">
+      									<input type="password" class="required" minlength='6' name="password" id="password" placeholder="Password">
+    								</div>
+  								</div>
+  								<div class="control-group">
+    								<div class="controls">
+      									<a href="#">Forgot Password</a>
+    								</div>
+  								</div>
+  								<div class="control-group">
+    								<div class="controls">
+      									<input type="submit" class="btn" value="Login" id="btnlogin"/>
+    								</div>
+  								</div>
 							</form>
 						</div>
 					</div>
@@ -109,10 +106,17 @@
 		</div>
 	</footer>
 	<script src="js/jquery-1.8.2.js"></script>
+	<script src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/sha.js"></script>
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script>
-		function setFocus() {
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+    
+    	function validate(){
+    		return $("#loginform").valid();
+    	}
+    
+		function setFocus()
+		{
 			document.getElementById("username").focus();
 		}
 	</script>

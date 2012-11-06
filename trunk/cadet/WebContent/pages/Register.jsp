@@ -3,27 +3,23 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<!--[if gt IE 8]> <html class="no-js"> <![endif]-->
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>CADET | Register</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
-<script>
+<script type="text/javascript">
 var RecaptchaOptions = {
 	    theme : 'clean'
 	 };
-	 </script>
-<link rel="stylesheet" href="css/bootstrap.css">
+</script>
+<link rel="stylesheet" href="css/bootstrap.css"/>
+
 <link rel="icon" type="image/ico" href="img/favicon.ico">
 <style>
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
 
 #accordionMenu {
 	position: fixed;
@@ -33,10 +29,12 @@ footer {
 	background: none scroll repeat 0 0 #FFFFFF;
 }
 </style>
-<link rel="stylesheet" href="css/bootstrap-responsive.css">
-<link rel="stylesheet" href="css/homepage.css">
+
+<link rel="stylesheet" href="css/bootstrap-responsive.css"/>
+<link rel="stylesheet" href="css/homepage.css"/>
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
+
 <body>
 	<div id="joinuscontainer">
 	<div class="navbar navbar-fixed-top">
@@ -103,13 +101,14 @@ footer {
 
 					<tr>
 						<td></td>
-						<td><i id="captchaerror" style="color: red;"></i> <script
+						<td><i id="captchaerror" style="color: red;"></i> 
+						<script
 								type="text/javascript"
-								src="http://www.google.com/recaptcha/api/challenge?k=<%out.println(Constants.Captcha.publicKey);%>">
+								src="http://www.google.com/recaptcha/api/challenge?k=<%out.print(Constants.Captcha.publicKey);%>">
  							</script>
 							<noscript>
 								<iframe
-									src="http://www.google.com/recaptcha/api/noscript?k=<%out.println(Constants.Captcha.publicKey);%>"
+									src="http://www.google.com/recaptcha/api/noscript?k=<%out.print(Constants.Captcha.publicKey);%>"
 									height="300" width="400"></iframe>
 								<br>
 								<textarea name="recaptcha_challenge_field"

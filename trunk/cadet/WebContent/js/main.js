@@ -4,10 +4,13 @@ function transferRegisteration(){
 
 function submit_val(){
 	
-	var pass = document.getElementById("password");
+	if(!validate()){
+		return false;
+	}
 	
+	var pass = document.getElementById("password");
 	pass.value = hashmap(pass.value);
-
+	return true;
 }
 
 function hashmap(input){
