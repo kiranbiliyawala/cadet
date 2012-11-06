@@ -40,15 +40,15 @@
         <jsp:include page="/admin/NavBar.jsp"></jsp:include>
         	<!--/.navbar -->
         
-        <div class="container">
+        <div class="container-fluid">
         	<div class="row">
                 <jsp:include page="/admin/Accordian.jsp"></jsp:include>
                 	<!--/#accordion -->
 
         <form id="form1" action="" method="POST">
 
-				<div class="container span9 offset*">
-                    <div class="navbar navbar">
+				<div class="container-fluid span9 offset*">
+                    <div class="navbar">
                         <div class="navbar-inner">
                             <div class="container pull-left"><a class="brand" href="#">Add/View Category:</a></div>
                         </div>
@@ -151,9 +151,9 @@
 
         </div>	<!--/.container div -->
 		
-		<hr>
+	
         
-<jsp:include page="/admin/Footer.jsp"></jsp:include>
+	<jsp:include page="/admin/Footer.jsp"></jsp:include>
 		</form>
         <script src="../../js/jquery-1.8.2.js"></script>
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
