@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="icon" type="image/ico" href="img/favicon.ico">
         <style>
             body {
                 padding-top: 60px;

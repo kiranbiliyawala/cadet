@@ -12,114 +12,110 @@
 	<noscript>
 		NO JAVASCRIPT !!!
 		<style>
-		body{
-			display: none;
-		}
+			body {
+				display: none;
+			}
 		</style>
 	</noscript>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="./css/bootstrap.css">
+	<link rel="icon" type="image/ico" href="img/favicon.ico">
 	<style>
- 		body { 
- 			padding-top: 0px; 
- 			padding-bottom: 40px; 
- 		} 
+		body {
+				padding-top: 0px;
+				padding-bottom: 40px;
+		}
 
 		footer {
 			background: none scroll repeat 0 0 #FFFFFF;
 		}
 	</style>
 	<link rel="stylesheet" href="./css/bootstrap-responsive.css">
-	<!-- <link rel="stylesheet" href="./css/main.css"> -->
 	<link rel="stylesheet" href="./css/homepage.css">
-	
-	
 </head>
 
 <body>
 	<div id="wholebody">
-	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container-fluid">
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
 
-				<a class="brand" href="#"><img id="logo" src="./img/cadet.gif" alt="CADET"></img></a>
-				<ul class="nav" id="ulcontainer">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a class="liheader" href="#">Features</a></li>
-				</ul>
+					<a class="brand" href="#"><img id="logo" src="./img/cadet.gif"
+						alt="CADET"></img></a>
+					<ul class="nav" id="ulcontainer">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a class="liheader" href="#">Features</a></li>
+					</ul>
+				</div>
+				<!--/.container -->
 			</div>
-			<!--/.container -->
 		</div>
-	</div>
-	<!--/.navbar -->
-	<div>
-		<div id="joinuscontainer">
-			<div id="welcometitle">Welcome to CADET</div>
-			<div class="container-fluid">
-				<div class="row-fluid">
-					<div class="span2"><button class="btn btn-primary" id="joinus" onclick="transferRegisteration()">Join Us</button></div>
-					<div class="span1 offset3" id="verticalline">&nbsp;</div>
-					<div class="span3 offset1" id="form">
-							<form action="LoginAuthorize" class="form-horizontal" method="POST" onsubmit="submit_val()">
+		<!--/.navbar -->
+		<div>
+			<div id="joinuscontainer">
+				<div id="welcometitle">Welcome to CADET</div>
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span2">
+							<button class="btn btn-primary" id="joinus"
+								onclick="transferRegisteration()">Join Us</button>
+						</div>
+						<div class="span1 offset3" id="verticalline">&nbsp;</div>
+						<div class="span3 offset1" id="form">
+							<form action="LoginAuthorize" class="form-horizontal"
+								method="POST" onsubmit="submit_val()">
 								<div class="caption">
-      									<h2>Login</h2>
-  								</div>
-  								<div id="horizontalline">
-  								</div>
-  								<div class="control-group">
-    								<label class="control-label" for="username">Email: </label>
-    								<div class="controls">
-      									<input type="text" id="username" placeholder="Enter your mailid">
-    								</div>
-  								</div>
-  								<div class="control-group">
-    								<label class="control-label" for="password">Password: </label>
-    								<div class="controls">
-      									<input type="password" id="password" placeholder="Password">
-    								</div>
-  								</div>
-  								<div class="control-group">
-    								<div class="controls">
-      									<a href="#">Forgot Password</a>
-    								</div>
-  								</div>
-  								<div class="control-group">
-    								<div class="controls">
-      									<input type="submit" class="btn" value="Login" id="btnlogin"/>
-    								</div>
-  								</div>
+									<h2>Login</h2>
+								</div>
+								<div id="horizontalline"></div>
+								<div class="control-group">
+									<label class="control-label" for="username">Email: </label>
+									<div class="controls">
+										<input type="text" id="username"
+											placeholder="Enter your mailid">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="password">Password: </label>
+									<div class="controls">
+										<input type="password" id="password" placeholder="Password">
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#">Forgot Password</a>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<input type="submit" class="btn" value="Login" id="btnlogin" />
+									</div>
+								</div>
 							</form>
+						</div>
 					</div>
-
 				</div>
 			</div>
-					
-			</div>
 		</div>
 	</div>
-	
+
 	<footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
-		<div class="row pull-right" style="0% 10% 10% 0%">
-			<a class="span*" href="#">About</a>
-			<a class="span*" href="#">FAQ</a>
-			<a class="span*" href="#">Contact us</a>
-			<a class="span*" href="#">Help</a>
+		<div class="row pull-right" style="">
+			<a class="span*" href="#">About</a> <a class="span*" href="#">FAQ</a>
+			<a class="span*" href="#">Contact us</a> <a class="span*" href="#">Help</a>
 			<a class="span*" href="#">Privacy &amp; Policy</a>
 		</div>
 	</footer>
 	<script src="js/jquery-1.8.2.js"></script>
 	<script type="text/javascript" src="js/sha.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script>
-		function setFocus()
-		{
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script>
+		function setFocus() {
 			document.getElementById("username").focus();
 		}
 	</script>
 	<script type="text/javascript" src="js/main.js"></script>
-	
-	
 </body>
 </html>

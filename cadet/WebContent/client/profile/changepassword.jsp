@@ -11,8 +11,8 @@
         <title>CADET | Change Password</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-<script src="../js/main.js"></script>
         <link rel="stylesheet" href="../../css/bootstrap.css">
+        <link rel="icon" type="image/ico" href="../../img/favicon.ico">
         <style>
             body {
                 padding-top: 60px;
@@ -82,7 +82,7 @@
         <script src="../../js/handlebars.js"></script>
         <script src="../../js/bootbox.js"></script>
         <script src="../../js/sha.js"></script>
-        
+        <script src="../js/main.js"></script>
        
     	
     </body>

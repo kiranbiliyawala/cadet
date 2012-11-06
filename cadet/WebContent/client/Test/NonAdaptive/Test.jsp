@@ -9,8 +9,9 @@
 <link rel="stylesheet" type="text/css" href="css/NATEST.css">
 <link rel="stylesheet" type="text/css" href="/cadet/client/css/jquery.countdown.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><%= request.getAttribute("TestName") %></title>
 
+<title><%= request.getAttribute("TestName") %></title>
+<link rel="icon" type="image/ico" href="../../../img/favicon.ico">
 <script type="text/javascript">
 
 var questiondistribution = <%= request.getAttribute("CatDistribution")%>;

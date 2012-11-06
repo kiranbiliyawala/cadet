@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="css/InstructionPage.css">
 <title><%= session.getAttribute("test_name") %></title>
+<link rel="icon" type="image/ico" href="../../../img/favicon.ico">
 </head>
 
 <body>
