@@ -1,4 +1,4 @@
-package org.cadet.client.model.adaptive;
+package org.cadet.client.bean;
 
 
 /**
