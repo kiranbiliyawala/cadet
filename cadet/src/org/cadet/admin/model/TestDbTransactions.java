@@ -4,6 +4,7 @@
 package org.cadet.admin.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -47,8 +48,8 @@ public class TestDbTransactions {
 	    temp.setTestName(rs.getString("TestName"));
 	    temp.setTestDesc(rs.getString("TestDesc"));
 	    temp.setTestDate(rs.getDate("TestDate"));
-	    temp.setStartTime(rs.getTimestamp("StartTime"));
-	    temp.setEndTime(rs.getTimestamp("EndTime"));
+	    temp.setStartTime(rs.getDate("StartTime"));
+	    temp.setEndTime(rs.getDate("EndTime"));
 	    temp.setTestDuration(rs.getInt("TestDuration"));
 	    temp.setInitialDifficulty(rs.getInt("InitialDifficulty"));
 
@@ -90,7 +91,7 @@ public class TestDbTransactions {
 
     public static void createTest(Connection connection, String testName, String testType, String testDesc) throws SQLException {
 
-	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddTest);
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addTest);
 	ps.setString(1, testName);
 	ps.setString(2, testType);
 	ps.setString(3, testDesc);
@@ -147,7 +148,7 @@ public class TestDbTransactions {
 
     public static void setTestCategoryDetails(Connection connection,int testId,int categoryId,int questionsPerCategory,int timePerCategory) throws SQLException {
 
-	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.UpdateTestCategoryDetails);
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateTestCategoryDetails);
 	ps.setInt(1, timePerCategory);
 	ps.setInt(2, questionsPerCategory);
 	ps.setInt(3, testId);
@@ -173,8 +174,12 @@ public class TestDbTransactions {
 	    result.setTestName(rs.getString("TestName"));
 	    result.setTestDesc(rs.getString("TestDesc"));
 	    result.setTestDate(rs.getDate("TestDate"));
-	    result.setStartTime(rs.getTimestamp("StartTime"));
-	    result.setEndTime(rs.getTimestamp("EndTime"));
+	    result.setStartTime(new Date(rs.getTimestamp("StartTime").getTime()));
+	    result.setEndTime(new Date(rs.getTimestamp("EndTime").getTime()));
+
+	    System.out.println(result.getStartTime());
+	    System.out.println(result.getEndTime());
+
 	    result.setTestDuration(rs.getInt("TestDuration"));
 	    result.setInitialDifficulty(rs.getInt("InitialDifficulty"));
 	}
@@ -187,7 +192,7 @@ public class TestDbTransactions {
 
     public static void addCategory(Connection connection,String categoryName) throws SQLException {
 
-	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddCategory);
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addCategory);
 	ps.setString(1, categoryName);
 
 	ps.executeUpdate();
@@ -196,7 +201,7 @@ public class TestDbTransactions {
 
     public static void addCategoryToTest(Connection connection, int testId, int categoryId) throws SQLException {
 
-	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddCategoryToTest);
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addCategoryToTest);
 	ps.setInt(1,testId);
 	ps.setInt(2, categoryId);
 
@@ -243,7 +248,18 @@ public class TestDbTransactions {
 	ps.setInt(2,categoryId);
 
 	ps.executeUpdate();
+	ps.close();
+    }
 
+    public static void saveTimeSettings(Connection connection, int testId, String testDate, String startTime, String endTime) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateTestTimeSettings);
+	ps.setString(1, testDate);
+	ps.setString(2, startTime);
+	ps.setString(3, endTime);
+	ps.setInt(4, testId);
+
+	ps.executeUpdate();
 	ps.close();
     }
 }
