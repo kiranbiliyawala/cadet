@@ -2,7 +2,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="#home">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="/cadet/Home">Home</a>
                         </div>
                     </div>
                     <div class="accordion-group">
