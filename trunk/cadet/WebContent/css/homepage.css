@@ -3,6 +3,10 @@
 	padding: 0%;
 }
 
+body{
+	display: block;
+}
+
 #logo{
 	height: auto;
 	width: 70px;	
