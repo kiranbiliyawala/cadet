@@ -31,15 +31,15 @@
 
 		<jsp:include page="/admin/NavBar.jsp"></jsp:include>
 		
-		<div class="container">
-        	<div class="row">
+		<div class="container-fluid">
+        	<div class="row-fluid">
                 
 		<jsp:include page="/admin/Accordian.jsp"></jsp:include>
 		<!--/#accordion -->
-				<div class="container span9 offset*">
-                    <div class="navbar navbar-inverse">
+				<div class="container-fluid span9 offset*">
+                    <div class="navbar">
                         <div class="navbar-inner">
-                            <div class="container pull-left">
+                            <div class="container-fluid pull-left">
                             	<a class="brand" href="#">Add Question - Category <font style="text-transform: uppercase; font-weight: 700;"><%= session.getAttribute("categoryName").toString() %></font></a>
                             </div>
                         </div>

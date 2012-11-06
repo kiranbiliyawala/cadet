@@ -31,13 +31,13 @@
  <jsp:include page="/admin/NavBar.jsp"></jsp:include>
         	<!--/.navbar -->
         
-        <div class="container">
+        <div class="container-fluid">
         	<div class="row">
                 <jsp:include page="/admin/Accordian.jsp"></jsp:include>
                 	<!--/#accordion -->
 
-				<div class="container span9 offset*">
-                    <div class="navbar navbar-inverse">
+				<div class="container-fluid span9 offset*">
+                    <div class="navbar">
                         <div class="navbar-inner">
                             <div class="container pull-left">
                             	<a class="brand" href="#">Edit Question</a>
@@ -148,16 +148,7 @@
 
         </div>	<!--/.container div -->
 
-		
-        <footer>
-                <div class="container row">
-                    <a class="span pull-right" href="#">About</a>
-                    <a class="span pull-right" href="#">FAQ</a>
-                    <a class="span pull-right" href="#">Contact us</a>
-                    <a class="span pull-right" href="#">Help</a>
-                    <a class="span pull-right" href="#">Privacy & Policy</a>
-                </div>
-        </footer>
+		<jsp:include page="/admin/Footer.jsp"></jsp:include>
 
         <script src="../../js/jquery-1.8.2.js"></script>
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
