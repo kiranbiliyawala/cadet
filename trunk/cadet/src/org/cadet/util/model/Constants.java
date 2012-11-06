@@ -100,13 +100,14 @@ public class Constants {
 	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where TestDate>=now()";
 	
 	/* Varun Queries */
+
 	public static final String getTest="SELECT * from test where testId = ?";
 	public static final String getTestDetails="SELECT TestName, TestDesc, TestDate, InitialDifficulty FROM test WHERE TestId = ?";
 	public static final String getQuestionCountAndCategoryOfTest="SELECT tc.CategoryId, c.CategoryName, tc.TimePerCategory, tc.QuestionPerCategory FROM testcategory tc JOIN category c on tc.CategoryId = c.CategoryId WHERE testId = ?";
 	public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks, t.NegMark FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND q.CategoryId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
 	public static final String fetchNextQuestion2=") ORDER BY RAND() LIMIT 1";
 	public static final String saveResult="INSERT INTO result VALUES(?,?,?,?,?)";
-	
+	public static final String getTest="SELECT * from test where testId = ?";
     }
 	
 	public static final class email{
@@ -116,10 +117,10 @@ public class Constants {
 		public static final Integer SMTP_PORT = 465;
 		public static final String SMTP_SSL = "true";
 		public static final String SMTP_AUTH = "true";
-		public static final String EmailMessage = "Please Click following link to verify your email address http://localhost:9090/cadet/verifyEmail?";
+		public static final String EmailMessage = "Please Click following link to verify your email address http://localhost:8080/cadet/verifyEmail?";
 		public static final String EmailSubject = "[EMAIL Verification] CADET";
 		public static final String EmailRegex = "^(.+)@(.+)$";
-		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://localhost:9090/cadet/ForgotPassword?";
+		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://localhost:8080/cadet/ForgotPassword?";
 		
     }
 	
