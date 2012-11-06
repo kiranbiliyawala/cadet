@@ -175,6 +175,42 @@
   </servlet-mapping>
   
   
+  <servlet>
+    <servlet-name>TestRegister</servlet-name>
+    <jsp-file>/client/Test/registerfortest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestRegister</servlet-name>
+    <url-pattern>/client/Test/RegisterForTest</url-pattern>
+  </servlet-mapping>  
+  
+  
+   <servlet>
+    <servlet-name>TestView</servlet-name>
+    <jsp-file>/client/Test/viewalltest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestView</servlet-name>
+    <url-pattern>/client/Test/ViewAllTest</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>ProChangedet</servlet-name>
+    <jsp-file>/client/profile/changedetails.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProChangedet</servlet-name>
+    <url-pattern>/client/profile/ChangeDetails</url-pattern>
+  </servlet-mapping>  
+  
+   <servlet>
+    <servlet-name>ProChangepass</servlet-name>
+    <jsp-file>/client/profile/changepassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProChangepass</servlet-name>
+    <url-pattern>/client/profile/ChangePassword</url-pattern>
+  </servlet-mapping>  
   
   
   
