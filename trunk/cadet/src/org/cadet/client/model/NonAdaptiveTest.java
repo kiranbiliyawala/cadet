@@ -325,7 +325,7 @@ public class NonAdaptiveTest {
 
 
 	public void startTest(){
-		createScheduler(Test_Duration);
+		createScheduler(Test_Duration+1);
 	}
 
 	private void createScheduler(long delay){

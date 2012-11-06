@@ -12,13 +12,20 @@ function submit_val(){
 }
 
 function submit_val_cp(){
+	
+	if(!check_valid()){
+		return false;
+	}
 	var pass = document.getElementById("changepassword");
 	pass.value = hashmap(pass.value);
 pass = document.getElementById("confirmpassword");
-	
 	pass.value = hashmap(pass.value);
 
 }
+
+function check_valid(){
+	return $("#passwordform").valid();
+ }
 
 function hashmap(input){
 	var shaobj = new jsSHA(input,"ASCII");
