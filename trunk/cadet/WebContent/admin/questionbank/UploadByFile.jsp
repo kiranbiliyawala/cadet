@@ -65,6 +65,26 @@
 			                        </td>
 			                    </tr>
 			                </table>
+			                </br></br>
+			                <p><h1>Format for CSV File!</h1></h1></p></br></br>
+			                <table border="1" >
+			                <th width="80">Question Category(Id)</th>
+							<th width="80">Level Id</th>
+							<th width="80">Question</th>
+							<th width="80">Option A</th>
+							<th width="80">Option B</th>
+							<th width="80">Option C</th>
+							<th width="80">Option D</th>
+							<th width="80">Answer (option)</th>		
+							<tr><td height="20"> <i>The Id of the Category of the question in your database </i></td> 
+							<td> <i>The Id of the level of the Question as per the Database </i> </td>
+							<td> <i>The Question</i></td>
+							<td> <i>Option A </i></td>
+							<td> <i>Option B </i></td>
+							<td> <i>Option C </i></td>
+							<td> <i>Option D </i></td>
+							<td> <i>The Option which define the correct answer   </i></td></tr>	                
+			                </table>
 		                </form>
 					</div>
                 </div>
