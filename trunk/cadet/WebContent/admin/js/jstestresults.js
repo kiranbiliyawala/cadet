@@ -1,4 +1,4 @@
-$.post("ViewTestResult",
+$.post("GetCompletedTests",
 		{ requestType : "getresults" },
 		function(data,textStatus,xhr) {
 
