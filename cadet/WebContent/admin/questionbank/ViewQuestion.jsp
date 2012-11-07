@@ -92,7 +92,7 @@
 															<div class="accordion-inner span9">
 																<table style="width:90%">
 																	<tr>
-																		<td><textarea id="txtQuestion${question.questionId}" name="txtQuestion${question.questionId}" style="width:232%; border-radius:10px;" rows="4">${question.question}</textarea></td>
+																		<td><textarea id="txtQuestion${question.questionId}" name="txtQuestion${question.questionId}" style="width:232%; border-radius:10px;" rows="4" readonly="readonly">${question.question}</textarea></td>
 																	</tr>
 																	<tr><td>&nbsp;</td></tr>
 																	<tr>
