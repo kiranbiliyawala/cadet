@@ -10,7 +10,7 @@
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li id="dashboard"><a href="/cadet/Home">Home</a></li>
-						<li id="question"><a href="/cadet/admin/questionBank/ViewQuestion">Question Bank</a></li>
+						<li id="question"><a href="/cadet/admin/questionBank/ViewQuestion?hdnCategoryId=0">Question Bank</a></li>
 						<li id="test"><a href="/cadet/admin/test/testManagementHome">Test Management</a></li>
 						<li id ="category"><a href="/cadet/admin/usercategory/viewallcategory">Candidate Category</a></li>
 					</ul>
