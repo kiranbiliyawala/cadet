@@ -524,10 +524,6 @@ public class TestManagement extends HttpServlet {
 		DatabaseConnection dbConn = DatabaseConnection.getInstance();
 		Connection dbConnection = dbConn.getDbConnection();
 
-		System.out.println(testDate);
-		System.out.println(startTime);
-		System.out.println(endTime);
-
 		TestDbTransactions.saveTimeSettings(dbConnection,testId,testDate,startTime,endTime);
 
 		data = new JSONObject();
@@ -586,6 +582,8 @@ public class TestManagement extends HttpServlet {
 		data.put("testDate", dateFormat.format(test.getTestDate()));
 		data.put("startTime", timeFormat.format(test.getStartTime()));
 		data.put("endTime", timeFormat.format(test.getEndTime()));
+		data.put("initDiff", test.getInitialDifficulty());
+		data.put("negMark", test.getNegMark());
 		data.put("result", true);
 
 		response.setContentType("application/json");
@@ -610,6 +608,221 @@ public class TestManagement extends HttpServlet {
 	    } catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("saveInitDiff")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+	    int initDiff = Integer.parseInt(request.getParameter("initDiff"));
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+
+		TestDbTransactions.saveInitDiff(dbConnection,initDiff,testId);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if (requestType.equals("saveNegMark")) {
+
+	    System.out.println(request.getParameter("testId"));
+	    System.out.println(request.getParameter("decreaseMark").split(" %")[0]);
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+	    String negMarkFlag = request.getParameter("negMarkFlag");
+	    int decreaseMark = Integer.parseInt(request.getParameter("decreaseMark").split(" %")[0]);
+
+	    if(negMarkFlag.equals("No")) {
+		decreaseMark = 0;
+	    }
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+		TestDbTransactions.saveNegMark(dbConnection,testId,decreaseMark);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("saveLevelMark")) {
+
+	    try {
+		int testId = Integer.parseInt(request.getParameter("testId"));
+		JSONArray levelMarklist = new JSONArray(request.getParameter("levelMarkList"));
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		for(int i =0;i<levelMarklist.length();i++) {
+		    int levelId = Integer.parseInt(levelMarklist.getJSONObject(i).getString("inputName").split("txtLevel")[1]);
+		    int levelMark = Integer.parseInt(levelMarklist.getJSONObject(i).getString("inputValue"));
+
+		    TestDbTransactions.saveLevelMark(dbConnection,testId,levelId,levelMark);
+		}
+
+		System.out.println(levelMarklist);
+		data = new JSONObject();
+		data.put("result", true);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("getLevelMarks")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+
+		data = TestDbTransactions.getLevelMarks(dbConnection,testId);
+		data.put("result", true);
+    
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
 		data = new JSONObject();
 		try {
 		    data.put("result", "ServerException");

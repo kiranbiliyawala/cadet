@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.cadet.admin.bean.BeanCategory;
+import org.cadet.admin.bean.BeanLevelMarks;
 import org.cadet.admin.bean.BeanTest;
 import org.cadet.admin.bean.BeanTestCategory;
 import org.cadet.util.model.Constants;
@@ -52,6 +53,7 @@ public class TestDbTransactions {
 	    temp.setEndTime(rs.getDate("EndTime"));
 	    temp.setTestDuration(rs.getInt("TestDuration"));
 	    temp.setInitialDifficulty(rs.getInt("InitialDifficulty"));
+	    temp.setNegMark(rs.getInt("NegMark"));
 
 	    result.add(temp);
 	}
@@ -95,8 +97,25 @@ public class TestDbTransactions {
 	ps.setString(1, testName);
 	ps.setString(2, testType);
 	ps.setString(3, testDesc);
+	ps.setString(4, new Date(new java.util.Date().getTime()).toString());
+	ps.setString(5, new Date(new java.util.Date().getTime()).toString()+" 00:00");
+	ps.setString(6, new Date(new java.util.Date().getTime()).toString()+" 00:00");
+	ps.setInt(7, 0);
+	ps.setInt(8, 0);
+	ps.setInt(9, 0);
 
 	ps.executeUpdate();
+	ps.close();
+
+	ps = connection.prepareStatement(Constants.sqlCommands.addLevelMarks);
+
+	for(int i=1;i<=10;i++) {
+	    ps.setInt(1, i);
+	    ps.setInt(2, getLastInsertID(connection));
+	    ps.setInt(3, i);
+
+	    ps.executeUpdate();
+	}
 	ps.close();
     }
 
@@ -176,14 +195,11 @@ public class TestDbTransactions {
 	    result.setTestDate(rs.getDate("TestDate"));
 	    result.setStartTime(new Date(rs.getTimestamp("StartTime").getTime()));
 	    result.setEndTime(new Date(rs.getTimestamp("EndTime").getTime()));
-
-	    System.out.println(result.getStartTime());
-	    System.out.println(result.getEndTime());
-
 	    result.setTestDuration(rs.getInt("TestDuration"));
 	    result.setInitialDifficulty(rs.getInt("InitialDifficulty"));
+	    result.setNegMark(rs.getInt("NegMark"));
 	}
-	
+
 	rs.close();
 	ps.close();
 
@@ -194,6 +210,7 @@ public class TestDbTransactions {
 
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addCategory);
 	ps.setString(1, categoryName);
+	ps.setString(2, "NA");
 
 	ps.executeUpdate();
 	ps.close();
@@ -204,6 +221,8 @@ public class TestDbTransactions {
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addCategoryToTest);
 	ps.setInt(1,testId);
 	ps.setInt(2, categoryId);
+	ps.setInt(3, 0);
+	ps.setInt(4, 0);
 
 	ps.executeUpdate();
 	ps.close();
@@ -261,5 +280,64 @@ public class TestDbTransactions {
 
 	ps.executeUpdate();
 	ps.close();
+    }
+
+
+    public static void saveInitDiff(Connection connection, int initDiff, int testId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateInitDiff);
+	ps.setInt(1, initDiff);
+	ps.setInt(2, testId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static void saveNegMark(Connection connection, int testId, int decreaseMark) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateNegMark);
+	ps.setInt(1,decreaseMark);
+	ps.setInt(2,testId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static void saveLevelMark(Connection connection, int testId, int levelId, int levelMark) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateLevelMark);
+	ps.setInt(1, levelMark);
+	ps.setInt(2, testId);
+	ps.setInt(3, levelId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static JSONObject getLevelMarks(Connection connection, int testId) throws SQLException, JSONException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveLevelMarks);
+	ps.setInt(1,testId);
+
+	ArrayList<BeanLevelMarks> result = new ArrayList<BeanLevelMarks>();
+	BeanLevelMarks temp = null;
+
+	ResultSet rs = ps.executeQuery();
+	while(rs.next()) {
+
+	    temp = new BeanLevelMarks();
+	    temp.setTestId(testId);
+	    temp.setLevelId(rs.getInt("LevelId"));
+	    temp.setMarks(rs.getInt("Marks"));
+
+	    result.add(temp);
+	}
+	rs.close();
+	ps.close();
+
+	JSONObject data = new JSONObject();
+	data.put("levelMarks", result.toArray(new BeanLevelMarks[result.size()]));
+
+	return data;
     }
 }

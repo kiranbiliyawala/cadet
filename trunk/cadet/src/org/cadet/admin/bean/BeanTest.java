@@ -17,6 +17,7 @@ public class BeanTest {
 	private Date endTime;
 	private Integer testDuration;
 	private Integer initialDifficulty;
+	private Integer negMark;
 
 	public Integer getTestId() {
 	    return testId;
@@ -79,6 +80,13 @@ public class BeanTest {
 	}
 	public void setInitialDifficulty(Integer initialDifficulty) {
 	    this.initialDifficulty = initialDifficulty;
+	}
+
+	public Integer getNegMark() {
+	    return negMark;
+	}
+	public void setNegMark(Integer negMark) {
+	    this.negMark = negMark;
 	}
 
 	@Override
