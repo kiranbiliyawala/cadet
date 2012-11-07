@@ -68,7 +68,7 @@
 				                    <tr>
 				                        <td style="width:270px">
 				                        	A.
-				                        	<input type="radio" id="radOptionA" name="radOption" value="txtOptionA" style="vertical-align:baseline;"/>
+				                        	<input type="radio" id="radOptionA" name="radOption" value="A" style="vertical-align:baseline;"/>
 				                        	<input type="text" id="txtOptionA" name="txtOptionA" value="${requestScope.questionDetail.optionA}"/>
 			                        	</td>
 				                        <td id="divOptionA" style="width:170px; color:red;" align="left">
@@ -96,7 +96,7 @@
 		                    		<tr>
 				                        <td>
 				                            B.
-				                            <input type="radio" id="radOptionB" name="radOption" value="txtOptionB" style="vertical-align:baseline;"/>
+				                            <input type="radio" id="radOptionB" name="radOption" value="B" style="vertical-align:baseline;"/>
 											<input type="text" id="txtOptionB" name="txtOptionB" value="${requestScope.questionDetail.optionB}"/>
 										</td>
 				                        <td id="divOptionB" style="width:150px; color:red;" align="left" colspan="4">
@@ -105,7 +105,7 @@
 			                        <tr>
 				                        <td style="width:270px">
 				                            C.
-				                            <input type="radio" id="radOptionC" name="radOption" value="txtOptionC" style="vertical-align:baseline;"/>
+				                            <input type="radio" id="radOptionC" name="radOption" value="C" style="vertical-align:baseline;"/>
 											<input type="text" id="txtOptionC" name="txtOptionC" value="${requestScope.questionDetail.optionC}"/>
 				                        </td>
 				                        <td id="divOptionC" style="width:170px; color:red;" align="left">
@@ -124,7 +124,7 @@
 			                        <tr>
 				                        <td>
 				                            D.
-				                            <input type="radio" id="radOptionD" name="radOption" value="txtOptionD" style="vertical-align:baseline;"/>
+				                            <input type="radio" id="radOptionD" name="radOption" value="D" style="vertical-align:baseline;"/>
 											<input type="text" id="txtOptionD" name="txtOptionD" value="${requestScope.questionDetail.optionD}"/>
 											<input type="text" id="txtCorrectAnswer" name="txtCorrectAnswer" value="${requestScope.questionDetail.correctAnswer}" style="display: none;"/>
 				                        </td>
@@ -136,7 +136,7 @@
 			                        <td colspan="3" align="center">
 			                        	<input type="button" class="btn btn-primary" id="btnSaveQuestion" name="btnSaveQuestion" onClick="changeAction('SaveQuestion')" value="Save Question" />
 			                        	&nbsp;&nbsp;&nbsp;
-			                        	<a href="ViewQuestion" class="btn btn-danger" id="btnBack" name="btnBack" >Back</a>
+			                        	<a href="ViewQuestion?hdnCategoryId=${requestScope.questionDetail.categoryId}" class="btn btn-danger" id="btnBack" name="btnBack" >Back</a>
 			                        </td>
 			                    </tr>
 		                </table>
@@ -160,19 +160,19 @@
         
         <script type="text/javascript">
         
-        window.addEventListener('load', doFirst, false);
+        	window.addEventListener('load', doFirst, false);
         
         	function doFirst(){
         		correctAnswer = document.getElementById("txtCorrectAnswer").value;
         		
         		//for correct answer selection
-        		if(document.getElementById("txtOptionA").value == correctAnswer)
+        		if(document.getElementById("radOptionA").value == correctAnswer)
         			document.getElementById("radOptionA").checked= true;
-        		else if(document.getElementById("txtOptionB").value == correctAnswer)
+        		else if(document.getElementById("radOptionB").value == correctAnswer)
         			document.getElementById("radOptionB").checked= true;
-        		else if(document.getElementById("txtOptionC").value == correctAnswer)
+        		else if(document.getElementById("radOptionC").value == correctAnswer)
         			document.getElementById("radOptionC").checked= true;
-        		else if(document.getElementById("txtOptionD").value == correctAnswer)
+        		else if(document.getElementById("radOptionD").value == correctAnswer)
     				document.getElementById("radOptionD").checked= true;
         		
         		//for selecting level
@@ -266,7 +266,8 @@
 	        			var optionC =  document.getElementById('txtOptionC').value;
 	        			var optionD =  document.getElementById('txtOptionD').value;
 	        			var checkedOption = getCheckedRadio(document.forms[0].elements.radOption);
-	        			var correctAnswer = document.getElementById(checkedOption.value).value;
+	        			var correctAnswer = checkedOption.value;
+	        			
 	        			var elementLevel = document.getElementById("selLevel");
 	        			var level = elementLevel.options[elementLevel.selectedIndex].text;
 	        			var elementCategory = document.getElementById("selCategory");
@@ -287,8 +288,7 @@
 
 	    	function stateChanged(){
 	    		if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
-	    			var status=xmlHttp.responseText;
-	    			if(status == "Question Edited"){
+	    			var status=xmlHttp.responseText;	    			if(status == "Question Edited"){
 	    				document.getElementById("tdNotification").setAttribute("style","color: green;");
 	    				document.getElementById("tdNotification").innerHTML = "<b>Question Edited.!!!</b>";
 	    			}
@@ -310,12 +310,12 @@
 	    		}
 	    		return xmlHttp;
 	    	}
-			
+	    	</script>	
          <script type="text/javascript">
         $("#question").addClass("active");
         $("#collapse2").addClass("in");
         </script>
         
-        </script>
+        
     </body>
 </html>
