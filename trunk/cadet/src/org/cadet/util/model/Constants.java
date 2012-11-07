@@ -44,7 +44,9 @@ public class Constants {
 	public static final String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
 	public static final String submitAnswersNA="UPDATE Result SET 'marks'= ?, 'Attempted'= ?,'Correct'= ? WHERE 'CUserName'=? AND 'TestId'=?";
 	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
-
+	public static final String GetResult = "SELECT result.`CUserName` AS result_CUserName,result.`Marks` AS result_Marks,result.`Attempted` AS result_Attempted, result.`Correct` AS result_Correct FROM  `result` result WHERE result.`TestId` = ?";
+	public static final String GetCompleteTests = null;
+	
 
 	/* Udit Queries */
 	public static final String retriveTests = "SELECT * FROM test";
@@ -68,7 +70,7 @@ public class Constants {
 	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
 	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
 	public static final String removeTestCandidateCategory = "DELETE from testcandidatecategory WHERE TestId = ? AND CandidateCategoryName = ?";
-
+	  
 
 	/* Rajan Queries */
 
@@ -115,7 +117,7 @@ public class Constants {
 	public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND q.CategoryId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
 	public static final String fetchNextQuestion2=") ORDER BY RAND() LIMIT 1";
 	public static final String saveResult="UPDATE result SET Marks=?, Attempted=?, Correct=? WHERE CUserName=? AND TestId=?";
-    }
+  }
 	
 	public static final class email{
 		public static final String SMTP_HOST_NAME = "smtp.gmail.com";

@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static org.cadet.util.controller.StringEscapeUtils.escapeHtml3;
-
 import org.cadet.admin.bean.QuestionBank;
 import org.cadet.admin.model.QuestionBankManagement;
 
