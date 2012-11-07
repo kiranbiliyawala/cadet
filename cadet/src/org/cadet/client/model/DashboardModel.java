@@ -36,11 +36,11 @@ public class DashboardModel {
 		while (rs.next()) {
 			temp = new DashboardBean();
 		    temp.setTestId(rs.getInt("TestId"));
-		    temp.setTestType(rs.getString("NonAdaptive"));
+		    temp.setTestType(rs.getString("TestType"));
 		    temp.setTestName(rs.getString("TestName"));
 		    temp.setTestDate(rs.getDate("TestDate"));
 		    temp.setTestDuration(rs.getInt("TestDuration"));
-		    if(!(NonAdaptiveTest.isAllowed(rs.getInt("TestId"), username)))
+		    if((NonAdaptiveTest.isAllowed(rs.getInt("TestId"), username)))
 		    {
 		    	temp.setGivetest("true");
 		    }
