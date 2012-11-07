@@ -50,7 +50,7 @@ public class AdaptiveTestDBTransactions {
 			else{
 				throw new Exception("No such Test Exists !");
 			}
-		return true;
+		return false;
 	}
 
 	public static ArrayList<Object> getTestDetails(int testId) throws SQLException, Exception {

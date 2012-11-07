@@ -394,8 +394,7 @@ public class NonAdaptiveTest {
 		rs.close();
 		statement1.close();
 		statement.close();
-		//return ret;
-		return true;
+		return ret;
 	}
 	
 }
