@@ -332,6 +332,7 @@ public class TestManagement extends HttpServlet {
 		    request.setAttribute("testId", testId);
 		    request.setAttribute("testName", testName);
 		    request.setAttribute("testType", testType);
+		    request.setAttribute("testDuration", 0);
 		    request.setAttribute("categoryDetails", categoryDetails);
 
 		    RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
@@ -369,6 +370,7 @@ public class TestManagement extends HttpServlet {
 		request.setAttribute("testId", testId);
 		request.setAttribute("testName", test.getTestName());
 		request.setAttribute("testType", test.getTestType());
+		request.setAttribute("testDuration", test.getTestDuration());
 		request.setAttribute("categoryDetails", categoryDetails);
 
 		RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
@@ -390,6 +392,7 @@ public class TestManagement extends HttpServlet {
 
 	    int testId = Integer.parseInt(request.getParameter("testId"));
 	    String testType = request.getParameter("testType");
+	    int testDuration = Integer.parseInt(request.getParameter("testDuration"));
 
 	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
 	    Connection dbConnection = dbConn.getDbConnection();
@@ -412,9 +415,12 @@ public class TestManagement extends HttpServlet {
     		    	categoryDetails[i].setTimePerCategory(timePerCategory);
 		    }
 
+		    TestDbTransactions.setTestDuration(dbConnection,testId,testDuration);
+
 		    request.setAttribute("testId", testId);
 		    request.setAttribute("testName", request.getParameter("testName"));
 		    request.setAttribute("testType", testType);
+		    request.setAttribute("testDuration",testDuration);
 		    request.setAttribute("categoryDetails",categoryDetails);
 		    request.setAttribute("result", true);
 
@@ -447,9 +453,12 @@ public class TestManagement extends HttpServlet {
     		    	categoryDetails[i].setTimePerCategory(timePerCategory);
 		    }
 
+		    TestDbTransactions.setTestDuration(dbConnection,testId,testDuration);
+
 		    request.setAttribute("testId", testId);
 		    request.setAttribute("testName", request.getParameter("testName"));
 		    request.setAttribute("testType", testType);
+		    request.setAttribute("testDuration",testDuration);
 		    request.setAttribute("categoryDetails",categoryDetails);
 		    request.setAttribute("result", true);
 

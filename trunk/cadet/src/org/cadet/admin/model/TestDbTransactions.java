@@ -375,4 +375,14 @@ public class TestDbTransactions {
 	ps.executeUpdate();
 	ps.close();
     }
+
+    public static void setTestDuration(Connection connection, int testId, int testDuration) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateTestDuration);
+	ps.setInt(1, testDuration);
+	ps.setInt(2, testId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
 }

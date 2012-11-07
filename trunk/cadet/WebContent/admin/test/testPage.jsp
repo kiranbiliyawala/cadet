@@ -128,7 +128,7 @@ footer {
 						<div class="container-fluid">
 							<a class="brand" href="#editTest">Test : <c:out value="${testName}"></c:out>&nbsp;<span class="text-info"><small><em><c:out value="(${testType})"></c:out></em></small></span></a>
 							<div style="margin:1.1%;" class="pull-right">
-								<strong>Total Duration :&nbsp;&nbsp;</strong><span class="badge badge-info">&nbsp;&nbsp;0&nbsp;&nbsp;</span>&nbsp;&nbsp;Min.
+								<strong>Total Duration :&nbsp;&nbsp;</strong><span class="badge badge-info">&nbsp;&nbsp;<c:out value="${testDuration}"></c:out>&nbsp;&nbsp;</span>&nbsp;&nbsp;Min.
 							</div>
 						</div>
 					</div>
@@ -173,7 +173,7 @@ footer {
 												</td>
 												<td class="span6">
 													<div class="input-append">
-														<input id='<c:out value="txtTimeCat${i.categoryId}"></c:out>' name='<c:out value="txtTimeCat${i.categoryId}"></c:out>' type="number" required placeholder="In Minutes" min=0 value='<c:out value="${i.timePerCategory}"></c:out>'>
+														<input id='<c:out value="txtTimeCat${i.categoryId}"></c:out>' name='<c:out value="txtTimeCat${i.categoryId}"></c:out>' class="txtTimeCat" type="number" required placeholder="In Minutes" min=0 value='<c:out value="${i.timePerCategory}"></c:out>'>
 														<span class="add-on">Min.</span>
 													</div>
 												</td>
@@ -198,6 +198,7 @@ footer {
 								<input type="hidden" id="testId" name="testId" value="<c:out value="${testId}"></c:out>">
 								<input type="hidden" id="testName" name="testName" value="<c:out value="${testName}"></c:out>">
 								<input type="hidden" id="testType" name="testType" value="<c:out value="${testType}"></c:out>">
+								<input type="hidden" id="testDuration" name="testDuration" value="<c:out value="${testDuration}"></c:out>">
 								<input type="submit" class="btn btn-success" value="Save">
 								<a href="testManagementHome.jsp" class="btn btn-danger">Cancel</a>
 							</div>
