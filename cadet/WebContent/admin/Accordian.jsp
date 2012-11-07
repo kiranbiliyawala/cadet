@@ -13,7 +13,7 @@
 					<div id="collapse2" class="accordion-body collapse">
 						<div class="accordion-inner">
 							<ul class="nav">
-								<li><a href="/cadet/admin/questionBank/ViewQuestion">Add/View Questions</a></li>
+								<li><a href="/cadet/admin/questionBank/ViewQuestion?hdnCategoryId=0">Add/View Questions</a></li>
 								<li><a href="/cadet/admin/questionBank/UploadByFile">Upload Questions</a></li>
 								<li><a href="/cadet/admin/questionBank/ViewCategory">Add/View Category</a></li>
 							</ul>
