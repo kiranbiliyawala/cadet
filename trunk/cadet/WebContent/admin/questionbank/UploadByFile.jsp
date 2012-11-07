@@ -25,7 +25,7 @@
 
         <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 	</head>
-    <body>
+    <body onload="/cadet/admin/questionBank/getCategoryDetails">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
@@ -47,6 +47,13 @@
                     <div>
                     	<form action="/cadet/admin/questionBank/AddQuestionByFile" METHOD="post" ENCTYPE="multipart/form-data">
 			                <table>
+			                <tr>
+			                <select id="selCategory" name="selCat">
+			                <option value="1">Quantitative</option>
+			                <option value="1">LogicalReasoning</option>
+			                <option value="1">Verbal</option>
+			                </select>
+			                </tr>
 			                	<tr>
 			                		<td style="color:green; font-weight: 600;">
 					                	<c:if test="${requestScope.status eq 'success'}">
@@ -65,27 +72,10 @@
 			                        </td>
 			                    </tr>
 			                </table>
-			                </br></br>
-			                <p><h1>Format for CSV File!</h1></h1></p></br></br>
-			                <table border="1" >
-			                <th width="80">Question Category(Id)</th>
-							<th width="80">Level Id</th>
-							<th width="80">Question</th>
-							<th width="80">Option A</th>
-							<th width="80">Option B</th>
-							<th width="80">Option C</th>
-							<th width="80">Option D</th>
-							<th width="80">Answer (option)</th>		
-							<tr><td height="20"> <i>The Id of the Category of the question in your database </i></td> 
-							<td> <i>The Id of the level of the Question as per the Database </i> </td>
-							<td> <i>The Question</i></td>
-							<td> <i>Option A </i></td>
-							<td> <i>Option B </i></td>
-							<td> <i>Option C </i></td>
-							<td> <i>Option D </i></td>
-							<td> <i>The Option which define the correct answer   </i></td></tr>	                
-			                </table>
+			           
+			              
 		                </form>
+		                
 					</div>
                 </div>
 
@@ -116,12 +106,19 @@
         		else{
         			alert("Select File to Upload");
         		}
-        	}
+        	}zz
         </script>
 
          <script type="text/javascript">
         $("#question").addClass("active");
         $("#collapse2").addClass("in");
         </script>
+        
+        
+      
+     
+        	
+        
+        
 	</body>
-</html>>
+</html>
