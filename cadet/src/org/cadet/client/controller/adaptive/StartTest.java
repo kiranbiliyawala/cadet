@@ -18,7 +18,7 @@ import org.cadet.client.model.adaptive.AdaptiveTestDBTransactions;
  * @author Varun Jamdar
  * 
  */
-@WebServlet("/Client/Test/Adaptive/StartTest")
+@WebServlet("/client/Test/Adaptive/CreateTest")
 public class StartTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,17 +45,21 @@ public class StartTest extends HttpServlet {
 			if(testStatus!=null){
 				request.getRequestDispatcher("").forward(request, response);//send to client dashboard from where start test button was clicked.
 			}*/
-			Integer testID = Integer.parseInt(request.getAttribute("testID").toString());
+			Integer testID = Integer.parseInt(request.getParameter("testid").toString());
 
-			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID.intValue())) {
+			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID)) {
 				//session.setAttribute("testStarted", true);//check on pop up page whether test has been started so that candidate cannot restart the test by resubmitting the url.
 				try {
-					AdaptiveTest test=new AdaptiveTest(testID.intValue(),session.getAttribute("username").toString());
+					AdaptiveTest test=new AdaptiveTest(testID,session.getAttribute("user").toString());
 					session.setAttribute("test", test);
+					System.out.print("hio");
+					request.getRequestDispatcher("TestStartPageA.jsp").include(request, response);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					request.setAttribute("error", e.getMessage());
-					request.getRequestDispatcher("").forward(request, response);//send to client dashboard to display error message from where start test button was clicked.
+					response.sendError(500);
+					e.printStackTrace();
+					return;
 				}
 				
 				//code here for pop up the test page and start test
@@ -64,15 +68,22 @@ public class StartTest extends HttpServlet {
 				
 
 			} else {
-				request.setAttribute("error", "Either Test Period has not started or is over !!");
+				
+				response.sendError(403,"No Test Allowed");
+				
+				return;
 			}
 
 		} catch (SQLException sqle) {
 			request.setAttribute("error", sqle.getMessage());
-			request.getRequestDispatcher("/client/index.jsp").forward(request, response);
+			sqle.printStackTrace();
+			response.sendError(500);
+			return;
 		} catch (Exception e) {
 			request.setAttribute("error", e.getMessage());
-			request.getRequestDispatcher("/client/index.jsp").forward(request, response);
+			e.printStackTrace();
+			response.sendError(500);
+			return;
 
 		}
 	
@@ -85,7 +96,7 @@ public class StartTest extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendError(403);
+		doGet(request, response);
 	}
 
 }

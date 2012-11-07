@@ -20,7 +20,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class GetCategories
  */
-@WebServlet("/Client/Test/Adaptive/GetCategories")
+@WebServlet("/client/Test/Adaptive/GetCategories")
 public class GetCategories extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

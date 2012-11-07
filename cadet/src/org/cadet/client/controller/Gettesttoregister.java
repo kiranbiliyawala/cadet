@@ -64,7 +64,15 @@ public class Gettesttoregister extends HttpServlet {
 		
 		
 		
-		BeanTest[] objTests= objTestRegister.getNotRegisterTestForUser(CUserName, CCatName);
+		BeanTest[] objTests = null;
+		try {
+			objTests = objTestRegister.getNotRegisterTestForUser(CUserName, CCatName);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			response.sendError(500);
+			e1.printStackTrace();
+			return;
+		}
 		
 		JSONObject jObj;
 		

@@ -21,7 +21,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class FetchNextQuestion
  */
-@WebServlet("/Client/Test/Adaptive/FetchNextQuestion")
+@WebServlet("/client/Test/Adaptive/FetchNextQuestion")
 public class FetchNextQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -86,12 +86,11 @@ public class FetchNextQuestion extends HttpServlet {
 					question=test.startSection(categoryId);
 					JSONArray array=new JSONArray();
 					try {
-						array.put(0, question.getQuestionId());
+						array.put(0, question.getQuestion());
 						array.put(1, question.getOptionA());
 						array.put(2, question.getOptionB());
 						array.put(3, question.getOptionB());
 						array.put(4, question.getOptionD());
-						array.put(5, question.getCorrectAnswer());
 						data.put("question", array);
 						data.put("result", true);
 						out.println(data);
@@ -125,7 +124,9 @@ public class FetchNextQuestion extends HttpServlet {
 						return;
 					}
 				}catch(Exception ex){
+					ex.printStackTrace();
 					switch(ex.getMessage()){
+					case "Section completed!":
 					case "This section is already completed!":
 						try {
 							data.put("result", "sectionAlreadyDoneError");
@@ -166,12 +167,11 @@ public class FetchNextQuestion extends HttpServlet {
 					question=test.submitQuestion(answer);
 					JSONArray array=new JSONArray();
 					try {
-						array.put(0, question.getQuestionId());
+						array.put(0, question.getQuestion());
 						array.put(1, question.getOptionA());
 						array.put(2, question.getOptionB());
 						array.put(3, question.getOptionB());
 						array.put(4, question.getOptionD());
-						array.put(5, question.getCorrectAnswer());
 						data.put("question", array);
 						data.put("result", true);
 						out.println(data);
@@ -215,12 +215,11 @@ public class FetchNextQuestion extends HttpServlet {
 					question=test.skipQuestion();
 					JSONArray array=new JSONArray();
 					try {
-						array.put(0, question.getQuestionId());
+						array.put(0, question.getQuestion());
 						array.put(1, question.getOptionA());
 						array.put(2, question.getOptionB());
 						array.put(3, question.getOptionB());
 						array.put(4, question.getOptionD());
-						array.put(5, question.getCorrectAnswer());
 						data.put("question", array);
 						data.put("result", true);
 						out.println(data);

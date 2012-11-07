@@ -92,7 +92,7 @@ public class Adaptive_Ability_Optimization {
      * @return current ability of testee processed with time parameter
      */
     public Double getTimedAbility() {
-        return (((ability * Math.exp(difficulty)) * Math.pow(10.0, 9.0)) / (max_time + 1.0));
+        return (((ability * Math.exp(difficulty))) / (max_time + 1.0));// * Math.pow(10.0, 9.0)
     }
 
     /**

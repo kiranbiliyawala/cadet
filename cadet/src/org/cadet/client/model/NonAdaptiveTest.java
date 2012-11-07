@@ -119,7 +119,7 @@ public class NonAdaptiveTest {
 		ResultSet rs = statement.executeQuery();
 		
 		while(rs.next()){
-			NegativeMarks = rs.getInt("NegativeMarks");
+			NegativeMarks = rs.getInt("NegMark");
 		}
 		rs.close();
 		statement.close();

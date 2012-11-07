@@ -66,7 +66,14 @@ public class GetViewAllTest extends HttpServlet {
 	
 	TestRegister objTestRegister = new TestRegister(dbConnection);
 	
-	BeanTest[] objTests = objTestRegister.getViewAllTestForUser(CUserName, CCatName);
+	BeanTest[] objTests = null;
+	try {
+		objTests = objTestRegister.getViewAllTestForUser(CUserName, CCatName);
+	} catch (SQLException e1) {
+		response.sendError(500);
+		e1.printStackTrace();
+	return;
+	}
 	System.out.println("GetViewAllTest" + CUserName + CCatName);
 	JSONObject jObj;
 	
