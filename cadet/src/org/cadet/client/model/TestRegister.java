@@ -25,106 +25,83 @@ public class TestRegister {
 		
 	};
 	
-	public BeanTest[] getNotRegisterTestForUser (String CUserName, String CCatName)
+	public BeanTest[] getNotRegisterTestForUser (String CUserName, String CCatName) throws SQLException
 	{
 		ArrayList<BeanTest> test1= new ArrayList<>();
-		try {
+		
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getNotRegisterTestForUserSql);
+		statement.setString(1, CCatName);
+		statement.setString(2, CUserName);
+		ResultSet rs = statement.executeQuery();
 			
-			PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getNotRegisterTestForUserSql);
-			statement.setString(1, CCatName);
-			statement.setString(2, CUserName);
-			ResultSet rs = statement.executeQuery();
+		BeanTest objTest;
 			
-				
-			BeanTest objTest;
-			
-				while(rs.next()){
-					objTest= new BeanTest();
-					objTest.setTestName(rs.getString(1));
-					objTest.setTestDate(rs.getDate(2));
-					objTest.setTestDuration(rs.getInt(3));
-					objTest.setTestId(rs.getInt(4));
-					test1.add(objTest);
-					
-				}
-				rs.close();
-				statement.close();
-				
-			} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while(rs.next()){
+				objTest= new BeanTest();
+				objTest.setTestName(rs.getString(1));
+				objTest.setTestDate(rs.getDate(2));
+				objTest.setTestDuration(rs.getInt(3));
+				objTest.setTestId(rs.getInt(4));
+				test1.add(objTest);
 		}
-
+		rs.close();
+		statement.close();
+				
 		return test1.toArray(new BeanTest[test1.size()]);
 		
 	}
 	
-	public BeanTest[] getViewAllTestForUser (String CUserName, String CCatName)
+	public BeanTest[] getViewAllTestForUser (String CUserName, String CCatName) throws SQLException
 	{
 		ArrayList <BeanTest> test2 = new ArrayList<>();
 		
-		try {
-			
-				PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getViewAllTestForUserSql);
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getViewAllTestForUserSql);
 		
-				statement.setString(1, CCatName);
-				statement.setString(2, CUserName);
-				ResultSet rs = statement.executeQuery();
+		statement.setString(1, CCatName);
+		statement.setString(2, CUserName);
+		ResultSet rs = statement.executeQuery();
 				
-				BeanTest objTest;
-				
-				while(rs.next()) {
-				
-					objTest = new BeanTest();
-					objTest.setTestName(rs.getString(1));
-					objTest.setTestDate(rs.getDate(2));
-					objTest.setTestDuration(rs.getInt(3));
-					objTest.setTestId(rs.getInt(4));
+		BeanTest objTest;
+			
+		while(rs.next()) {
+			
+				objTest = new BeanTest();
+				objTest.setTestName(rs.getString(1));
+				objTest.setTestDate(rs.getDate(2));
+				objTest.setTestDuration(rs.getInt(3));
+				objTest.setTestId(rs.getInt(4));
 					
-					if(rs.getInt(5)==0 && rs.getInt(6)==0 && rs.getInt(7)==0 )
+				if(rs.getInt(5)==0 && rs.getInt(6)==0 && rs.getInt(7)==0 )
 						objTest.setTestDesc("Attempted");
-					else
+				else
 						objTest.setTestDesc("Not Attempted");
 					
-					test2.add(objTest);
-				}
+				test2.add(objTest);
+			}
 				
-				rs.close();
-				statement.close();
-				//connection.close();
-		}		
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		rs.close();
+		statement.close();
+			//connection.close();
 		return test2.toArray(new BeanTest[test2.size()]);
 		
 	}
 	
 	
-	public int setRegisterTestForUser (String CUserName, Integer TestId)
+	public int setRegisterTestForUser (String CUserName, Integer TestId) throws SQLException
 	{
 	
 		int i=0;
-		try {
-			
-				PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.setRegisterTestForUserSql);
+	
+		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.setRegisterTestForUserSql);
 				
-				statement.setString(1, CUserName);
-				statement.setInt(2, TestId);
-				i = statement.executeUpdate();
+		statement.setString(1, CUserName);
+		statement.setInt(2, TestId);
+		i = statement.executeUpdate();
 
-				statement.close();
-				//connection.close();
-		}		
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		statement.close();
+		//connection.close();
 		
-		return i;
-		
+		return i;	
 	}
 			
 	

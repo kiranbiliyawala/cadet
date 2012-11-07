@@ -18,7 +18,6 @@ public class CandidateCategory {
 		DashboardBean bean = new DashboardBean();
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getCandidateCategory);
 		statement.setString(1, username);
-		
 		ResultSet rs = statement.executeQuery();
 		rs.first();
 		candidatecategory = rs.getString("CandidateCategoryName");
@@ -26,6 +25,5 @@ public class CandidateCategory {
 		rs.close();
 		statement.close();
 		return candidatecategory;
-		
 	}
 }
