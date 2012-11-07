@@ -75,12 +75,12 @@ public class EditQuestions extends HttpServlet {
         }catch(Exception e){
         	status=false;
         }
-        out.println("<h3>Question: " + request.getParameter("questionId") + " </h3>");
+        out.println("<h3>Question: " + request.getParameter("hdnQuestionId") + " </h3>");
         out.println("<h3>Status: " + status + "</h3>");
         out.println("<h3>QuestionDetail: " + question.getQuestion() + "</h3>");
         out.println("<h3>Categories: " + categories + "</h3>");
         if(status){
-        	request.setAttribute("questionId", request.getParameter("questionId"));
+        	request.setAttribute("questionId", request.getParameter("hdnQuestionId"));
 			request.setAttribute("status", "success");
         	request.setAttribute("questionDetail", question);
 			request.setAttribute("categories", categories);

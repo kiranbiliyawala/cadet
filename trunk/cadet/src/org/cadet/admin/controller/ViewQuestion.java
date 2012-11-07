@@ -64,7 +64,7 @@ public class ViewQuestion extends HttpServlet {
 					session.setAttribute("categoryName", objCategoryManagement.viewCategoryByCategoryId(Integer.parseInt(categoryId)));
 				}
 				catch(Exception e){
-					categoryId = (String)session.getAttribute("categoryId");
+					session.setAttribute("categoryId","0");
 				}
 				//out.println("<h3>CategoryId: " + categoryId + " </h3><br/>");
 				if(categoryId.compareTo("0") == 0){
