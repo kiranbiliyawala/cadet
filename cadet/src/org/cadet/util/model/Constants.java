@@ -54,6 +54,7 @@ public class Constants {
 	public static final String retriveTestDetails = "SELECT * FROM test WHERE TestId = ?";
 	public static final String retriveSpecificTestCategoryDetails = "SELECT test.TestId,category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND category.CategoryId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveLevelMarks = "SELECT * FROM levelmarks WHERE TestId = ?";
+	public static final String retriveTestCandidateCategories = "SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?";
 	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc,TestDate,StartTime,EndTime,TestDuration,InitialDifficulty,NegMark) VALUES (?,?,?,STR_TO_DATE(?,'%Y-%m-%d'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),?,?,?)";
 	public static final String addCategory = "INSERT INTO category (CategoryName,CategoryDescription) VALUES (?,?)";
 	public static final String addCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId,TimePerCategory,QuestionPerCategory) VALUES (?,?,?,?)";
@@ -65,6 +66,7 @@ public class Constants {
 	public static final String updateLevelMark = "UPDATE levelmarks SET Marks = ? WHERE TestId = ? AND LevelId = ?";
 	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
 	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
+	public static final String removeTestCandidateCategory = "DELETE from testcandidatecategory WHERE TestId = ? AND CandidateCategoryName = ?";
 
 
 	/* Rajan Queries */

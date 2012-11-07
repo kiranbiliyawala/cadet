@@ -16,10 +16,6 @@ if (!(window.console && console.log)) {
 
 // Global Variables & Function
 
-$(document).ready(function(e) {
-	$("*").find("label.error").addClass("text-error");
-});
-
 function pageRedirect(pagePath) {
 
 	window.location.href = pagePath;

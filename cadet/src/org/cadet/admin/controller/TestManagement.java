@@ -34,7 +34,6 @@ public class TestManagement extends HttpServlet {
      */
     public TestManagement() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -42,7 +41,6 @@ public class TestManagement extends HttpServlet {
      *      response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	// TODO Auto-generated method stub
 
 	response.sendError(404, "No Get Request Allowed for this Page");
     }
@@ -52,7 +50,6 @@ public class TestManagement extends HttpServlet {
      *      response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	// TODO Auto-generated method stub
 
 	String requestType = request.getParameter("requestType");
 	PrintWriter out = response.getWriter();
@@ -74,14 +71,12 @@ public class TestManagement extends HttpServlet {
 		return;
 
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -96,7 +91,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -122,14 +116,12 @@ public class TestManagement extends HttpServlet {
 		return;
 
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -144,7 +136,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -173,14 +164,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -195,7 +184,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -230,14 +218,12 @@ public class TestManagement extends HttpServlet {
 		return;
 
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -252,7 +238,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -281,14 +266,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -303,7 +286,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -330,8 +312,6 @@ public class TestManagement extends HttpServlet {
 		testId = TestDbTransactions.getLastInsertID(dbConnection);
 
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
-
 		e.printStackTrace();
 		response.sendRedirect("../DatabaseError.html");
 		return;
@@ -452,7 +432,40 @@ public class TestManagement extends HttpServlet {
 		    return;
     	    	}
 	    } else if(testType.equals("Non-Adaptive")) {
-		out.println("Non-Adaptive Deletion");
+
+		try{
+
+		    ArrayList<BeanTestCategory> temp = TestDbTransactions.getTestCategoryDetails(dbConnection, testId);
+		    BeanTestCategory categoryDetails[] = temp.toArray(new BeanTestCategory[temp.size()]);
+        
+		    for(int i=0;i<categoryDetails.length;i++) {
+
+    		    	int categoryId = categoryDetails[i].getCategoryId();
+    		    	int timePerCategory = Integer.parseInt(request.getParameter("txtTimeCat"+categoryId));
+
+    		    	TestDbTransactions.setTestCategoryDetails(dbConnection,testId,categoryId,0,timePerCategory);
+    		    	categoryDetails[i].setTimePerCategory(timePerCategory);
+		    }
+
+		    request.setAttribute("testId", testId);
+		    request.setAttribute("testName", request.getParameter("testName"));
+		    request.setAttribute("testType", testType);
+		    request.setAttribute("categoryDetails",categoryDetails);
+		    request.setAttribute("result", true);
+
+		    RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");
+		    rd.include(request, response);
+		} catch (SQLException e) {
+
+		    e.printStackTrace();
+		    response.sendRedirect("../DatabaseError.html");
+		    return;
+		} catch (Exception e) {
+
+		    e.printStackTrace();
+		    response.sendRedirect("../ServerException.html");
+		    return;
+    	    	}
 	    }
 	}
 
@@ -475,14 +488,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -497,7 +508,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -534,14 +544,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -549,13 +557,11 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		data = new JSONObject();
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -591,14 +597,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -606,13 +610,11 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		data = new JSONObject();
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -642,14 +644,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -657,13 +657,11 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		data = new JSONObject();
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -700,14 +698,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -715,13 +711,11 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 		data = new JSONObject();
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -756,14 +750,12 @@ public class TestManagement extends HttpServlet {
 		return;
 
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -778,7 +770,6 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -805,14 +796,12 @@ public class TestManagement extends HttpServlet {
 		out.println(data);
 		return;
 	    } catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 
 		data = new JSONObject();
 		try {
 		    data.put("result", "DatabaseError");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");
@@ -827,7 +816,98 @@ public class TestManagement extends HttpServlet {
 		try {
 		    data.put("result", "ServerException");
 		} catch (JSONException e1) {
-		    // TODO Auto-generated catch block
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("getTestCandCat")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+
+		data = TestDbTransactions.getTestCandCat(dbConnection,testId);
+		data.put("result", true);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if (requestType.equals("removeTestCandidateCategory")) {
+
+	    int testId = Integer.parseInt(request.getParameter("testId"));
+	    String candidateCategoryName = request.getParameter("candidateCategoryName").split("delete_")[1];
+
+	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
+	    Connection dbConnection = dbConn.getDbConnection();
+
+	    try {
+	    	TestDbTransactions.removeTestCandidateCategory(dbConnection,testId,candidateCategoryName);
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
 		    e1.printStackTrace();
 		}
 		response.setContentType("application/json");

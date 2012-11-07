@@ -193,7 +193,7 @@ footer {
 					<td></td>
 				</tr>
 			{{/if}}
-		</script>
+	</script>
 
 	<script src="../js/jsGlobal.js"></script>
 	<script src="../js/jsTestManagementHome.js"></script>

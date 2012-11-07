@@ -198,7 +198,7 @@ footer {
 								<input type="hidden" id="testId" name="testId" value="<c:out value="${testId}"></c:out>">
 								<input type="hidden" id="testName" name="testName" value="<c:out value="${testName}"></c:out>">
 								<input type="hidden" id="testType" name="testType" value="<c:out value="${testType}"></c:out>">
-								<input type="submit" <c:if test="${not empty saveFlag}">disabled="disabled"</c:if> class="btn btn-success" value="Save">
+								<input type="submit" class="btn btn-success" value="Save">
 								<a href="testManagementHome.jsp" class="btn btn-danger">Cancel</a>
 							</div>
 						</div>
@@ -441,9 +441,8 @@ footer {
 
 					<div class="tab-pane" id="tab3">
 						<button id="btnAddUserCat" class="btn btn-primary">Add User Category</button>
-						<table style="margin-top:3%" id="tblUserCat" class="table table-striped table-condensed table-hover">
+						<table id="tblTestCandCat" style="margin-top:3%" id="tblUserCat" class="table table-striped table-condensed table-hover">
 							<tbody>
-								<tr><td>User Category</td><td><button id="btnRemUserCat1" class="btn btn-danger">Remove</button></td></tr>
 							</tbody>
 						</table>
 					</div>
@@ -453,6 +452,21 @@ footer {
 		</div>
 	</div>
 
+	<script id="tmpltCandCat" type="text/x-handlebars-template">
+		{{#if candCatList}}
+			{{#each candCatList}}
+				<tr>
+					<td>{{candidateCategory}}</td>
+					<td><button id="delete_{{candidateCategory}}" class="btn btn-danger btnDelete">Remove</button></td>
+				</tr>
+			{{/each}}
+		{{else}}
+			<tr>
+				<td><p class="text-warning">No Candidate Category Added</p></td>
+				<td></td>
+			</tr>
+		{{/if}}
+	</script>
 
 	<script id="tmpltCategories" type="text/x-handlebars-template">
 		{{#if categoryList}}
