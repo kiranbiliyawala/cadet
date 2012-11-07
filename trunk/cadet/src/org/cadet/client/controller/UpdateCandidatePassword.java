@@ -54,38 +54,30 @@ public class UpdateCandidatePassword extends HttpServlet {
 		CandidateProfileModel cpm = new CandidateProfileModel(dbConnection);
 		
 		try {
-            String newPass= request.getParameter("changepassword");
-            String password= request.getParameter("confirmpassword");
+            	String newPass= request.getParameter("changepassword");
+            	String password= request.getParameter("confirmpassword");
             
-            if((! password.equals(newPass)) && password.equals(null) && newPass.equals(null)){
-            	//System.out.println("Password confirmed");
-            	cadetsession.setAttribute("passwordcheck", false);
-                //out.println("New pass & Confirm pass is not matched");
-            }else{
+            	if((! password.equals(newPass)) && password.equals(null) && newPass.equals(null)){
+            		cadetsession.setAttribute("passwordcheck", false);
+            	}else{
 
-            //Change_Password
-            
-            //boolean success = cpm.updateCandidatePassword(newPass, CUserName);
-            
-			try {
-				success = UserControl.UpdateClientPassword(dbConnection, CUserName, password);
-				if(success == true){
-					request.setAttribute("passwordcheck", true);
-	            }
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				request.setAttribute("passwordcheck", false);
-			}
-            
-            }
-            RequestDispatcher rd = request.getRequestDispatcher("/client/profile/ChangePassword");
-		    rd.forward(request, response);
-//            response.sendRedirect("/cadet/client/profile/ChangePassword");
-        } finally { 
+            		//Change_Password
+            		success = UserControl.UpdateClientPassword(dbConnection, CUserName, password);
+            		if(success == true)
+            			request.setAttribute("passwordcheck", true);
+			  
+            		RequestDispatcher rd = request.getRequestDispatcher("/client/profile/ChangePassword");
+            		rd.forward(request, response);
+            	}
+		}  catch (SQLException e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/pages/DatabaseError.html").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/pages/ServerException.html").forward(request, response);
+		} finally { 
             out.close();
-        }
+		}
 	}
 
 }

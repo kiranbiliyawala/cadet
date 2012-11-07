@@ -2,6 +2,7 @@ package org.cadet.client.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,11 +51,11 @@ public class UpdateCandidateProfileServlet extends HttpServlet {
 		DatabaseConnection dbConn = DatabaseConnection.getInstance();
 		Connection dbConnection = dbConn.getDbConnection();
 		response.setContentType("text/html;charset=UTF-8");
-		// PrintWriter out = response.getWriter();
+		
 		int success=0;
 		HttpSession cadetsession = request.getSession();
 		String CUserName = (String) cadetsession.getAttribute("user");
-		System.out.println("UpdateCandidateProfileServlet : " + CUserName);
+//		System.out.println("UpdateCandidateProfileServlet : " + CUserName);
 		CandidateProfileModel cpm = new CandidateProfileModel(dbConnection);
 		try {
 			String candidatename = request.getParameter("name");
@@ -73,8 +74,12 @@ public class UpdateCandidateProfileServlet extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("GetCandidateProfileServlet");
 		    rd.forward(request, response);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/pages/DatabaseError.html").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/pages/ServerException.html").forward(request, response);
 		}
 
 	}

@@ -51,66 +51,69 @@ public class GetViewAllTest extends HttpServlet {
 	
 	DatabaseConnection dbConn = DatabaseConnection.getInstance();
 	Connection dbConnection = dbConn.getDbConnection();
+	PrintWriter out = response.getWriter();
 	String CCatName=null;
 	HttpSession cadetsession = request.getSession();
 	String CUserName = (String) cadetsession.getAttribute("user");
 	try {
-		CCatName = CandidateCategory.fetch(dbConnection, CUserName);
-		System.out.println("Gettesttoregister" + CCatName);
+		
+			CCatName = CandidateCategory.fetch(dbConnection, CUserName);
+			//	System.out.println("Gettesttoregister" + CCatName);
+			JSONArray objJarray = new JSONArray();
+			
+			TestRegister objTestRegister = new TestRegister(dbConnection);
+			
+			BeanTest[] objTests = objTestRegister.getViewAllTestForUser(CUserName, CCatName);
+			//System.out.println("GetViewAllTest" + CUserName + CCatName);
+			JSONObject jObj;
+			
+			for (BeanTest oTest : objTests) {
+				jObj = new JSONObject();
+				
+				try {
+					jObj.put("testName", oTest.getTestName());
+					jObj.put("testDate", oTest.getTestDate());
+					jObj.put("testDuration", oTest.getTestDuration());
+					jObj.put("testId", oTest.getTestId());
+					jObj.put("testDesc", oTest.getTestDesc());
+					objJarray.put(jObj);
+					
+					
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			
+			
+			
+			JSONObject jResp = new JSONObject();
+			
+			try {
+				jResp.put("tests", objJarray);
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			out.print(jResp);
+		
 	} catch (SQLException e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
+		out.print("DatabaseError");
 	}
-	
-	JSONArray objJarray = new JSONArray();
-	
-	TestRegister objTestRegister = new TestRegister(dbConnection);
-	
-	BeanTest[] objTests = null;
-	try {
-		objTests = objTestRegister.getViewAllTestForUser(CUserName, CCatName);
-	} catch (SQLException e1) {
-		response.sendError(500);
-		e1.printStackTrace();
-	return;
-	}
-	System.out.println("GetViewAllTest" + CUserName + CCatName);
-	JSONObject jObj;
-	
-	for (BeanTest oTest : objTests) {
-		jObj = new JSONObject();
-		
-		try {
-			jObj.put("testName", oTest.getTestName());
-			jObj.put("testDate", oTest.getTestDate());
-			jObj.put("testDuration", oTest.getTestDuration());
-			jObj.put("testId", oTest.getTestId());
-			jObj.put("testDesc", oTest.getTestDesc());
-			objJarray.put(jObj);
-			
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	response.setContentType("application/json");
-	response.setCharacterEncoding("UTF-8");
-	
-	PrintWriter out = response.getWriter();
-	
-	JSONObject jResp = new JSONObject();
-	
-	try {
-		jResp.put("tests", objJarray);
-		
-	} catch (JSONException e) {
+	 catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		out.print("ServerException");
 	}
 	
-	out.print(jResp);
+	
 	
 	
 	
