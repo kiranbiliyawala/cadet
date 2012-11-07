@@ -88,7 +88,7 @@
 						<td>
 							{{#if givetest}}
 								<input type="hidden" id="testId" name="testId" value={{testId}}>
-								<button class="btn btn-info" onclick="start_test('{{testType}}','{{testId}}')">Appear Test {{givetest}}</button>
+								<button class="btn btn-info" onclick="start_test('{{testType}}','{{testId}}')">Appear Test</button>
 							{{else}}
 								<input type="hidden" id="testId" name="testId" value={{testId}}>
 								<button disabled="disabled" class="btn btn-info">Appear Test {{givetest}}</button>
