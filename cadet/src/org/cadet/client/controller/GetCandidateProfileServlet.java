@@ -3,6 +3,7 @@ package org.cadet.client.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import org.cadet.client.model.CandidateProfileModel;
 import org.cadet.util.model.DatabaseConnection;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Servlet implementation class GetCandidateProfileServlet
@@ -54,7 +57,7 @@ public class GetCandidateProfileServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		HttpSession cadetsession = request.getSession();
-		String CUserName = (String) cadetsession.getAttribute("user"); // "cadet.daiict@gmail.com";
+		String CUserName = (String) cadetsession.getAttribute("user"); 
 		System.out.println("in servlet: " + CUserName);
 		CandidateProfileModel cpm = new CandidateProfileModel(dbConnection);
 		try {
@@ -70,10 +73,14 @@ public class GetCandidateProfileServlet extends HttpServlet {
 			request.getRequestDispatcher("changedetails.jsp").forward(request,
 					response);
 
-		}catch(Exception e){
-			response.sendError(500);
+		}  catch (SQLException e) {
 			e.printStackTrace();
-			return;
+			request.getRequestDispatcher("/pages/DatabaseError.html").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/pages/ServerException.html").forward(request, response);
+		}		finally {
+			out.close();
 		}
 		
 	}

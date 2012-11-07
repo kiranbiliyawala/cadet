@@ -38,6 +38,7 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.sendError(404, "No Get Request Allowed for this Page");
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class DashboardServlet extends HttpServlet {
 		
 		HttpSession cadetsession = request.getSession();
 		String username= (String) cadetsession.getAttribute("user"); 
-		System.out.println("DashboardServlet : "  + username);
+//		System.out.println("DashboardServlet : "  + username);
 	    DatabaseConnection dbConn = DatabaseConnection.getInstance();
 	    Connection dbConnection = dbConn.getDbConnection();
 	    
@@ -63,9 +64,32 @@ public class DashboardServlet extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			//System.out.println(data);
 			out.println(data);
-		} catch (SQLException | JSONException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException se) {
+			se.printStackTrace();
+			
+			data = new JSONObject();
+			
+			try {
+			    data.put("result", "DatabaseError");
+			} catch (JSONException e1) {
+			    e1.printStackTrace();
+			}
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			out.println(data);
+			return;
+			
+		} catch (Exception e) {
 			e.printStackTrace();
+			data = new JSONObject();
+			try {
+			    data.put("result", "ServerException");
+			} catch (JSONException e1) {
+			    e1.printStackTrace();
+			}
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			out.println(data);
 		}
 		
 		

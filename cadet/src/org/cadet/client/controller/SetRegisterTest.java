@@ -1,7 +1,9 @@
 package org.cadet.client.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +42,7 @@ public class SetRegisterTest extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		PrintWriter out = response.getWriter();
 		DatabaseConnection dbConn = DatabaseConnection.getInstance();
 		Connection dbConnection = dbConn.getDbConnection();
 		TestRegister objTest = new TestRegister(dbConnection);
@@ -50,7 +52,19 @@ public class SetRegisterTest extends HttpServlet {
 		
 		
 		
-		objTest.setRegisterTestForUser(CUserName, testid);
+		try {
+			objTest.setRegisterTestForUser(CUserName, testid);
+			out.print("success");
+		}  catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			out.print("DatabaseError");
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			out.print("ServerException");
+		}
 		
 		
 		

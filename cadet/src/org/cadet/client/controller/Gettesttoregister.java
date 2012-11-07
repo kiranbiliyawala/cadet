@@ -43,7 +43,7 @@ public class Gettesttoregister extends HttpServlet {
 		
 		DatabaseConnection dbConn = DatabaseConnection.getInstance();
 		Connection dbConnection = dbConn.getDbConnection();
-		
+		PrintWriter out= response.getWriter();
 		TestRegister objTestRegister = new TestRegister(dbConnection);
 		
 		HttpSession cadetsession = request.getSession();
@@ -51,62 +51,65 @@ public class Gettesttoregister extends HttpServlet {
 		String CCatName=null;
 		
 		try {
+			
 			CCatName = CandidateCategory.fetch(dbConnection, CUserName);
-			System.out.println("Gettesttoregister" + CCatName);
+			
+			//System.out.println("Gettesttoregister" + CCatName);
+			
+			JSONArray objJarray= new JSONArray();
+			
+			BeanTest[] objTests;
+			
+				objTests = objTestRegister.getNotRegisterTestForUser(CUserName, CCatName);
+				JSONObject jObj;
+				
+				for(BeanTest oTest : objTests ){
+					jObj= new JSONObject();
+					try {
+						jObj.put("testName", oTest.getTestName());
+						jObj.put("testDate", oTest.getTestDate());
+						jObj.put("testDuration", oTest.getTestDuration());
+						jObj.put("testId", oTest.getTestId());
+						//System.out.println("Gettesttoregister" + jObj);
+						objJarray.put(jObj);
+				
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+					
+					response.setContentType("application/json");
+					response.setCharacterEncoding("UTF-8");
+					
+					
+					
+					JSONObject jResp = new JSONObject();
+					try {
+						
+						jResp.put("tests",objJarray );
+						
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					//System.out.println("Get Test: " + jResp);
+					out.print(jResp);
+					
+				
+				
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			out.print("DatabaseError");
 		}
-		
-		
-		
-		JSONArray objJarray= new JSONArray();
-		
-		
-		
-		BeanTest[] objTests = null;
-		try {
-			objTests = objTestRegister.getNotRegisterTestForUser(CUserName, CCatName);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			response.sendError(500);
-			e1.printStackTrace();
-			return;
-		}
-		
-		JSONObject jObj;
-		
-		for(BeanTest oTest : objTests ){
-			jObj= new JSONObject();
-			try {
-				jObj.put("testName", oTest.getTestName());
-				jObj.put("testDate", oTest.getTestDate());
-				jObj.put("testDuration", oTest.getTestDuration());
-				jObj.put("testId", oTest.getTestId());
-				System.out.println("Gettesttoregister" + jObj);
-				objJarray.put(jObj);
-		
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-		}
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out= response.getWriter();
-		
-		JSONObject jResp = new JSONObject();
-		try {
-			jResp.put("tests",objJarray );
-		} catch (JSONException e) {
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			out.print("ServerException");
 		}
-		
-		
-		out.print(jResp);
+
 		
 	}
 	/**
