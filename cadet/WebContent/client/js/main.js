@@ -38,6 +38,11 @@ pass = document.getElementById("confirmpassword");
 
 }
 
+function pageRedirect(pagePath) {
+
+	window.location.href = pagePath;
+}
+
 function check_valid(){
 	return $("#passwordform").valid();
  }
