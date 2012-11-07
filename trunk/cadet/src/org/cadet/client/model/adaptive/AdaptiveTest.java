@@ -6,16 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import org.cadet.client.bean.Question;
 import org.cadet.client.bean.CategoryAdaptiveTest;
-import org.cadet.client.model.NonAdaptiveTest;
-import org.cadet.client.model.NonAdaptiveTest.terminate;
 import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
 
 
@@ -242,7 +238,15 @@ public class AdaptiveTest {
 		else{
 			this.currentCategoryId=categoryId;
 			this.aao=AdaptiveTestDBTransactions.generateAAO(this.testId, this.categories.get(this.currentCategoryId).getQuestionsPerCategory());
-			this.question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
+			try {
+				this.question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				if(e.getMessage().equals("Questions for the given difficulty are exhausted !")){
+					this.question= this.increaseDifficulty();
+				}
+			}
 			this.categories.get(this.currentCategoryId).addAskedQuestion(this.question.getQuestionId());
 			this.aao.start_test();
 			createScheduler(this.categories.get(this.currentCategoryId).getTimePerCategory());
@@ -255,11 +259,14 @@ public class AdaptiveTest {
 			this.aao.increase_difficulty();
 			return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
 		} catch (InvalidAlgorithmParameterException e) {
+			this.categories.get(this.currentCategoryId).setAbility(this.aao.getAbility());
+			this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
+			this.categories.get(this.currentCategoryId).setDone(true);
 			throw new Exception("Section completed!");
 		} catch(Exception ex){
 			if(ex.getMessage().equals("Questions for the given difficulty are exhausted !")){
-				this.aao.increase_difficulty();
-				return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
+				return this.increaseDifficulty();
+				//return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
 			}
 			else
 				throw ex;

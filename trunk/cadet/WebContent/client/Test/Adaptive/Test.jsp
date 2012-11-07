@@ -20,8 +20,9 @@
 	<div id = "catselector" class="container accordion question_portion">
 	<div style="margin-top: 5%"></div>
 	<div class="Category" style="font-size: 20px;margin-bottom: .5%"> Categories </div>
-	<div id="categories" ></div>
+	<div id="categories"></div>
 	</div>
+	
 	<div class="container question_portion" id = "question_portion">
 		<div class="Question_no">
         <h1 class="QNO" id="QNO">1</h1>
@@ -55,13 +56,37 @@
         <button class="btn butn btn-info" type="button" onclick="skip()" name="Skip" text="Skip" style="float:right"/>Skip</button>
 	</div>
 	  <script src="/cadet/js/handlebars.js"></script>
+	  
+	  <script id="changequehandle" type="text/x-handlebars-template">
+       <div class="Question_no">
+        <h1 class="QNO" id="QNO">1</h1>
+         </div>
+		<div class="Question" id="Question">
+			{{question.[0]}}
+		</div>
+		<form id="Options" method="post" class="Options" action="SubmitTest">
+			<input type="radio" name="Answer" id="option1" value="A"/><span id="optn1">{{question.[1]}}</span><br />
+			<input type="radio" name="Answer" id="option2" value="B"/><span id="optn2">{{question.[2]}}</span><br />
+			<input type="radio" name="Answer" id="option3" value="C"/><span id="optn3">{{question.[3]}}</span><br />
+            <input type="radio" name="Answer" id="option4" value="D"/><span id="optn4">{{question.[4]}}</span><br />
+            <br/>
+                    <a href="javascript:void(0)" onclick="clear_answer()">Clear Answer</a>
+         </form>
+    	</script>
        
 	 <script id="getcategories" type="text/x-handlebars-template">
-        	{{#if data}}
-				{{#each data}}
-					<div class="test_category" id="cat{{this.[0]}}" onclick="start_cat({{this.[0]}},{{this.[2]}})">
-					{{this.[1]}}
+        	{{#if categoryList}}
+				{{#each categoryList}}
+					<div class="accordion-group Category" id="cat{{this.[0]}}">
+						<div class="CatQuestion accordion-heading">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#catselector" onclick="start_cat({{this.[0]}},{{this.[2]}});" href="javascript:void(0)">{{this.[1]}}</a>
+						</div>
+						<div class="CatCover accordion-body collapse" id="cover">
+							<div class="accordion-inner">
+							</div>
+						</div>
 					</div>
+
 				{{/each}}
 			{{/if}}
     	</script>

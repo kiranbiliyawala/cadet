@@ -70,10 +70,12 @@ public class GetCandidateProfileServlet extends HttpServlet {
 			request.getRequestDispatcher("changedetails.jsp").forward(request,
 					response);
 
-		} finally {
-			out.close();
+		}catch(Exception e){
+			response.sendError(500);
+			e.printStackTrace();
+			return;
 		}
-
+		
 	}
 
 }

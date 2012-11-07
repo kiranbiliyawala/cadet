@@ -229,6 +229,15 @@
     <url-pattern>/ForgotPasswordWait</url-pattern>
   </servlet-mapping>  
   
+    <servlet>
+    <servlet-name>AdaptiveTest</servlet-name>
+    <jsp-file>/client/Test/Adaptive/Test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdaptiveTest</servlet-name>
+    <url-pattern>/client/Test/Adaptive/Test</url-pattern>
+  </servlet-mapping> 
+  
   <session-config>
     <session-timeout>300</session-timeout>
   </session-config>

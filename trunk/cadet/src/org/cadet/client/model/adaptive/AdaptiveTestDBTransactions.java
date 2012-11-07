@@ -50,7 +50,7 @@ public class AdaptiveTestDBTransactions {
 			else{
 				throw new Exception("No such Test Exists !");
 			}
-		return false;
+		return true;
 	}
 
 	public static ArrayList<Object> getTestDetails(int testId) throws SQLException, Exception {
@@ -125,12 +125,18 @@ public class AdaptiveTestDBTransactions {
 		
 		String questions_asked= "";
 		Question q;
-		
+		boolean substring = false;
 		for(int i=0; i<askedQuestions.size(); i++) {
 			questions_asked+= askedQuestions.get(i) + ",";
+			substring = true;
+		}
+		if(substring){
+			questions_asked= questions_asked.substring(0, questions_asked.length()-1);
+		}
+		else{
+			questions_asked = "0";
 		}
 		
-		questions_asked= questions_asked.substring(0, questions_asked.length()-1);
 		
 		DatabaseConnection dbConn= DatabaseConnection.getInstance();
 		PreparedStatement ps= dbConn.getDbConnection().prepareStatement(Constants.sqlCommands.fetchNextQuestion1 + questions_asked + Constants.sqlCommands.fetchNextQuestion2);
@@ -142,7 +148,7 @@ public class AdaptiveTestDBTransactions {
 		ResultSet rs= ps.executeQuery();
 		
 		if(rs.first()){
-			q= new Question(rs.getInt(1), rs.getInt(2), rs.getInt(10), rs.getInt(11), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+			q= new Question(rs.getInt(1), rs.getInt(2), rs.getInt(10), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
 		}
 		else{
 			throw new Exception("Questions for the given difficulty are exhausted !");
@@ -152,15 +158,16 @@ public class AdaptiveTestDBTransactions {
 	}
 	
 	public static void saveResult(String username, int testId, Double ability, int attempted, int correctAnswers) throws SQLException {
-		
+		System.out.println(ability.floatValue());
 		DatabaseConnection dbConn=DatabaseConnection.getInstance();
 		Connection conn=dbConn.getDbConnection();
 		PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.saveResult);
-		ps.setString(1, username);
-		ps.setInt(2, testId);
-		ps.setInt(3, ability.intValue());//currently int value is inserted. Update to double once database change is done.
-		ps.setInt(4, attempted);
-		ps.setInt(5, correctAnswers);
+		
+		ps.setDouble(1, ability.doubleValue());
+		ps.setInt(2, attempted);
+		ps.setInt(3, correctAnswers);
+		ps.setString(4, username);
+		ps.setInt(5, testId);
 		
 		ps.execute();
 	}

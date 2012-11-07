@@ -19,7 +19,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class SubmitTest
  */
-@WebServlet("/Client/Test/Adaptive/SubmitTest")
+@WebServlet("/client/Test/Adaptive/SubmitTest")
 public class SubmitTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -82,7 +82,9 @@ public class SubmitTest extends HttpServlet {
 		test= (AdaptiveTest)session.getAttribute("test");
 		
 		try {
-			test.finishTest(test.getUsername());
+			test.finishTest(session.getAttribute("user").toString());
+			response.sendRedirect("TestEndPageA.jsp");
+			return;
 		} catch (SQLException sqle) {
 			// TODO Auto-generated catch block
 			sqle.printStackTrace();
@@ -98,10 +100,9 @@ public class SubmitTest extends HttpServlet {
 		} catch(Exception e) {
 			if(e.getMessage().equals("Test Finished!")){
 				try {
-					data.put("result", "testFinished");
-					out.println(data);
+					response.sendRedirect("TestEndPageA.jsp");
 					return;
-				} catch (JSONException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					return;
