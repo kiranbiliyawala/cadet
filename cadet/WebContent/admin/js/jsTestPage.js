@@ -168,6 +168,17 @@ $(document).ready(function(e) {
 		});
 	});
 
+	$(".txtTimeCat").live("change",function(e) {
+
+		try {
+			var totalDuration = 0;
+			$(".txtTimeCat").each(function() { totalDuration+=parseInt($(this).val()); });
+		
+			$(".badge.badge-info").html("&nbsp;&nbsp;"+totalDuration+"&nbsp;&nbsp;");
+			$("#testDuration").val(totalDuration);
+		} catch(e) { bootbox.alert(e.message); }
+	});
+
 	$("#btnTestSettings").bind("click",function(e) {
 
 		/* from database */
