@@ -58,7 +58,7 @@
 		                    <tr>
 		                        <td colspan="5" style="width:70%;">
 		                        	Question:<br/>
-		                        	<textarea id="txtQuestion" name="txtQuestion" style="width:800px" rows="4"></textarea>
+		                        	<textarea id="txtQuestion" name="txtQuestion" style="width:800px" rows="4" tabindex="1"></textarea>
 								</td>
 		                    </tr>
 		                    <tr>
@@ -69,14 +69,14 @@
 		                    <tr>
 		                        <td style="width:250px">
 		                        	A.
-		                        	<input type="radio" id="radOptionA" name="radOption" value="A" style="vertical-align:baseline;" checked="checked"/>
-		                        	<input type="text" id="txtOptionA" name="txtOptionA"/>
+		                        	<input type="radio" id="radOptionA" name="radOption" value="A" style="vertical-align:baseline;" checked="checked" maxlength="255" tabindex="2"/>
+		                        	<input type="text" id="txtOptionA" name="txtOptionA" tabindex="3"/>
 		                        </td>
 		                        <td id="divOptionA" style="width:150px; color:red;" align="left">
 		                        </td>
 		                        <td align="right" rowspan="4" style="width:100px;">Set Level:</td>
 		                        <td align="left" rowspan="4" style="width:200px">
-		                            <select id="selLevel" onChange="selLevelSelectionChanged()">
+		                            <select id="selLevel" onChange="selLevelSelectionChanged()" tabindex="10">
 		                            	<option selected="selected" style="color: #cdc9c9;" disabled="disabled"><i>Select Level</i></option>
 		                                <option>1</option>
 		                                <option>2</option>
@@ -96,8 +96,8 @@
                     		<tr>
 		                        <td>
 		                            B.
-		                            <input type="radio" id="radOptionB" name="radOption" value="B" style="vertical-align:baseline;"/>
-									<input type="text" id="txtOptionB" name="txtOptionB" value=""/>
+		                            <input type="radio" id="radOptionB" name="radOption" value="B" style="vertical-align:baseline;" maxlength="255" tabindex="4"/>
+									<input type="text" id="txtOptionB" name="txtOptionB" value="" tabindex="5"/>
 								</td>
 		                        <td id="divOptionB" style="width:150px; color:red;" align="left" colspan="4">		                        	
 		                        </td>
@@ -105,8 +105,8 @@
 	                        <tr>
 		                        <td>
 		                            C.
-		                            <input type="radio" id="radOptionC" name="radOption" value="C" style="vertical-align:baseline;"/>
-									<input type="text" id="txtOptionC" name="txtOptionC" value=""/>
+		                            <input type="radio" id="radOptionC" name="radOption" value="C" style="vertical-align:baseline;" maxlength="255" tabindex="6"/>
+									<input type="text" id="txtOptionC" name="txtOptionC" value="" tabindex="7"/>
 								</td>
 		                        <td id="divOptionC" style="width:150px; color:red;" align="left" colspan="4">
 		                        </td>
@@ -114,17 +114,17 @@
 	                        <tr>
 		                        <td>
 		                            D.
-		                            <input type="radio" id="radOptionD" name="radOption" value="D" style="vertical-align:baseline;"/>
-									<input type="text" id="txtOptionD" name="txtOptionD" value=""/>
+		                            <input type="radio" id="radOptionD" name="radOption" value="D" style="vertical-align:baseline;" maxlength="255" tabindex="8"/>
+									<input type="text" id="txtOptionD" name="txtOptionD" value="" tabindex="9"/>
 								</td>
 		                        <td id="divOptionD" style="width:150px; color:red;" align="left" colspan="4">
 		                        </td>
 		                    </tr>
 		                    <tr style="height:100px">
 		                        <td colspan="5" align="center">
-		                        	<input type="button" class="btn btn-primary" id="btnSaveQuestion" name="btnSaveQuestion" onClick="changeAction('SaveQuestion', <%= count %>)" value="Save Question" />
+		                        	<input type="button" class="btn btn-primary" id="btnSaveQuestion" name="btnSaveQuestion" onClick="changeAction('SaveQuestion', <%= count %>)" value="Save Question" tabindex="11"/>
 		                        	&nbsp;&nbsp;&nbsp;
-		                        	<a href="ViewQuestion?hdnCategoryId=0" class="btn btn-danger" id="btnBack" name="btnBack" >Back</a>
+		                        	<a href="ViewQuestion?hdnCategoryId=0" class="btn btn-danger" id="btnBack" name="btnBack" tabindex="12">Back</a>
 		                        </td>
 		                    </tr>
 		                </table>
