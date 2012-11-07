@@ -172,7 +172,6 @@ $(document).ready(function(e) {
 
 		/* from database */
 
-		flag = true;
 		$.post("TestManagement",
 			{
 				requestType : "getTestTimeSettings",
@@ -205,6 +204,19 @@ $(document).ready(function(e) {
 									if(data.result===true) {
 										$.each(data.levelMarks,function(i,path) {
 											$("#txtLevel"+path.levelId).val(path.marks);
+										});
+
+										$.post("TestManagement",
+											{
+												requestType : "getTestCandCat",
+												testId : $("#testId").val()
+											},function(data,textStatus,xhr) {
+
+												var src = $("#tmpltCandCat").html();
+												var template = Handlebars.compile(src);
+												var output = template(data);
+
+												$("#tblTestCandCat tbody").html(output);
 										});
 									}
 									else if(data.result==="DatabaseError") {
@@ -392,5 +404,54 @@ $(document).ready(function(e) {
 					} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 			});
 		}
+	});
+
+	var alertCandCatDeleteDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have removed the category <strong>successfully !!!</strong></div>";
+	$(".btnDelete").live("click",function(e) {
+
+		var button = $(this);
+
+		bootbox.confirm("Are you sure you want to remove candidate category ?",function(confirmed) {
+
+			if(confirmed===true) {
+
+				try {
+					$.post("TestManagement",
+						{
+							requestType : "removeTestCandidateCategory",
+							testId : $("#testId").val(),
+							candidateCategoryName : button.attr("id")
+						},
+						function(data,textStatus,xhr) {
+
+							try {
+								if(data.result===true) {
+									var row = button.parent().parent();
+									var tBody = row.parent();
+									var siblingRows = row.siblings();
+
+									setTimeout(function() {
+										row.remove();
+										if(siblingRows.length===0) {
+											tBody.append("<tr><td><p class=\"text-warning\">No Candidate Category Added</p></td><td></td><td></td><td></td><td></td></tr>");
+										}
+										$("#divTestSettings").prepend(alertCandCatDeleteDiv);
+										setTimeout(function() { $(".alert").alert("close"); },3000);
+									},600);
+								} else if(data.result==="DatabaseError") {
+									pageRedirect("../DatabaseError.html");
+								}
+								else if(data.result==="ServerException") {
+									pageRedirect("../ServerException.html");
+								}
+							} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+					});
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			}
+		});
+	});
+
+	$("#btnAddUserCat").live("click",function(e) {
+		// Add User Category to Tests
 	});
 });

@@ -15,6 +15,7 @@ import org.cadet.admin.bean.BeanCategory;
 import org.cadet.admin.bean.BeanLevelMarks;
 import org.cadet.admin.bean.BeanTest;
 import org.cadet.admin.bean.BeanTestCategory;
+import org.cadet.admin.bean.BeanUserCategory;
 import org.cadet.util.model.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -339,5 +340,39 @@ public class TestDbTransactions {
 	data.put("levelMarks", result.toArray(new BeanLevelMarks[result.size()]));
 
 	return data;
+    }
+
+    public static JSONObject getTestCandCat(Connection connection, int testId) throws SQLException, JSONException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestCandidateCategories);
+	ps.setInt(1, testId);
+
+	ArrayList<BeanUserCategory> result = new ArrayList<BeanUserCategory>();
+	BeanUserCategory temp = null;
+
+	ResultSet rs = ps.executeQuery();
+	while(rs.next()) {
+
+	    temp = new BeanUserCategory();
+	    temp.setCandidateCategory(rs.getString("CandidateCategoryName"));
+
+	    result.add(temp);
+	}
+	ps.close();
+
+	JSONObject data = new JSONObject();
+	data.put("candCatList",result.toArray(new BeanUserCategory[result.size()]));
+
+	return data;
+    }
+
+    public static void removeTestCandidateCategory(Connection connection, int testId, String candidateCategoryName) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.removeTestCandidateCategory);
+	ps.setInt(1, testId);
+	ps.setString(2, candidateCategoryName);
+
+	ps.executeUpdate();
+	ps.close();
     }
 }
