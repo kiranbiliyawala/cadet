@@ -108,6 +108,6 @@ body {
 				</tr>
 			{{/if}}
     	</script>
-    	<script src="../js/jstestresults.js"></script>
+<!--     	<script src="../js/jstestresults.js"></script> -->
 </body>
 </html>
