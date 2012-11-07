@@ -75,10 +75,10 @@ public class GetCandidateProfileServlet extends HttpServlet {
 
 		}  catch (SQLException e) {
 			e.printStackTrace();
-			request.getRequestDispatcher("/pages/DatabaseError.html").forward(request, response);
+			request.getRequestDispatcher("/client/DatabaseError.html").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.getRequestDispatcher("/pages/ServerException.html").forward(request, response);
+			request.getRequestDispatcher("/client/ServerException.html").forward(request, response);
 		}		finally {
 			out.close();
 		}
