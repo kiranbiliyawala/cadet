@@ -76,7 +76,6 @@
     <servlet-name>RemoveCategory</servlet-name>
     <url-pattern>/admin/questionBank/RemoveCategory</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>UploadByFile</servlet-name>
     <jsp-file>/admin/questionbank/UploadByFile.jsp</jsp-file>
@@ -84,8 +83,7 @@
   <servlet-mapping>
     <servlet-name>UploadByFile</servlet-name>
     <url-pattern>/admin/questionBank/UploadByFile</url-pattern>
-  </servlet-mapping>  
-  
+  </servlet-mapping>
   <servlet>
     <servlet-name>TestManagement</servlet-name>
     <jsp-file>/admin/test/testManagementHome.jsp</jsp-file>
@@ -93,19 +91,15 @@
   <servlet-mapping>
     <servlet-name>TestManagement</servlet-name>
     <url-pattern>/admin/test/testManagementHome</url-pattern>
-  </servlet-mapping>  
-  
-  
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>createtest</servlet-name>
     <jsp-file>/admin/test/createTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>createtest</servlet-name>
     <url-pattern>/admin/test/createTest</url-pattern>
-  </servlet-mapping> 
-  
-  
+  </servlet-mapping>
   <servlet>
     <servlet-name>ViewCat</servlet-name>
     <jsp-file>/admin/usercategory/viewallcategory.jsp</jsp-file>
@@ -113,18 +107,15 @@
   <servlet-mapping>
     <servlet-name>ViewCat</servlet-name>
     <url-pattern>/admin/usercategory/viewallcategory</url-pattern>
-  </servlet-mapping> 
-   
-  
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>resulthome</servlet-name>
     <jsp-file>/admin/test/resultHome.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>resulthome</servlet-name>
     <url-pattern>/admin/test/resultHome</url-pattern>
-  </servlet-mapping>  
-  
+  </servlet-mapping>
   <servlet>
     <servlet-name>AddQuestions</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddQuestions</servlet-class>
@@ -173,7 +164,7 @@
     <servlet-name>AddQuestion</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestion</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>AddQuestionByFile</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddQuestionByFile</servlet-class>
   </servlet>
@@ -181,8 +172,6 @@
     <servlet-name>AddQuestionByFile</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestionByFile</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>TestRegister</servlet-name>
     <jsp-file>/client/Test/registerfortest.jsp</jsp-file>
@@ -190,18 +179,15 @@
   <servlet-mapping>
     <servlet-name>TestRegister</servlet-name>
     <url-pattern>/client/Test/RegisterForTest</url-pattern>
-  </servlet-mapping>  
-  
-  
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>TestView</servlet-name>
     <jsp-file>/client/Test/viewalltest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestView</servlet-name>
     <url-pattern>/client/Test/ViewAllTest</url-pattern>
-  </servlet-mapping>  
-  
+  </servlet-mapping>
   <servlet>
     <servlet-name>ProChangedet</servlet-name>
     <jsp-file>/client/profile/changedetails.jsp</jsp-file>
@@ -209,17 +195,15 @@
   <servlet-mapping>
     <servlet-name>ProChangedet</servlet-name>
     <url-pattern>/client/profile/ChangeDetails</url-pattern>
-  </servlet-mapping>  
-  
-   <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>ProChangepass</servlet-name>
     <jsp-file>/client/profile/changepassword.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>ProChangepass</servlet-name>
     <url-pattern>/client/profile/ChangePassword</url-pattern>
-  </servlet-mapping>  
-  
+  </servlet-mapping>
   <servlet>
     <servlet-name>ForgotPassword</servlet-name>
     <jsp-file>/pages/ForgotPasswordWait.jsp</jsp-file>
@@ -227,17 +211,15 @@
   <servlet-mapping>
     <servlet-name>ForgotPassword</servlet-name>
     <url-pattern>/ForgotPasswordWait</url-pattern>
-  </servlet-mapping>  
-  
-    <servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AdaptiveTest</servlet-name>
     <jsp-file>/client/Test/Adaptive/Test.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>AdaptiveTest</servlet-name>
     <url-pattern>/client/Test/Adaptive/Test</url-pattern>
-  </servlet-mapping> 
-  
+  </servlet-mapping>
   <session-config>
     <session-timeout>300</session-timeout>
   </session-config>
