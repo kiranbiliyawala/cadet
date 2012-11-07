@@ -173,6 +173,14 @@
     <servlet-name>AddQuestion</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestion</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>AddQuestionByFile</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddQuestionByFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestionByFile</servlet-name>
+    <url-pattern>/admin/questionBank/AddQuestionByFile</url-pattern>
+  </servlet-mapping>
   
   
   <servlet>
