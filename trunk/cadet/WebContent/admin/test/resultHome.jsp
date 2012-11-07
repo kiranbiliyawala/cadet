@@ -89,20 +89,20 @@ body {
         	{{#if testList}}
 				{{#each testList}}
 					<tr>
-						<td>{{testName}}</td>
-						<td>{{#if testDate}}{{testDate}}{{else}}NA{{/if}}</td>
-						<td>{{testDuration}} Mins.</td>
-						<td>{{testType}}</td>
+						<td>{{TestName}}</td>
+						<td>{{#if TestDate}}{{TestDate}}{{else}}NA{{/if}}</td>
+						<td>{{TestDuration}} Mins.</td>
+						<td>{{TestType}}</td>
 						<td>
-							<form action="ViewTestScore" method="post">
-								<input type="hidden" id="testId" name="testId" value={{testId}}>
+							<form action="GetResult" method="post">
+								<input type="hidden" id="testId" name="testid" value={{TestId}}>
 								<button class="btn btn-info">View Score</button>
 							</form>
 						</td>
 					</tr>
 				{{/each}}
 			{{else}}
-				<tr>
+				<tr> 
 					<td><p class="text-warning">No Test Result Available</p></td>
 					<td></td>
 					<td></td>

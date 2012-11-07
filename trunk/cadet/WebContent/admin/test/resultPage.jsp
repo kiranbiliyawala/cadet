@@ -89,10 +89,10 @@ body {
     	</script>
         <script src="../js/bootbox.js"></script>
         <script id="getresults" type="text/x-handlebars-template">
-        	{{#if candidateList}}
-				{{#each candidateList}}
+        	{{#if resultList}}
+				{{#each resultList}}
 					<tr>
-						<td>{{candidateName}}</td>
+						<td>{{UserName}}</td>
 						<td>{{score}}</td>
 						<td>{{attempted}} Mins.</td>
 						<td>{{correct}}</td>
