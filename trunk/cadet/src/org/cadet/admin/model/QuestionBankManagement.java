@@ -118,4 +118,23 @@ public class QuestionBankManagement {
         }
         return questionList;
 	}
+	public ArrayList<String> getCatId(){
+	
+		ArrayList<String> Catlist=new ArrayList<String>();
+		try{
+		String query="SELECT CategoryId ,CategoryName from category;";
+		PreparedStatement pst = objConnection.getDbConnection().prepareStatement(query);
+		ResultSet rs = pst.executeQuery();
+	
+		while (rs.next()){
+			Catlist.add("CategoryId");
+			Catlist.add("CategoryName");
+		}
+		
+	
+	}
+	catch (Exception e){}
+	finally{}
+		return Catlist;
+	}	
 }
