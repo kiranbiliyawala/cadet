@@ -127,8 +127,7 @@ footer {
 					</div>
 				</div>
 				<div class="container-fluid span8">
-					<table id="tblTests"
-						class="table table-striped table-condensed table-hover">
+					<table id="tblTests" class="table table-striped table-condensed table-hover">
 						<thead>
 							<tr>
 								<th>Test Name</th>

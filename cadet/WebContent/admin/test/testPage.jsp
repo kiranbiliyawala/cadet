@@ -316,11 +316,136 @@ footer {
 							</div>
 						</form>
 					</div>
-					<div class="tab-pane" id="tab2">
-						<p>Howdy, I'm in Section 2.</p>
+
+					<div class="container-fluid tab-pane" id="tab2">
+						<c:set var="TestAdaptive" value="Adaptive"></c:set>
+						<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
+						<c:choose>
+							<c:when test="${testType eq TestAdaptive}">
+								<form id="frmInitDiff" class="container-fluid form-horizontal">
+									<div class="control-group">
+										<label class="control-label" for="optInitDifficulty">Initial Difficulty</label>
+										<div class="controls">
+											<select id="optInitDifficulty" name="optInitDifficulty">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+												<option>6</option>
+												<option>7</option>
+												<option>8</option>
+												<option>9</option>
+												<option>10</option>
+											</select>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls">
+											<button class="btn btn-success" id="btnSaveInitDiff">Save</button>
+											<a class="btn" data-dismiss="modal">Cancel</a>
+										</div>
+									</div>
+								</form>
+							</c:when>
+							<c:otherwise>
+								<div id="divMarkSysCarousel" class="carousel slide">
+									<div class="carousal-inner">
+										<div class="active item">
+											<form id="frmNegMark" class="container-fluid form-horizontal" style="margin:0;">
+												<legend>Negative Marking</legend>
+												<div class="control-group">
+													<label class="control-label" for="optNegMarkFlag">Allowed : </label>
+													<div class="controls">
+														<select id="optNegMarkFlag">
+															<option>Yes</option>
+															<option>No</option>
+														</select>
+													</div>
+												</div>
+												<div class="control-group">
+													<label class="control-label" for="optDecreaseMark">Decrease Marks By : </label>
+													<div class="controls">
+														<select id="optDecreaseMark">
+															<option>10 %</option>
+															<option>20 %</option>
+															<option>30 %</option>
+															<option>40 %</option>
+															<option>50 %</option>
+															<option>60 %</option>
+															<option>70 %</option>
+															<option>80 %</option>
+															<option>90 %</option>
+															<option>100 %</option>
+														</select>
+													</div>
+												</div>
+												<div class="control-group">
+													<div class="controls">
+														<button class="btn btn-success" id="btnSaveNegMark">Save</button>
+														<a class="btn" data-dismiss="modal">Cancel</a>
+													</div>
+												</div>
+											</form>
+										</div>
+
+										<div class="item">
+											<form id="frmLevelMark" class="container-fluid form-horizontal"  style="margin:0;">
+												<legend>Assign Marks</legend>
+
+												<div class="row">
+													<label style="display:inline; margin-left:10%" for="txtLavel1">Level 1 : &nbsp;</label>
+													<input id="txtLevel1" name="txtLevel1" type="number" class="input-mini levelMark" required min=1>
+													<label style="display:inline; margin-left:10%;" for="txtLavel2">Level 6 : &nbsp;</label>
+													<input id="txtLevel6" name="txtLevel6" type="number" class="input-mini levelMark" required min=1>
+												</div>
+
+ 												<div class="row">
+													<label style="display:inline; margin-left:10%" for="txtLavel2">Level 2 : &nbsp;</label>
+													<input id="txtLevel2" name="txtLevel2" type="number" class="input-mini levelMark" required min=1>
+													<label style="display:inline; margin-left:10%;" for="txtLevel7">Level 7 : &nbsp;</label>
+													<input id="txtLevel7" name="txtLevel7" type="number" class="input-mini levelMark" required min=1>
+												</div>
+												<div class="row">
+													<label style="display:inline; margin-left:10%" for="txtLavel3">Level 3 : &nbsp;</label>
+													<input id="txtLevel3" name="txtLevel3" type="number" class="input-mini levelMark" required min=1>
+													<label style="display:inline; margin-left:10%;" for="txtLevel8">Level 8 : &nbsp;</label>
+													<input id="txtLevel8" name="txtLevel8" type="number" class="input-mini levelMark" required min=1>
+												</div>
+												<div class="row">
+													<label style="display:inline; margin-left:10%" for="txtLavel4">Level 4 : &nbsp;</label>
+													<input id="txtLevel4" name="txtLevel4" type="number" class="input-mini levelMark" required min=1>
+													<label style="display:inline; margin-left:10%;" for="txtLevel9">Level 9 : &nbsp;</label>
+													<input id="txtLevel9" name="txtLevel9" type="number" class="input-mini levelMark" required min=1>
+												</div>
+												<div class="row">
+													<label style="display:inline; margin-left:10%" for="txtLavel5">Level 5 : &nbsp;</label>
+													<input id="txtLevel5" name="txtLevel5" type="number" class="input-mini levelMark" required min=1>
+													<label style="display:inline; margin-left:10%;" for="txtLevel10">Level 10 : </label>
+													<input id="txtLevel10" name="txtLevel10" type="number" class="input-mini levelMark" required min=1>
+												</div>
+
+ 												<div class="row span2" style="margin-top:5%; margin-left:20%">
+													<input type="submit" class="btn btn-success pull-left" id="btnSaveLevelMark" value="Save">
+													<a class="btn pull-right" data-dismiss="modal">Cancel</a>
+												</div>
+											</form>
+										</div>
+									</div>
+									<a style="left:-4%" class="carousel-control left" href="#divMarkSysCarousel" data-slide="prev">&lsaquo;</a>
+									<a style="right:-4%" class="carousel-control right" href="#divMarkSysCarousel" data-slide="next">&rsaquo;</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
+
 					<div class="tab-pane" id="tab3">
-						<p>What up girl, this is Section 3.</p>
+						<button id="btnAddUserCat" class="btn btn-primary">Add User Category</button>
+						<table style="margin-top:3%" id="tblUserCat" class="table table-striped table-condensed table-hover">
+							<tbody>
+								<tr><td>User Category</td><td><button id="btnRemUserCat1" class="btn btn-danger">Remove</button></td></tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
             </div>
@@ -385,6 +510,5 @@ footer {
 			});
 		</script>
 	</c:if>
-
 </body>
 </html>

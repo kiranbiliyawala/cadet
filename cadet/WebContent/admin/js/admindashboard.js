@@ -8,7 +8,7 @@ $(document).ready(function() {
 				var src = $("#gettests").html();
 				var template = Handlebars.compile(src);
 				var output = template(data);
-				console.log("hi");
+
 				$("#tblTests tbody").append(output);
 			}
 		} catch (e) {
