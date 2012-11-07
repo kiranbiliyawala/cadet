@@ -59,7 +59,7 @@ public class CategoryManagement {
         	objCategory = new Category();
         	objCategory.setCategoryId(rs.getString("CategoryId"));
             objCategory.setCategoryName(rs.getString("CategoryName"));
-            objCategory.setCategoryDescription(rs.getString("Description"));
+            objCategory.setCategoryDescription(rs.getString("CategoryDescription"));
             objCategory.setAdminUsername(rs.getString("Ausername"));
             categoryList.add(objCategory);
         }
