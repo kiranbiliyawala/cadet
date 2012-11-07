@@ -19,13 +19,11 @@ public class DashboardModel {
 	
 	public static JSONObject getTests(Connection connection, String username) throws SQLException, JSONException {
 
-		
-
 		ArrayList<DashboardBean> result = new ArrayList<DashboardBean>();
 		DashboardBean temp = null;
 		
 		String candidatecategory  = CandidateCategory.fetch(connection, username);
-		
+
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getDashboardTests);
 		
 		
