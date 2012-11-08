@@ -59,11 +59,13 @@ public class Constants {
 	public static final String retriveTestCandidateCategories = "SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?";
 	public static final String retriveTestCatQstn = "SELECT qb.QuestionId, qb.Question, qb.OptA, qb.OptB, qb.OptC, qb.OptD, qb.CorrectAnswer FROM questionbank qb JOIN category c ON qb.CategoryId=c.CategoryId JOIN testquestion tq ON qb.QuestionId=tq.QuestionId WHERE tq.TestId = ? AND c.CategoryId = ?";
 	public static final String retriveCategoryName = "SELECT categoryName FROM category WHERE CategoryId = ?";
+	public static final String retriveUserCategories = getUserCategories+" WHERE CandidateCategoryName NOT IN (SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?)";
 	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc,TestDate,StartTime,EndTime,TestDuration,InitialDifficulty,NegMark) VALUES (?,?,?,STR_TO_DATE(?,'%Y-%m-%d'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),?,?,?)";
 	public static final String addCategory = "INSERT INTO category (CategoryName,CategoryDescription) VALUES (?,?)";
 	public static final String addCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId,TimePerCategory,QuestionPerCategory) VALUES (?,?,?,?)";
 	public static final String addQstnToTest = "INSERT INTO testquestion (TestId,QuestionId) VALUES (?,?)";
 	public static final String addLevelMarks = "INSERT INTO levelmarks (LevelId,TestId,Marks) VALUES (?,?,?)";
+	public static final String addUserCategoryToTest = "INSERT INTO testcandidatecategory (TestId,CandidateCategoryName) VALUES (?,?)";
 	public static final String updateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
 	public static final String updateTestTimeSettings = "UPDATE test SET TestDate = STR_TO_DATE(?,'%d-%m-%Y'), StartTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i'), EndTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i') WHERE TestId = ?";
 	public static final String updateInitDiff = "UPDATE test SET InitialDifficulty = ? WHERE TestId = ?";
