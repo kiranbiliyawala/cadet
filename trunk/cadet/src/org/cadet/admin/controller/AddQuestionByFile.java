@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.cadet.admin.bean.QuestionBank;
 import org.cadet.admin.model.QuestionBankManagement;
+import org.cadet.admin.model.TestDbTransactions;
+import org.cadet.util.model.DatabaseConnection;
 
 /**
  * Servlet implementation class csv
@@ -45,14 +48,14 @@ public class AddQuestionByFile extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		//response.setContentType("text/html");
 
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		boolean status=true;
         String saveFile = "";
         String contentType = request.getContentType();
-        out.println("<html>");
-        out.println("<body>");
+        //out.println("<html>");
+        //out.println("<body>");
         if ((contentType != null) && (contentType.indexOf("multipart/form-data") >= 0)) 
         {
             DataInputStream in = new DataInputStream(request.getInputStream());
@@ -66,12 +69,12 @@ public class AddQuestionByFile extends HttpServlet {
             }
             String file = new String(dataBytes);
             saveFile = file.substring(file.indexOf("filename=\"") + 10);
-            out.println(saveFile);
+            //out.println(saveFile);
             saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
-            out.println(saveFile);
+            //out.println(saveFile);
             saveFile = "C:\\" + saveFile.substring(saveFile.lastIndexOf("\\") + 1, saveFile.indexOf("\""));
             
-            out.println(saveFile);
+            //out.println(saveFile);
             int lastIndex = contentType.lastIndexOf("=");
             String boundary = contentType.substring(lastIndex + 1, contentType.length());
             int pos;
@@ -82,12 +85,12 @@ public class AddQuestionByFile extends HttpServlet {
             int boundaryLocation = file.indexOf(boundary, pos) - 4;
             int startPos = ((file.substring(0, pos)).getBytes()).length;
             int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
-            File ff = new File(saveFile);
-            FileOutputStream fileOut = new FileOutputStream(ff);
-            fileOut.write(dataBytes, startPos, (endPos - startPos));
-            fileOut.flush();
-            fileOut.close();
-            out.println("You have successfully upload the file:" + saveFile);
+            //File ff = new File(saveFile);
+            //FileOutputStream fileOut = new FileOutputStream(ff);
+            //fileOut.write(dataBytes, startPos, (endPos - startPos));
+            //fileOut.flush();
+            //fileOut.close();
+            //out.println("You have successfully upload the file:" + saveFile);
             BufferedReader br = null;
             try{
             	QuestionBank question = new QuestionBank();
@@ -96,17 +99,20 @@ public class AddQuestionByFile extends HttpServlet {
 	            br = new BufferedReader(new FileReader(saveFile));
 	            String line = "";
 	            StringTokenizer st = null;
-	            int lineNumber = 0;
-	            int tokenNumber = 0;
+	            
+	            int catId = 0;
+	            
 	            //read comma separated file line by line
 	            line = br.readLine();
+	            String[] que;
 	            while ((line = br.readLine()) != null) {
-	                lineNumber++;
+	                //lineNumber++;
 	                //use comma as token separator
-	                st = new StringTokenizer(line, ",");
+	                /*st = new StringTokenizer(line, ",");
 	                while (st.hasMoreTokens()) {
 	                    tokenNumber++;
 	                    //Set csv values
+	                    
 	                    question.setCategoryId(st.nextToken());
 	                    question.setLevelId(st.nextToken());
 	                    question.setQuestion(st.nextToken());
@@ -115,32 +121,58 @@ public class AddQuestionByFile extends HttpServlet {
 	                    question.setOptionC(st.nextToken());
 	                    question.setOptionD(st.nextToken());
 	                    question.setCorrectAnswer(st.nextToken());
-	                    if (tokenNumber >= 1) {
-	                    	objQuestionBankManagement.addQuestion(question);
-	                         //new org.cadet.admin.model.insertData().insertdata("0", in1.getQuestion_cat(), in1.getLid() ,in1.getQuestion(), in1.getOptionA(), in1.getOptionB(), in1.getOptionC(), in1.getOptionD(), in1.getAnswer());
-	                    }
+	                */
+	                que=line.split(",");
+	                try{
+	                	catId=objQuestionBankManagement.getCategoryIdByName(que[0]);
+	                }catch(SQLException sqle){
+	                	status=false;
+	                }catch(Exception ex){
+	                	if(ex.getMessage().equals("No such Category Exists!")){
+	                		//code to add new new category
+	                		try{
+	                			TestDbTransactions.addCategory(DatabaseConnection.getInstance().getDbConnection(), que[0]);
+	                		}catch(Exception ex1){
+	                			status = false;
+	                			ex1.printStackTrace();
+	                		}
+	                	}else
+	                		status=false;
 	                }
-	                out.println("<h3>lenNumber=" + lineNumber + "</h3>");
-	                out.println("<h3>tokenNumber=" + tokenNumber + "</h3>");
+	                if(que.length==8){
+	                question.setCategoryId(Integer.toString(catId));
+	                question.setLevelId(que[1]);
+	                question.setQuestion(que[2]);
+	                question.setOptionA(que[3]);
+	                question.setOptionB(que[4]);
+	                question.setOptionC(que[5]);
+	                question.setOptionD(que[6]);
+	                question.setCorrectAnswer(que[7]);
+	                objQuestionBankManagement.addQuestion(question);
+	                }
+	                
+	                
+	                //out.println("<h3>lenNumber=" + lineNumber + "</h3>");
+	                //out.println("<h3>tokenNumber=" + tokenNumber + "</h3>");
 	                //reset token number
-	                tokenNumber = 0;
+	                
 	            }
 	            status=true;
 	        } 
             catch (Exception e) {
-	            out.println("CSV file cannot be read : " + e.getMessage());
+	            //out.println("CSV file cannot be read : " + e.getMessage());
 	            status = false;
             }
             finally{
             	br.close();
             }
-            out.println("<h1>Status: " + status + "</h1>");
+            //out.println("<h1>Status: " + status + "</h1>");
             if(status)
             	request.setAttribute("status", "success");
             else
             	request.setAttribute("status", "fail");
-            out.println("</body>");
-            out.println("</html>");
+            //out.println("</body>");
+            //out.println("</html>");
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/questionbank/UploadByFile.jsp");
 			rd.forward(request, response);
         }
