@@ -220,6 +220,15 @@
     <servlet-name>AdaptiveTest</servlet-name>
     <url-pattern>/client/Test/Adaptive/Test</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>getCategoryDetails</servlet-name>
+    <servlet-class>org.cadet.admin.controller.getCategoryDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getCategoryDetails</servlet-name>
+    <url-pattern>/admin/questionBank/getCategoryDetails</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>300</session-timeout>
   </session-config>
