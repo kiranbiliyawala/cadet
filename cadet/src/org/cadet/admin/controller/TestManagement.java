@@ -1186,5 +1186,98 @@ public class TestManagement extends HttpServlet {
 		return;
 	    }
 	}
+
+	else if (requestType.equals("getCandCatList")) {
+
+	    try {
+		
+		int testId = Integer.parseInt(request.getParameter("testId"));
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		data = TestDbTransactions.getCandidateCategories(dbConnection,testId);
+		data.put("result",true);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if (requestType.equals("addCandCatToTest")) {
+
+	    try {
+		int testId = Integer.parseInt(request.getParameter("testId"));
+		String candidateCategoryName = request.getParameter("category");
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		TestDbTransactions.addUserCategoryToTest(dbConnection,testId,candidateCategoryName);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
     }
 }
