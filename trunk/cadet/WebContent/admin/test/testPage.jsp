@@ -554,6 +554,28 @@ footer {
 		</div>
 	</div>
 
+
+	<div id="divAddCandCat" class="modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h4>User Category</h4>
+		</div>
+		<div class="modal-body">
+			<form class="container=fluid form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="optCandCatList">Select User Category : </label>
+					<div class="controls">
+						<select id="optCandCatList" name="optCandCatList"></select>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button id="btnAddCandCat" class="btn btn-primary">Add</button>
+			<button id="btnCancelAddCandCat" class="btn">Cancel</button>
+		</div>
+	</div>
+
 	<script id="tmpltCandCat" type="text/x-handlebars-template">
 		{{#if candCatList}}
 			{{#each candCatList}}
@@ -567,6 +589,16 @@ footer {
 				<td><p class="text-warning">No Candidate Category Added</p></td>
 				<td></td>
 			</tr>
+		{{/if}}
+	</script>
+
+	<script id="tmpltCandCatList" type="text/x-handlebars-template">
+		{{#if candCatList}}
+			{{#each candCatList}}
+				<option>{{candidateCategory}}</option>
+			{{/each}}
+		{{else}}
+			<option><p class="text-warning">No Question Added</p></option>
 		{{/if}}
 	</script>
 
