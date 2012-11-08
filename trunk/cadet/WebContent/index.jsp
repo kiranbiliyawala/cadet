@@ -39,20 +39,7 @@
 <body onload="setFocus()">
 	<div id="wholebody">
 		
-	<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container-fluid">
-
-					<a class="brand" href="/cadet/Home"><img id="logo" src="img/cadet.gif"
-						alt="CADET"></img></a>
-					<ul class="nav" id="ulcontainer">
-						<li class="active"><a href="">Home</a></li>
-						<li><a class="liheader" href="#features">Features</a></li>
-					</ul>
-				</div>
-				<!--/.container -->
-			</div>
-		</div>
+	<jsp:include page="/NavBar.jsp"></jsp:include>
 	<!--/.navbar -->
 	<div>
 		<div id="joinuscontainer">
@@ -115,30 +102,26 @@
   		</form>
 	</div>
 	
-	<div id="features">
+	<div id="features" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 		<div class="modal-header">
-    		CADET Features
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    		<h3 id="myModalLabel">CADET Features</h3>
   		</div>
-  		
+  			
   		<div class="modal-body">
-    		
+			<div id="modalTheme">
+ 				<img src="/cadet/img/thetheme.jpg"  width="100%" height="100%"></img>
+			</div>
   		</div>
   		<div class="modal-footer">
-    		
+    		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   		</div>
   		
 	</div>
 	
 	<hr>
 		
-    <footer class="container-fluid navbar navbar-fixed-bottom">
-		<hr>
-		<div class="row pull-right" style="">
-			<a class="span*" href="#">About</a> <a class="span*" href="#">FAQ</a>
-			<a class="span*" href="#">Contact us</a> <a class="span*" href="#">Help</a>
-			<a class="span*" href="#">Privacy &amp; Policy</a>
-		</div>
-</footer>
+   <jsp:include page="/Footer.jsp"></jsp:include>
 	
 	<script src="js/jquery-1.8.2.js"></script>
 	<script src="js/jquery.validate.js"></script>
