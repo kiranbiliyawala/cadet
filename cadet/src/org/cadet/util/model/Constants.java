@@ -72,8 +72,9 @@ public class Constants {
 	public static final String updateTestDuration = "UPDATE test SET TestDuration = ? WHERE TestId = ?";
 	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
 	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
+	public static final String removeCategoryQstnFromTest = "DELETE FROM testquestion WHERE TestId = ? AND QuestionId IN (SELECT QuestionId FROM questionbank WHERE CategoryId = ?)";
 	public static final String removeTestCandidateCategory = "DELETE from testcandidatecategory WHERE TestId = ? AND CandidateCategoryName = ?";
-	  
+
 
 	/* Rajan Queries */
 
