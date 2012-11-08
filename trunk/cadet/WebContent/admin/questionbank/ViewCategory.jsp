@@ -72,13 +72,13 @@
 				                        <td style="padding-left: 10px;">
     					                    <input type="text" id="txtD${category.categoryId}" name="txtD${category.categoryId}" value="${category.categoryDescription}" readonly="readonly" style="width: 300px; "/>
 				                        </td>
-				                        <td align="right" valign="middle" style="padding-left: 20px">
-			                        		<a href="#" id="lnkEdit${category.categoryId}" name="lnkEdit${category.categoryId}" onClick="modifyCategory('Edit','${category.categoryId}')">Edit</a> | 
-				                        	<a href="#deleteConfirmationPopup" id="lnkRemove${category.categoryId}" name="lnkRemove${category.categoryId}" data-toggle="modal" onClick="document.getElementById('btnSubmit').value = '${category.categoryId}'; return false;">Remove</a> 
+				                        <td align="right" valign="top" style="padding-left: 20px">
+			                        		<a href="#" id="lnkEdit${category.categoryId}" class="btn btn-info" name="lnkEdit${category.categoryId}" onClick="modifyCategory('Edit','${category.categoryId}')">Edit</a>&nbsp;&nbsp;&nbsp; 
+				                        	<a href="#deleteConfirmationPopup" class="btn btn-danger" id="lnkRemove${category.categoryId}" name="lnkRemove${category.categoryId}" data-toggle="modal" onClick="document.getElementById('btnSubmit').value = '${category.categoryId}'; return false;">Remove</a> 
 				                        	<!-- document.getElementById('deleteConfirmationPopup').style.display = 'block'; document.getElementById('deleteConfirmationPopupTitle').style.display = 'block'; -->
 				                        </td>
-				                        <td valign="top" style="padding-left: 10px">
-				                        	<input type="button" class="" id="btnSaveCategory${category.categoryId}" name="btnSaveCategory${category.categoryId}" value="Save" onClick="modifyCategory('Save','${category.categoryId}')" style="display: none;"/>
+				                        <td valign="top" style="padding-left: 15px">
+				                        	<input type="button" class="btn" id="btnSaveCategory${category.categoryId}" name="btnSaveCategory${category.categoryId}" value="Save" onClick="modifyCategory('Save','${category.categoryId}')" style="display: none;"/>
 				                        </td>
 				                    </tr>
 			                    </c:forEach>
@@ -114,23 +114,7 @@
 								<input type="button" class="btn btn-primary" id="btnAddCategory" name="btnAddCategory" value="Add Category" onClick="addCategory()" data-dismiss="modal" aria-hidden="true"/>
 							    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
 							</div>
-							<!-- 
-								<tr>
-									<td style="height:50px">
-										
-									</td>
-									<td>
-										<input type="button" class="btn btn-danger" id="btnAddCategory" name="btnAddCategory" value="Cancel" onClick="document.getElementById('addNewCategoryPopup').style.display = 'none'; document.getElementById('addNewCategoryPopupTitle').style.display = 'none'; return false;"/>
-									</td>
-								</tr>
-							</table>
-							 -->
 						</div>
-						<!--
-		                <div id="deleteConfirmationPopupTitle">
-		                		Delete Category
-	                	</div>
-	                	-->
 		                <div id="deleteConfirmationPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		                	<div class="modal-header">
 							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
