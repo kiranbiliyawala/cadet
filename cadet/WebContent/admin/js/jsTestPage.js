@@ -415,6 +415,64 @@ $(document).ready(function(e) {
 		}
 	});
 
+	$("#btnAddCandCat").live("click",function(e) {
+		$.post("TestManagement",
+			{
+				requestType : "addCandCatToTest",
+				testId : $("#testId").val(),
+				category : $("#optCandCatList option:selected").val()
+			},
+			function(data,textStatus,xhr) {
+
+				try {
+					if(data.result===true) {
+
+						$("#divAddCandCat").modal("hide");
+						$("#divTestSettings").modal("show");
+
+						var output = "<tr><td>"+$("#optCandCatList option:selected").val()+"</td><td><button id=\"delete_"+$("#optCandCatList option:selected").val()+"\" class=\"btn btn-danger btnDelete\">Remove</button></td></tr>";
+						$("#tblTestCandCat tbody").append(output);
+					} else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+		});
+	});
+
+	$("#btnCancelAddCandCat").live("click",function(e) {
+
+		$("#divAddCandCat").modal("hide");
+		$("#divTestSettings").modal("show");
+	});
+
+	$("#btnAddUserCat").live("click",function(e) {
+
+		$.post("TestManagement", { requestType : "getCandCatList", testId : $("#testId").val() },
+			function(data,textStatus,xhr) {
+
+				try {
+					if(data.result===true) {
+
+						var src = $("#tmpltCandCatList").html();
+						var template = Handlebars.compile(src);
+						var output = template(data);
+
+						$("#optCandCatList").html(output);
+					} else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+		});
+		$("#divTestSettings").modal("hide");
+		$("#divAddCandCat").modal("show");
+	});
+
 	var alertCandCatDeleteDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have removed the category <strong>successfully !!!</strong></div>";
 	$(".btnDelete").live("click",function(e) {
 
@@ -657,10 +715,6 @@ $(document).ready(function(e) {
 					}
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 		});
-	});
-
-	$("#btnAddUserCat").live("click",function(e) {
-		// Add User Category to Tests
 	});
 
 	$(".btnViewQstn,.btnNewQstn,.btnAddQstn").tooltip({
