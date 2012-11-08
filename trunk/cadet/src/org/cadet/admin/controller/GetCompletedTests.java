@@ -23,7 +23,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class GetCompletedTests
  */
-@WebServlet("/admin/test/Result/GetCompletedTests")
+@WebServlet("/admin/test/GetCompletedTests")
 public class GetCompletedTests extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,8 +52,8 @@ public class GetCompletedTests extends HttpServlet {
 		Connection connection = DatabaseConnection.getInstance().getDbConnection();
 		try {
 			JSONObject jsobject = new JSONObject();
-			jsobject.put("testList", Result.getTests(connection).toString());
-			out.print(jsobject.toString());
+			jsobject.put("testList", Result.getTests(connection));
+			out.println(jsobject);
 			response.setContentType("application/json");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

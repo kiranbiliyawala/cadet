@@ -24,10 +24,10 @@ body {
 	background: none scroll repeat 0 0 #FFFFFF;
 }
 </style>
-<link rel="stylesheet" href="../../css/bootstrap-responsive.css">
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="/cadet/css/bootstrap-responsive.css">
+<link rel="stylesheet" href="/cadet/css/main.css">
 
-<script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+<script src="/cadet/js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -77,14 +77,14 @@ body {
 		
    <jsp:include page="/admin/Footer.jsp"></jsp:include>
 
-	<script src="../js/jquery-1.8.2.js"></script>
-        <script src="../js/bootstrap.js"></script>
-        <script src="../js/handlebars.js"></script>
+	<script src="/cadet/js/jquery-1.8.2.js"></script>
+        <script src="/cadet/js/bootstrap.js"></script>
+        <script src="/cadet/js/handlebars.js"></script>
         <script type="text/javascript">
     		$("#dashboard").addClass("active");
     		$("#collapse3").addClass("in");
     	</script>
-        <script src="../js/bootbox.js"></script>
+        <script src="/cadet/js/bootbox.js"></script>
         <script id="getresults" type="text/x-handlebars-template">
         	{{#if testList}}
 				{{#each testList}}

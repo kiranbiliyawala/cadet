@@ -21,7 +21,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class GetResult
  */
-@WebServlet("/admin/test/Result/GetResult")
+@WebServlet("/admin/test/GetResult")
 public class GetResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,8 +49,9 @@ public class GetResult extends HttpServlet {
 		String testid = request.getParameter("testid");
 		try {
 			JSONObject jsobject = new JSONObject();
-			jsobject.put("resultList", Result.getResult(connection, testid).toString());
-			request.setAttribute("result", jsobject.toString());
+			jsobject.put("resultList", Result.getResult(connection, testid));
+			request.setAttribute("result", jsobject);
+			request.setAttribute("testid", testid);
 			request.getRequestDispatcher("resultPage.jsp").include(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

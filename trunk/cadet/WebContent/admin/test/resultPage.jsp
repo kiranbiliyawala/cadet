@@ -13,8 +13,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 
-<link rel="stylesheet" href="../../css/bootstrap.css">
-<link rel="icon" type="image/ico" href="../../img/favicon.ico">
+<link rel="stylesheet" href="/cadet/css/bootstrap.css">
+<link rel="icon" type="image/ico" href="/cadet/img/favicon.ico">
 <style>
 body {
 	padding-top: 60px;
@@ -25,10 +25,10 @@ body {
 	background: none scroll repeat 0 0 #FFFFFF;
 }
 </style>
-<link rel="stylesheet" href="../../css/bootstrap-responsive.css">
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="/cadet/css/bootstrap-responsive.css">
+<link rel="stylesheet" href="/cadet/css/main.css">
 
-<script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+<script src="/cadet/js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -42,7 +42,8 @@ body {
 			<jsp:include page="/admin/Accordian.jsp"></jsp:include>
 			
 			<div class="container-fluid span9">
-				<div class="navbar">
+				<form method="post" action="Result.pdf" class="navbar">
+				<input type="hidden" name="testid" value="<%= request.getAttribute("testid")%>"/>
 					<div class="navbar-inner">
 						<div class="container-fluid pull-left">
 							<span class="brand"><c:out value="${testName}"></c:out>&nbsp;Score</span>
@@ -51,7 +52,7 @@ body {
 							<button class="btn btn-primary">Save as PDF</button>
 						</div>
 					</div>
-				</div>
+				</form>
 				<div class="container-fluid span8">
 					<table id="tblResults" class="table table-striped table-condensed table-hover">
 							<thead>
@@ -80,9 +81,9 @@ body {
 		
    <jsp:include page="/admin/Footer.jsp"></jsp:include>
 
-	<script src="../js/jquery-1.8.2.js"></script>
-        <script src="../js/bootstrap.js"></script>
-        <script src="../js/handlebars.js"></script>
+	<script src="/cadet/js/jquery-1.8.2.js"></script>
+        <script src="/cadet/js/bootstrap.js"></script>
+        <script src="/cadet/js/handlebars.js"></script>
         <script type="text/javascript">
     		$("#dashboard").addClass("active");
     		$("#collapse3").addClass("in");
@@ -93,9 +94,9 @@ body {
 				{{#each resultList}}
 					<tr>
 						<td>{{UserName}}</td>
-						<td>{{score}}</td>
-						<td>{{attempted}} Mins.</td>
-						<td>{{correct}}</td>
+						<td>{{Score}}</td>
+						<td>{{Attempted}} Mins.</td>
+						<td>{{Correct}}</td>
 					</tr>
 				{{/each}}
 			{{else}}
@@ -108,6 +109,18 @@ body {
 				</tr>
 			{{/if}}
     	</script>
-<!--     	<script src="../js/jstestresults.js"></script> -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		var b = <%= request.getAttribute("result")%>;
+		try {
+			 {
+				var src = $("#getresults").html();
+				var template = Handlebars.compile(src);
+				var output = template(b);
+				$("#tblResults tbody").append(output);
+			}
+		} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+	});
+</script>
 </body>
 </html>
