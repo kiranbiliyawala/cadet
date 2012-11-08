@@ -27,7 +27,7 @@ import org.cadet.util.model.DatabaseConnection;
 /**
  * Servlet implementation class ShowResult
  */
-@WebServlet("/admin/test/Result/Result.pdf")
+@WebServlet("/admin/test/Result.pdf")
 public class ShowResult extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
