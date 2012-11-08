@@ -38,11 +38,7 @@ public class getCategory extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
-    	//String Cat=request.getParameter("selCat");
-        //System.out.println(" "+Cat);
-      
-         
-         //get question category 
+    	
          ArrayList<String> list =new ArrayList<String>();
         list= new org.cadet.admin.model.QuestionBankManagement().getCatId();
         request.setAttribute("Catlist", "list");

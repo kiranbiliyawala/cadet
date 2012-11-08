@@ -162,12 +162,14 @@ public class QuestionBankManagement {
 						"SELECT CategoryId FROM category WHERE CategoryName=?");
 		ps.setString(1, categoryName);
 		rs = ps.executeQuery();
-		rs.beforeFirst();
-
+		
 		if (rs.next()) {
-			return rs.getInt(0);
+			System.out.println(rs.getInt("CategoryId"));
+			return rs.getInt("CategoryId");
 		} else {
 			throw new Exception("No such Category Exists!");
 		}
+		
 	}
 }
+
