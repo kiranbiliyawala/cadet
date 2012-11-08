@@ -37,7 +37,7 @@
         	<div class="row">
                 <jsp:include page="/admin/Accordian.jsp"></jsp:include>
                 	<!--/#accordion -->
-
+                	
 				<div class="container-fluid span9 offset*">
                     <div class="navbar">
                         <div class="navbar-inner">
@@ -53,10 +53,10 @@
 					                		<script>
 											var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
 											$(document).ready(function(e) {
-											setTimeout(function() {
+													setTimeout(function() {
 													$("body").prepend(alertDiv);
 													setTimeout(function() { $(".alert").alert("close"); },3000);
-											},600);
+												},600);
 											});
 										</script>
 					                	</c:if>
@@ -73,13 +73,34 @@
 			                        </td>
 			                    </tr>
 			                </table>
-			           
-			              
 		                </form>
-		                
+					</div>
+					<div>
+						<div style="margin-top: 5%;">
+							<div class="text-error">Important point while uploading files:</div>
+							<hr>
+							<ul>
+								<li>The file should be in .csv format</li>
+								<li>$EOF is a must at the end of file</li>
+								<li>Header should be  exactly the same as shown below, including the number, order and the case sensitivity of column headers </li>
+							</ul>
+						</div>
+						<div class="page-header">
+							<h1>Question CSV file Template</h1>
+						</div>
+						<div>
+							<img alt="csvtemplate" src="/cadet/img/csvfileformat.JPG">
+						</div>
+					</div>
+					<div>
+						<div class="page-header pull-right">
+							<h1>Question CSV file Example</h1>
+						</div>
+						<div>
+							<img alt="csvtemplate" src="/cadet/img/csvfileformatexample.JPG">
+						</div>
 					</div>
                 </div>
-
             </div>	<!--/.row div -->
 
         </div>	<!--/.container div -->
