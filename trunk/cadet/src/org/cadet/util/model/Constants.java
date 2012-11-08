@@ -44,7 +44,7 @@ public class Constants {
 	public static final String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
 	public static final String submitAnswersNA="UPDATE Result SET 'marks'= ?, 'Attempted'= ?,'Correct'= ? WHERE 'CUserName'=? AND 'TestId'=?";
 	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
-	public static final String GetResult = "SELECT result.`CUserName`,result.`Marks`,result.`Attempted`, result.`Correct` FROM  `result` result WHERE result.`TestId` = ?";
+	public static final String GetResult = "SELECT @rn:=@rn+1 AS Rank,result_CUserName, result_Marks, result_Attempted, result_Correct, result_Percentile FROM( SELECT result.`CUserName` AS result_CUserName, result.`Marks` AS result_Marks, result.`Attempted` AS result_Attempted, result.`Correct` AS result_Correct, (SELECT (result.Marks / MAX(a.Marks))*100 FROM result a WHERE a.TestId=?) AS result_Percentile FROM `result` result WHERE  result.`TestId` = ? ORDER BY result_Marks DESC) t1,(SELECT @rn:=0) t2";
 	public static final String GetCompleteTests = "SELECT `TestId`, `TestType`, `TestName`, `TestDesc`, `TestDate`, `StartTime`, `EndTime`, `TestDuration`, `InitialDifficulty` FROM `test` WHERE `TestDate`<now()";
 	
 
