@@ -22,10 +22,10 @@
         </style>
         <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../../css/main.css">
-
+		<script src="../../js/jquery-1.8.2.js"></script>
         <script src="../../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 	</head>
-    <body onload="/cadet/admin/questionBank/getCategoryDetails">
+    <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
@@ -47,19 +47,20 @@
                     <div>
                     	<form action="/cadet/admin/questionBank/AddQuestionByFile" METHOD="post" ENCTYPE="multipart/form-data">
 			                <table>
-			                <tr>
-			                <select id="selCategory" name="selCat">
-			                <option value="1">Quantitative</option>
-			                <option value="1">LogicalReasoning</option>
-			                <option value="1">Verbal</option>
-			                </select>
-			                </tr>
 			                	<tr>
 			                		<td style="color:green; font-weight: 600;">
-					                	<c:if test="${requestScope.status eq 'success'}">
-					                		Successfully file uploaded.!!!
+			                			<c:if test="${requestScope.status eq 'success'}">
+					                		<script>
+											var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
+											$(document).ready(function(e) {
+											setTimeout(function() {
+													$("body").prepend(alertDiv);
+													setTimeout(function() { $(".alert").alert("close"); },3000);
+											},600);
+											});
+										</script>
 					                	</c:if>
-				                	</td>
+					               	</td>
 			                	</tr>
 			                    <tr>
 			                        <td colspan="2" style="height:50px">
@@ -86,7 +87,7 @@
 		
         <jsp:include page="/admin/Footer.jsp"></jsp:include>
 
-        <script src="../../js/jquery-1.8.2.js"></script>
+<!--         <script src="../../js/jquery-1.8.2.js"></script> -->
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
@@ -100,13 +101,27 @@
         			if(file.substring(file.lastIndexOf(".")+1) == "CSV" || file.substring(file.lastIndexOf(".")+1) == "csv")
         				return true;
         			else 
-        				alert("Upload .CSV files only");
+//         				alert("Upload .CSV files only");
+        				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert text-error offset4 span4\"><strong>Upload .CSV files only </strong></div>";
+						$(document).ready(function(e) {
+								setTimeout(function() {
+								$("body").prepend(alertDiv);
+								setTimeout(function() { $(".alert").alert("close"); },3000);
+						},600);
+					});
         				return false;
         		}
         		else{
-        			alert("Select File to Upload");
+//         			alert("Select File to Upload");
+        			var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert text-error offset4 span4\"><strong>Select File to Upload </strong></div>";
+					$(document).ready(function(e) {
+							setTimeout(function() {
+							$("body").prepend(alertDiv);
+							setTimeout(function() { $(".alert").alert("close"); },3000);
+					},600);
+				});
         		}
-        	}zz
+        	}
         </script>
 
          <script type="text/javascript">
