@@ -11,6 +11,7 @@
 	<title>CADET</title>
 	<noscript>
 		NO JAVASCRIPT !!!
+	
 		<style>
 			body {
 				display: none;
@@ -37,11 +38,12 @@
 
 <body onload="setFocus()">
 	<div id="wholebody">
-		<div class="navbar navbar-fixed-top">
+		
+	<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container-fluid">
 
-					<a class="brand" href="#"><img id="logo" src="./img/cadet.gif"
+					<a class="brand" href="/cadet/Home"><img id="logo" src="img/cadet.gif"
 						alt="CADET"></img></a>
 					<ul class="nav" id="ulcontainer">
 						<li class="active"><a href="">Home</a></li>
@@ -51,7 +53,6 @@
 				<!--/.container -->
 			</div>
 		</div>
-	
 	<!--/.navbar -->
 	<div>
 		<div id="joinuscontainer">
@@ -102,10 +103,10 @@
     		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     		<h3 id="myModalLabel">Forgot Password</h3>
   		</div>
-  		<form action="IForgotPassword" method="post">
+  		<form action="IForgotPassword" method="post" id="forgotpasswordform" onsubmit="return submit_email()">
   		<div class="modal-body">
     			<label>Email: </label>
-    			<input type="text" name="username" placeholder="Enter your email id">
+    			<input type="text" name="username" class="required email" placeholder="Enter your email id">
   		</div>
   		<div class="modal-footer">
     		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -115,16 +116,30 @@
 	</div>
 	
 	<div id="features">
-		
+		<div class="modal-header">
+    		CADET Features
+  		</div>
+  		
+  		<div class="modal-body">
+    		
+  		</div>
+  		<div class="modal-footer">
+    		
+  		</div>
+  		
 	</div>
-	<footer class="container-fluid navbar navbar-fixed-bottom">
+	
+	<hr>
+		
+    <footer class="container-fluid navbar navbar-fixed-bottom">
 		<hr>
 		<div class="row pull-right" style="">
 			<a class="span*" href="#">About</a> <a class="span*" href="#">FAQ</a>
 			<a class="span*" href="#">Contact us</a> <a class="span*" href="#">Help</a>
 			<a class="span*" href="#">Privacy &amp; Policy</a>
 		</div>
-	</footer>
+</footer>
+	
 	<script src="js/jquery-1.8.2.js"></script>
 	<script src="js/jquery.validate.js"></script>
 	<script type="text/javascript" src="js/sha.js"></script>
@@ -134,7 +149,11 @@
     	function validate(){
     		return $("#loginform").valid();
     	}
-    
+    	
+    	function validate2(){
+    		return $("#forgotpasswordform").valid();
+    	}
+    	
 		function setFocus()
 		{
 			document.getElementById("username").focus();
