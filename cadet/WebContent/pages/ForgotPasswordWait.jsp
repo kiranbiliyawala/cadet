@@ -30,34 +30,14 @@
     </head>
 <body>
  
- 	<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container-fluid">
-
-					<a class="brand" href="/cadet/Home"><img id="logo" src="img/cadet.gif"
-						alt="CADET"></img></a>
-					<ul class="nav" id="ulcontainer">
-						<li class="active"><a href="">Home</a></li>
-						<li><a class="liheader" href="#features">Features</a></li>
-					</ul>
-				</div>
-				<!--/.container -->
-			</div>
-		</div>
+ 	<jsp:include page="/NavBar.jsp"></jsp:include>
  	<div class="container-fluid">
  			<div class="hero-unit span12">
  				<h2>Hey, </h2>
  				<h3>We've send an email to your email id. Please check your email id for password reset.</h3>
  			</div>
  	</div>
- 	<footer class="container-fluid navbar navbar-fixed-bottom">
-		<hr>
-		<div class="row pull-right" style="">
-			<a class="span*" href="#">About</a> <a class="span*" href="#">FAQ</a>
-			<a class="span*" href="#">Contact us</a> <a class="span*" href="#">Help</a>
-			<a class="span*" href="#">Privacy &amp; Policy</a>
-		</div>
-</footer>
+ 	<jsp:include page="/Footer.jsp"></jsp:include>
  	
 </body>
 </html>
