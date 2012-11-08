@@ -145,7 +145,7 @@ body {
 						<div class="control-group">
 							<label class="control-label" for="taTestDesc">Description : </label>
 							<div class="controls">
-								<textarea id="taTestDesc" name="taTestDesc" class="span5 nic_edit" style="resize: none;" rows="5" placeholder="Test Description & Instructions"></textarea>
+								<textarea id="taTestDesc" name="taTestDesc" class="span5 nic_edit" style="resize: none;" rows="5" placeholder="Test Description & Instructions" style="overflow:auto;"></textarea>
 							</div>
 						</div>
 

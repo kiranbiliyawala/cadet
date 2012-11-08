@@ -50,16 +50,19 @@ public class Constants {
 
 	/* Udit Queries */
 	public static final String retriveTests = "SELECT * FROM test";
-	public static final String retriveCategories = "SELECT * FROM category";
+	public static final String retriveCategories = "SELECT * FROM category WHERE CategoryId NOT IN (SELECT CategoryId FROM testcategory WHERE TestId = ?)";
 	public static final String retriveLastInsertID = "SELECT last_insert_id()";
 	public static final String retriveTestCategoryDetails = "SELECT category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveTestDetails = "SELECT * FROM test WHERE TestId = ?";
 	public static final String retriveSpecificTestCategoryDetails = "SELECT test.TestId,category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND category.CategoryId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveLevelMarks = "SELECT * FROM levelmarks WHERE TestId = ?";
 	public static final String retriveTestCandidateCategories = "SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?";
+	public static final String retriveTestCatQstn = "SELECT c.CategoryName, qb.QuestionId, qb.Question, qb.OptA, qb.OptB, qb.OptC, qb.OptD, qb.CorrectAnswer FROM questionbank qb JOIN category c ON qb.CategoryId=c.CategoryId JOIN testquestion tq ON qb.QuestionId=tq.QuestionId WHERE tq.TestId = ? AND c.CategoryId = ?";
+	public static final String retriveCategoryName = "SELECT categoryName FROM category WHERE CategoryId = ?";
 	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc,TestDate,StartTime,EndTime,TestDuration,InitialDifficulty,NegMark) VALUES (?,?,?,STR_TO_DATE(?,'%Y-%m-%d'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),?,?,?)";
 	public static final String addCategory = "INSERT INTO category (CategoryName,CategoryDescription) VALUES (?,?)";
 	public static final String addCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId,TimePerCategory,QuestionPerCategory) VALUES (?,?,?,?)";
+	public static final String addQstnToTest = "INSERT INTO testquestion (TestId,QuestionId) VALUES (?,?)";
 	public static final String addLevelMarks = "INSERT INTO levelmarks (LevelId,TestId,Marks) VALUES (?,?,?)";
 	public static final String updateTestCategoryDetails = "UPDATE testcategory SET TimePerCategory = ? , QuestionPerCategory = ? WHERE TestId = ? AND CategoryId = ?";
 	public static final String updateTestTimeSettings = "UPDATE test SET TestDate = STR_TO_DATE(?,'%d-%m-%Y'), StartTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i'), EndTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i') WHERE TestId = ?";
@@ -104,7 +107,10 @@ public class Constants {
 	public static final String RetrieveCategorywiseQuestion = "SELECT * FROM questionbank WHERE CategoryId = ?";
 	public static final String RetrieveQuestionByQuestionID = "SELECT * FROM questionbank WHERE QuestionId = ?";
 
-	
+	/* Udit Single Query*/
+
+	public static final String retriveCategoryQuestions = RetrieveCategorywiseQuestion +" AND QuestionId NOT IN (SELECT QuestionId FROM testquestion WHERE CategoryId = ?)";
+
 	/* Komal Queries */
 	
 	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where TestDate>=now()";

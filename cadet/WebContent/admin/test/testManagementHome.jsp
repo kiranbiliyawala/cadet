@@ -171,7 +171,7 @@ footer {
 			{{#if testList}}
 				{{#each testList}}
 					<tr>
-						<td>{{testName}}</td>
+						<td>{{testName}} <small><em class="text-info">({{testType}})</em></small></td>
 						<td>{{#if testDate}}{{testDate}}{{else}}NA{{/if}}</td>
 						<td>{{testDuration}} Mins.</td>
 						<td>

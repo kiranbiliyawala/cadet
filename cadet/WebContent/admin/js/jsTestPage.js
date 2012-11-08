@@ -90,7 +90,7 @@ $(document).ready(function(e) {
 	$("#btnAddCat").live("click",function(e) {
 
 		$.post("TestManagement",
-			{ requestType : "getAllCategories" },
+			{ requestType : "getAllCategories", testId : $("#testId").val() },
 			function(data,textStatus,xhr) {
 				try {
 					if(data.result===true) {
@@ -401,11 +401,9 @@ $(document).ready(function(e) {
 						if(data.result===true) {
 
 							setTimeout(function() {
-								$("#divTestSettings").prepend(alertMarkSysDiv);
+								$("#divTestSettings").prepend(alertMarkSysSaveDiv);
 								setTimeout(function() { $(".alert").alert("close"); },3000);
 							},600);
-							$("#divNewCat").modal("hide");
-							$("#btnAddCat").click();
 						} else if(data.result==="DatabaseError") {
 							pageRedirect("../DatabaseError.html");
 						}
@@ -462,7 +460,161 @@ $(document).ready(function(e) {
 		});
 	});
 
+	Handlebars.registerHelper("qstnHead",function(options) {
+		return "Question : "+options.fn(this).substr(0,20)+" .... ";
+	});
+
+	var categoryId = null;
+	$(".btnViewQstn").live("click",function(e) {
+
+		e.preventDefault();
+		categoryId = $(this).siblings().filter("input").val();
+		$.post("TestManagement",
+			{
+				requestType : "viewTestCatQstn",
+				testId : $("#testId").val(),
+				categoryId : categoryId
+			},
+			function(data,textStatus,xhr) {
+
+				try {
+					if(data.result===true) {
+
+						var src = $("#tmpltViewTestCatQstn").html();
+						var template = Handlebars.compile(src);
+						var output = template(data);
+
+						$("#lblViewTestQstn").html("Question List : <span class=\"text-info\"><small><em>"+data.categoryName+"</em></small></span>");
+						$("#divViewTestCatQstn div.modal-body div.accordion-group").html(output);
+
+						$("#divViewTestCatQstn").modal("show");
+					} else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			});
+	});
+
+	bkLib.onDomLoaded(function() {
+
+		new nicEditor({
+			buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul','subscript','superscript','strikethrough','removeformat','indent','outdent'],
+			iconsPath : "../../img/nicEditorIcons.gif"
+		}).panelInstance("taQstn");
+	});
+
+	$(".btnNewQstn").live("click",function(e) {
+
+		e.preventDefault();
+		categoryId = $(this).siblings().filter("input").val();
+		$.post("TestManagement",
+			{
+				requestType : "getCatName",
+				testId : $("#testId").val(),
+				categoryId : categoryId
+			},
+			function(data,textStatus,xhr) {
+
+				try {
+					if(data.result===true) {
+
+						$("#lblNewTestQstn").html("Add New Question : <span class=\"text-info\"><small><em>"+data.categoryName+"</em></small></span>");
+						$("#divNewTestCatQstn").modal("show");
+					} else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+		});
+	});
+
+	var alertNewQstnSaveDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have saved the question <strong>successfully !!!</strong></div>";
+	$("#frmNewTestCatQstn").validate({
+		errorClass : "text-error",
+		submitHandler : function() {
+
+			nicEditors.findEditor("taQstn").saveContent();
+			$.post("TestManagement",
+				{
+					requestType : "saveNewQstn",
+					testId : $("#testId").val(),
+					categoryId : categoryId,
+					levelId : $("#optLevel option:selected").val(),
+					question : $("#taQstn").val(),
+					optionA : $("#txtOptA").val(),
+					optionB : $("#txtOptB").val(),
+					optionC : $("#txtOptC").val(),
+					optionD : $("#txtOptD").val(),
+					correctAnswer : $("#frmNewTestCatQstn input[type='radio']:checked").val()
+				},
+				function(data,textStatus,xhr) {
+
+					try {
+						if(data.result===true) {
+
+							setTimeout(function() {
+								$("#divNewTestCatQstn").prepend(alertNewQstnSaveDiv);
+								setTimeout(function() {
+									$(".alert").alert("close");
+									$("#divNewTestCatQstn").modal("hide");
+								},3000);
+							},600);
+						} else if(data.result==="DatabaseError") {
+							pageRedirect("../DatabaseError.html");
+						}
+						else if(data.result==="ServerException") {
+							pageRedirect("../ServerException.html");
+						}
+					} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			});
+		}
+	});
+
+	$(".btnAddQstn").live("click",function(e) {
+
+		e.preventDefault();
+		$.post("TestManagement",
+			{
+				requestType : "getTestCatQstn",
+				testId : $("#testId").val(),
+				categoryId : $("#categoryId").val()
+			},
+			function(data,textStatus,xhr) {
+
+				try {
+					if(data.result===true) {
+
+						var src = $("#tmpltViewTestCatQstn").html();
+						var template = Handlebars.compile(src);
+						var output = template(data);
+
+						$("#lblViewTestQstn").html(data.categoryName);
+						$("#divViewTestCatQstn div.modal-body div.accordion-group").html(output);
+
+						$("#divViewTestCatQstn").modal("show");
+					} else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+			});
+	});
+
 	$("#btnAddUserCat").live("click",function(e) {
 		// Add User Category to Tests
+	});
+
+	$(".btnViewQstn,.btnNewQstn,.btnAddQstn").tooltip({
+		animation : true,
+		placement : "bottom",
+		trigger : "hover",
+		delay : 0
 	});
 });
