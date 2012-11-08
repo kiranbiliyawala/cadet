@@ -81,20 +81,25 @@
 													<div id="div${question.questionId}" class="accordion-group">
 														<div class="accordion-heading span9">
 															<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionQuestion" href="#collapseQuestion${question.questionId}">
-																<c:set var="questionBegining" value="${fn:substring(question.question, 0, 10)}" />
-																<span class="span7"><b>Question: ${questionBegining}...</b></span>
-																<a href="#" id="lnkEdit${question.questionId}" name="lnkEdit${question.questionId}" class="span1 pull-right" onClick="modifyQuestion('Edit','${question.questionId}')">Edit</a>
-																<a href="#deleteConfirmationPopup" class="span1 pull-right" id="lnkRemove${question.questionId}" name="lnkRemove${question.questionId}" data-toggle="modal" onClick="document.getElementById('btnSubmit').value = '${question.questionId}'; return false;">Remove</a>
-																
+																<c:set var="questionBegining" value="${fn:substring(question.question, 0, 20)}" />
+																<table>
+																	<tr>
+																		<td class="span7" style="font-weight: 600;">Question: ${questionBegining}...</td>
+																		<td><a href="#" id="lnkEdit${question.questionId}" name="lnkEdit${question.questionId}" class="btn btn-info" onClick="modifyQuestion('Edit','${question.questionId}')">Edit</a></td>
+																		<td style="padding-left: 20px;"><a href="#deleteConfirmationPopup" class="btn btn-danger" id="lnkRemove${question.questionId}" name="lnkRemove${question.questionId}" data-toggle="modal" onClick="document.getElementById('btnSubmit').value = '${question.questionId}'; return false;">Remove</a></td>
+																	</tr>
+																</table>
 															</a>
 												    	</div>
 														<div id="collapseQuestion${question.questionId}" class="accordion-body collapse">
 															<div class="accordion-inner span9">
-																<table style="width:90%">
+																<table style="width:100%">
 																	<tr>
-																		<td><textarea id="txtQuestion${question.questionId}" name="txtQuestion${question.questionId}" style="width:232%; border-radius:10px;" rows="4" readonly="readonly">${question.question}</textarea></td>
+																		<td style="" colspan="2" align="justify">
+																			<label id="txtQuestion${question.questionId}" name="txtQuestion${question.questionId}" style="background-color:white; border:none; rows="4" readonly="readonly">${question.question}</label>
+																		</td>
 																	</tr>
-																	<tr><td>&nbsp;</td></tr>
+																	<tr><td colspan="2">&nbsp;</td></tr>
 																	<tr>
 																		<td>&nbsp;&nbsp;<b>A.</b> ${question.optionA}</td>
 																		<td rowspan="2" align="right"><b>Level:</b> ${question.levelId}</td>
