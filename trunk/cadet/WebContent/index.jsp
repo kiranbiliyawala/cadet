@@ -35,7 +35,7 @@
 	<link rel="stylesheet" href="./css/homepage.css">
 </head>
 
-<body>
+<body onload="setFocus()">
 	<div id="wholebody">
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
