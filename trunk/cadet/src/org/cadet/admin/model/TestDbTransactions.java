@@ -495,4 +495,14 @@ public class TestDbTransactions {
 
 	return data;
     }
+
+    public static void removeCategoryQuestionsFromTest(Connection connection, int testId, int categoryId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.removeCategoryQstnFromTest);
+	ps.setInt(1, testId);
+	ps.setInt(2, categoryId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
 }

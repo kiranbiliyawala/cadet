@@ -612,7 +612,6 @@ footer {
 			{{#each questionList}}
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<input type="checkbox">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#viewQstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
@@ -651,10 +650,8 @@ footer {
 			{{#each questionList}}
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<span>
 						<input type="checkbox" name="chkAddQstn" id="chkAdd{{questionId}}" value="{{questionId}}">
 						<a style="display:inline-block" class="accordion-toggle" data-toggle="collapse" data-parent="#addQstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
-						</span>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
 						<div class="accordion-inner">

@@ -210,6 +210,7 @@ public class TestManagement extends HttpServlet {
 		    int categoryId = Integer.parseInt(delCatList.getJSONObject(i).getString("checkboxValue").split("chk")[1]);
 
 		    TestDbTransactions.removeCategory(dbConnection,testId,categoryId);
+		    TestDbTransactions.removeCategoryQuestionsFromTest(dbConnection,testId,categoryId);
 		}
 
 		data = new JSONObject();
