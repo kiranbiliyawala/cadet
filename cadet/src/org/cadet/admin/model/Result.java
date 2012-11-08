@@ -25,13 +25,14 @@ public class Result {
 		
 		PreparedStatement stmt = connection.prepareStatement(Constants.sqlCommands.GetResult);
 		stmt.setInt(1, Integer.parseInt(testid));
+		stmt.setInt(2, Integer.parseInt(testid));
 		
 		ResultSet rs = stmt.executeQuery();
 		
 		ResultBean result = new ResultBean();
 		
 		while(rs.next()){
-			result.addScore(rs.getString("CUserName"), rs.getDouble("Marks"), rs.getInt("Attempted"), rs.getInt("Correct"));
+			result.addScore(rs.getInt("Rank"),rs.getString("result_CUserName"), rs.getDouble("result_Marks"), rs.getInt("result_Attempted"), rs.getInt("result_Correct"),rs.getDouble("result_Percentile"));
 		}
 		return result;
 	}

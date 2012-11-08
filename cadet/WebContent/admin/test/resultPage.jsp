@@ -57,10 +57,12 @@ body {
 					<table id="tblResults" class="table table-striped table-condensed table-hover">
 							<thead>
 								<tr>
+									<th>Rank</th>
 									<th>Candidate Name</th>
 									<th>Score</th>
 									<th>Attempted</th>
 									<th>Correct</th>
+									<th>Percentile</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -93,15 +95,19 @@ body {
         	{{#if resultList}}
 				{{#each resultList}}
 					<tr>
+						<td>{{Rank}}</td>
 						<td>{{UserName}}</td>
 						<td>{{Score}}</td>
 						<td>{{Attempted}} Mins.</td>
 						<td>{{Correct}}</td>
+						<td>{{Percentile}}</td>
 					</tr>
 				{{/each}}
 			{{else}}
 				<tr>
 					<td><p class="text-warning">No Data Available</p></td>
+					<td></td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
