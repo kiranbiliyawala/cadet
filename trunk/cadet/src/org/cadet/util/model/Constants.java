@@ -57,7 +57,7 @@ public class Constants {
 	public static final String retriveSpecificTestCategoryDetails = "SELECT test.TestId,category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND category.CategoryId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveLevelMarks = "SELECT * FROM levelmarks WHERE TestId = ?";
 	public static final String retriveTestCandidateCategories = "SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?";
-	public static final String retriveTestCatQstn = "SELECT c.CategoryName, qb.QuestionId, qb.Question, qb.OptA, qb.OptB, qb.OptC, qb.OptD, qb.CorrectAnswer FROM questionbank qb JOIN category c ON qb.CategoryId=c.CategoryId JOIN testquestion tq ON qb.QuestionId=tq.QuestionId WHERE tq.TestId = ? AND c.CategoryId = ?";
+	public static final String retriveTestCatQstn = "SELECT qb.QuestionId, qb.Question, qb.OptA, qb.OptB, qb.OptC, qb.OptD, qb.CorrectAnswer FROM questionbank qb JOIN category c ON qb.CategoryId=c.CategoryId JOIN testquestion tq ON qb.QuestionId=tq.QuestionId WHERE tq.TestId = ? AND c.CategoryId = ?";
 	public static final String retriveCategoryName = "SELECT categoryName FROM category WHERE CategoryId = ?";
 	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc,TestDate,StartTime,EndTime,TestDuration,InitialDifficulty,NegMark) VALUES (?,?,?,STR_TO_DATE(?,'%Y-%m-%d'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),?,?,?)";
 	public static final String addCategory = "INSERT INTO category (CategoryName,CategoryDescription) VALUES (?,?)";
@@ -109,7 +109,7 @@ public class Constants {
 
 	/* Udit Single Query*/
 
-	public static final String retriveCategoryQuestions = RetrieveCategorywiseQuestion +" AND QuestionId NOT IN (SELECT QuestionId FROM testquestion WHERE CategoryId = ?)";
+	public static final String retriveCategoryQuestions = RetrieveCategorywiseQuestion +" AND QuestionId NOT IN (SELECT QuestionId FROM testquestion WHERE TestId = ?)";
 
 	/* Komal Queries */
 	

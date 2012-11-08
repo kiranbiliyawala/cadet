@@ -402,7 +402,6 @@ public class TestDbTransactions {
 	while(rs.next()) {
 
 	    temp = new Question();
-	    temp.setCategory(rs.getString("CategoryName"));
 	    temp.setQuestionId(rs.getInt("QuestionId"));
 	    temp.setQuestion(rs.getString("Question"));
 	    temp.setOptionA(rs.getString("OptA"));
@@ -465,11 +464,35 @@ public class TestDbTransactions {
 	ps.close();
     }
 
-    public static JSONObject getCategoryQuestions(Connection connection, int testId, int categoryId) throws SQLException {
+    public static JSONObject getCategoryQuestions(Connection connection, int testId, int categoryId) throws SQLException, JSONException {
 
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveCategoryQuestions);
 	ps.setInt(1, categoryId);
-	ps.setInt(2, categoryId);
-	return null;
+	ps.setInt(2, testId);
+
+	ArrayList<Question> result = new ArrayList<Question>();
+	Question temp = null;
+
+	ResultSet rs = ps.executeQuery();
+	while(rs.next()) {
+
+	    temp = new Question();
+	    temp.setQuestionId(rs.getInt("QuestionId"));
+	    temp.setQuestion(rs.getString("Question"));
+	    temp.setOptionA(rs.getString("OptA"));
+	    temp.setOptionB(rs.getString("OptB"));
+	    temp.setOptionC(rs.getString("OptC"));
+	    temp.setOptionD(rs.getString("OptD"));
+	    temp.setCorrectAnswer(rs.getString("CorrectAnswer"));
+
+	    result.add(temp);
+	}
+	rs.close();
+	ps.close();
+
+	JSONObject data = new JSONObject();
+	data.put("questionList",result.toArray(new Question[result.size()]));
+
+	return data;
     }
 }

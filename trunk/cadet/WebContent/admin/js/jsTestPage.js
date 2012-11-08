@@ -578,25 +578,26 @@ $(document).ready(function(e) {
 	$(".btnAddQstn").live("click",function(e) {
 
 		e.preventDefault();
+		categoryId = $(this).siblings().filter("input").val();
 		$.post("TestManagement",
 			{
 				requestType : "getTestCatQstn",
 				testId : $("#testId").val(),
-				categoryId : $("#categoryId").val()
+				categoryId : categoryId
 			},
 			function(data,textStatus,xhr) {
 
 				try {
 					if(data.result===true) {
 
-						var src = $("#tmpltViewTestCatQstn").html();
+						var src = $("#tmpltAddTestCatQstn").html();
 						var template = Handlebars.compile(src);
 						var output = template(data);
 
-						$("#lblViewTestQstn").html(data.categoryName);
-						$("#divViewTestCatQstn div.modal-body div.accordion-group").html(output);
+						$("#lblAddTestQstn").html("Question Bank : <span class=\"text-info\"><small><em>"+data.categoryName+"</em></small></span>");
+						$("#divAddTestCatQstn div.modal-body div.accordion-group").html(output);
 
-						$("#divViewTestCatQstn").modal("show");
+						$("#divAddTestCatQstn").modal("show");
 					} else if(data.result==="DatabaseError") {
 						pageRedirect("../DatabaseError.html");
 					}
@@ -605,6 +606,57 @@ $(document).ready(function(e) {
 					}
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
 			});
+	});
+
+	var alertAddQstnDiv = "<div style=\"position:absolute; margin-top:1%;\" class=\"alert alert-success span4\">You have added the questions <strong>successfully !!!</strong></div>";
+	$("#btnAddTestCatQstn").live("click",function(e) {
+
+		var checkQstnList = $("input[name=chkAddQstn]:checked");
+
+		function checkQstnListClass(name,value) {
+
+			this.checkboxName;
+			this.checkboxValue;
+
+			this.checkboxName = name;
+			this.checkboxValue = value;
+		}
+
+		var data = new Array();
+		var i=0;
+		$(checkQstnList).each(function() {
+			data[i++] = new checkQstnListClass($(this).attr("id"),$(this).val());
+		});
+
+		var dataJSON = $.toJSON(data);
+
+		$.post("TestManagement",
+			{
+				requestType : "addQstnToTest",
+				testId : $("#testId").val(),
+				addQstnList : dataJSON
+			},
+			function(data,textStatus,xhr) {
+
+				try {
+					
+					if(data.result===true) {
+						
+						setTimeout(function() {
+							$("#divAddTestCatQstn").prepend(alertAddQstnDiv);
+							setTimeout(function() {
+								$(".alert").alert("close");
+								$("#divAddTestCatQstn").modal("hide");
+							},3000);
+						},600);
+					} else if(data.result==="DatabaseError") {
+						pageRedirect("../DatabaseError.html");
+					}
+					else if(data.result==="ServerException") {
+						pageRedirect("../ServerException.html");
+					}
+				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+		});
 	});
 
 	$("#btnAddUserCat").live("click",function(e) {

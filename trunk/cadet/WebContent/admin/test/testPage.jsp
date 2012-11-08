@@ -235,13 +235,28 @@ footer {
 			<button type="button" class="close" data-dismiss="modal">x</button>
 			<h4 id="lblViewTestQstn"></h4>
 		</div>
-		<div class="modal-body container-fluid accordion" id="qstnAccordion">
+		<div class="modal-body container-fluid accordion" id="viewQstnAccordion">
 			<div class="accordion-group"></div>
 		</div>
  		<div class="modal-footer">
 			<button class="btn btn-primary" data-dismiss="modal">Ok</button>
 		</div>
 	</div>
+
+	<div id="divAddTestCatQstn" class="container-fluid modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h4 id="lblAddTestQstn"></h4>
+		</div>
+		<div class="modal-body container-fluid accordion" id="addQstnAccordion">
+			<div class="accordion-group"></div>
+		</div>
+ 		<div class="modal-footer">
+			<button id="btnAddTestCatQstn" class="btn btn-primary">Add</button>
+			<button class="btn" data-dismiss="modal">Cancel</button>
+		</div>
+	</div>
+
 
 	<div id="divNewTestCatQstn" class="container-fluid modal hide fade" tabindex="-1">
 		<div class="modal-header">
@@ -597,7 +612,8 @@ footer {
 			{{#each questionList}}
 				<div class="accordion-group">
 					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" data-parent="#qstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
+						<input type="checkbox">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#viewQstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
 						<div class="accordion-inner">
@@ -627,6 +643,47 @@ footer {
 			{{/each}}
 		{{else}}
 			<div><p class="text-warning">No Question Added</p></div>
+		{{/if}}
+	</script>
+
+	<script id="tmpltAddTestCatQstn" type="text/x-handlebars-template">
+		{{#if questionList}}
+			{{#each questionList}}
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<span>
+						<input type="checkbox" name="chkAddQstn" id="chkAdd{{questionId}}" value="{{questionId}}">
+						<a style="display:inline-block" class="accordion-toggle" data-toggle="collapse" data-parent="#addQstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
+						</span>
+					</div>
+					<div id="qstn{{questionId}}" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<div class="container-fluid">
+								{{question}}
+							</div>
+							<div class="row">
+								<div class="container-fluid">
+									<label><strong>Options : </strong></label>
+									<ul class="nav">
+										<li>A. {{optionA}}</li>
+										<li>B. {{optionB}}</li>
+										<li>C. {{optionC}}</li>
+										<li>D. {{optionD}}</li>
+									</ul>
+								</div>
+								<div class="container-fluid">
+									<ul class="nav">
+										<li><strong>Level :</strong> {{level}}</li>
+										<li><strong>Correct Answer :</strong> {{correctAnswer}}</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{{/each}}
+		{{else}}
+			<div><p class="text-warning">No Question Available</p></div>
 		{{/if}}
 	</script>
 

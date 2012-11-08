@@ -752,7 +752,6 @@ public class TestManagement extends HttpServlet {
 		    TestDbTransactions.saveLevelMark(dbConnection,testId,levelId,levelMark);
 		}
 
-		System.out.println(levelMarklist);
 		data = new JSONObject();
 		data.put("result", true);
 		response.setContentType("application/json");
@@ -1095,11 +1094,68 @@ public class TestManagement extends HttpServlet {
 	    Connection dbConnection = dbConn.getDbConnection();
 
 	    data = TestDbTransactions.getCategoryQuestions(dbConnection,testId,categoryId);
+	    String categoryName = TestDbTransactions.getCategoryName(dbConnection,categoryId);
+
+	    data.put("categoryName",categoryName);
 	    data.put("result",true);
+
 	    response.setContentType("application/json");
 	    response.setCharacterEncoding("UTF-8");
 	    out.println(data);
 	    return;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("addQstnToTest")) {
+
+	    try {
+
+		int testId = Integer.parseInt(request.getParameter("testId"));
+		JSONArray addQstnList = new JSONArray(request.getParameter("addQstnList"));
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		for(int i =0;i<addQstnList.length();i++) {
+		    int questionId = Integer.parseInt(addQstnList.getJSONObject(i).getString("checkboxValue"));
+
+		    TestDbTransactions.addQuestionToTest(dbConnection,testId,questionId);
+		}
+
+		data = new JSONObject();
+		data.put("result", true);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+
 	    } catch (SQLException e) {
 		e.printStackTrace();
 
