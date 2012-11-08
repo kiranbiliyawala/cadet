@@ -255,6 +255,22 @@
     <url-pattern>/UnAuthorized</url-pattern>
   </servlet-mapping>
 
+
+<error-page>
+        <error-code>404</error-code>
+        <location>/PageNotFound</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/UnAuthorized</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/InternalError</location>
+    </error-page>
+
   <session-config>
     <session-timeout>300</session-timeout>
   </session-config>
