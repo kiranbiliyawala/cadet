@@ -505,4 +505,39 @@ public class TestDbTransactions {
 	ps.executeUpdate();
 	ps.close();
     }
+
+    public static JSONObject getCandidateCategories(Connection connection,int testId) throws SQLException,JSONException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveUserCategories);
+	ps.setInt(1, testId);
+
+	ArrayList<BeanUserCategory> result = new ArrayList<BeanUserCategory>();
+	BeanUserCategory temp = null;
+
+	ResultSet rs = ps.executeQuery();
+	while(rs.next()) {
+
+	    temp = new BeanUserCategory();
+	    temp.setCandidateCategory(rs.getString(1));
+
+	    result.add(temp);
+	}
+	rs.close();
+	ps.close();
+
+	JSONObject data = new JSONObject();
+	data.put("candCatList", result.toArray(new BeanUserCategory[result.size()]));
+
+	return data;
+    }
+
+    public static void addUserCategoryToTest(Connection connection, int testId, String candidateCategoryName) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addUserCategoryToTest);
+	ps.setInt(1, testId);
+	ps.setString(2, candidateCategoryName);
+
+	ps.executeUpdate();
+	ps.close();
+    }
 }
