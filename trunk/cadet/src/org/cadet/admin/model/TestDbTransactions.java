@@ -16,6 +16,7 @@ import org.cadet.admin.bean.BeanLevelMarks;
 import org.cadet.admin.bean.BeanTest;
 import org.cadet.admin.bean.BeanTestCategory;
 import org.cadet.admin.bean.BeanUserCategory;
+import org.cadet.client.bean.Question;
 import org.cadet.util.model.Constants;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,13 +68,15 @@ public class TestDbTransactions {
 	return data;
     }
 
-    public static JSONObject getAllCategories(Connection connection) throws SQLException, JSONException {
+    public static JSONObject getAllCategories(Connection connection,int testId) throws SQLException, JSONException {
 
-	Statement statement = connection.createStatement();
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveCategories);
+	ps.setInt(1, testId);
+
 	ArrayList<BeanCategory> result = new ArrayList<BeanCategory>();
 	BeanCategory temp = null;
 
-	ResultSet rs = statement.executeQuery(Constants.sqlCommands.retriveCategories);
+	ResultSet rs = ps.executeQuery();
 	while(rs.next()) {
 
 	    temp = new BeanCategory();
@@ -84,7 +87,7 @@ public class TestDbTransactions {
 	    result.add(temp);
 	}
 	rs.close();
-	statement.close();
+	ps.close();
 
 	JSONObject data = new JSONObject();
 	data.put("categoryList", result.toArray(new BeanCategory[result.size()]));
@@ -384,5 +387,89 @@ public class TestDbTransactions {
 
 	ps.executeUpdate();
 	ps.close();
+    }
+
+    public static JSONObject getTestCatQuestions(Connection connection, int testId, int categoryId) throws SQLException, JSONException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveTestCatQstn);
+	ps.setInt(1, testId);
+	ps.setInt(2, categoryId);
+
+	ArrayList<Question> result = new ArrayList<Question>();
+	Question temp = null;
+
+	ResultSet rs = ps.executeQuery();
+	while(rs.next()) {
+
+	    temp = new Question();
+	    temp.setCategory(rs.getString("CategoryName"));
+	    temp.setQuestionId(rs.getInt("QuestionId"));
+	    temp.setQuestion(rs.getString("Question"));
+	    temp.setOptionA(rs.getString("OptA"));
+	    temp.setOptionB(rs.getString("OptB"));
+	    temp.setOptionC(rs.getString("OptC"));
+	    temp.setOptionD(rs.getString("OptD"));
+	    temp.setCorrectAnswer(rs.getString("CorrectAnswer"));
+
+	    result.add(temp);
+	}
+	rs.close();
+	ps.close();
+
+	JSONObject data = new JSONObject();
+	data.put("questionList",result.toArray(new Question[result.size()]));
+
+	return data;
+    }
+
+    public static String getCategoryName(Connection connection, int categoryId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveCategoryName);
+	ps.setInt(1, categoryId);
+
+	String result = null;
+
+	ResultSet rs = ps.executeQuery();
+	if(rs.next()) {
+	    result = rs.getString("CategoryName");
+	}
+	rs.close();
+	ps.close();
+
+	return result;
+    }
+
+    public static void saveNewQuestion(Connection connection, int categoryId, int levelId, String question, String optA, String optB, String optC, String optD, String correctAnswer) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.AddQuestion);
+	ps.setInt(1, categoryId);
+	ps.setInt(2, levelId);
+	ps.setString(3, question);
+	ps.setString(4, optA);
+	ps.setString(5, optB);
+	ps.setString(6, optC);
+	ps.setString(7, optD);
+	ps.setString(8, correctAnswer);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static void addQuestionToTest(Connection connection, int testId, int questionId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addQstnToTest);
+	ps.setInt(1,testId);
+	ps.setInt(2, questionId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static JSONObject getCategoryQuestions(Connection connection, int testId, int categoryId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.retriveCategoryQuestions);
+	ps.setInt(1, categoryId);
+	ps.setInt(2, categoryId);
+	return null;
     }
 }

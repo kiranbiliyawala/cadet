@@ -32,44 +32,96 @@ public class Question {
 		this.correctAnswer=correctAnswer;
 	}
 
-	public int getQuestionId(){
-		return this.questionId;
+	public Question() {
+	    //empty constructor
+	    // for re - usability
+	    // updated by udit
 	}
-	
+
+	public int getQuestionId() {
+	    return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+	    this.questionId = questionId;
+	}
+
 	public int getLevel() {
-		return level;
+	    return level;
+	}
+
+	public void setLevel(int level) {
+	    this.level = level;
 	}
 
 	public int getMarks() {
-		return marks;
+	    return marks;
+	}
+
+	public void setMarks(int marks) {
+	    this.marks = marks;
 	}
 
 	public String getCategory() {
-		return category;
+	    return category;
+	}
+
+	public void setCategory(String category) {
+	    this.category = category;
 	}
 
 	public String getQuestion() {
-		return question;
+	    return question;
+	}
+
+	public void setQuestion(String question) {
+	    this.question = question;
 	}
 
 	public String getOptionA() {
-		return optionA;
+	    return optionA;
+	}
+
+	public void setOptionA(String optionA) {
+	    this.optionA = optionA;
 	}
 
 	public String getOptionB() {
-		return optionB;
+	    return optionB;
+	}
+
+	public void setOptionB(String optionB) {
+	    this.optionB = optionB;
 	}
 
 	public String getOptionC() {
-		return optionC;
+	    return optionC;
+	}
+
+	public void setOptionC(String optionC) {
+	    this.optionC = optionC;
 	}
 
 	public String getOptionD() {
-		return optionD;
+	    return optionD;
+	}
+
+	public void setOptionD(String optionD) {
+	    this.optionD = optionD;
 	}
 
 	public String getCorrectAnswer() {
-		return correctAnswer;
+	    return correctAnswer;
 	}
 
+	public void setCorrectAnswer(String correctAnswer) {
+	    this.correctAnswer = correctAnswer;
+	}
+
+	@Override
+	public String toString() {
+	    return "Question [questionId=" + questionId + ", level=" + level + ", marks=" + marks + ", category=" + category + ", question=" + question + ", optionA=" + optionA + ", optionB="
+		    + optionB + ", optionC=" + optionC + ", optionD=" + optionD + ", correctAnswer=" + correctAnswer + "]";
+	}
+	
 }

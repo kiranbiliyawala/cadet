@@ -142,11 +142,18 @@ footer {
 					<hr>
 					<form id="frmSaveTest" class="container-fluid form-horizontal" method="post" action="TestManagement">
 						<table class="table table-striped table-condensed table-hover">
+							<c:set var="TestAdaptive" value="Adaptive"></c:set>
+							<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
 							<thead>
 								<tr>
 									<th></th>
 									<th class="span4">Category</th>
-									<th class="span6">Number of Questions</th>
+									<th class="span6">
+										<c:choose>
+											<c:when test="${testType eq TestAdaptive}">Number of Questions</c:when>
+											<c:otherwise>Questions</c:otherwise>
+										</c:choose>
+									</th>
 									<th class="span6">Duration</th>
 								</tr>
 							</thead>
@@ -160,14 +167,15 @@ footer {
 													<c:out value="${i.categoryName}"></c:out>
 												</td>
 												<td class="span6">
-													<c:set var="TestAdaptive" value="Adaptive"></c:set>
-													<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
 													<c:choose>
 														<c:when test="${testType eq TestAdaptive}">
 															<input id='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' name='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' type="number" required placeholder="Questions per Category" min=0 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
 														</c:when>
 														<c:otherwise>
-															<button class="btn btn-primary">Add/View Questions</button>
+																<input type="hidden" value="<c:out value="${i.categoryId}"></c:out>">
+																<button class="btn btnViewQstn" title="View Questions">View</button>
+																<button class="btn btnNewQstn" title="Add New Question">New</button>
+																<button class="btn btnAddQstn" title="Add Questions from Question Bank">Add</button>
 														</c:otherwise>
 													</c:choose>
 												</td>
@@ -222,10 +230,88 @@ footer {
 		</div>
 	</footer>
 
-	<div id="divAddCat" class="modal hide fade" style="display:none;">
+	<div id="divViewTestCatQstn" class="container-fluid modal hide fade" tabindex="-1">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">x</button>
-			<h3 id="lblAddCat">Add Category</h3>
+			<h4 id="lblViewTestQstn"></h4>
+		</div>
+		<div class="modal-body container-fluid accordion" id="qstnAccordion">
+			<div class="accordion-group"></div>
+		</div>
+ 		<div class="modal-footer">
+			<button class="btn btn-primary" data-dismiss="modal">Ok</button>
+		</div>
+	</div>
+
+	<div id="divNewTestCatQstn" class="container-fluid modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h4 id="lblNewTestQstn"></h4>
+		</div>
+		<div class="modal-body container-fluid">
+			<form id="frmNewTestCatQstn" class="container-fluid form-horizontal">
+				<div class="control-group">
+					<label class="control-label" for="taQstn">Question : </label>
+					<div class="controls">
+						<textarea id="taQstn" name="taQstn" class="span3 nic_edit" style="resize: none;" rows="5" placeholder="Question Body" required></textarea>
+					</div>
+				</div>
+				<div class="control-group" style=""><label class="control-label">Options : </label></div>
+				<div class="control-group">
+					<div class="controls">
+						A. <input type="radio" id="rbOptionA" name="rbOptions" value="A" required>
+						<input type="text" id="txtOptA" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						B. <input type="radio" id="rbOptionB" name="rbOptions" value="B" required>
+						<input type="text" id="txtOptB" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						C. <input type="radio" id="rbOptionC" name="rbOptions" value="C" required>
+						<input type="text" id="txtOptC" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						D. <input type="radio" id="rbOptionD" name="rbOptions" value="D" required>
+						<input type="text" id="txtOptD" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="optLevel">Level : </label>
+					<div class="controls">
+						<select id="optLevel" name="optLevel">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-primary">Save</button>
+						<button class="btn" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="divAddCat" class="modal hide fade" tabindex="-1">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h4>Add Category</h4>
 		</div>
 		<div class="modal-body">
 			<form class="container=fluid form-horizontal">
@@ -247,7 +333,7 @@ footer {
 	<div id="divNewCat" class="modal hide fade" tabindex="-1">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">x</button>
-			<h3 id="lblNewCat">New Category</h3>
+			<h3>New Category</h3>
 		</div>
 		<div class="modal-body">
 			<form id="frmNewCat" class="container=fluid form-horizontal">
@@ -270,7 +356,7 @@ footer {
 	<div id="divTestSettings" class="modal hide fade" tabindex="-1">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">x</button>
-			<h3 id="lblNewCat">Test Settings</h3>
+			<h3>Test Settings</h3>
 		</div>
 		<div class="modal-body">
 			<div class="container-fluid tabbable" style="margin-bottom: 18px;">
@@ -483,12 +569,16 @@ footer {
 				<td><input type="checkbox" id="chkDelCatList" name="chkDelCatList" value="chk{{category.categoryId}}"></td>
 				<td class="span4">{{category.categoryName}}</td>
 				<td class="span6">
+
 					<c:choose>
-						<c:when test="${testType  eq TestAdaptive}">
+						<c:when test="${testType eq TestAdaptive}">
 							<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="Questions per Category" min=0 value="{{category.questionPerCategory}}">
 						</c:when>
 						<c:otherwise>
-							<button class="btn btn-primary">Add/View Questions</button>
+							<input type="hidden" value="{{category.categoryId}}">
+							<button class="btn btnViewQstn" title="View Questions">View</button>
+							<button class="btn btnNewQstn" title="Add New Question">New</button>
+							<button class="btn btnAddQstn" title="Add Questions from Question Bank">Add</button>
 						</c:otherwise>
 					</c:choose>
 				</td>
@@ -502,6 +592,44 @@ footer {
 		{{/if}}
 	</script>
 
+	<script id="tmpltViewTestCatQstn" type="text/x-handlebars-template">
+		{{#if questionList}}
+			{{#each questionList}}
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#qstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
+					</div>
+					<div id="qstn{{questionId}}" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<div class="container-fluid">
+								{{question}}
+							</div>
+							<div class="row">
+								<div class="container-fluid">
+									<label><strong>Options : </strong></label>
+									<ul class="nav">
+										<li>A. {{optionA}}</li>
+										<li>B. {{optionB}}</li>
+										<li>C. {{optionC}}</li>
+										<li>D. {{optionD}}</li>
+									</ul>
+								</div>
+								<div class="container-fluid">
+									<ul class="nav">
+										<li><strong>Level :</strong> {{level}}</li>
+										<li><strong>Correct Answer :</strong> {{correctAnswer}}</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{{/each}}
+		{{else}}
+			<div><p class="text-warning">No Question Added</p></div>
+		{{/if}}
+	</script>
+
 	<script src="../../js/jquery-1.8.2.js"></script>
 	<script src="../../js/jquery.json-2.3.js"></script>
 	<script src="../../js/bootstrap.js"></script>
@@ -511,6 +639,7 @@ footer {
 	<script src="../../js/handlebars.js"></script>
 	<script src="../../js/jquery.validate.js"></script>
 	<script src="../../js/additional-methods.js"></script>
+	<script src="../../js/nicEdit.js"></script>
 	<script src="../js/jsGlobal.js"></script>
 	<script src="../js/jsTestPage.js"></script>
 
