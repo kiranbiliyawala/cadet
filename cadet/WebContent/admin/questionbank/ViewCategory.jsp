@@ -101,7 +101,7 @@
 							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 							    <h3 id="myModalLabel">Add New Category</h3>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body" style="margin-bottom:20px;">
 							<table>
 								<tr>
 									<td valign="top" style="padding-top: 5px; padding-left: 20px;">Category Name: </td>
@@ -109,7 +109,7 @@
 								</tr>
 								<tr>
 									<td valign="top" style="padding-top: 5px; padding-left: 20px;">Category Description: </td>
-									<td><textarea id="txtCategoryDescription" name="txtCategoryDescription" style="width:350px" rows="4"></textarea></td>
+									<td><textarea id="txtCategoryDescription" name="txtCategoryDescription" style="width:350px" rows="5"></textarea></td>
 								</tr>
 							</table>
 							</div>
@@ -146,7 +146,7 @@
         <script>window.jQuery || document.write('<script src="../../js/jquery-1.8.2.js"><\/script>')</script>
 
         <script src="../../js/bootstrap.js"></script>
-
+	<script src="../../js/nicEdit.js"></script>
         
         <script src="../../js/main.js"></script>
         <script type="text/javascript">
@@ -283,7 +283,17 @@
 	        }
 	
         </script>
-        
+
+		<script>
+			bkLib.onDomLoaded(function() {
+	
+				new nicEditor({
+					buttonList : ['bold','italic','underline','left','center','right','justify','ol','ul','subscript','superscript','strikethrough','removeformat','indent','outdent'],
+					iconsPath : "../../img/nicEditorIcons.gif"
+				}).panelInstance("txtCategoryDescription");
+			});
+		</script>
+
          <script type="text/javascript">
         $("#question").addClass("active");
         $("#collapse2").addClass("in");
