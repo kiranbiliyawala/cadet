@@ -478,6 +478,9 @@ $(document).ready(function(e) {
 						$("#divAddCandCat").modal("hide");
 						$("#divTestSettings").modal("show");
 
+						if($("#tblTestCandCat tbody tr:first-child td:eq('1') p").html()==="No Candidate Category Added")
+								$("#tblTestCandCat tbody tr:first-child").remove();
+
 						var output = "<tr><td>"+$("#optCandCatList option:selected").val()+"</td><td><button id=\"delete_"+$("#optCandCatList option:selected").val()+"\" class=\"btn btn-danger btnDelete\">Remove</button></td></tr>";
 						$("#tblTestCandCat tbody").append(output);
 					} else if(data.result==="DatabaseError") {
