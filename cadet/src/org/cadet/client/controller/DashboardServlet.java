@@ -38,7 +38,7 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendError(404, "No Get Request Allowed for this Page");
+		response.sendError(403, "No Get Request Allowed for this Page");
 	}
 
 	/**
