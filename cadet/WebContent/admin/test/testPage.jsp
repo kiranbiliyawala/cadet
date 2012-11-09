@@ -96,7 +96,7 @@ footer {
 												<td class="span6">
 													<c:choose>
 														<c:when test="${testType eq TestAdaptive}">
-															<input id='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' name='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' type="number" required placeholder="Questions per Category" min=0 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
+															<input id='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' name='<c:out value="txtNoQueCat${i.categoryId}"></c:out>' type="number" required placeholder="Questions per Category" min=1 value='<c:out value="${i.questionsPerCategory}"></c:out>'>
 														</c:when>
 														<c:otherwise>
 																<input type="hidden" value="<c:out value="${i.categoryId}"></c:out>">
@@ -108,7 +108,7 @@ footer {
 												</td>
 												<td class="span6">
 													<div class="input-append">
-														<input id='<c:out value="txtTimeCat${i.categoryId}"></c:out>' name='<c:out value="txtTimeCat${i.categoryId}"></c:out>' class="txtTimeCat" type="number" required placeholder="In Minutes" min=0 value='<c:out value="${i.timePerCategory}"></c:out>'>
+														<input id='<c:out value="txtTimeCat${i.categoryId}"></c:out>' name='<c:out value="txtTimeCat${i.categoryId}"></c:out>' class="txtTimeCat" type="number" required placeholder="In Minutes" min=1 value='<c:out value="${i.timePerCategory}"></c:out>'>
 														<span class="add-on">Min.</span>
 													</div>
 												</td>
@@ -537,7 +537,7 @@ footer {
 
 					<c:choose>
 						<c:when test="${testType eq TestAdaptive}">
-							<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="Questions per Category" min=0 value="{{category.questionPerCategory}}">
+							<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="Questions per Category" min=1 value="{{category.questionPerCategory}}">
 						</c:when>
 						<c:otherwise>
 							<input type="hidden" value="{{category.categoryId}}">
@@ -549,7 +549,7 @@ footer {
 				</td>
 				<td class="span6">
 					<div class="input-append">
-						<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="In Minutes" min=0 value="{{category.timePerCategory}}">
+						<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="In Minutes" class="txtTimeCat" min=1 value="{{category.timePerCategory}}">
 						<span class="add-on">Min.</span>
 					</div>
 				</td>

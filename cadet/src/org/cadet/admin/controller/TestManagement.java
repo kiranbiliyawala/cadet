@@ -340,7 +340,7 @@ public class TestManagement extends HttpServlet {
 		    request.setAttribute("testId", testId);
 		    request.setAttribute("testName", testName);
 		    request.setAttribute("testType", testType);
-		    request.setAttribute("testDuration", 0);
+		    request.setAttribute("testDuration", 1);
 		    request.setAttribute("categoryDetails", categoryDetails);
 
 		    RequestDispatcher rd = request.getRequestDispatcher("testPage.jsp");

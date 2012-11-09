@@ -104,7 +104,7 @@ public class TestDbTransactions {
 	ps.setString(4, new Date(new java.util.Date().getTime()).toString());
 	ps.setString(5, new Date(new java.util.Date().getTime()).toString()+" 00:00");
 	ps.setString(6, new Date(new java.util.Date().getTime()).toString()+" 00:00");
-	ps.setInt(7, 0);
+	ps.setInt(7, 1);
 	ps.setInt(8, 0);
 	ps.setInt(9, 0);
 
@@ -225,8 +225,8 @@ public class TestDbTransactions {
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addCategoryToTest);
 	ps.setInt(1,testId);
 	ps.setInt(2, categoryId);
-	ps.setInt(3, 0);
-	ps.setInt(4, 0);
+	ps.setInt(3, 1);
+	ps.setInt(4, 1);
 
 	ps.executeUpdate();
 	ps.close();
