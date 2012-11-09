@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Page Not Found :(</title>
+        <title>Unauthorized access :(</title>
         <style>
             ::-moz-selection {
                 background: #b3d4fc;
@@ -141,7 +141,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>UnAuthorized Access <span>:/</span></h1>
+            <h1>UnAuthorized Access <span>:(</span></h1>
             <p>Sorry, you have no access to this page.</p>
             <p>It looks like this was the result of either:</p>
             <ul>
