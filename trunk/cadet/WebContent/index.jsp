@@ -68,6 +68,17 @@
     								</div>
   								</div>
   								<div class="control-group">
+    								<div class="text-error" style="margin-left : 45%;"><%
+  										try{
+  											if(!(Boolean)request.getAttribute("AuthCheck")){
+  													out.print("Wrong UserName or Password");
+  											}
+  										}catch(Exception e){
+  									
+		  								}
+  									%></div>
+  								</div>
+  								<div class="control-group">
     								<div class="controls">
       									<a href="#forgotpassword" role="button" data-toggle="modal">Forgot Password</a>
     								</div>
