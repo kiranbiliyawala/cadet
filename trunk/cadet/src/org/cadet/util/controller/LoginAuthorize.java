@@ -76,7 +76,8 @@ public class LoginAuthorize extends HttpServlet {
 		}else{
 			session.setAttribute("AdminAuth", false);
 			session.setAttribute("ClientAuth", false);
-			response.sendRedirect("Login");
+			request.setAttribute("AuthCheck", false);
+			request.getRequestDispatcher("Login").forward(request, response);
 			return;
 		}
 		}catch(SQLException e){
