@@ -10,8 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class UserControl {
 
@@ -218,17 +221,19 @@ public class UserControl {
 		return ret;
 	}
 	
-	public static ArrayList<String> getUserCategories(Connection connection) throws SQLException{
+	public static JSONObject getUserCategories(Connection connection) throws SQLException, JSONException{
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.getUserCategories);
 		ResultSet rs = statement.executeQuery();
-		ArrayList<String> Al = new ArrayList<>();
+		JSONArray A2 = new JSONArray();
 		while (rs.next()) {
-			String category = rs.getString("Category");
-			Al.add(category);
+		    JSONObject Al = new JSONObject();
+		    String category = rs.getString("Category");
+			Al.put("catName",category);
+			A2.put(Al);
 		}
 		rs.close();
 		statement.close();
-		return Al;
+		return new JSONObject().put("result", A2);
 	}
 	
 }
