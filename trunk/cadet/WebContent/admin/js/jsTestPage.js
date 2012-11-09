@@ -114,57 +114,105 @@ $(document).ready(function(e) {
 		});
 	});
 
+	$(".btnRemoveQstnFromTest").live("click",function(e) {
+
+		var questionId = $(this).attr("id");
+		var row = $(this).parent().parent().parent();
+		var body = row.parent();
+		var siblings = row.siblings();
+
+		bootbox.confirm("Are you sure you want to remove the question ?",function(confirmed) {
+
+			if(confirmed===true) {
+
+				$.post("TestManagement",
+					{
+						requestType : "removeQstnFromTest",
+						testId : $("#testId").val(),
+						questionId : questionId
+					},
+					function(data,textStatus,xhr) {
+
+						try {
+							if(data.result===true) {
+
+								row.next().remove();
+								row.remove();
+								if(siblings.length===0) {
+									body.parent().html("<div><p class=\"text-warning\">No Question Added</p></div>");
+								}
+							}
+							else if(data.result==="DatabaseError") {
+								pageRedirect("../DatabaseError.html");
+							}
+							else if(data.result==="ServerException") {
+								pageRedirect("../ServerException.html");
+							}
+						} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+				});
+			}
+		});
+	});
+
 	$("#btnDelCat").bind("click",function(e) {
 
-		var checkList = $("#chkDelCatList:checked");
+		bootbox.confirm("Are you sure you want to remove the question category ?",function(confirmed) {
 
-		function checkListClass(name,value) {
+			if(confirmed===true) {
 
-			this.checkboxName;
-			this.checkboxValue;
+				var checkList = $("#chkDelCatList:checked");
+		
+				function checkListClass(name,value) {
+		
+					this.checkboxName;
+					this.checkboxValue;
+		
+					this.checkboxName = name;
+					this.checkboxValue = value;
+				}
+		
+				var data = new Array();
+				var i=0;
+				$(checkList).each(function() {
+					data[i++] = new checkListClass($(this).attr("name"),$(this).val());
+				});
+		
+				var dataJSON = $.toJSON(data);
+		
+				$.post("TestManagement",
+					{
+						requestType : "removeCategory",
+						testId : $("#testId").val(),
+						delCatList : dataJSON
+					},
+					function(data,textStatus,xhr) {
+		
+						try {
+							if(data.result===true) {
+		
+								$(checkList).each(function() {
+		
+									var row = $(this).parent().parent();
+									var tbody = row.parent();
+									var siblingRows = row.siblings();
+		
+									$(this).parent().parent().remove();
+									if(siblingRows.length===0) {
+										tbody.append("<tr><td></td><td><p class=\"text-warning\">No Category Available</p></td><td></td><td></td></tr>");
+									}
+								});
 
-			this.checkboxName = name;
-			this.checkboxValue = value;
-		}
-
-		var data = new Array();
-		var i=0;
-		$(checkList).each(function() {
-			data[i++] = new checkListClass($(this).attr("name"),$(this).val());
-		});
-
-		var dataJSON = $.toJSON(data);
-
-		$.post("TestManagement",
-			{
-				requestType : "removeCategory",
-				testId : $("#testId").val(),
-				delCatList : dataJSON
-			},
-			function(data,textStatus,xhr) {
-
-				try {
-					if(data.result===true) {
-
-						$(checkList).each(function() {
-
-							var row = $(this).parent().parent();
-							var tbody = row.parent();
-							var siblingRows = row.siblings();
-
-							$(this).parent().parent().remove();
-							if(siblingRows.length===0) {
-								tbody.append("<tr><td></td><td><p class=\"text-warning\">No Category Available</p></td><td></td><td></td></tr>");
+								$(".badge.badge-info").html("&nbsp;&nbsp;"+data.testDuration+"&nbsp;&nbsp;");
 							}
-						});
-					}
-					else if(data.result==="DatabaseError") {
-						pageRedirect("../DatabaseError.html");
-					}
-					else if(data.result==="ServerException") {
-						pageRedirect("../ServerException.html");
-					}
-				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+							else if(data.result==="DatabaseError") {
+								pageRedirect("../DatabaseError.html");
+							}
+							else if(data.result==="ServerException") {
+								pageRedirect("../ServerException.html");
+							}
+						} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
+				});
+			}
 		});
 	});
 

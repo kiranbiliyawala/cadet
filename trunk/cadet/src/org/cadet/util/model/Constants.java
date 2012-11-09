@@ -57,7 +57,7 @@ public class Constants {
 	public static final String retriveSpecificTestCategoryDetails = "SELECT test.TestId,category.CategoryId,CategoryName,TimePerCategory,QuestionPerCategory FROM test, category, testcategory WHERE test.TestId = ? AND category.CategoryId = ? AND test.TestId = testcategory.TestId AND testcategory.CategoryId = category.CategoryId";
 	public static final String retriveLevelMarks = "SELECT * FROM levelmarks WHERE TestId = ?";
 	public static final String retriveTestCandidateCategories = "SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?";
-	public static final String retriveTestCatQstn = "SELECT qb.QuestionId, qb.Question, qb.OptA, qb.OptB, qb.OptC, qb.OptD, qb.CorrectAnswer FROM questionbank qb JOIN category c ON qb.CategoryId=c.CategoryId JOIN testquestion tq ON qb.QuestionId=tq.QuestionId WHERE tq.TestId = ? AND c.CategoryId = ?";
+	public static final String retriveTestCatQstn = "SELECT qb.QuestionId, qb.LevelId, qb.Question, qb.OptA, qb.OptB, qb.OptC, qb.OptD, qb.CorrectAnswer FROM questionbank qb JOIN category c ON qb.CategoryId=c.CategoryId JOIN testquestion tq ON qb.QuestionId=tq.QuestionId WHERE tq.TestId = ? AND c.CategoryId = ?";
 	public static final String retriveCategoryName = "SELECT categoryName FROM category WHERE CategoryId = ?";
 	public static final String retriveUserCategories = getUserCategories+" WHERE CandidateCategoryName NOT IN (SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?)";
 	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc,TestDate,StartTime,EndTime,TestDuration,InitialDifficulty,NegMark) VALUES (?,?,?,STR_TO_DATE(?,'%Y-%m-%d'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),?,?,?)";
@@ -72,10 +72,12 @@ public class Constants {
 	public static final String updateNegMark = "UPDATE test SET NegMark = ? WHERE TestId = ?";
 	public static final String updateLevelMark = "UPDATE levelmarks SET Marks = ? WHERE TestId = ? AND LevelId = ?";
 	public static final String updateTestDuration = "UPDATE test SET TestDuration = ? WHERE TestId = ?";
+	public static final String updateTestDurationOnDeleteCategory = "UPDATE test SET TestDuration = TestDuration - ( SELECT TimePerCategory FROM testcategory WHERE TestId = ? AND CategoryId = ? ) WHERE TestId = ?";
 	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
 	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
 	public static final String removeCategoryQstnFromTest = "DELETE FROM testquestion WHERE TestId = ? AND QuestionId IN (SELECT QuestionId FROM questionbank WHERE CategoryId = ?)";
-	public static final String removeTestCandidateCategory = "DELETE from testcandidatecategory WHERE TestId = ? AND CandidateCategoryName = ?";
+	public static final String removeTestCandidateCategory = "DELETE FROM testcandidatecategory WHERE TestId = ? AND CandidateCategoryName = ?";
+	public static final String removeQuestionFromTest = "DELETE FROM testquestion WHERE TestId = ? AND QuestionId = ?";
 
 
 	/* Rajan Queries */
