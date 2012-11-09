@@ -549,7 +549,7 @@ footer {
 				</td>
 				<td class="span6">
 					<div class="input-append">
-						<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="In Minutes" class="txtTimeCat" min=1 value="{{category.timePerCategory}}">
+						<input id="txtTimeCat{{category.categoryId}}" name="txtTimeCat{{category.categoryId}}" type="number" required placeholder="In Minutes" class="txtTimeCat" min=1 value="{{category.timePerCategory}}">
 						<span class="add-on">Min.</span>
 					</div>
 				</td>

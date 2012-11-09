@@ -71,7 +71,7 @@ $(document).ready(function(e) {
 
  								$("#divAddCat").modal("hide");
  								setTimeout(function() {
- 									$("#body").prepend(alertDiv);
+ 									//$("#body").prepend(alertDiv);
  									setTimeout(function() { $(".alert").alert("close"); },3000);
  								},600);
  							}

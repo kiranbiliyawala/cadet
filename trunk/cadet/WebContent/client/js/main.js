@@ -15,7 +15,19 @@ $.post("DashboardServlet",
 
 
 function start_test(testtype,testid){
-	window.open('Test/'+testtype+'/CreateTest?testid='+testid,'_blank','location=0,menubar=0,statusbar=0,titelebar=0,toolbar=0',false);
+  var popup =  window.open('Test/'+testtype+'/CreateTest?testid='+testid,'_blank','location=0,menubar=0,statusbar=0,titelebar=0,toolbar=0,fullscreen=1,height='+screen.height+'width='+screen.width,false);
+  check_closure(popup);
+}
+
+function check_closure(popup){
+	
+	 setTimeout(function(){if(popup.closed)
+		 {
+		 window.location.reload();
+		 }else{
+			 check_closure(popup);
+		 }
+	 },1000);
 }
 
 function submit_val(){

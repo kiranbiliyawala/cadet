@@ -53,8 +53,8 @@ public class SubmitTestNA extends HttpServlet {
 		}
 		
 			try {
-				test.process_Answers();
-			} catch (SQLException e) {
+				test.submit();
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

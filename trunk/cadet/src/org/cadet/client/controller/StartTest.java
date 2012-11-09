@@ -46,7 +46,7 @@ public class StartTest extends HttpServlet {
 		try {
 			request.setAttribute("Catselector", NAHTMLConvert.CatSelectorHTML(test));
 			request.setAttribute("Queselector", NAHTMLConvert.QuestionSelectorHTML(test));		
-			request.setAttribute("TimeDuration", test.test_details[2]);
+			request.setAttribute("TimeDuration", test.Test_Duration);
 			request.setAttribute("TimeName", test.test_details[0]);
 			request.setAttribute("CatDistribution", test.getQuestionDistribution().toString());
 			

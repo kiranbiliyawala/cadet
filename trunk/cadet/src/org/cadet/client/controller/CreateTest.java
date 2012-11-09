@@ -58,13 +58,13 @@ public class CreateTest extends HttpServlet {
 	
 		try{
 		if(NonAdaptiveTest.isAllowed(testid, username)){
+			System.out.println("test:"+testid);
 		NonAdaptiveTest test = new NonAdaptiveTest(connection, testid, username);
 		session.setAttribute("test", test);
 		
 		session.setAttribute("test_name", test.test_details[0]);
 		request.setAttribute("TestName", test.test_details[0]);
-		request.setAttribute("TestTime", test.test_details[2]);
-		
+		request.setAttribute("TestTime", test.test_details[2]);	
 		}else{
 			response.sendError(403,"Test Not Allowed");
 			return;

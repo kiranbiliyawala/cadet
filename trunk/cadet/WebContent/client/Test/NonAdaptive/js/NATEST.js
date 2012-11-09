@@ -74,12 +74,13 @@ function show_cat(covercat){
 }
 
 function change_question_data(){
+	$('#flag').attr('checked', false);
 	$("#optn1").html(optiona);
 	$("#optn2").html(optionb);
 	$("#optn3").html(optionc);
 	$("#optn4").html(optiond);
 	$("#Question").html(Question);
-	$("QNO").html(qno);
+	$("#QNO").html(qno);
 	
 	if(answer=='A'){
 	$("#option1").attr("checked",true);	
@@ -187,6 +188,7 @@ function clear_answer(){
 }
 
 function change_que(cat,queno){
+	qno=queno;
 	show_cat("cover"+cat);
 	hide_catselector();
 	clear_answer();
@@ -243,7 +245,7 @@ $(window).bind("contextmenu",function(e){
 
 $(document).ready(function(){
 	show_catselector();
-	set_counter(1200000);
+	set_counter(Time*60000);
 });
 
 function finish_test_confirm(){

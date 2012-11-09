@@ -12,13 +12,11 @@ public class BeanCompleteTests extends JSONArray{
 
 public boolean addTest(String TestName,Date date,Integer TestDuration,String TestType,Integer TestId){
 		
-		DateFormat dtformat = new SimpleDateFormat("yyyy-mm-dd");
-		String testdate = dtformat.format(date);
 		
 		JSONObject testobject = new JSONObject();
 		try {
 			testobject.put("TestName", TestName);
-			testobject.put("TestDate", testdate);
+			testobject.put("TestDate", date);
 			testobject.put("TestDuration", TestDuration);
 			testobject.put("TestType", TestType);
 			testobject.put("TestId", TestId);

@@ -285,6 +285,14 @@
     <url-pattern>/UnAuthorized</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TestComplete</servlet-name>
+    <jsp-file>/client/Test/NonAdaptive/TestEndPageNA.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestComplete</servlet-name>
+    <url-pattern>/client/Test/NonAdaptive/TestComplete</url-pattern>
+  </servlet-mapping>
 
 <error-page>
         <error-code>404</error-code>

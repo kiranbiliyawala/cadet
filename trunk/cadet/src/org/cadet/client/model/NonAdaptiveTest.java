@@ -31,17 +31,18 @@ public class NonAdaptiveTest {
 	private JSONObject AttemptedQuestions;
 	private HashMap<String,Integer> Question_difficulty;
 	private HashMap<Integer,Integer> Difficulty_Marks;
-	private Integer NegativeMarks;
+	private Integer NegativeMarks=0;
 	private Integer testid;
 	private Integer totalquestions;
 	private Integer attempted;
 	private Integer Correct;
 	private Double score;
-	private long Test_Duration;
+	public long Test_Duration;
 	private boolean lock;
 	private String username;
 	private Connection connection;
 	public String[] test_details;
+	private terminate thread;
 	
 	public NonAdaptiveTest(Connection connection,int testid,String username) throws JSONException, SQLException {
 	
@@ -96,6 +97,9 @@ public class NonAdaptiveTest {
 		JSONArray questions;
 		
 		JSONArray keys = category.names();
+//		if (keys==null){
+//			keys = new JSONArray();
+//		}
 		Random r = new Random();
 		for(int i=0;i<keys.length();i++){
 			questions = category.getJSONArray(keys.getString(i));
@@ -121,6 +125,7 @@ public class NonAdaptiveTest {
 		while(rs.next()){
 			NegativeMarks = rs.getInt("NegMark");
 		}
+		System.out.print("Test Negative:"+NegativeMarks);
 		rs.close();
 		statement.close();
 	}
@@ -189,7 +194,7 @@ public class NonAdaptiveTest {
 			totalquestions++;
 		}
 		Categorized_Questions = category;
-
+		System.out.println(Categorized_Questions);
 		rs.close();
 		statement.close();
 	}
@@ -241,7 +246,7 @@ public class NonAdaptiveTest {
 		return ret;
 	}
 	
-	public boolean process_Answers() throws SQLException{
+	private boolean process_Answers() throws SQLException{
 		boolean ret = false;
 		if(lock==true) 
 			{
@@ -267,14 +272,15 @@ public class NonAdaptiveTest {
 
 	private void calculate_score() {
 	Iterator<Entry<String, String>> iterator = Answers.entrySet().iterator();
-	
+	score=0.0;
 	while(iterator.hasNext()){
 		Entry<String, String> entry = iterator.next();
 		String question = entry.getKey();
 		String answer = entry.getValue();
 		
 		Integer marks = Difficulty_Marks.get(Question_difficulty.get(question));
-		
+		System.out.println("Marks :"+marks);
+		System.out.println("Difficulty Marks :"+Difficulty_Marks);
 		String CorrectAnswer = CorrectAnswers.get(question);
 		
 		attempted++;
@@ -297,6 +303,9 @@ public class NonAdaptiveTest {
 		JSONObject categories = new JSONObject();
 		
 		JSONArray keys = Categorized_Questions.names();
+		if(keys==null){
+			keys = new JSONArray();
+		}
 		for(int i=0;i<keys.length();i++){
 		JSONArray questions =  Categorized_Questions.getJSONArray(keys.getString(i));
 			categories.put(keys.getString(i), questions.length());
@@ -334,14 +343,20 @@ public class NonAdaptiveTest {
 	
 	public class terminate implements Runnable{
 		NonAdaptiveTest test;
+		boolean lock;
 		public terminate(NonAdaptiveTest test) {
 			this.test = test;
+			test.thread = this;
+			lock = false;
 		}
 		
 		@Override
 		public void run() {
 			try {
-				test.process_Answers();
+				if(!lock) {
+					test.process_Answers();
+					lock=true;
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -351,7 +366,7 @@ public class NonAdaptiveTest {
 	}
 
 	public static boolean isAllowed(int testid2, String username2) throws SQLException {
-		boolean ret;
+		boolean ret=false;
 		Connection connection= DatabaseConnection.getInstance().getDbConnection();
 		
 		PreparedStatement statement = connection.prepareStatement(Constants.sqlCommands.test_Allowed_query1);
@@ -362,6 +377,7 @@ public class NonAdaptiveTest {
 		int allow=rs.getInt("allow");
 		if(allow>0)
 		{
+			ret=true;
 		}
 		else
 		{
@@ -375,8 +391,7 @@ public class NonAdaptiveTest {
 		String today=dateFormat.format(date);
 		
 		PreparedStatement statement1 = connection.prepareStatement(Constants.sqlCommands.test_Allowed_query2);
-		statement1.setString(1,today);
-		statement1.setInt(2,testid2);
+		statement1.setInt(1,testid2);
 		ResultSet rs1=statement1.executeQuery();
 		int i = 0;
 		while(rs1.next())
@@ -384,7 +399,7 @@ public class NonAdaptiveTest {
 			i++;
 			
 		}
-		if(i>0)
+		if(i>0&&ret==true)
 		{
 			ret = true;
 		}else{
@@ -395,6 +410,12 @@ public class NonAdaptiveTest {
 		statement1.close();
 		statement.close();
 		return ret;
+	}
+
+
+
+	public void submit() {
+		thread.run();
 	}
 	
 }
