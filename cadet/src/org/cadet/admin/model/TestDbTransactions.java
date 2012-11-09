@@ -308,7 +308,20 @@ public class TestDbTransactions {
     }
 
     public static void saveLevelMark(Connection connection, int testId, int levelId, int levelMark) throws SQLException {
+    	
+    	for(int i=1;i<=10;i++){
+    		try{
+    	PreparedStatement pst = connection.prepareStatement(Constants.sqlCommands.CreateTestLevels);
+    	pst.setInt(1, i);
+    	pst.setInt(2, testId);
 
+    	pst.executeUpdate();
+    	pst.close();
+    	}catch(SQLException e){
+    		//e.printStackTrace();
+    	}
+    	}
+    	
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateLevelMark);
 	ps.setInt(1, levelMark);
 	ps.setInt(2, testId);
@@ -382,8 +395,7 @@ public class TestDbTransactions {
     public static void setTestDuration(Connection connection, int testId, int testDuration) throws SQLException {
 
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateTestDuration);
-	ps.setInt(1, testDuration);
-	ps.setInt(2, testId);
+		ps.setInt(1, testId);
 
 	ps.executeUpdate();
 	ps.close();

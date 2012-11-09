@@ -3,11 +3,11 @@
 <head>
 <script src="../../../js/jquery-1.8.2.js"></script>
 <script src="../../../js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/InstructionPage.css">
+<link rel="stylesheet" type="text/css" href="css/InstructionPage.css"/>
 <title><%= session.getAttribute("test_name") %></title>
-<link rel="icon" type="image/ico" href="../../../img/favicon.ico">
+<link rel="icon" type="image/ico" href="../../../img/favicon.ico"/>
 </head>
 
 <body class="body">
@@ -21,9 +21,9 @@ Duration : <%= request.getAttribute("TestTime") %>
 Instructions.....
 </div>
 <form method="post" action="StartTest">
-<div class="closestartbtn"><button class="btn butn btn-primary" type="button" value="Start Test">Start Test</button></div>
+<div class="closestartbtn"><button class="btn btn-primary" type="submit" value="Start Test">Start Test</button></div>
 
 </form>
-
+</div>
 </body>
 </html>

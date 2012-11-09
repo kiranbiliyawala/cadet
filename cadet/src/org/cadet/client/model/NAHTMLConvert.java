@@ -25,7 +25,9 @@ public class NAHTMLConvert {
         JSONObject catdistriution = test.getQuestionDistribution();
         
         JSONArray names = catdistriution.names();
-        
+        if(names==null){
+        	names = new JSONArray();
+        }
         String out="";
         
         for(int i =0;i<names.length();i++){
@@ -43,7 +45,9 @@ public class NAHTMLConvert {
         JSONObject catdistriution = test.getQuestionDistribution();
         
         JSONArray names = catdistriution.names();
-        
+        if(names==null){
+        	names = new JSONArray();
+        }
         String out="";
         
         for(int i =0;i<names.length();i++){

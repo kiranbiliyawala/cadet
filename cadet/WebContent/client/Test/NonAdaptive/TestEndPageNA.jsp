@@ -22,7 +22,7 @@ Duration : <%= request.getAttribute("TestTime") %>
 Instructions.....
 </div>
 <form method="post" action="SubmitTest">
-<div class="closestartbtn"><button class="btn butn btn-primary" type="button" value="End Test">Close Window</button></div>
+<div class="closestartbtn"><button onclick="window.close();" class="btn butn btn-primary" type="button" value="End Test">Close Window</button></div>
 
 </form>
 </body>

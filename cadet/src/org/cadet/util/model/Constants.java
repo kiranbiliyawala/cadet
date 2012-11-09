@@ -41,8 +41,8 @@ public class Constants {
 	public static final String getTestDifficultyNA="SELECT LevelId as LID , Marks as Marks FROM levelmarks WHERE TestId=?";
 	public static final String getTestQuestionsNA="SELECT Q.QuestionId AS \'QID\',(SELECT C.CategoryName FROM category C where C.CategoryId=Q.CategoryId) AS \'CNAME\' , Q.LevelId AS \'LID\', Q.Question AS \'Question\', Q.OptA AS \'OptionA\', Q.OptB \'OptionB\', Q.OptC AS \'OptionC\', Q.OptD AS \'OptionD\', Q.CorrectAnswer AS \'CorrectAnswer\' FROM questionbank Q WHERE Q.QuestionId in (SELECT T.QuestionId FROM testquestion T WHERE T.TestId=?)";
 	public static final String test_Allowed_query1="select count(*) as allow from Result where CUserNAme=? and TestId=?";
-	public static final String test_Allowed_query2="SELECT * FROM test WHERE ? BETWEEN StartTime AND EndTime AND TestId =?";
-	public static final String submitAnswersNA="UPDATE Result SET 'marks'= ?, 'Attempted'= ?,'Correct'= ? WHERE 'CUserName'=? AND 'TestId'=?";
+	public static final String test_Allowed_query2="SELECT * FROM test WHERE Sysdate() BETWEEN StartTime AND EndTime AND TestId =?";
+	public static final String submitAnswersNA="UPDATE `result` SET `Marks`=?,`Attempted`=?,`Correct`=? WHERE `CUserName`= ? AND `TestId`=?";
 	public static final String getPasswordClient = "SELECT Password FROM candidate WHERE CUserName = ?";
 	public static final String GetResult = "SELECT @rn:=@rn+1 AS Rank,result_CUserName, result_Marks, result_Attempted, result_Correct, result_Percentile FROM( SELECT result.`CUserName` AS result_CUserName, result.`Marks` AS result_Marks, result.`Attempted` AS result_Attempted, result.`Correct` AS result_Correct, (SELECT (result.Marks / MAX(a.Marks))*100 FROM result a WHERE a.TestId=?) AS result_Percentile FROM `result` result WHERE  result.`TestId` = ? ORDER BY result_Marks DESC) t1,(SELECT @rn:=0) t2";
 	public static final String GetCompleteTests = "SELECT `TestId`, `TestType`, `TestName`, `TestDesc`, `TestDate`, `StartTime`, `EndTime`, `TestDuration`, `InitialDifficulty` FROM `test` WHERE `TestDate`<now()";
@@ -70,8 +70,10 @@ public class Constants {
 	public static final String updateTestTimeSettings = "UPDATE test SET TestDate = STR_TO_DATE(?,'%d-%m-%Y'), StartTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i'), EndTime = STR_TO_DATE(?,'%d-%m-%Y %k:%i') WHERE TestId = ?";
 	public static final String updateInitDiff = "UPDATE test SET InitialDifficulty = ? WHERE TestId = ?";
 	public static final String updateNegMark = "UPDATE test SET NegMark = ? WHERE TestId = ?";
+
+	public static final String CreateTestLevels = "INSERT INTO `levelmarks`(`LevelId`, `TestId`, `Marks`) VALUES (?,?,0)";
 	public static final String updateLevelMark = "UPDATE levelmarks SET Marks = ? WHERE TestId = ? AND LevelId = ?";
-	public static final String updateTestDuration = "UPDATE test SET TestDuration = ? WHERE TestId = ?";
+	public static final String updateTestDuration = "UPDATE test t SET t.TestDuration = (SELECT SUM(tc.TimePerCategory) FROM testcategory tc WHERE tc.TestId=t.TestId) WHERE t.TestId = ?";
 	public static final String updateTestDurationOnDeleteCategory = "UPDATE test SET TestDuration = TestDuration - ( SELECT TimePerCategory FROM testcategory WHERE TestId = ? AND CategoryId = ? ) WHERE TestId = ?";
 	public static final String deleteTest = "DELETE FROM test WHERE TestId = ?";
 	public static final String removeCategory = "DELETE FROM testcategory WHERE TestId = ? AND CategoryId = ?";
@@ -82,7 +84,7 @@ public class Constants {
 
 	/* Rajan Queries */
 
-	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and DATEDIFF(t.TestDate, CURDATE())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName and r.CUserName = c.CUserName and r.Marks=0.0 and r.Attempted=0 and r.Correct=0 and c.CUserName = ?";
+	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and TIMEDIFF(t.EndTime, SysDate())>=0 and DATEDIFF(t.StartTime, SysDate())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName and r.CUserName = c.CUserName and r.Marks=0.0 and r.Attempted=0 and r.Correct=0 and c.CUserName = ?";
 	public static final String getCandidateCategory = "SELECT CandidateCategoryName from candidate where CUserName=?";
 
 	/* Shailee Queries */
