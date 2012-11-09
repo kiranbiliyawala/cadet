@@ -20,6 +20,9 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+            footer {
+				background: none scroll repeat 0 0 #FFFFFF;
+			}
         </style>
         <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="../../css/main.css">
