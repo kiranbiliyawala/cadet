@@ -408,6 +408,7 @@ public class TestDbTransactions {
 	    temp.setOptionB(rs.getString("OptB"));
 	    temp.setOptionC(rs.getString("OptC"));
 	    temp.setOptionD(rs.getString("OptD"));
+	    temp.setLevel(rs.getInt("LevelId"));
 	    temp.setCorrectAnswer(rs.getString("CorrectAnswer"));
 
 	    result.add(temp);
@@ -483,6 +484,7 @@ public class TestDbTransactions {
 	    temp.setOptionB(rs.getString("OptB"));
 	    temp.setOptionC(rs.getString("OptC"));
 	    temp.setOptionD(rs.getString("OptD"));
+	    temp.setLevel(rs.getInt("LevelId"));
 	    temp.setCorrectAnswer(rs.getString("CorrectAnswer"));
 
 	    result.add(temp);
@@ -536,6 +538,27 @@ public class TestDbTransactions {
 	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.addUserCategoryToTest);
 	ps.setInt(1, testId);
 	ps.setString(2, candidateCategoryName);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static void removeQstnFromTest(Connection connection, int testId, int questionId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.removeQuestionFromTest);
+	ps.setInt(1, testId);
+	ps.setInt(2, questionId);
+
+	ps.executeUpdate();
+	ps.close();
+    }
+
+    public static void updateTestDuration(Connection connection, int testId, int categoryId) throws SQLException {
+
+	PreparedStatement ps = connection.prepareStatement(Constants.sqlCommands.updateTestDurationOnDeleteCategory);
+	ps.setInt(1, testId);
+	ps.setInt(2, categoryId);
+	ps.setInt(3, testId);
 
 	ps.executeUpdate();
 	ps.close();

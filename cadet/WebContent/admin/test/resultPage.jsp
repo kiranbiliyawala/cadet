@@ -90,7 +90,7 @@ body {
     		$("#dashboard").addClass("active");
     		$("#collapse3").addClass("in");
     	</script>
-        <script src="../js/bootbox.js"></script>
+        <script src="/cadet/js/bootbox.js"></script>
         <script id="getresults" type="text/x-handlebars-template">
         	{{#if resultList}}
 				{{#each resultList}}

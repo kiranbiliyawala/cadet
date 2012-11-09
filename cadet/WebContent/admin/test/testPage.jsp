@@ -643,8 +643,13 @@ footer {
 		{{#if questionList}}
 			{{#each questionList}}
 				<div class="accordion-group">
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" data-parent="#viewQstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
+					<div class="accordion-heading navbar" style="margin-bottom:0;">
+						<div class="navbar-inner">
+							<div class="container-fluid">
+								<a class="accordion-toggle span3" data-toggle="collapse" data-parent="#viewQstnAccordion" href="#qstn{{questionId}}"><strong>{{#qstnHead}}{{question}}{{/qstnHead}}</strong></a>
+								<button id="{{questionId}}" class="btn btn-danger btnRemoveQstnFromTest pull-right">Remove</button>
+							</div>
+						</div>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
 						<div class="accordion-inner">
@@ -681,9 +686,13 @@ footer {
 		{{#if questionList}}
 			{{#each questionList}}
 				<div class="accordion-group">
-					<div class="accordion-heading">
-						<input type="checkbox" name="chkAddQstn" id="chkAdd{{questionId}}" value="{{questionId}}">
-						<a style="display:inline-block" class="accordion-toggle" data-toggle="collapse" data-parent="#addQstnAccordion" href="#qstn{{questionId}}">{{#qstnHead}}{{question}}{{/qstnHead}}</a>
+					<div class="accordion-heading navbar" style="margin-bottom:0;">
+						<div class="navbar-inner">
+							<div class="container-fluid">
+								<input class="pull-left" type="checkbox" name="chkAddQstn" id="chkAdd{{questionId}}" value="{{questionId}}">
+								<a class="accordion-toggle span3" data-toggle="collapse" data-parent="#addQstnAccordion" href="#qstn{{questionId}}"><strong>{{#qstnHead}}{{question}}{{/qstnHead}}</strong></a>
+							</div>
+						</div>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
 						<div class="accordion-inner">

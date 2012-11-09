@@ -211,10 +211,15 @@ public class TestManagement extends HttpServlet {
 
 		    TestDbTransactions.removeCategory(dbConnection,testId,categoryId);
 		    TestDbTransactions.removeCategoryQuestionsFromTest(dbConnection,testId,categoryId);
+		    TestDbTransactions.updateTestDuration(dbConnection,testId,categoryId);
 		}
+
+		BeanTest test = TestDbTransactions.getTestDetails(dbConnection, testId);
 
 		data = new JSONObject();
 		data.put("result", true);
+		data.put("testDuration", test.getTestDuration());
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.println(data);
@@ -1242,6 +1247,55 @@ public class TestManagement extends HttpServlet {
 		Connection dbConnection = dbConn.getDbConnection();
 
 		TestDbTransactions.addUserCategoryToTest(dbConnection,testId,candidateCategoryName);
+
+		data = new JSONObject();
+		data.put("result", true);
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "DatabaseError");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    } catch (Exception e) {
+
+		e.printStackTrace();
+
+		data = new JSONObject();
+		try {
+		    data.put("result", "ServerException");
+		} catch (JSONException e1) {
+		    e1.printStackTrace();
+		}
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		out.println(data);
+		return;
+	    }
+	}
+
+	else if(requestType.equals("removeQstnFromTest")) {
+
+	    try {
+
+		int testId = Integer.parseInt(request.getParameter("testId"));
+		int questionId = Integer.parseInt(request.getParameter("questionId"));
+
+		DatabaseConnection dbConn = DatabaseConnection.getInstance();
+		Connection dbConnection = dbConn.getDbConnection();
+
+		TestDbTransactions.removeQstnFromTest(dbConnection,testId,questionId);
 
 		data = new JSONObject();
 		data.put("result", true);
