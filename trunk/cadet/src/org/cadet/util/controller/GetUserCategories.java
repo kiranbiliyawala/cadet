@@ -3,7 +3,6 @@ package org.cadet.util.controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.cadet.util.model.DatabaseConnection;
 import org.cadet.util.model.UserControl;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Servlet implementation class GetUserCategories
@@ -41,24 +42,31 @@ public class GetUserCategories extends HttpServlet {
 		Connection connection = DatabaseConnection.getInstance().getDbConnection();
 		
 	
-		ArrayList<String> Ar;
+		JSONObject Ar = null;
 		try {
 			Ar = UserControl.getUserCategories(connection);
 		} catch (SQLException e) {
 			response.sendError(500);
 			return;
+		} catch (JSONException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
 		}
 		
-		String out = "";
+		
+
+/*		String out = "";
 		String categories_options_start ="<option value=\"";
 		String tag_end = "\">";
-		String option_end = "</option>";
+		String option_end = "</option>";*/
 		
-		for(int i=0;i<Ar.size();i++){
+/*		for(int i=0;i<Ar.size();i++){
 			out = out+categories_options_start+Ar.get(i)+tag_end+Ar.get(i)+option_end;
-		}
-		
-		response.getWriter().print(out);
+		}*/
+
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(Ar);
 	}
 
 	/**
