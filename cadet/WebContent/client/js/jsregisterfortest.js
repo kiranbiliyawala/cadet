@@ -2,25 +2,30 @@ function registerForTest(objTd,testId){
 	
 	$.ajax({
 		url:"../../Test/Register",
-		dataType:"json",
 		data:{
 			"testid":testId
 		},
 		type:"POST",
 		success:function(data){
-			//console.log(data);
-			$(objTd).hide();
-			//alert("Registration Done Successfully.");
-			var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
-			$(document).ready(function(e) {
-				setTimeout(function() {
-					$("body").prepend(alertDiv);
-					setTimeout(function() { $(".alert").alert("close"); },3000);
-				},600);
-			});
+			try {
+			console.log(data);
+			if(true){
+				$(objTd).hide();
+				alert("Registration Done Successfully.");
+				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
+	/*			$(document).ready(function(e) {*/
+					setTimeout(function() {
+						$("body").prepend(alertDiv);
+						setTimeout(function() { $(".alert").alert("close"); },3000);
+					},600);
+				}
+			} catch(e) { alert(e.message+"\n"+e.status); }
+			
+		
+			//});
 		},
 		error:function(e){
-			alert("Something Wrong!");
+			alert("Something Wrong!" + e.message + "\n" + e.status);
 		}
 		
 	});
