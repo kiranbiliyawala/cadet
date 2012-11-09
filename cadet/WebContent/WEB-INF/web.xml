@@ -4,6 +4,7 @@
   <welcome-file-list>
     <welcome-file>Home</welcome-file>
   </welcome-file-list>
+  
   <servlet>
     <servlet-name>Adashboard</servlet-name>
     <jsp-file>/admin/index.jsp</jsp-file>
@@ -12,6 +13,7 @@
     <servlet-name>Adashboard</servlet-name>
     <url-pattern>/admin/dashboard</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>Cdashboard</servlet-name>
     <jsp-file>/client/index.jsp</jsp-file>
@@ -20,6 +22,7 @@
     <servlet-name>Cdashboard</servlet-name>
     <url-pattern>/client/dashboard</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>login</servlet-name>
     <jsp-file>/index.jsp</jsp-file>
@@ -28,6 +31,7 @@
     <servlet-name>login</servlet-name>
     <url-pattern>/Login</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>emailvery</servlet-name>
     <jsp-file>/pages/EmailVerification.jsp</jsp-file>
@@ -36,6 +40,7 @@
     <servlet-name>emailvery</servlet-name>
     <url-pattern>/EmailVerification</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>register</servlet-name>
     <jsp-file>/pages/Register.jsp</jsp-file>
@@ -44,6 +49,7 @@
     <servlet-name>register</servlet-name>
     <url-pattern>/Register</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ViewCategory</servlet-name>
     <servlet-class>org.cadet.admin.controller.ViewCategory</servlet-class>
@@ -52,6 +58,7 @@
     <servlet-name>ViewCategory</servlet-name>
     <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AddCategory</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddCategory</servlet-class>
@@ -60,6 +67,7 @@
     <servlet-name>AddCategory</servlet-name>
     <url-pattern>/admin/questionBank/AddCategory</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>EditCategory</servlet-name>
     <servlet-class>org.cadet.admin.controller.EditCategory</servlet-class>
@@ -68,6 +76,7 @@
     <servlet-name>EditCategory</servlet-name>
     <url-pattern>/admin/questionBank/EditCategory</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>RemoveCategory</servlet-name>
     <servlet-class>org.cadet.admin.controller.RemoveCategory</servlet-class>
@@ -76,6 +85,7 @@
     <servlet-name>RemoveCategory</servlet-name>
     <url-pattern>/admin/questionBank/RemoveCategory</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>UploadByFile</servlet-name>
     <jsp-file>/admin/questionbank/UploadByFile.jsp</jsp-file>
@@ -84,6 +94,7 @@
     <servlet-name>UploadByFile</servlet-name>
     <url-pattern>/admin/questionBank/UploadByFile</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>TestManagement</servlet-name>
     <jsp-file>/admin/test/testManagementHome.jsp</jsp-file>
@@ -92,6 +103,7 @@
     <servlet-name>TestManagement</servlet-name>
     <url-pattern>/admin/test/testManagementHome</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>createtest</servlet-name>
     <jsp-file>/admin/test/createTest.jsp</jsp-file>
@@ -100,6 +112,7 @@
     <servlet-name>createtest</servlet-name>
     <url-pattern>/admin/test/createTest</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ViewCat</servlet-name>
     <jsp-file>/admin/usercategory/viewallcategory.jsp</jsp-file>
@@ -108,6 +121,7 @@
     <servlet-name>ViewCat</servlet-name>
     <url-pattern>/admin/usercategory/viewallcategory</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>resulthome</servlet-name>
     <jsp-file>/admin/test/resultHome.jsp</jsp-file>
@@ -116,6 +130,7 @@
     <servlet-name>resulthome</servlet-name>
     <url-pattern>/admin/test/resultHome</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AddQuestions</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddQuestions</servlet-class>
@@ -124,6 +139,7 @@
     <servlet-name>AddQuestions</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestions</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>EditQuestions</servlet-name>
     <servlet-class>org.cadet.admin.controller.EditQuestions</servlet-class>
@@ -132,6 +148,7 @@
     <servlet-name>EditQuestions</servlet-name>
     <url-pattern>/admin/questionBank/EditQuestions</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ViewQuestion</servlet-name>
     <servlet-class>org.cadet.admin.controller.ViewQuestion</servlet-class>
@@ -140,6 +157,7 @@
     <servlet-name>ViewQuestion</servlet-name>
     <url-pattern>/admin/questionBank/ViewQuestion</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>RemoveQuestion</servlet-name>
     <servlet-class>org.cadet.admin.controller.RemoveQuestion</servlet-class>
@@ -148,6 +166,7 @@
     <servlet-name>RemoveQuestion</servlet-name>
     <url-pattern>/admin/questionBank/RemoveQuestion</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>EditQuestion</servlet-name>
     <servlet-class>org.cadet.admin.controller.EditQuestion</servlet-class>
@@ -156,6 +175,7 @@
     <servlet-name>EditQuestion</servlet-name>
     <url-pattern>/admin/questionBank/EditQuestion</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AddQuestion</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddQuestion</servlet-class>
@@ -164,6 +184,7 @@
     <servlet-name>AddQuestion</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestion</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AddQuestionByFile</servlet-name>
     <servlet-class>org.cadet.admin.controller.AddQuestionByFile</servlet-class>
@@ -172,6 +193,7 @@
     <servlet-name>AddQuestionByFile</servlet-name>
     <url-pattern>/admin/questionBank/AddQuestionByFile</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>TestRegister</servlet-name>
     <jsp-file>/client/Test/registerfortest.jsp</jsp-file>
@@ -180,6 +202,7 @@
     <servlet-name>TestRegister</servlet-name>
     <url-pattern>/client/Test/RegisterForTest</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>TestView</servlet-name>
     <jsp-file>/client/Test/viewalltest.jsp</jsp-file>
@@ -188,6 +211,7 @@
     <servlet-name>TestView</servlet-name>
     <url-pattern>/client/Test/ViewAllTest</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ProChangedet</servlet-name>
     <jsp-file>/client/profile/changedetails.jsp</jsp-file>
@@ -196,6 +220,7 @@
     <servlet-name>ProChangedet</servlet-name>
     <url-pattern>/client/profile/ChangeDetails</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ProChangepass</servlet-name>
     <jsp-file>/client/profile/changepassword.jsp</jsp-file>
@@ -204,6 +229,7 @@
     <servlet-name>ProChangepass</servlet-name>
     <url-pattern>/client/profile/ChangePassword</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>ForgotPassword</servlet-name>
     <jsp-file>/pages/ForgotPasswordWait.jsp</jsp-file>
@@ -212,6 +238,7 @@
     <servlet-name>ForgotPassword</servlet-name>
     <url-pattern>/ForgotPasswordWait</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AdaptiveTest</servlet-name>
     <jsp-file>/client/Test/Adaptive/Test.jsp</jsp-file>
@@ -220,6 +247,7 @@
     <servlet-name>AdaptiveTest</servlet-name>
     <url-pattern>/client/Test/Adaptive/Test</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>getCategoryDetails</servlet-name>
     <servlet-class>org.cadet.admin.controller.getCategoryDetails</servlet-class>
@@ -238,6 +266,7 @@
     <servlet-name>PageNotFound</servlet-name>
     <url-pattern>/PageNotFound</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>InternalError</servlet-name>
     <jsp-file>/pages/ServerException.jsp</jsp-file>
@@ -246,6 +275,7 @@
     <servlet-name>InternalError</servlet-name>
     <url-pattern>/InternalError</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>UnAuthorized</servlet-name>
     <jsp-file>/pages/UnAuthorizedAccess.jsp</jsp-file>

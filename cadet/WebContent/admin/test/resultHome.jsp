@@ -80,10 +80,10 @@ body {
 	<script src="/cadet/js/jquery-1.8.2.js"></script>
         <script src="/cadet/js/bootstrap.js"></script>
         <script src="/cadet/js/handlebars.js"></script>
-        <script type="text/javascript">
-    		$("#dashboard").addClass("active");
-    		$("#collapse3").addClass("in");
-    	</script>
+        	<script type="text/javascript">
+        $("#test").addClass("active");
+        $("#collapse3").addClass("in");
+        </script>
         <script src="/cadet/js/bootbox.js"></script>
         <script id="getresults" type="text/x-handlebars-template">
         	{{#if testList}}

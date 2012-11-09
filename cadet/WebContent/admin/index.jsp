@@ -33,7 +33,7 @@ footer {
 </style>
 <link rel="stylesheet" href="../css/bootstrap-responsive.css">
 <link rel="stylesheet" href="../css/main.css">
-
+<script src="../js/jquery-1.8.2.js"></script>
 <script src="../js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
@@ -45,9 +45,9 @@ footer {
 
 	<div class="container-fluid">
 		<div class="row">
-
-<jsp:include page="/admin/Accordian.jsp"></jsp:include>
-
+		<jsp:include page="/admin/Accordian.jsp"></jsp:include>
+			<!--/#accordion -->
+			
 			<div class="container-fluid span9">
 				<div class="navbar">
 						<div class="navbar-inner">
@@ -69,11 +69,10 @@ footer {
 
 	<jsp:include page="/admin/Footer.jsp"></jsp:include>
 
-	<script src="../js/jquery-1.8.2.js"></script>
 	<script src="../js/bootstrap.js"></script>
-	
 	<script type="text/javascript">
 	$("#dashboard").addClass("active");	
 	</script>
+
 </body>
 </html>
