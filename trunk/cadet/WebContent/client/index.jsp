@@ -25,7 +25,7 @@
         </style>
         <link rel="stylesheet" href="../css/bootstrap-responsive.css">
         <link rel="stylesheet" href="css/main.css">
-        <script src="../../js/jquery-1.8.2.js"></script>
+        <script src="../js/jquery-1.8.2.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
