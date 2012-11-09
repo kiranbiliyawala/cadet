@@ -158,7 +158,8 @@
 
         <script src="../../js/bootstrap.js"></script>
 
-        
+		<script src="../../js/nicEdit.js"></script>
+
         <script src="../../js/main.js"></script>
         
         <script type="text/javascript">
@@ -314,6 +315,14 @@
 	    		return xmlHttp;
 	    	}
 	    	</script>	
+
+			<script>
+				bkLib.onDomLoaded(function() {
+				
+					new nicEditor({fullPanel : true,iconsPath : "../../img/nicEditorIcons.gif"}).panelInstance("txtQuestion");
+				});
+			</script>
+
          <script type="text/javascript">
         $("#question").addClass("active");
         $("#collapse2").addClass("in");
