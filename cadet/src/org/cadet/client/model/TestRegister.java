@@ -71,10 +71,10 @@ public class TestRegister {
 				objTest.setTestDuration(rs.getInt(3));
 				objTest.setTestId(rs.getInt(4));
 					
-				if(rs.getInt(5)==0 && rs.getInt(6)==0 && rs.getInt(7)==0 )
-						objTest.setTestDesc("Attempted");
-				else
+				if(rs.getDouble(5)==0.0 && rs.getInt(6)==0 && rs.getInt(7)==0 )
 						objTest.setTestDesc("Not Attempted");
+				else
+						objTest.setTestDesc("Attempted");
 					
 				test2.add(objTest);
 			}
