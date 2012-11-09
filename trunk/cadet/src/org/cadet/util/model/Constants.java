@@ -88,7 +88,7 @@ public class Constants {
 	/* Shailee Queries */
 	public static final String getNotRegisterTestForUserSql = "select distinct a.TestName, a.TestDate, a.TestDuration, a.testid from test a, testcandidatecategory c  where DATEDIFF(a.StartTime, Sysdate())>=0 and c.CandidateCategoryName =? and a.TestId = c.TestId and a.TestId not in (select TestId from result where CUsername=?) order by TestDate;";
 	public static final String getViewAllTestForUserSql = "select distinct a.TestName, a.TestDate, a.TestDuration, " + " a.testid,b.marks,b.attempted,b.correct from test a, result b, testcandidatecategory c  where " + " c.CandidateCategoryName = ? and a.TestId = c.TestId and a.TestId = b.TestId and b.CUserName = ? order by TestDate;";
-	public static final String setRegisterTestForUserSql = "insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0, 0, 0)";
+	public static final String setRegisterTestForUserSql = "insert into result (CUserName, TestId, Marks, Attempted, Correct) values (?, ?, 0.0, 0, 0)";
 	public static final String getAllUserCategoriesSql = "Select CandidateCategoryName FROM candidatecategory";
 
 
