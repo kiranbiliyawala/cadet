@@ -8,11 +8,15 @@ $(document).ready(function(e) {
 		type: 'POST',
 		async:false,
 		success:function(result){
-			$("#usercategory").html(result);
-		}
-	});
-}
 
+			var str = "";
+			$.each(result.result,function(i,path) {
+			str+="<option value=\""+path.catName+"\">"+path.catName+"</option>";
+		});
+			$("#usercategory").html(str);
+	}
+});
+	}
 
   function validate() {
 	 
