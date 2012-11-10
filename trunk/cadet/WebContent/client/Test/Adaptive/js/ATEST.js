@@ -15,9 +15,11 @@ function fetch_first_question(categoryid){
 						var template = Handlebars.compile(src);
 						var output = template(data);
 
-						$("#question_portion").append(output);
+						$("#question_portion").html(output);
 						question_changed();
 					}else if(data.result==='sectionAlreadyDoneError'){
+						finish_section();
+					}else if(data.result==='sectionFinished'){
 						finish_section();
 					}
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
@@ -38,9 +40,11 @@ function submit_question(answer){
 						var template = Handlebars.compile(src);
 						var output = template(data);
 
-						$("#question_portion").append(output);
+						$("#question_portion").html(output);
 						question_changed();
 					}else if(data.result==='sectionAlreadyDoneError'){
+						finish_section();
+					}else if(data.result==='sectionFinished'){
 						finish_section();
 					}
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
@@ -59,9 +63,11 @@ function skip_question(){
 						var template = Handlebars.compile(src);
 						var output = template(data);
 
-						$("#question_portion").append(output);
+						$("#question_portion").html(output);
 						question_changed();
 					}else if(data.result==='sectionAlreadyDoneError'){
+						finish_section();
+					}else if(data.result==='sectionFinished'){
 						finish_section();
 					}
 				} catch(e) { bootbox.alert(e.status+"\n"+e.message); }
@@ -75,9 +81,11 @@ function get_categories(){
 
 				try {
 					if(data.result===true) {
+					//	bootbox.alert("started");
 						var src = $("#getcategories").html();
 						var template = Handlebars.compile(src);
 						var output = template(data);
+					//	bootbox.alert(output);
 						$("#categories").html(output);
 					}else if(data.result==='testFinished'){
 						finish_test();
@@ -215,8 +223,6 @@ $(document).ready(function(){
 });
 
 function finish_test_confirm(){
-	show_catselector();
-	return;
 var r=confirm("Are you sure to finish the test ?");
 if (r==true)
   {

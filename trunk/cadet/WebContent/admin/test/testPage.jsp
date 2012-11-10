@@ -537,7 +537,7 @@ footer {
 
 					<c:choose>
 						<c:when test="${testType eq TestAdaptive}">
-							<input id="{{category.categoryId}}" name="{{category.categoryId}}" type="number" required placeholder="Questions per Category" min=1 value="{{category.questionPerCategory}}">
+							<input id="txtNoQueCat{{category.categoryId}}" name="txtNoQueCat{{category.categoryId}}" type="number" required placeholder="Questions per Category" min=1 value="{{category.questionPerCategory}}">
 						</c:when>
 						<c:otherwise>
 							<input type="hidden" value="{{category.categoryId}}">

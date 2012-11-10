@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.cadet.client.model.adaptive.AdaptiveTest;
-import org.json.JSONArray;
+import org.cadet.util.Exceptions.TestFinishException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -81,24 +81,26 @@ public class SubmitTest extends HttpServlet {
 		
 		test= (AdaptiveTest)session.getAttribute("test");
 		
-		try {
-			test.finishTest(session.getAttribute("user").toString());
-			response.sendRedirect("TestEndPageA.jsp");
-			return;
-		} catch (SQLException sqle) {
-			// TODO Auto-generated catch block
-			sqle.printStackTrace();
+		
 			try {
-				data.put("result", "databaseError");
-				out.println(data);
+				test.finishTest(session.getAttribute("user").toString());
+				response.sendRedirect("TestEndPageA.jsp");
 				return;
-			} catch (JSONException e) {
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				try {
+					data.put("result", "databaseError");
+					out.println(data);
+					return;
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return;
+				}
+			} catch (TestFinishException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return;
-			}
-		} catch(Exception e) {
-			if(e.getMessage().equals("Test Finished!")){
 				try {
 					response.sendRedirect("TestEndPageA.jsp");
 					return;
@@ -108,19 +110,7 @@ public class SubmitTest extends HttpServlet {
 					return;
 				}
 			}
-			else{
-				try {
-					data.put("result", "unknownError");
-					out.println(data);
-					return;
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					return;
-				}
-				
-			}
-		}
+			
 		
 	}
 }

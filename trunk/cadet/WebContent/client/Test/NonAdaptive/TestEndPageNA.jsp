@@ -14,12 +14,11 @@
 <body class="body">
 <div class="test_portion">
 <h1 class="header">Test :<%= session.getAttribute("test_name") %></h1>
-<div class="Time">
-Duration : <%= request.getAttribute("TestTime") %>
-</div>
+
 
 <div class="instruction">
-Instructions.....
+<br/>
+TEST FINISHED ...
 </div>
 <form method="post" action="SubmitTest">
 <div class="closestartbtn"><button onclick="window.close();" class="btn butn btn-primary" type="button" value="End Test">Close Window</button></div>

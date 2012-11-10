@@ -13,6 +13,10 @@ import java.util.concurrent.TimeUnit;
 import org.cadet.client.bean.Question;
 import org.cadet.client.bean.CategoryAdaptiveTest;
 import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
+import org.cadet.util.Exceptions.DificultyExhaustException;
+import org.cadet.util.Exceptions.NoSuchTestException;
+import org.cadet.util.Exceptions.SectionCompleteException;
+import org.cadet.util.Exceptions.TestFinishException;
 
 
 /**
@@ -40,18 +44,15 @@ public class AdaptiveTest {
 	private Date testDate;
 	private Double initialDifficulty;
 	private HashMap<Integer, CategoryAdaptiveTest> categories;
-	//private HashMap<Integer, Integer> categoryWiseQuestions;
-	//private HashMap<Integer, Double> categoryWiseAbility;
-	//private HashMap<Integer, Double> categoryWiseTimedAbility;
-	//private HashMap<Integer, Integer> categoryDone;
+
 	private Adaptive_Ability_Optimization aao;
 	private Question question;
-	//private ArrayList<Integer> askedQuestions;
+	private long TestTime;
 	private int skippedQuestions=0;
 	private int correctAnswers=0;
 	
 	
-	public AdaptiveTest(int testID, String username) throws SQLException, Exception{
+	public AdaptiveTest(int testID, String username) throws SQLException, NoSuchTestException{
 		this.testId=testID;
 		this.username=username;
 		ArrayList<Object> testDetails=AdaptiveTestDBTransactions.getTestDetails(this.testId);
@@ -67,43 +68,21 @@ public class AdaptiveTest {
 			cat=iter.next();
 			cat.setAbility(this.initialDifficulty);
 			cat.setTimedAbility(this.initialDifficulty);
+			TestTime += cat.getTimePerCategory();
 		}
 		iter=null;
 			
 		
-		/*this.categoryWiseAbility=new HashMap<Integer,Double>();
-		this.categoryWiseTimedAbility=new HashMap<Integer,Double>();
-		this.categoryDone=new HashMap<Integer, Integer>();*/
-		
-		/*int noOfQuestions=0;
-		if(!categories.isEmpty()){
-			//Iterator<Entry<Integer,Integer>> iterator=categories.entrySet().iterator();
-			Iterator<CategoryAdaptiveTest> iterator=categories.values().iterator();
-			if(iterator.hasNext()){
-				//Map.Entry<Integer,Integer> e=iterator.next();
-				CategoryAdaptiveTest cat=iterator.next();
-				//noOfQuestions=e.getValue().intValue();
-				noOfQuestions = cat.getQuestionsPerCategory();
-				//categoryDone.add(e.getKey().intValue());
-				//currentCategoryId=e.getKey().intValue();
-				currentCategoryId=cat.getCategoryId();
-			}
-			iterator=null;
-		}
-		
-		aao= AdaptiveTestDBTransactions.generateAAO(testID, noOfQuestions);
-		
-		ArrayList<Integer> temp= new ArrayList<Integer>();//since initially askedQuestions would be empty and NOT IN() would give error. Also no question would have 0 as questionId ;)
-		temp.add(new Integer(0));
-		this.question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, aao.getDifficulty(), temp);
-		//categoryDone.put(this.currentCategoryId, 1);
-		this.categories.get(this.currentCategoryId).addAskedQuestion(this.question.getQuestionId());
-		//askedQuestions.add(question.getQuestionId());
-*/	
 		}
 	
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public String getTestTime() {
+		long test_hours = (int) (TestTime/60);
+		long test_minutes = (int) (TestTime%60);
+		return test_hours+":"+test_minutes+":00";
 	}
 
 	public String getTestName() {
@@ -118,7 +97,7 @@ public class AdaptiveTest {
 		return this.testDate;
 	}
 
-	public HashMap<Integer, CategoryAdaptiveTest> getUnattemptedCategories() throws SQLException, Exception{
+	public HashMap<Integer, CategoryAdaptiveTest> getUnattemptedCategories() throws SQLException, TestFinishException{
 		HashMap<Integer, CategoryAdaptiveTest> categories = new HashMap<Integer, CategoryAdaptiveTest>();
 		Iterator<CategoryAdaptiveTest> iterator = this.categories.values().iterator();
 		CategoryAdaptiveTest category;
@@ -132,7 +111,7 @@ public class AdaptiveTest {
 		return categories;
 	}
 
-	public Question skipQuestion() throws SQLException, Exception {
+	public Question skipQuestion() throws SQLException, SectionCompleteException,DificultyExhaustException {
 		
 		aao.skip_question();
 		this.skippedQuestions++;
@@ -150,11 +129,8 @@ public class AdaptiveTest {
 					return this.question;
 				}
 				else return null;
-			} catch (Exception e) {
-				if (e.getMessage().equals("Questions for the given difficulty are exhausted !")) {
+			} catch (DificultyExhaustException e) {
 					return increaseDifficulty();
-				}
-				else throw e;
 			}
 		}
 		else {
@@ -162,11 +138,11 @@ public class AdaptiveTest {
 			this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
 			this.categories.get(this.currentCategoryId).setDone(true);
 			
-			throw new Exception("Section Completed!");
+			throw new SectionCompleteException("Section Completed!");
 		}
 	}
 	
-	public Question submitQuestion(String answer) throws SQLException, Exception {
+	public Question submitQuestion(String answer) throws SQLException, SectionCompleteException,DificultyExhaustException {
 		
 		boolean isAnsweredCorrectly=this.question.getCorrectAnswer().equals(answer);
 		if(isAnsweredCorrectly)
@@ -187,11 +163,8 @@ public class AdaptiveTest {
 					return this.question;
 				}
 				else return null;
-			} catch (Exception e) {
-				if (e.getMessage().equals("Questions for the given difficulty are exhausted !")) {				
+			} catch (DificultyExhaustException e) {
 					return increaseDifficulty();
-				}
-				else throw e;
 			}
 		}
 		else {
@@ -199,53 +172,26 @@ public class AdaptiveTest {
 			this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
 			this.categories.get(this.currentCategoryId).setDone(true);
 			
-			throw new Exception("Section completed!");
+			throw new SectionCompleteException("Section completed!");
 		}
 	}
 	
-	public Question startSection(int categoryId) throws SQLException, Exception {
+	public Question startSection(int categoryId) throws SQLException, SectionCompleteException, InvalidAlgorithmParameterException, NoSuchTestException, DificultyExhaustException {
 		
-		/*
-		this.categoryWiseAbility.put(this.currentCategoryId, aao.getAbility());
-		this.categoryWiseTimedAbility.put(this.currentCategoryId, aao.getTimedAbility());
-		int noOfQuestions=0;
-		Iterator<Entry<Integer,Integer>> iterator=categoryWiseQuestions.entrySet().iterator();
-		while(iterator.hasNext()){
-			Map.Entry<Integer,Integer> e=iterator.next();
-			if(!categoryDone.containsKey(e.getKey())) {
-				noOfQuestions=e.getValue().intValue();
-				this.currentCategoryId=e.getKey().intValue();
-			}
-		}
-		iterator=null;
-		if(categoryDone.containsKey(this.currentCategoryId)){
-			// this means if after trying to fetch new currentCategoryId if its in the list of done. It means test is over and no category is left.
-			// notify the controller to invoke finishTest() method passing the user's name(Id)
-			//finishTest();
-			return null;
-		}
-		else{
-			this.aao=AdaptiveTestDBTransactions.generateAAO(this.testId, noOfQuestions);
-			this.question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, aao.getDifficulty(), askedQuestions);
-			this.askedQuestions.add(this.question.getQuestionId());
-			this.categoryDone.put(this.currentCategoryId, 1);
-			return this.question;
-		}
-		*/
+		
 		
 		if(this.categories.get(categoryId).isDone())
-			throw new Exception("This section is already completed!");
+			throw new SectionCompleteException("This section is already completed!");
 		else{
 			this.currentCategoryId=categoryId;
 			this.aao=AdaptiveTestDBTransactions.generateAAO(this.testId, this.categories.get(this.currentCategoryId).getQuestionsPerCategory());
 			try {
 				this.question=AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
-			} catch (Exception e) {
+			} catch (DificultyExhaustException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				if(e.getMessage().equals("Questions for the given difficulty are exhausted !")){
 					this.question= this.increaseDifficulty();
-				}
+				
 			}
 			this.categories.get(this.currentCategoryId).addAskedQuestion(this.question.getQuestionId());
 			this.aao.start_test();
@@ -254,7 +200,7 @@ public class AdaptiveTest {
 		}
 	}
 	
-	private Question increaseDifficulty() throws SQLException, Exception{
+	private Question increaseDifficulty() throws SQLException, SectionCompleteException,DificultyExhaustException{
 		try {
 			this.aao.increase_difficulty();
 			return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
@@ -262,7 +208,7 @@ public class AdaptiveTest {
 			this.categories.get(this.currentCategoryId).setAbility(this.aao.getAbility());
 			this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
 			this.categories.get(this.currentCategoryId).setDone(true);
-			throw new Exception("Section completed!");
+			throw new SectionCompleteException("Section completed!");
 		} catch(Exception ex){
 			if(ex.getMessage().equals("Questions for the given difficulty are exhausted !")){
 				return this.increaseDifficulty();
@@ -279,30 +225,11 @@ public class AdaptiveTest {
 		this.categories.get(this.currentCategoryId).setDone(true);
 	}
 	
-	public void finishTest(String username) throws SQLException, Exception{
+	public void finishTest(String username) throws SQLException, TestFinishException{
 		
 		int attempted=0;
 		double final_ability=1.0;
 		
-		//this.categoryWiseAbility.put(this.currentCategoryId, aao.getAbility());
-		//this.categoryWiseTimedAbility.put(this.currentCategoryId, aao.getTimedAbility());
-		//this.categories.get(this.currentCategoryId).setAbility(this.aao.getAbility());
-		//this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
-		//this.categories.get(this.currentCategoryId).setDone(true);
-		
-		/*Iterator<Entry<Integer,Integer>> iter=this.categoryDone.entrySet().iterator();
-		while(iter.hasNext()){
-			attempted+=iter.next().getValue().intValue();
-		}
-		iter=null;
-		
-		attempted-=this.skippedQuestions;
-		
-		Iterator<Entry<Integer,Double>> iterator=this.categoryWiseTimedAbility.entrySet().iterator();
-		while(iterator.hasNext()){
-			final_ability += iterator.next().getValue().doubleValue();
-			count++;
-		}*/
 		
 		Iterator<CategoryAdaptiveTest> iterator=this.categories.values().iterator();
 		CategoryAdaptiveTest category;
@@ -318,7 +245,7 @@ public class AdaptiveTest {
 		final_ability = final_ability/this.categories.size();
 		
 		AdaptiveTestDBTransactions.saveResult(username, this.testId, final_ability, attempted, this.correctAnswers);
-		throw new Exception("Test Finished!");
+		throw new TestFinishException("Test Finished!");
 	}
 	
 	private void createScheduler(long delay){

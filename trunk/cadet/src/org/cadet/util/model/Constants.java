@@ -84,7 +84,7 @@ public class Constants {
 
 	/* Rajan Queries */
 
-	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and TIMEDIFF(t.EndTime, SysDate())>=0 and DATEDIFF(t.StartTime, SysDate())>=0 and tcc.CandidateCategoryName = ? and tcc.CandidateCategoryName=c.CandidateCategoryName and r.CUserName = c.CUserName and r.Marks=0.0 and r.Attempted=0 and r.Correct=0 and c.CUserName = ?";
+	public static final String getDashboardTests = "SELECT DISTINCT(tcc.TestId),t.TestType, t.TestName, t.TestDate, t.TestDuration, r.Marks as marks, r.Attempted as attempt, r.Correct as correct FROM Test t, testcandidatecategory tcc, candidate c, result r WHERE t.TestId = tcc.TestId and TIMEDIFF(t.EndTime, SysDate())>=0 and DATEDIFF(t.StartTime, SysDate())>=0 and tcc.CandidateCategoryName = ? and c.CandidateCategoryName=tcc.CandidateCategoryName and r.CUserName = c.CUserName and r.TestId = tcc.TestId and r.Marks=0.0 and r.Attempted=0 and r.Correct=0 and c.CUserName = ?";
 	public static final String getCandidateCategory = "SELECT CandidateCategoryName from candidate where CUserName=?";
 
 	/* Shailee Queries */
@@ -127,7 +127,7 @@ public class Constants {
 	public static final String getTest="SELECT * from test where testId = ?";
 	public static final String getTestDetails="SELECT TestName, TestDesc, TestDate, InitialDifficulty FROM test WHERE TestId = ?";
 	public static final String getQuestionCountAndCategoryOfTest="SELECT tc.CategoryId, c.CategoryName, tc.TimePerCategory, tc.QuestionPerCategory FROM testcategory tc JOIN category c on tc.CategoryId = c.CategoryId WHERE testId = ?";
-	public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, l.Marks FROM testquestion t JOIN questionbank q ON t.QuestionId=q.QuestionId JOIN levelmarks l ON t.TestId=l.TestId JOIN category c ON q.CategoryId=c.CategoryId WHERE q.LevelId=l.LevelId AND t.TestId= ? AND q.CategoryId= ? AND l.LevelId= ? AND q.QuestionId NOT IN (";
+	public static final String fetchNextQuestion1="SELECT q.QuestionId, q.LevelId, c.CategoryName, q.Question, q.OptA, q.OptB, q.OptC, q.OptD, q.CorrectAnswer, q.LevelId FROM questionbank q,category c, testcategory tc WHERE q.CategoryId = tc.CategoryId AND c.CategoryId = tc.CategoryId AND tc.TestID = ? AND tc.CategoryId = ? AND q.LevelId =? AND q.QuestionId NOT IN (";
 	public static final String fetchNextQuestion2=") ORDER BY RAND() LIMIT 1";
 	public static final String saveResult="UPDATE result SET Marks=?, Attempted=?, Correct=? WHERE CUserName=? AND TestId=?";
   }
