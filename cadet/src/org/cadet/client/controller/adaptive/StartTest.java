@@ -45,12 +45,16 @@ public class StartTest extends HttpServlet {
 			if(testStatus!=null){
 				request.getRequestDispatcher("").forward(request, response);//send to client dashboard from where start test button was clicked.
 			}*/
+			String username = (String)session.getAttribute("user");
+			username.toString();
 			Integer testID = Integer.parseInt(request.getParameter("testid").toString());
 
-			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID)) {
+			if (AdaptiveTestDBTransactions.checkTestWithinDuration(testID,username)) {
 				//session.setAttribute("testStarted", true);//check on pop up page whether test has been started so that candidate cannot restart the test by resubmitting the url.
 				try {
 					AdaptiveTest test=new AdaptiveTest(testID,session.getAttribute("user").toString());
+					request.setAttribute("TestTime", test.getTestTime());
+					session.setAttribute("test_name",test.getTestName());
 					session.setAttribute("test", test);
 					System.out.print("hio");
 					request.getRequestDispatcher("TestStartPageA.jsp").include(request, response);
@@ -63,8 +67,6 @@ public class StartTest extends HttpServlet {
 				}
 				
 				//code here for pop up the test page and start test
-				
-				
 				
 
 			} else {

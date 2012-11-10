@@ -56,7 +56,8 @@
         <button class="btn butn btn-info" type="button" onclick="skip()" name="Skip" text="Skip" style="float:right"/>Skip</button>
 	</div>
 	  <script src="/cadet/js/handlebars.js"></script>
-	  
+	   <script src="/cadet/js/bootbox.js"></script>
+	   
 	  <script id="changequehandle" type="text/x-handlebars-template">
        <div class="Question_no">
         <h1 class="QNO" id="QNO">1</h1>

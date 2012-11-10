@@ -23,7 +23,7 @@
 	margin-right:15%;
 	margin-top:15%;
 	font-weight: bold;
-	text-align:center;
+	text-align:justify;
 	box-shadow:3px 3px 5px 6px #ccc;
 }
 .closestartbtn
@@ -43,9 +43,7 @@
 	text-align:center;
 }
 
-.closestartbtn:hover{
-	background-color:#999;
-}
+
 .Time{
 	position:absolute;
 	height:10%;

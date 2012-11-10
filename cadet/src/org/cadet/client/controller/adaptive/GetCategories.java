@@ -2,6 +2,7 @@ package org.cadet.client.controller.adaptive;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.cadet.client.bean.CategoryAdaptiveTest;
 import org.cadet.client.model.adaptive.AdaptiveTest;
+import org.cadet.util.Exceptions.TestFinishException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,20 +58,14 @@ public class GetCategories extends HttpServlet {
 		JSONArray element;		
 		PrintWriter out;
 		
-		try {
 			data = new JSONObject();
 			array = new JSONArray();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			
 			out = response.getWriter();
-		} catch (Exception e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-			return;
-		}
 		
-		try {
+		
 			HttpSession session = request.getSession(false);
 			
 
@@ -86,34 +82,44 @@ public class GetCategories extends HttpServlet {
 				}
 			}
 			AdaptiveTest test = (AdaptiveTest) session.getAttribute("test");
-			try {
-				Collection<CategoryAdaptiveTest> categories = test.getUnattemptedCategories().values();
 
-				// request.setAttribute("categories", categories);
-
-				// OR
+				Collection<CategoryAdaptiveTest> categories;
 				try {
-					for (CategoryAdaptiveTest cat : categories) {
-						element = new JSONArray();
-						element.put(0, cat.getCategoryId());
-						element.put(1, cat.getCategoryName());
-						element.put(2, new Long(cat.getTimePerCategory()*60*1000));
-						array.put(element);
+					categories = test.getUnattemptedCategories().values();
+					try {
+						for (CategoryAdaptiveTest cat : categories) {
+							element = new JSONArray();
+							element.put(0, cat.getCategoryId());
+							element.put(1, cat.getCategoryName());
+							element.put(2, new Long(cat.getTimePerCategory()*60*1000));
+							array.put(element);
+						}
+					
+						data.put("result", true);
+						data.put("categoryList", array);
+						out.println(data);
+						return;
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return;
 					}
-				
-					data.put("result", true);
-					data.put("categoryList", array);
-					out.println(data);
-					return;
-				} catch (JSONException e) {
+				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-					return;
-				}
-
-			} catch (Exception ex) {
-				if (ex.getMessage().equals("Test Finished!")) {
-
+					e1.printStackTrace();
+					try {
+						data.put("result", "databaseError");
+						out.println(data);
+						return;
+					} catch (JSONException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+						return;
+					}
+					
+				} catch (TestFinishException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 					try {
 						data.put("result", "testFinished");
 						out.println(data);
@@ -124,18 +130,8 @@ public class GetCategories extends HttpServlet {
 						return;
 					}
 				}
-			}
-		} catch (Exception e) {
-			try {
-				data.put("result", "databaseError");
-				out.println(data);
-				return;
-			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return;
-			}
-		}
+
+				
 	}
 
 }

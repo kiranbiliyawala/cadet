@@ -1,18 +1,21 @@
 package org.cadet.client.model.adaptive;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
 import org.cadet.client.bean.CategoryAdaptiveTest;
 import org.cadet.client.bean.Question;
-import org.cadet.util.model.DatabaseConnection;
+import org.cadet.client.model.NonAdaptiveTest;
+import org.cadet.client.model.adaptive.algorithm.Adaptive_Ability_Optimization;
+import org.cadet.util.Exceptions.DificultyExhaustException;
+import org.cadet.util.Exceptions.NoSuchTestException;
 import org.cadet.util.model.Constants;
+import org.cadet.util.model.DatabaseConnection;
 
 
 /**
@@ -25,35 +28,14 @@ public class AdaptiveTestDBTransactions {
 		
 	}
 	
-	public static boolean checkTestWithinDuration(int testID) throws SQLException, Exception{
+	public static boolean checkTestWithinDuration(int testID,String username) throws SQLException{
 		// this method checks if the test is started in within the stipulated test duration.
 		
-			DatabaseConnection dbConn=DatabaseConnection.getInstance();
-			Connection conn=dbConn.getDbConnection();
-			PreparedStatement ps=conn.prepareStatement(Constants.sqlCommands.getTest);
-			ps.setInt(1, testID);
+			return NonAdaptiveTest.isAllowed(testID, username);
 			
-			ResultSet rs=ps.executeQuery();
-			if(rs.first()){
-				
-				Date startTime=rs.getDate(6);
-				Date endTime=rs.getDate(7);
-				
-				long testDuration=rs.getInt(8)*60*60*1000;
-				rs.close();
-				Date now=new Date(new java.util.Date().getTime());
-				
-				if((now.getTime()>startTime.getTime())&&(now.getTime()<(endTime.getTime()-testDuration))){
-					return true;
-				}
-			}
-			else{
-				throw new Exception("No such Test Exists !");
-			}
-		return false;
 	}
 
-	public static ArrayList<Object> getTestDetails(int testId) throws SQLException, Exception {
+	public static ArrayList<Object> getTestDetails(int testId) throws SQLException, NoSuchTestException {
 		
 		ArrayList<Object> testDetails=new ArrayList<Object>();
 		
@@ -70,13 +52,13 @@ public class AdaptiveTestDBTransactions {
 			testDetails.add(2, rs.getDate(3));
 			testDetails.add(3, new Double(rs.getInt(4)));
 		}
-		else throw new Exception("No such Test Exists !");
+		else throw new NoSuchTestException("No such Test Exists !");
 		
 		rs.close();
 		return testDetails;
 	}
 	
-	public static HashMap<Integer, CategoryAdaptiveTest> getCategoryWiseQuestionCount(int testId) throws SQLException, Exception{
+	public static HashMap<Integer, CategoryAdaptiveTest> getCategoryWiseQuestionCount(int testId) throws SQLException, NoSuchTestException{
 		
 		HashMap<Integer, CategoryAdaptiveTest> categories = new HashMap<Integer,CategoryAdaptiveTest>();
 		CategoryAdaptiveTest category;
@@ -95,11 +77,11 @@ public class AdaptiveTestDBTransactions {
 		}
 		rs.close();
 		if(categories.isEmpty())
-			throw new Exception("Category wise questions not defined!");
+			throw new NoSuchTestException("Category wise questions not defined!");
 		return categories;
 	}
 	
-	public static Adaptive_Ability_Optimization generateAAO(int testId, int noOfQuestions) throws SQLException, Exception{
+	public static Adaptive_Ability_Optimization generateAAO(int testId, int noOfQuestions) throws SQLException, NoSuchTestException, InvalidAlgorithmParameterException{
 		//this method generates an instance of Adaptive_Optimization_Class based on the testId
 		
 		double initialDifficulty;
@@ -115,13 +97,13 @@ public class AdaptiveTestDBTransactions {
 			initialDifficulty=(double)rs.getInt(9);
 		}
 		else{
-			throw new Exception("No such Test Exists!");
+			throw new NoSuchTestException("No such Test Exists!");
 		}
 		rs.close();
 		return new Adaptive_Ability_Optimization(Constants.adaptive.MIN_DIFFICULTY, Constants.adaptive.MAX_DIFFICULTY, initialDifficulty, noOfQuestions, Constants.adaptive.DIFFERENCE_BETWEEN_TWO_DIFFICULTIES);
 	}
 
-	public static Question fetchNextQuestion(int testId, int categoryId, Double difficulty, ArrayList<Integer> askedQuestions) throws SQLException, Exception {
+	public static Question fetchNextQuestion(int testId, int categoryId, Double difficulty, ArrayList<Integer> askedQuestions) throws SQLException, DificultyExhaustException {
 		
 		String questions_asked= "";
 		Question q;
@@ -151,7 +133,7 @@ public class AdaptiveTestDBTransactions {
 			q= new Question(rs.getInt(1), rs.getInt(2), rs.getInt(10), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
 		}
 		else{
-			throw new Exception("Questions for the given difficulty are exhausted !");
+			throw new DificultyExhaustException("Questions for the given difficulty are exhausted !");
 		}
 		rs.close();
 		return q;

@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 import org.cadet.client.bean.DashboardBean;
 import org.cadet.util.model.Constants;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class CandidateCategory {
 	DashboardBean temp = null;
