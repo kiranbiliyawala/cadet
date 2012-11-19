@@ -170,6 +170,7 @@
 	        }
 	
 	        function addCategory(){
+				nicEditors.findEditor("txtCategoryDescription").saveContent();
 	        	categoryName = document.getElementById("txtCategoryName").value;
 	        	categoryDescription = document.getElementById("txtCategoryDescription").value;
 	        	xmlHttp2=GetXmlHttpObject2()
