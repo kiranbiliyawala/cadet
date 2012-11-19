@@ -211,6 +211,7 @@
 
 	    	function changeAction( action, cnt ){
         		if(action == 'SaveQuestion'){
+					nicEditors.findEditor("txtQuestion").saveContent();
         			validate(action);
         			if(
         					document.getElementById("divQuestion").innerHTML.toString().length == 0 &&
