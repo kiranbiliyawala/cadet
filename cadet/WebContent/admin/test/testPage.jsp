@@ -304,8 +304,8 @@ footer {
 							<div class="control-group">
 								<label class="control-label" for="txtDP">Date : </label>
 								<div class="controls">
-									<div class="input-append date" id="txtDP" data-date="05-11-2012" data-date-format="dd-mm-yyyy">
-										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" value="05-11-2012" readonly>
+									<div class="input-append date" id="txtDP" data-date="" data-date-format="dd-mm-yyyy">
+										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" required readonly>
 										<span class="add-on"><i class="icon-calendar"></i></span>
 									</div>
 								</div>
