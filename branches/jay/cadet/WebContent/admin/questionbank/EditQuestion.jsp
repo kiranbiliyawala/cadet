@@ -52,9 +52,7 @@
                     	<form action="" method="POST"> 
                     	<input type="submit" id="btnSubmit" name="btnSubmit" style="display:none;" class=""/>
                     	<table>
-                    		<tr>
-                    			<td id="tdNotification" style="color:green;"></td>
-                    		</tr>
+                    		
 			                	<c:if test="${requestScope.status eq 'success'}">
 				                    <tr>
 				                        <td colspan="5" style="width:70%;">
@@ -294,7 +292,6 @@
 	    	function stateChanged(){
 	    		if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
 	    			var status=xmlHttp.responseText;	    			if(status == "Question Edited"){
-	    				document.getElementById("tdNotification").setAttribute("style","color: green;");
 	    				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\"> Question Edited !!!</strong></div>" ;
 	    				setTimeout(function() {
 							$("body").prepend(alertDiv);

@@ -13,7 +13,7 @@ import org.cadet.client.model.NonAdaptiveTest;
 /**
  * Servlet implementation class GetQuestion
  */
-@WebServlet("/client/Test/NonAdaptive/GetQuestion")
+@WebServlet("/client/Test/Non-Adaptive/GetQuestion")
 public class GetQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

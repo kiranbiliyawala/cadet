@@ -52,12 +52,7 @@
                     	<form action="" id="frmAddQuestion" name="frmAddQuestion"> 
                     	<input type="submit" id="btnSubmit" name="btnSubmit" style="display:none;" class=""/>
                     	<table>
-                    		<tr>
-                    			<td id="tdNotification" style="display: none; color:green;">
-									<%=count %> - Question Added...
-									<input type="hidden" id="hdnCategoryId" name="hdnCategoryId" value=""/>			                    				
-                    			</td>
-                    		</tr>
+                    		
 		                    <tr>
 		                        <td colspan="5" style="width:70%;">
 		                        	Question:<br/>
@@ -248,9 +243,6 @@
 	    		if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
 	    			var status=xmlHttp.responseText;
 	    			if(status == "Question Added"){
-	    				document.getElementById("tdNotification").setAttribute("style","color: green;");
-	    				//document.getElementById("btnSubmit").value = ((int)(document.getElementById("btnSubmit").value) + 1);
-	    				count++;
 	    				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\"> Question Added !!!</strong></div>" ;
 	    				setTimeout(function() {
 							$("body").prepend(alertDiv);

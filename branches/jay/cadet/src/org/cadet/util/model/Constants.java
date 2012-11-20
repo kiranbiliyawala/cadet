@@ -61,7 +61,7 @@ public class Constants {
 	public static final String retriveCategoryName = "SELECT categoryName FROM category WHERE CategoryId = ?";
 	public static final String retriveUserCategories = getUserCategories+" WHERE CandidateCategoryName NOT IN (SELECT CandidateCategoryName FROM testcandidatecategory WHERE TestId = ?)";
 	public static final String addTest = "INSERT INTO test (TestName,TestType,TestDesc,TestDate,StartTime,EndTime,TestDuration,InitialDifficulty,NegMark) VALUES (?,?,?,STR_TO_DATE(?,'%Y-%m-%d'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),STR_TO_DATE(?,'%Y-%m-%d %k:%i'),?,?,?)";
-	public static final String addCategory = "INSERT INTO category (CategoryName,CategoryDescription) VALUES (?,?)";
+	public static final String addCategory = "INSERT INTO category (CategoryName,CategoryDescription,Ausername) VALUES (?,?,'')";
 	public static final String addCategoryToTest = "INSERT INTO testcategory (TestId,CategoryId,TimePerCategory,QuestionPerCategory) VALUES (?,?,?,?)";
 	public static final String addQstnToTest = "INSERT INTO testquestion (TestId,QuestionId) VALUES (?,?)";
 	public static final String addLevelMarks = "INSERT INTO levelmarks (LevelId,TestId,Marks) VALUES (?,?,?)";
@@ -120,7 +120,7 @@ public class Constants {
 
 	/* Komal Queries */
 	
-	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where endTime=SysDate()";
+	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where endTime>=SysDate()";
 	
 	/* Varun Queries */
 
@@ -139,10 +139,10 @@ public class Constants {
 		public static final Integer SMTP_PORT = 465;
 		public static final String SMTP_SSL = "true";
 		public static final String SMTP_AUTH = "true";
-		public static final String EmailMessage = "Please Click following link to verify your email address http://localhost/verifyEmail?";
+		public static final String EmailMessage = "Please Click following link to verify your email address http://www.cadet.org/verifyEmail?";
 		public static final String EmailSubject = "[EMAIL Verification] CADET";
 		public static final String EmailRegex = "^(.+)@(.+)$";
-		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://localhost/ForgotPassword?";
+		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://www.cadet.org/ForgotPassword?";
 		
     }
 	
