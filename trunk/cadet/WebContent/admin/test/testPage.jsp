@@ -564,15 +564,15 @@ footer {
 					<div class="accordion-heading navbar" style="margin-bottom:0;">
 						<div class="navbar-inner">
 							<div class="container-fluid">
-								<a class="accordion-toggle span3" data-toggle="collapse" data-parent="#viewQstnAccordion" href="#qstn{{questionId}}"><strong>{{#qstnHead}}{{question}}{{/qstnHead}}</strong></a>
+								<a class="accordion-toggle span3" data-toggle="collapse" data-parent="#viewQstnAccordion" href="#qstn{{questionId}}"><strong>{{#qstnHead}}{{{question}}}{{/qstnHead}}</strong></a>
 								<button id="{{questionId}}" class="btn btn-danger btnRemoveQstnFromTest pull-right">Remove</button>
 							</div>
 						</div>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<div class="container-fluid">
-								{{question}}
+							<div container-fluid">
+								{{{question}}}
 							</div>
 							<div class="row">
 								<div class="container-fluid">
@@ -608,14 +608,14 @@ footer {
 						<div class="navbar-inner">
 							<div class="container-fluid">
 								<input class="pull-left" type="checkbox" name="chkAddQstn" id="chkAdd{{questionId}}" value="{{questionId}}">
-								<a class="accordion-toggle span3" data-toggle="collapse" data-parent="#addQstnAccordion" href="#qstn{{questionId}}"><strong>{{#qstnHead}}{{question}}{{/qstnHead}}</strong></a>
+								<a class="accordion-toggle span3" data-toggle="collapse" data-parent="#addQstnAccordion" href="#qstn{{questionId}}"><strong>{{#qstnHead}}{{{question}}}{{/qstnHead}}</strong></a>
 							</div>
 						</div>
 					</div>
 					<div id="qstn{{questionId}}" class="accordion-body collapse">
 						<div class="accordion-inner">
 							<div class="container-fluid">
-								{{question}}
+								{{{question}}}
 							</div>
 							<div class="row">
 								<div class="container-fluid">
