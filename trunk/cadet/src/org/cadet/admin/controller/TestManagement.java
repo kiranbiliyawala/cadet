@@ -445,7 +445,7 @@ public class TestManagement extends HttpServlet {
 		    response.sendRedirect("../ServerException.html");
 		    return;
     	    	}
-	    } else if(testType.equals("NonAdaptive")) {
+	    } else if(testType.equals("Non-Adaptive")) {
 
 		try{
 
@@ -455,7 +455,7 @@ public class TestManagement extends HttpServlet {
 		    for(int i=0;i<categoryDetails.length;i++) {
 
     		    	int categoryId = categoryDetails[i].getCategoryId();
-    		    	System.out.println(request.getParameter("txtTimeCat"+categoryId));
+
     		    	int timePerCategory = Integer.parseInt(request.getParameter("txtTimeCat"+categoryId));
 
     		    	TestDbTransactions.setTestCategoryDetails(dbConnection,testId,categoryId,0,timePerCategory);
@@ -691,8 +691,6 @@ public class TestManagement extends HttpServlet {
 
 	else if (requestType.equals("saveNegMark")) {
 
-	    System.out.println(request.getParameter("testId"));
-	    System.out.println(request.getParameter("decreaseMark").split(" %")[0]);
 
 	    int testId = Integer.parseInt(request.getParameter("testId"));
 	    String negMarkFlag = request.getParameter("negMarkFlag");
@@ -748,15 +746,14 @@ public class TestManagement extends HttpServlet {
 	    try {
 		int testId = Integer.parseInt(request.getParameter("testId"));
 		JSONArray levelMarklist = new JSONArray(request.getParameter("levelMarkList"));
-		System.out.println(levelMarklist);
+
 		DatabaseConnection dbConn = DatabaseConnection.getInstance();
 		Connection dbConnection = dbConn.getDbConnection();
 
 		for(int i =0;i<levelMarklist.length();i++) {
 		    int levelId = Integer.parseInt(levelMarklist.getJSONObject(i).getString("inputName").split("txtLevel")[1]);
 		    int levelMark = Integer.parseInt(levelMarklist.getJSONObject(i).getString("inputValue"));
-		    System.out.println(levelId);
-		    System.out.println(levelMark);
+
 		    TestDbTransactions.saveLevelMark(dbConnection,testId,levelId,levelMark);
 		}
 
