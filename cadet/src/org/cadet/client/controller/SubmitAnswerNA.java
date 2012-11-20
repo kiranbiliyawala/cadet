@@ -14,7 +14,7 @@ import org.json.JSONException;
 /**
  * Servlet implementation class SubmitAnswerNA
  */
-@WebServlet("/client/Test/NonAdaptive/SubmitAnswer")
+@WebServlet("/client/Test/Non-Adaptive/SubmitAnswer")
 public class SubmitAnswerNA extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

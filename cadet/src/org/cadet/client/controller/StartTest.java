@@ -17,7 +17,7 @@ import org.json.JSONException;
 /**
  * Servlet implementation class StartTest
  */
-@WebServlet("/client/Test/NonAdaptive/StartTest")
+@WebServlet("/client/Test/Non-Adaptive/StartTest")
 public class StartTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -17,7 +17,7 @@ import org.cadet.util.model.DatabaseConnection;
 /**
  * Servlet implementation class CreateTest
  */
-@WebServlet("/client/Test/NonAdaptive/CreateTest")
+@WebServlet("/client/Test/Non-Adaptive/CreateTest")
 public class CreateTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

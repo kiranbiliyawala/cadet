@@ -304,8 +304,8 @@ footer {
 							<div class="control-group">
 								<label class="control-label" for="txtDP">Date : </label>
 								<div class="controls">
-									<div class="input-append date" id="txtDP" data-date="05-11-2012" data-date-format="dd-mm-yyyy">
-										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" value="05-11-2012" readonly>
+									<div class="input-append date" id="txtDP" data-date="" data-date-format="dd-mm-yyyy">
+										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" readonly>
 										<span class="add-on"><i class="icon-calendar"></i></span>
 									</div>
 								</div>
@@ -516,7 +516,7 @@ footer {
 				<option>{{candidateCategory}}</option>
 			{{/each}}
 		{{else}}
-			<option><p class="text-warning">No Question Added</p></option>
+			<option><p class="text-warning">No User Category Available</p></option>
 		{{/if}}
 	</script>
 
