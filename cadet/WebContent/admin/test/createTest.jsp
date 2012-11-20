@@ -64,7 +64,7 @@ body {
 							<div class="controls">
 								<select id="optTestType" name="optTestType">
 									<option>Adaptive</option>
-									<option>NonAdaptive</option>
+									<option>Non-Adaptive</option>
 								</select>
 							</div>
 						</div>
