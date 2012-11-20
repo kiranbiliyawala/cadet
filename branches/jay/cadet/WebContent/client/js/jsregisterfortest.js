@@ -9,7 +9,7 @@ function registerForTest(objTd,testId){
 		success:function(data){
 			
 				$(objTd).hide();
-				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have saved the details <strong>successfully !!!</strong></div>";
+				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\">You have registered <strong>successfully !!!</strong></div>";
 					setTimeout(function() {
 						$("body").prepend(alertDiv);
 						setTimeout(function() { $(".alert").alert("close"); },3000);
