@@ -287,11 +287,11 @@
 
   <servlet>
     <servlet-name>TestComplete</servlet-name>
-    <jsp-file>/client/Test/NonAdaptive/TestEndPageNA.jsp</jsp-file>
+    <jsp-file>/client/Test/Non-Adaptive/TestEndPageNA.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>TestComplete</servlet-name>
-    <url-pattern>/client/Test/NonAdaptive/TestComplete</url-pattern>
+    <url-pattern>/client/Test/Non-Adaptive/TestComplete</url-pattern>
   </servlet-mapping>
 
 <error-page>

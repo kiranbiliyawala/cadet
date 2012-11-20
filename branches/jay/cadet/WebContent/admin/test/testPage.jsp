@@ -70,7 +70,7 @@ footer {
 					<form id="frmSaveTest" class="container-fluid form-horizontal" method="post" action="TestManagement">
 						<table class="table table-striped table-condensed table-hover">
 							<c:set var="TestAdaptive" value="Adaptive"></c:set>
-							<c:set var="TestNonAdaptive" value="NonAdaptive"></c:set>
+							<c:set var="TestNon-Adaptive" value="Non-Adaptive"></c:set>
 							<thead>
 								<tr>
 									<th></th>
@@ -339,7 +339,7 @@ footer {
 
 					<div class="container-fluid tab-pane" id="tab2">
 						<c:set var="TestAdaptive" value="Adaptive"></c:set>
-						<c:set var="TestNonAdaptive" value="NonAdaptive"></c:set>
+						<c:set var="TestNon-Adaptive" value="Non-Adaptive"></c:set>
 						<c:choose>
 							<c:when test="${testType eq TestAdaptive}">
 								<form id="frmInitDiff" class="container-fluid form-horizontal">

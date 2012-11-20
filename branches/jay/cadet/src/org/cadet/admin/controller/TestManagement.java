@@ -445,7 +445,7 @@ public class TestManagement extends HttpServlet {
 		    response.sendRedirect("../ServerException.html");
 		    return;
     	    	}
-	    } else if(testType.equals("NonAdaptive")) {
+	    } else if(testType.equals("Non-Adaptive")) {
 
 		try{
 
