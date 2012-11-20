@@ -1,0 +1,93 @@
+*{
+	margin: 0%;
+	padding: 0%;
+}
+
+body{
+	display: block;
+}
+
+#logo{
+	height: auto;
+	width: 70px;	
+}
+
+#ulcontainer{ 
+	margin-left: 40%;
+	margin-right: auto;
+}
+
+#joinuscontainer{
+	position: absolute;
+	height: 50%;
+	width: 100%;
+	background-image: -moz-linear-gradient(top, #E7E7E7, #FEFEFE);
+  	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#E7E7E7), to(#FEFEFE));
+  	background-image: -webkit-linear-gradient(top, #E7E7E7, #FEFEFE);
+  	background-image: -o-linear-gradient(top, #E7E7E7, #FEFEFE);
+  	background-image: linear-gradient(to bottom, #E7E7E7, #FEFEFE);
+  	background-repeat: repeat-x;	
+}
+
+#welcometitle{
+	font-size: 50px;
+	margin-top: 6%;
+	margin-left: 80px;
+	height:10%;
+	text-align: left;
+	vertical-align: middle; 
+}
+
+#joinus{
+	margin-top: 75%;
+	margin-left: 145%;
+	padding: 10px;
+	height: 55px;
+	width: 125px;
+	font-size: 20px;
+}
+
+#verticalline{
+	display: inline-block;
+	border: 1px solid;
+	border-color: #969292;
+	height: 500px;	
+	width: 0px;
+	margin-left: 34%;
+	margin-top: 15px;
+}
+
+#form{
+	margin-top: 5%;
+}
+
+#horizontalline{
+	display: inline-block;
+	border: 1px solid;
+	border-color: #D2CEC8;
+	height: 0px;	
+	width: 400px;
+	margin-bottom: 3%; 
+}
+
+
+#btnlogin{
+	height: 45px;
+	width: 125px;
+	font-size: 20px;
+}
+
+#registrationtitle{
+	padding-top: 3%;
+	padding-bottom: 3%;
+	font-size: 20px;
+}
+
+#registrationform{
+	margin-top: 6%;
+	margin-left: 41%;
+	margin-right: auto;
+}
+
+
+

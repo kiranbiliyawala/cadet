@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+#logo{
+	height: auto;
+	width: 70px;	
+}
+
+#passwordform{
+	margin-top: 3%;
+}

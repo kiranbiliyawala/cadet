@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>cadet</display-name>
+  <welcome-file-list>
+    <welcome-file>Home</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>Adashboard</servlet-name>
+    <jsp-file>/admin/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Adashboard</servlet-name>
+    <url-pattern>/admin/dashboard</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Cdashboard</servlet-name>
+    <jsp-file>/client/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Cdashboard</servlet-name>
+    <url-pattern>/client/dashboard</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>login</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>emailvery</servlet-name>
+    <jsp-file>/pages/EmailVerification.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>emailvery</servlet-name>
+    <url-pattern>/EmailVerification</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>register</servlet-name>
+    <jsp-file>/pages/Register.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ViewCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.ViewCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewCategory</servlet-name>
+    <url-pattern>/admin/questionBank/ViewCategory</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCategory</servlet-name>
+    <url-pattern>/admin/questionBank/AddCategory</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>EditCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.EditCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditCategory</servlet-name>
+    <url-pattern>/admin/questionBank/EditCategory</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RemoveCategory</servlet-name>
+    <servlet-class>org.cadet.admin.controller.RemoveCategory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveCategory</servlet-name>
+    <url-pattern>/admin/questionBank/RemoveCategory</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>UploadByFile</servlet-name>
+    <jsp-file>/admin/questionbank/UploadByFile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadByFile</servlet-name>
+    <url-pattern>/admin/questionBank/UploadByFile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TestManagement</servlet-name>
+    <jsp-file>/admin/test/testManagementHome.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestManagement</servlet-name>
+    <url-pattern>/admin/test/testManagementHome</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>createtest</servlet-name>
+    <jsp-file>/admin/test/createTest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createtest</servlet-name>
+    <url-pattern>/admin/test/createTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ViewCat</servlet-name>
+    <jsp-file>/admin/usercategory/viewallcategory.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewCat</servlet-name>
+    <url-pattern>/admin/usercategory/viewallcategory</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>resulthome</servlet-name>
+    <jsp-file>/admin/test/resultHome.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resulthome</servlet-name>
+    <url-pattern>/admin/test/resultHome</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddQuestions</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddQuestions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestions</servlet-name>
+    <url-pattern>/admin/questionBank/AddQuestions</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>EditQuestions</servlet-name>
+    <servlet-class>org.cadet.admin.controller.EditQuestions</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditQuestions</servlet-name>
+    <url-pattern>/admin/questionBank/EditQuestions</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ViewQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.ViewQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/ViewQuestion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RemoveQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.RemoveQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/RemoveQuestion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>EditQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.EditQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/EditQuestion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddQuestion</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestion</servlet-name>
+    <url-pattern>/admin/questionBank/AddQuestion</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddQuestionByFile</servlet-name>
+    <servlet-class>org.cadet.admin.controller.AddQuestionByFile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestionByFile</servlet-name>
+    <url-pattern>/admin/questionBank/AddQuestionByFile</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TestRegister</servlet-name>
+    <jsp-file>/client/Test/registerfortest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestRegister</servlet-name>
+    <url-pattern>/client/Test/RegisterForTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TestView</servlet-name>
+    <jsp-file>/client/Test/viewalltest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestView</servlet-name>
+    <url-pattern>/client/Test/ViewAllTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ProChangedet</servlet-name>
+    <jsp-file>/client/profile/changedetails.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProChangedet</servlet-name>
+    <url-pattern>/client/profile/ChangeDetails</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ProChangepass</servlet-name>
+    <jsp-file>/client/profile/changepassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProChangepass</servlet-name>
+    <url-pattern>/client/profile/ChangePassword</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ForgotPassword</servlet-name>
+    <jsp-file>/pages/ForgotPasswordWait.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgotPassword</servlet-name>
+    <url-pattern>/ForgotPasswordWait</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdaptiveTest</servlet-name>
+    <jsp-file>/client/Test/Adaptive/Test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdaptiveTest</servlet-name>
+    <url-pattern>/client/Test/Adaptive/Test</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>getCategoryDetails</servlet-name>
+    <servlet-class>org.cadet.admin.controller.getCategoryDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getCategoryDetails</servlet-name>
+    <url-pattern>/admin/questionBank/getCategoryDetails</url-pattern>
+  </servlet-mapping>
+
+
+<servlet>
+    <servlet-name>PageNotFound</servlet-name>
+    <jsp-file>/pages/PageNotFound.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PageNotFound</servlet-name>
+    <url-pattern>/PageNotFound</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>InternalError</servlet-name>
+    <jsp-file>/pages/ServerException.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InternalError</servlet-name>
+    <url-pattern>/InternalError</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>UnAuthorized</servlet-name>
+    <jsp-file>/pages/UnAuthorizedAccess.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UnAuthorized</servlet-name>
+    <url-pattern>/UnAuthorized</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TestComplete</servlet-name>
+    <jsp-file>/client/Test/NonAdaptive/TestEndPageNA.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestComplete</servlet-name>
+    <url-pattern>/client/Test/NonAdaptive/TestComplete</url-pattern>
+  </servlet-mapping>
+
+<error-page>
+        <error-code>404</error-code>
+        <location>/PageNotFound</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>403</error-code>
+        <location>/UnAuthorized</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>500</error-code>
+        <location>/InternalError</location>
+    </error-page>
+
+  <session-config>
+    <session-timeout>300</session-timeout>
+  </session-config>
+</web-app>

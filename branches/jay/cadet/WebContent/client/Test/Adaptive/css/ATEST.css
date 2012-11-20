@@ -1,0 +1,187 @@
+.body{
+background-color:#CCC;
+margin-top: 1%;
+}
+
+.container{
+	background-color: #F9F9F9;
+	box-shadow: 8px 8px 8px #555;
+	border:medium;
+	border-style: groove;
+}
+
+.Controls {
+	border-radius:15px;
+	position:fixed;
+	bottom:3%;
+	height:10%;
+	width:80%;
+	left:10%;
+	right:10%;
+	text-align:center;
+}
+.Nav_Bar {
+	border-radius:15px;
+	position:fixed;
+	right:3%;
+	height:80%;
+	width:20%;
+}
+.question_portion {
+	border-radius:15px;
+	position:fixed;
+	left:5%;
+	height:80%;
+	width:70%;
+	font-size:20px;
+	overflow:auto;
+}
+.Question{
+	position:relative;
+	padding-right:2%;
+	padding-top:4%;
+	word-break:break-all;
+	word-wrap:break-word;
+	font-size:inherit;
+}
+.Question_no{
+	position:relative;
+	float:left;
+	padding-left:2%;
+	padding-top:2%;
+}
+
+.QNO{
+	border:thin #000 solid;
+	border-radius:5px;
+	height:50px;
+	width:50px;
+	text-align:center;
+}
+
+.flag_check{
+	position:relative;
+	float:left;
+}
+
+.Options{
+	position:relative;
+	margin-top:20%;
+	margin-left:15%;
+	word-break:break-all;
+	word-wrap:break-word;
+	text-align:left;
+}
+.Timer{
+	border-radius:5px;
+	border: thin solid #000;
+	position:absolute;
+	height:15%;
+	width:80%;
+	left:10%;
+	right:10%;
+	margin-top:5%;
+	margin-bottom:5%;
+	text-align:center;
+}
+.Section{
+	border-radius:5px;
+	border: thin solid #000;
+	position:absolute;
+	height:40%;
+	width:80%;
+	left:10%;
+	right:10%;
+	margin-top:10%;
+	padding:1%;
+	top:15%;
+	overflow:auto;
+	
+}
+
+
+.Legend{
+	border-radius:5px;
+	border: thin solid #000;
+	position:absolute;
+	width:80%;
+	left:10%;
+	right:10%;
+	margin-top:10%;
+	padding:1%;
+	bottom:2%;
+}
+
+
+.stub{
+	border:2px solid #888;
+	border-style:inset;
+	position:relative;
+	float:left;
+	height:30px;
+	width:30px;
+	margin:5px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.cover{
+	float:left;
+	margin:1%;
+}
+
+
+
+.butn
+{
+	box-shadow: 3px 3px 3px #555;
+   font-weight:bold;
+   width:15%;
+   height:80%;
+   position:relative;
+	margin:0.5%;
+   border-radius:10px;
+   box-shadow:#666;
+   text-shadow:#999;
+   cursor: pointer;
+}
+
+.Attempted{
+	background-color:#6F6;
+}
+
+.NotAttempted{
+	background-color:#F60;
+}
+
+.Flagged{
+	background-color:#FF6;
+}
+
+
+#Attempted{
+	margin:0%;
+}
+
+#NotAttempted{
+	margin:0%;
+}
+
+#Flagged{
+	margin:0%;
+}
+
+.CatQuestion{
+	background-color: #CCC;
+}
+
+.Category{
+	position: relative;
+	width: 90%;
+	margin-left: 5%;
+}
+
+
+.test_category{
+	background-color: #CCC;
+}
