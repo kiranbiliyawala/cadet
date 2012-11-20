@@ -95,7 +95,7 @@
                        				</tr>
                     				<tr>	
                         				<td> <button class="btn btn-primary" name="save" type="submit" value="Save">Save</button></td>
-                        				<td> <a class="btn btn-danger" name="Cancel" href="/cadet/client/index.jsp">Cancel</a></td>
+                        				<td> <a class="btn btn-danger" name="Cancel" href="/client/index.jsp">Cancel</a></td>
                     				</tr>
                 			</table>
         				</form>

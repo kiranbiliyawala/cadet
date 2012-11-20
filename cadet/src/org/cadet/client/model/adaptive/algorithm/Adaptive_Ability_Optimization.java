@@ -112,7 +112,7 @@ public class Adaptive_Ability_Optimization {
      * higher than maximum difficulty
      */
     public Double increase_difficulty() throws InvalidAlgorithmParameterException {
-        Double temp = difficulty + difference_between_difficulties;
+     Double temp = difficulty + difference_between_difficulties;
         if (temp > max_difficulty) {
             throw new InvalidAlgorithmParameterException(Exceptions.difficulty_exceeds_maxdifficulty);
         }

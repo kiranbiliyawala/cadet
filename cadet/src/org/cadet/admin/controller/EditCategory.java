@@ -48,9 +48,11 @@ public class EditCategory extends HttpServlet {
         objCategory.setCategoryId(categoryId);
         objCategory.setCategoryName(categoryName);
         objCategory.setCategoryDescription(categoryDescription);
-        objCategory.setAdminUsername(session.getAttribute("user").toString());
-
-        try{
+        objCategory.setAdminUsername((String)session.getAttribute("user"));
+        
+        System.out.println(objCategory.getAdminUsername());
+        
+       try{
             objCategoryManagement.editCategory(objCategory);
             status = true;
         }

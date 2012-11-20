@@ -53,7 +53,7 @@ public class ClientAuthFilter implements Filter {
 				throw new NullPointerException();
 			}
 		} catch (NullPointerException e) {
-			response.sendRedirect("/cadet/Login");
+			response.sendRedirect("/Login");
 			return;
 		} // pass the request along thefilter chain
 

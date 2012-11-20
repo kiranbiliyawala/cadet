@@ -52,7 +52,7 @@ public class AdminAuthFilter implements Filter {
 				throw new NullPointerException();
 			}
 		} catch (NullPointerException e) {
-			response.sendRedirect("/cadet/Login");
+			response.sendRedirect("/Login");
 			return;
 		} // pass the request along the filter chain
 		chain.doFilter(request, response);

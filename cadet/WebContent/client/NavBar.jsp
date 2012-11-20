@@ -6,14 +6,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/cadet/Home"><img id="logo" src="/cadet/img/cadet.gif" alt="CADET"></a>
+                    <a class="brand" href="/Home"><img id="logo" src="/img/cadet.gif" alt="CADET"></a>
                     <div class="nav-collapse collapse">
                        <ul class="nav">
-                           <li id="dashboard"><a href="/cadet/Home">Home</a></li>
-                           <li id="test"><a href="/cadet/client/Test/ViewAllTest">Test</a></li>
-                           <li id="profile"><a href="/cadet/client/profile/GetCandidateProfileServlet">Profile</a></li>
+                           <li id="dashboard"><a href="/Home">Home</a></li>
+                           <li id="test"><a href="/client/Test/ViewAllTest">Test</a></li>
+                           <li id="profile"><a href="/client/profile/GetCandidateProfileServlet">Profile</a></li>
                        </ul>
-                       <a  href="/cadet/Logout" type="submit" class="btn btn-danger pull-right">Logout</a>
+                       <a  href="/Logout" type="submit" class="btn btn-danger pull-right">Logout</a>
                     </div>
                 </div>	<!--/.container -->
             </div>

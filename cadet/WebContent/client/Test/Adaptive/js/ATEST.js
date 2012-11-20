@@ -116,6 +116,8 @@ function question_changed(){
 }
 
 function set_counter(starttime){
+	$('.Timer').empty();
+	$('.Timer').html('<div id="countdowntimer"></div>');
 	$('#countdowntimer').countdown({
         timestamp : new Date().getTime()+starttime,
         callback    : function(days, hours, minutes, seconds){
@@ -144,9 +146,6 @@ function submit_next(){
 	if(ans!=null)
 	{
 	submit_question(ans);
-	}else if($("#Qstub"+category+qno).hasClass('btn-success'))
-	{
-		skip_question();
 	}
 }
 

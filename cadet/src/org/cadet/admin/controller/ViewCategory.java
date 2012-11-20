@@ -41,11 +41,7 @@ public class ViewCategory extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "admin");
-			session.setAttribute("AdminAuth", true);
-			session.setAttribute("ClientAuth", false);
-			session.setAttribute("homeurl","admin/dashboard");        
-
+		
 			ArrayList<Category> categories = null;
 			CategoryManagement objCategoryManagement = new CategoryManagement();
 			String status = "", error="";

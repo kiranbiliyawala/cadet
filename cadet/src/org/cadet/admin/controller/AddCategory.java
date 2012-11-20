@@ -46,8 +46,11 @@ public class AddCategory extends HttpServlet {
             String categoryDescription = request.getParameter("categoryDescription").toString();
             objCategory.setCategoryName(categoryName);
             objCategory.setCategoryDescription(categoryDescription);
-            objCategory.setAdminUsername(session.getAttribute("user").toString());
+            objCategory.setAdminUsername((String)session.getAttribute("user"));
 
+            System.out.println(objCategory.getAdminUsername());
+            
+            
             try{
                 objCategoryManagement.addCategory(objCategory);
                 status = true;

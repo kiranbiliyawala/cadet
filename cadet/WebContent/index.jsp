@@ -121,7 +121,7 @@
   			
   		<div class="modal-body">
 			<div id="modalTheme">
- 				<img src="/cadet/img/thetheme.jpg"  width="100%" height="100%"></img>
+ 				<img src="/img/thetheme.jpg"  width="100%" height="100%"></img>
 			</div>
   		</div>
   		<div class="modal-footer">

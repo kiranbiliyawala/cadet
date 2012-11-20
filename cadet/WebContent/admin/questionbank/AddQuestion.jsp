@@ -237,7 +237,7 @@
         	
 	    	function addQuestion(level, question, optionA, optionB, optionC, optionD, correctAnswer){
 	    		xmlHttp=GetXmlHttpObject()
-	    		var url="/cadet/admin/questionBank/AddQuestion";
+	    		var url="/admin/questionBank/AddQuestion";
 	    		url=url+"?level=" + level + "&question=" + question + "&optionA=" + optionA + "&optionB=" + optionB + "&optionC=" + optionC + "&optionD=" + optionD + "&correctAnswer=" + correctAnswer;
 	    		xmlHttp.onreadystatechange=stateChanged 
 	    		xmlHttp.open("GET",url,true)

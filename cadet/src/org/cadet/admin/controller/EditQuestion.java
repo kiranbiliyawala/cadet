@@ -38,12 +38,7 @@ public class EditQuestion extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		boolean status;
 		try {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", "admin");
-			session.setAttribute("AdminAuth", true);
-			session.setAttribute("ClientAuth", false);
-			session.setAttribute("homeurl","admin/dashboard");
-			
+			HttpSession session = request.getSession();	
 			QuestionBank question = new QuestionBank();
 			QuestionBankManagement objQuestionBankManagement = new QuestionBankManagement();
 

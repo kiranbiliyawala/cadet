@@ -60,7 +60,7 @@
             							</tr>
             							<tr>
                 							<td> <button class="btn btn-primary" name="save" type="submit" value="Save">Save</button></td>
-                							<td> <a class="btn btn-danger" href="/cadet/client/dashboard">Cancel</a></td>
+                							<td> <a class="btn btn-danger" href="/client/dashboard">Cancel</a></td>
             							</tr>
           							</table>
           						</form>

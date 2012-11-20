@@ -44,7 +44,7 @@ public class IForgotPassword extends HttpServlet {
 		String username = request.getParameter("username");
 		try {
 			EmailSend.SendForgotMail(username);
-			response.sendRedirect("/cadet/pages/ForgotPasswordWait.jsp");
+			response.sendRedirect("/pages/ForgotPasswordWait.jsp");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			response.sendError(500);

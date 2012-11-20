@@ -2,7 +2,7 @@
 			<div class="navbar-inner">
 				<div class="container-fluid">
 
-					<a class="brand" href="/cadet/Home"><img id="logo" src="/cadet/img/cadet.gif"
+					<a class="brand" href="/Home"><img id="logo" src="/img/cadet.gif"
 						alt="CADET"></img></a>
 					<ul class="nav" id="ulcontainer">
 						<li class="active"><a href="">Home</a></li>

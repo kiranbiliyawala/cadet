@@ -21,10 +21,10 @@ Duration : <%= request.getAttribute("TestTime") %>
 <br/>
 <br />
 <strong>Instructions...</strong>
-
-1. The Test will be containing of only MCQ.
-2. Any cheating or misbehaviour during test might result into strict steps.
-3. For any kind of help contact Test supervisors.
+<br />
+1. The Test will be containing of only MCQ.<br />
+2. Any cheating or misbehaviour during test might result into strict steps.<br />
+3. For any kind of help contact Test supervisors.<br />
 </div>
 <form method="post" action="Test">
 <div class="closestartbtn"><button class="btn butn btn-primary" type="submit" value="Start Test">Start Test</button></div>

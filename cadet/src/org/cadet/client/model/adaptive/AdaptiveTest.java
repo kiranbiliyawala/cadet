@@ -33,7 +33,6 @@ public class AdaptiveTest {
 	//add scheduler in startTest method
 	//create a runnable class that calls submitSection
 	//split startNextQuestion into SubmitSection i.e. submit a particular category; and startSection(int currentCategoryId)
-	
 	//in startSection method handle QuestionsHaveBeenExhaustedForDifficultyLevel in try catch call increaseDifficulty. Though this would not be required as such but still worst case.
 	
 	private int testId;
@@ -164,6 +163,7 @@ public class AdaptiveTest {
 				}
 				else return null;
 			} catch (DificultyExhaustException e) {
+				System.out.println(e.getMessage());
 					return increaseDifficulty();
 			}
 		}
@@ -200,22 +200,25 @@ public class AdaptiveTest {
 		}
 	}
 	
-	private Question increaseDifficulty() throws SQLException, SectionCompleteException,DificultyExhaustException{
+	private Question increaseDifficulty() throws SQLException, SectionCompleteException{
 		try {
 			this.aao.increase_difficulty();
+			System.out.println("diif: "+this.aao.getDifficulty());
 			return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
 		} catch (InvalidAlgorithmParameterException e) {
+			System.out.println(e.getMessage());
 			this.categories.get(this.currentCategoryId).setAbility(this.aao.getAbility());
 			this.categories.get(this.currentCategoryId).setTimedAbility(this.aao.getTimedAbility());
 			this.categories.get(this.currentCategoryId).setDone(true);
 			throw new SectionCompleteException("Section completed!");
-		} catch(Exception ex){
-			if(ex.getMessage().equals("Questions for the given difficulty are exhausted !")){
-				return this.increaseDifficulty();
+		} catch(DificultyExhaustException ex){
+			System.out.println("diff exhausted increase difficulty");
+			return this.increaseDifficulty();
 				//return AdaptiveTestDBTransactions.fetchNextQuestion(this.testId, this.currentCategoryId, this.aao.getDifficulty(), this.categories.get(this.currentCategoryId).getAskedQuestions());
-			}
-			else
-				throw ex;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+			// TODO: handle exception
 		}
 	}
 

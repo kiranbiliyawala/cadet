@@ -2,7 +2,7 @@
 
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-parent="#accordionMenu" href="/cadet/Home">Home</a>
+                            <a class="accordion-toggle" data-parent="#accordionMenu" href="/Home">Home</a>
                         </div>
                     </div>
                     <div class="accordion-group">
@@ -12,8 +12,8 @@
                         <div id="collapse2" class="accordion-body collapse">
                             <div class="accordion-inner">
                                 <ul class="nav">
-                                    <li><a href="/cadet/client/Test/RegisterForTest">Register for Test</a></li>
-                                    <li><a href="/cadet/client/Test/ViewAllTest">View All Test</a></li>
+                                    <li><a href="/client/Test/RegisterForTest">Register for Test</a></li>
+                                    <li><a href="/client/Test/ViewAllTest">View All Test</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -27,8 +27,8 @@
                             <div class="accordion-inner">
 
                                 <ul class="nav">
-                                    <li><a href="/cadet/client/profile/GetCandidateProfileServlet">Change Details</a></li>
-                                    <li><a href="/cadet/client/profile/ChangePassword">Change Password</a></li>
+                                    <li><a href="/client/profile/GetCandidateProfileServlet">Change Details</a></li>
+                                    <li><a href="/client/profile/ChangePassword">Change Password</a></li>
                                 </ul>
                             </div>
                         </div>

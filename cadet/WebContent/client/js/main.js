@@ -15,7 +15,8 @@ $.post("DashboardServlet",
 
 
 function start_test(testtype,testid){
-  var popup =  window.open('Test/'+testtype+'/CreateTest?testid='+testid,'_blank','location=0,menubar=0,statusbar=0,titelebar=0,toolbar=0,fullscreen=1,height='+screen.height+'width='+screen.width,false);
+  var popup =  window.open('Test/'+testtype+'/CreateTest?testid='+testid,'_blank','location=0,menubar=0,statusbar=0,titelebar=0,toolbar=0,scrollbars=1,fullscreen=1,height='+screen.height+'width='+screen.width,false);
+  popup.resizeTo(screen.availWidth,screen.availHeight);
   check_closure(popup);
 }
 

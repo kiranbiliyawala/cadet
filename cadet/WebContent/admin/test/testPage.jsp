@@ -70,7 +70,7 @@ footer {
 					<form id="frmSaveTest" class="container-fluid form-horizontal" method="post" action="TestManagement">
 						<table class="table table-striped table-condensed table-hover">
 							<c:set var="TestAdaptive" value="Adaptive"></c:set>
-							<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
+							<c:set var="TestNonAdaptive" value="NonAdaptive"></c:set>
 							<thead>
 								<tr>
 									<th></th>
@@ -304,8 +304,8 @@ footer {
 							<div class="control-group">
 								<label class="control-label" for="txtDP">Date : </label>
 								<div class="controls">
-									<div class="input-append date" id="txtDP" data-date="" data-date-format="dd-mm-yyyy">
-										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" required readonly>
+									<div class="input-append date" id="txtDP" data-date="05-11-2012" data-date-format="dd-mm-yyyy">
+										<input id="txtTestDate" name="txtTestDate" class="span2" size="16" type="text" value="05-11-2012" readonly>
 										<span class="add-on"><i class="icon-calendar"></i></span>
 									</div>
 								</div>
@@ -339,7 +339,7 @@ footer {
 
 					<div class="container-fluid tab-pane" id="tab2">
 						<c:set var="TestAdaptive" value="Adaptive"></c:set>
-						<c:set var="TestNonAdaptive" value="Non-Adaptive"></c:set>
+						<c:set var="TestNonAdaptive" value="NonAdaptive"></c:set>
 						<c:choose>
 							<c:when test="${testType eq TestAdaptive}">
 								<form id="frmInitDiff" class="container-fluid form-horizontal">

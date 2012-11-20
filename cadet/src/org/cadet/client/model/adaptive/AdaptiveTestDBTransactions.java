@@ -119,6 +119,10 @@ public class AdaptiveTestDBTransactions {
 			questions_asked = "0";
 		}
 		
+		System.out.println("fetchnextquestion: "+Constants.sqlCommands.fetchNextQuestion1 + questions_asked + Constants.sqlCommands.fetchNextQuestion2);
+		System.out.println("testid: "+testId);
+		System.out.println("categoryId: "+categoryId);
+		System.out.println("difficulty: "+difficulty.intValue());
 		
 		DatabaseConnection dbConn= DatabaseConnection.getInstance();
 		PreparedStatement ps= dbConn.getDbConnection().prepareStatement(Constants.sqlCommands.fetchNextQuestion1 + questions_asked + Constants.sqlCommands.fetchNextQuestion2);
@@ -131,6 +135,7 @@ public class AdaptiveTestDBTransactions {
 		
 		if(rs.first()){
 			q= new Question(rs.getInt(1), rs.getInt(2), rs.getInt(10), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+			askedQuestions.add(q.getQuestionId());
 		}
 		else{
 			throw new DificultyExhaustException("Questions for the given difficulty are exhausted !");

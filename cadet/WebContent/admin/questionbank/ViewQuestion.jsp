@@ -131,11 +131,11 @@
 	    				
 		                <div id="deleteConfirmationPopup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		                	<div class="modal-header">
-							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">?</button>
 							    <h3 id="myModalLabel">Delete Question</h3>
 							</div>
 							<div class="modal-body">
-							    <p>Are you sure you want to delete the category permanently?</p>
+							    <p>Are you sure you want to delete the question permanently?</p>
 							</div>
 							<div class="modal-footer">
 								<input type="button" class="btn btn-primary" id="btnRemoveQuestion" name="btnRemoveQuestion" value="Yes" onClick="modifyQuestion('Remove','btnSubmit')" data-dismiss="modal" aria-hidden="true"/>
@@ -178,7 +178,7 @@
         	function viewQuestion(){
     			var e = document.getElementById("selCategory");
     			var categoryId = e.options[e.selectedIndex].id;
-    			window.location = "/cadet/admin/questionBank/ViewQuestion?hdnCategoryId=" + categoryId;
+    			window.location = "/admin/questionBank/ViewQuestion?hdnCategoryId=" + categoryId;
         	}
 
         	function addQuestion(){
@@ -186,9 +186,9 @@
     			var e = document.getElementById("selCategory");
     			var categoryId = e.options[e.selectedIndex].id;
     			var categoryName = e.options[e.selectedIndex].text;
-       	        document.forms[0].action = "/cadet/admin/questionBank/AddQuestions?i=" + categoryId + "&c=" + categoryName;
+       	        document.forms[0].action = "/admin/questionBank/AddQuestions?i=" + categoryId + "&c=" + categoryName;
        	     	document.getElementById("btnSubmit").click();
-    			//window.location = "/cadet/admin/questionBank/AddQuestions?i=" + categoryId + "&c=" + categoryName;
+    			//window.location = "/admin/questionBank/AddQuestions?i=" + categoryId + "&c=" + categoryName;
         	}
 
         	function modifyQuestion(action,val){
@@ -198,7 +198,7 @@
         		}
         		else if (action=='Edit') {
 					document.getElementById("hdnQuestionId").value = val;
-	       	        document.forms[0].action = "/cadet/admin/questionBank/EditQuestions";
+	       	        document.forms[0].action = "/admin/questionBank/EditQuestions";
 	       	     	document.getElementById("btnSubmit").click();
 				}
         	}

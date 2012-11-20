@@ -74,6 +74,7 @@
 
 
 	function init(elem, options){
+		elem.empty();
 		elem.addClass('countdownHolder');
 
 		// Creating the markup inside the container

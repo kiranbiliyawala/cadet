@@ -7,12 +7,12 @@
 
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/ATEST.css">
-<link rel="stylesheet" type="text/css" href="/cadet/client/css/jquery.countdown.css">
+<link rel="stylesheet" type="text/css" href="/client/css/jquery.countdown.css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link rel="icon" type="image/ico" href="../../../img/favicon.ico">
 
-<script type="text/javascript" src="/cadet/client/js/jquery.countdown.js"></script>
+<script type="text/javascript" src="/client/js/jquery.countdown.js"></script>
 
 
 </head>
@@ -55,8 +55,8 @@
         <button class="btn butn btn-primary" type="button" onclick="submit_next()" name="Next&ampSubmit" text="Next &amp Submit" style="float:right"/>Next &amp Submit &gt;</button>
         <button class="btn butn btn-info" type="button" onclick="skip()" name="Skip" text="Skip" style="float:right"/>Skip</button>
 	</div>
-	  <script src="/cadet/js/handlebars.js"></script>
-	   <script src="/cadet/js/bootbox.js"></script>
+	  <script src="/js/handlebars.js"></script>
+	   <script src="/js/bootbox.js"></script>
 	   
 	  <script id="changequehandle" type="text/x-handlebars-template">
        <div class="Question_no">

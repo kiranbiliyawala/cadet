@@ -41,11 +41,6 @@ public class AddQuestions extends HttpServlet {
 		String error="";
 		try {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "admin");
-			session.setAttribute("AdminAuth", true);
-			session.setAttribute("ClientAuth", false);
-			session.setAttribute("homeurl","admin/dashboard");        
-			
 			
 			
         	int categoryId = Integer.parseInt(request.getParameter("hdnCategoryId"));

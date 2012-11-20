@@ -9,7 +9,7 @@
 <script src="js/NATEST.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.css"/>
 <link rel="stylesheet" type="text/css" href="css/NATEST.css"/>
-<link rel="stylesheet" type="text/css" href="/cadet/client/css/jquery.countdown.css"/>
+<link rel="stylesheet" type="text/css" href="/client/css/jquery.countdown.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <title><%= request.getAttribute("TestName") %></title>
@@ -20,7 +20,7 @@ var questiondistribution = <%= request.getAttribute("CatDistribution")%>;
 var Time= <%= request.getAttribute("TimeDuration")%>;
 </script>
 
-<script type="text/javascript" src="/cadet/client/js/jquery.countdown.js"></script>
+<script type="text/javascript" src="/client/js/jquery.countdown.js"></script>
 
 
 </head>

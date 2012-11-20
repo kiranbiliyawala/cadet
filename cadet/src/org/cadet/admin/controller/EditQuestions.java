@@ -54,11 +54,7 @@ public class EditQuestions extends HttpServlet {
 		out.println("<body>");
         try{
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "admin");
-			session.setAttribute("AdminAuth", true);
-			session.setAttribute("ClientAuth", false);
-			session.setAttribute("homeurl","admin/dashboard");        
-
+			
 			int questionId = Integer.parseInt(request.getParameter("hdnQuestionId"));
 			
 			//get question detail through Question ID

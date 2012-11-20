@@ -6,15 +6,15 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="/cadet/Home"><img src="/cadet/img/cadet.gif" alt="CADET" style="width: 70px;height: auto;"></a>
+				<a class="brand" href="/Home"><img src="/img/cadet.gif" alt="CADET" style="width: 70px;height: auto;"></a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li id="dashboard"><a href="/cadet/Home">Home</a></li>
-						<li id="question"><a href="/cadet/admin/questionBank/ViewQuestion?hdnCategoryId=0">Question Bank</a></li>
-						<li id="test"><a href="/cadet/admin/test/testManagementHome">Test Management</a></li>
-						<li id ="category"><a href="/cadet/admin/usercategory/viewallcategory">Candidate Category</a></li>
+						<li id="dashboard"><a href="/Home">Home</a></li>
+						<li id="question"><a href="/admin/questionBank/ViewQuestion?hdnCategoryId=0">Question Bank</a></li>
+						<li id="test"><a href="/admin/test/testManagementHome">Test Management</a></li>
+						<li id ="category"><a href="/admin/usercategory/viewallcategory">Candidate Category</a></li>
 					</ul>
-					<a href="/cadet/Logout" type="submit" class="btn btn-danger pull-right">Logout</a>
+					<a href="/Logout" type="submit" class="btn btn-danger pull-right">Logout</a>
 				</div>
 			</div>
 			<!--/.container -->

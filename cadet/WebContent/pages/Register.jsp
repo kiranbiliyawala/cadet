@@ -1,4 +1,4 @@
-<%@page import="org.cadet.util.model.Constants"%>
+<%@page import="org.util.model.Constants"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -32,8 +32,8 @@ footer {
 }
 </style>
 
-<link rel="stylesheet" href="/cadet/css/bootstrap-responsive.css" />
-<link rel="stylesheet" href="/cadet/css/homepage.css" />
+<link rel="stylesheet" href="/css/bootstrap-responsive.css" />
+<link rel="stylesheet" href="/css/homepage.css" />
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>

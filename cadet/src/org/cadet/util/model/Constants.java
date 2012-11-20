@@ -7,8 +7,8 @@ public class Constants {
     public static final class Captcha {
 
 	public static final String VerifyUrl = "http://www.google.com/recaptcha/api/verify";
-	public static final String publicKey = "6LeOsdcSAAAAAOHjj6wziFhEdSzLzxCQDjPbYPXo";
-	public static final String privateKey = "6LeOsdcSAAAAAP3OwUfT_kxNXh5r9oJwvG3H4uSS";
+	public static final String publicKey = "6LfzSdkSAAAAALISjvX10gjRDb30jhvv84CaQXAq";
+	public static final String privateKey = "6LfzSdkSAAAAAHzAe2VRcF_1fGZ77ZxyvXXM_EOa";
 
     }
 
@@ -16,7 +16,7 @@ public class Constants {
 	public static final String driver = "com.mysql.jdbc.Driver";
 	public static final String dburl = "jdbc:mysql://localhost:3306/cadet";
 	public static final String username = "root";
-	public static final String password = "";
+	public static final String password = "root";
 	public static boolean hasPassword = true;
     }
 
@@ -120,7 +120,7 @@ public class Constants {
 
 	/* Komal Queries */
 	
-	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where TestDate>=now()";
+	public static final String GetAdminDashboardTests = "SELECT TestId,TestName,TestDate,TestDuration FROM test where endTime=SysDate()";
 	
 	/* Varun Queries */
 
@@ -139,10 +139,10 @@ public class Constants {
 		public static final Integer SMTP_PORT = 465;
 		public static final String SMTP_SSL = "true";
 		public static final String SMTP_AUTH = "true";
-		public static final String EmailMessage = "Please Click following link to verify your email address http://localhost:8080/cadet/verifyEmail?";
+		public static final String EmailMessage = "Please Click following link to verify your email address http://localhost/verifyEmail?";
 		public static final String EmailSubject = "[EMAIL Verification] CADET";
 		public static final String EmailRegex = "^(.+)@(.+)$";
-		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://localhost:8080/cadet/ForgotPassword?";
+		public static final String ForgotEmailMessage = "Please Click following link to verify your email address http://localhost/ForgotPassword?";
 		
     }
 	

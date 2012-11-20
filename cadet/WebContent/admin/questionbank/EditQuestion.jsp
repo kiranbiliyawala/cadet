@@ -284,7 +284,7 @@
         	
 	    	function editQuestion(questionId, category, level, question, optionA, optionB, optionC, optionD, correctAnswer){
 	    		xmlHttp=GetXmlHttpObject()
-	    		var url="/cadet/admin/questionBank/EditQuestion";
+	    		var url="/admin/questionBank/EditQuestion";
 	    		url=url+"?questionId=" + questionId + "&categoryId=" + category + "&level=" + level + "&question=" + question + "&optionA=" + optionA + "&optionB=" + optionB + "&optionC=" + optionC + "&optionD=" + optionD + "&correctAnswer=" + correctAnswer;
 	    		xmlHttp.onreadystatechange=stateChanged 
 	    		xmlHttp.open("GET",url,true)

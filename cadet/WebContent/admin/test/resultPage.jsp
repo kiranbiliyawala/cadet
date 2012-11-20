@@ -13,8 +13,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 
-<link rel="stylesheet" href="/cadet/css/bootstrap.css">
-<link rel="icon" type="image/ico" href="/cadet/img/favicon.ico">
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="icon" type="image/ico" href="/img/favicon.ico">
 <style>
 body {
 	padding-top: 60px;
@@ -25,10 +25,10 @@ body {
 	background: none scroll repeat 0 0 #FFFFFF;
 }
 </style>
-<link rel="stylesheet" href="/cadet/css/bootstrap-responsive.css">
-<link rel="stylesheet" href="/cadet/css/main.css">
+<link rel="stylesheet" href="/css/bootstrap-responsive.css">
+<link rel="stylesheet" href="/css/main.css">
 
-<script src="/cadet/js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+<script src="/js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -83,14 +83,14 @@ body {
 		
    <jsp:include page="/admin/Footer.jsp"></jsp:include>
 
-	<script src="/cadet/js/jquery-1.8.2.js"></script>
-        <script src="/cadet/js/bootstrap.js"></script>
-        <script src="/cadet/js/handlebars.js"></script>
+	<script src="/js/jquery-1.8.2.js"></script>
+        <script src="/js/bootstrap.js"></script>
+        <script src="/js/handlebars.js"></script>
         	<script type="text/javascript">
         $("#test").addClass("active");
         $("#collapse3").addClass("in");
         </script>
-        <script src="/cadet/js/bootbox.js"></script>
+        <script src="/js/bootbox.js"></script>
         <script id="getresults" type="text/x-handlebars-template">
         	{{#if resultList}}
 				{{#each resultList}}
@@ -98,7 +98,7 @@ body {
 						<td>{{Rank}}</td>
 						<td>{{UserName}}</td>
 						<td>{{Score}}</td>
-						<td>{{Attempted}} Mins.</td>
+						<td>{{Attempted}}</td>
 						<td>{{Correct}}</td>
 						<td>{{Percentile}}</td>
 					</tr>

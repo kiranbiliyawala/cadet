@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div>
-                    	<form action="/cadet/admin/questionBank/AddQuestionByFile" METHOD="post" ENCTYPE="multipart/form-data">
+                    	<form action="/admin/questionBank/AddQuestionByFile" METHOD="post" ENCTYPE="multipart/form-data">
 			                <table>
 			                	<tr>
 			                		<td style="color:green; font-weight: 600;">
@@ -92,7 +92,7 @@
 							<h1>Question CSV file Template</h1>
 						</div>
 						<div>
-							<img alt="csvtemplate" src="/cadet/img/csvfileformat.JPG">
+							<img alt="csvtemplate" src="/img/csvfileformat.JPG">
 						</div>
 					</div>
 					<div>
@@ -100,7 +100,7 @@
 							<h1>Question CSV file Example</h1>
 						</div>
 						<div>
-							<img alt="csvtemplate" src="/cadet/img/csvfileformatexample.JPG">
+							<img alt="csvtemplate" src="/img/csvfileformatexample.JPG">
 						</div>
 					</div>
                 </div>

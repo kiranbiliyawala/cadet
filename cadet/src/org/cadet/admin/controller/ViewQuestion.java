@@ -44,10 +44,6 @@ public class ViewQuestion extends HttpServlet {
 		try {
 			out.println("TRY block-1 Begins<br/><br/>");
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "admin");
-			session.setAttribute("AdminAuth", true);
-			session.setAttribute("ClientAuth", false);
-			session.setAttribute("homeurl","admin/dashboard");
 			
 			ArrayList<QuestionBank> questions = null;
 			QuestionBankManagement objQuestionBankManagement = new QuestionBankManagement();

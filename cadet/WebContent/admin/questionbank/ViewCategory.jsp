@@ -33,12 +33,6 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
-		<%
-        	session.setAttribute("user", "admin");
-			session.setAttribute("AdminAuth", true);
-			session.setAttribute("ClientAuth", false);
-			session.setAttribute("homeurl","admin/dashboard");
-        %>
         <form id="form1" action="" method="POST">
         <jsp:include page="/admin/NavBar.jsp"></jsp:include>
         	<!--/.navbar -->
@@ -147,6 +141,7 @@
 
         <script src="../../js/bootstrap.js"></script>
 	<script src="../../js/nicEdit.js"></script>
+        <script src="../../js/nicEdit.js"></script>
         
         <script src="../../js/main.js"></script>
         <script type="text/javascript">
