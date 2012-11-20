@@ -251,7 +251,11 @@
 	    				document.getElementById("tdNotification").setAttribute("style","color: green;");
 	    				//document.getElementById("btnSubmit").value = ((int)(document.getElementById("btnSubmit").value) + 1);
 	    				count++;
-	    				document.getElementById("tdNotification").innerHTML = "<b>" + count + "</b> - Question Added...";
+	    				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\"> Question Added !!!</strong></div>" ;
+	    				setTimeout(function() {
+							$("body").prepend(alertDiv);
+							setTimeout(function() { $(".alert").alert("close"); },3000);
+						},600);	
 	    			}
 	    		} 
 	    	}

@@ -295,7 +295,11 @@
 	    		if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
 	    			var status=xmlHttp.responseText;	    			if(status == "Question Edited"){
 	    				document.getElementById("tdNotification").setAttribute("style","color: green;");
-	    				document.getElementById("tdNotification").innerHTML = "<b>Question Edited.!!!</b>";
+	    				var alertDiv = "<div style=\"position:absolute; margin-top:0.15%;\" class=\"alert alert-success offset4 span4\"> Question Edited !!!</strong></div>" ;
+	    				setTimeout(function() {
+							$("body").prepend(alertDiv);
+							setTimeout(function() { $(".alert").alert("close"); },3000);
+						},600);	
 	    			}
 	    		}
 	    	}
