@@ -16,7 +16,7 @@ public class Constants {
 	public static final String driver = "com.mysql.jdbc.Driver";
 	public static final String dburl = "jdbc:mysql://localhost:3306/cadet";
 	public static final String username = "root";
-	public static final String password = "";
+	public static final String password = "root";
 	public static boolean hasPassword = true;
     }
 
