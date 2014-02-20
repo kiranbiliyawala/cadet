@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`CategoryId`, `CategoryName`, `CategoryDescription`, `Ausername`) VALUES
 (1, 'Quantitative', 'Contains the Quantitative Questions', 'admin'),
-(2, 'Varbal', 'Contains all the Verbal Ability Questions', 'admin'),
+(2, 'Verbal', 'Contains all the Verbal Ability Questions', 'admin'),
 (3, 'Logical Reasoni', 'Contains all the Logical Reasoning Questions ', 'admin1'),
 (4, 'Comprehension', 'Contains all the Comprehensive Questions', 'admin'),
 (5, 'Aptitude', 'Contains all the Aptitude Questions', 'admin1');
